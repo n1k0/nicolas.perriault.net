@@ -1,7 +1,7 @@
-{% extends "work/base.html" %}
+{% extends "code/base.html" %}
 
 {% block contents %}
-<h2>Work</h2>
+<h2>Code</h2>
 <ul>
 {% for page in pages %}
     <li><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></li>

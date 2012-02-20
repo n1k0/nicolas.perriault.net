@@ -6029,6 +6029,9 @@ body {
   color: #333333;
   text-decoration: none;
 }
+.arrow-suffixed:after {
+  content: " »";
+}
 .page-header h1 {
   font-size: 48px;
 }
@@ -6062,36 +6065,62 @@ body {
 footer.row {
   text-align: center;
 }
+body.contact .contents > * {
+  font-size: 19.2px;
+  line-height: 26.4px;
+}
+body.code .sidebar li.code a {
+  color: #333333;
+  text-decoration: none;
+}
+body.code .sidebar li.code a:after {
+  content: " »";
+}
+body.contact .sidebar li.contact a {
+  color: #333333;
+  text-decoration: none;
+}
+body.contact .sidebar li.contact a:after {
+  content: " »";
+}
 body.home .sidebar li.home a {
   color: #333333;
   text-decoration: none;
+}
+body.home .sidebar li.home a:after {
+  content: " »";
 }
 body.photography .sidebar li.photography a {
   color: #333333;
   text-decoration: none;
 }
+body.photography .sidebar li.photography a:after {
+  content: " »";
+}
 body.thoughts .sidebar li.thoughts a {
   color: #333333;
   text-decoration: none;
 }
+body.thoughts .sidebar li.thoughts a:after {
+  content: " »";
+}
 body.work .sidebar li.work a {
   color: #333333;
   text-decoration: none;
+}
+body.work .sidebar li.work a:after {
+  content: " »";
 }
 @media (max-width: 480px) {
   .sidebar {
     text-align: center;
   }
   .sidebar li {
-    font-size: 12px;
     display: inline;
     padding-right: 16px;
   }
 }
 @media (max-width: 768px) {
-  .page-header h1, .page-header h2 {
-    text-align: center;
-  }
   .page-header h2 {
     font-size: 20px;
   }
@@ -6111,8 +6140,10 @@ body.work .sidebar li.work a {
 @media (max-width: 980px) {
   
 }
-@media (min-width: 980px) {
-  
+@media (min-width: 980px) and (max-width: 1200px) {
+  .page-header h2 {
+    font-size: 20px;
+  }
 }
 @media (min-width: 1200px) {
   .page-header h1, .page-header h2 {

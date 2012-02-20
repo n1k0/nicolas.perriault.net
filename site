@@ -11,11 +11,17 @@ DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
+GA_TRACKER = 'XXX'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
+
+
+@app.context_processor
+def inject_ga():
+    return dict(GA_TRACKER=GA_TRACKER)
 
 
 def get_pages(pages, min=None, max=None, section=None):
@@ -47,7 +53,7 @@ def section(section):
         section=section))
 
 
-@app.route('/<string:section>/')
+@app.route('/<string:section>/archives/')
 def section_archives(section):
     """ TODO: group by year """
     template = '%s/index.html' % section
@@ -63,6 +69,11 @@ def page(path):
         abort(404)
     template = page.meta.get('template', '%s/page.html' % section)
     return render_template(template, page=page)
+
+
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
 
 
 @app.errorhandler(404)

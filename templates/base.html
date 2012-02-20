@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Nicolas Perriault</title>
+    <title>{% block page_title %}Home{% endblock page_title %} | Nicolas Perriault</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
@@ -30,10 +30,10 @@
             <div class="span3 sidebar">
                 <ul>
                     <li class="home"><a href="{{ url_for("index") }}">Home</a></li>
+                    <li class="code"><a href="{{ url_for("section", section="code") }}">Code</a></li>
                     <li class="photography"><a href="{{ url_for("section", section="photography") }}">Photography</a></li>
                     <li class="thoughts"><a href="{{ url_for("section", section="thoughts") }}">Thoughts</a></li>
-                    <li class="work"><a href="{{ url_for("section", section="work") }}">Work</a></li>
-                    <li class="contact"><a href="mailto:nicolas@perriault.net">Contact</a></li>
+                    <li class="contact"><a href="{{ url_for("contact") }}">Contact</a></li>
                 </ul>
             </div>
             <div class="span9">
@@ -51,18 +51,16 @@
                 — <a href="https://twitter.com/n1k0">Tweet at me</a>
                 — <a href="https://github.com/n1k0">Get my code</a>
                 — <a href="http://500px.com/n1k0">Enjoy my pics</a>
-                — <a href="mailto:nicolas@perriault.net">Contact me</a>
+                — <a href="{{ url_for("contact") }}">Contact me</a>
             </p>
         </footer>
     </div>
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script src="js/libs/bootstrap/transition.js"></script>
-    <script src="js/libs/bootstrap/collapse.js"></script>
-    <script src="js/script.js"></script>
+    <script src="/static/js/script.js"></script>
     <script>
-        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        var _gaq=[['_setAccount', '{{ GA_TRACKER }}'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));

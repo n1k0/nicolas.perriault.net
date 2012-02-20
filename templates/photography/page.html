@@ -1,5 +1,7 @@
 {% extends "photography/base.html" %}
 
+{% block page_title %}{{ page.title }} | {{ super() }}{% endblock %}
+
 {% block contents %}
 <article>
     <header>

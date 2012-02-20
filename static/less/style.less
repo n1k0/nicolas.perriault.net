@@ -27,6 +27,17 @@ body {
     text-decoration: none;
 }
 
+.arrow-suffixed {
+    &:after {
+        content: " »";
+    }
+}
+
+.baseFontIncrease(@ratio) {
+    font-size: @baseFontSize * @ratio;
+    line-height: @baseLineHeight * @ratio;
+}
+
 // tags
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,8 +65,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: 5px;
         list-style-type: none;
         li {
-            font-size: @baseFontSize * 1.5;
-            line-height: @baseLineHeight * 1.5;
+            .baseFontIncrease(1.5);
             text-align: right;
             a {
                 color: @lightGrey;
@@ -72,29 +82,55 @@ footer.row {
     text-align: center;
 }
 
+// Page styles
+
+body.contact .contents {
+    > * {
+        .baseFontIncrease(1.2);
+    }
+}
+
 // Section related
+
+body.code {
+    .sidebar li.code a {
+        .active;
+        .arrow-suffixed;
+    }
+}
+
+body.contact {
+    .sidebar li.contact a {
+        .active;
+        .arrow-suffixed;
+    }
+}
 
 body.home {
     .sidebar li.home a {
         .active;
+        .arrow-suffixed;
     }
 }
 
 body.photography {
     .sidebar li.photography a {
         .active;
+        .arrow-suffixed;
     }
 }
 
 body.thoughts {
     .sidebar li.thoughts a {
         .active;
+        .arrow-suffixed;
     }
 }
 
 body.work {
     .sidebar li.work a {
         .active;
+        .arrow-suffixed;
     }
 }
 
@@ -107,7 +143,6 @@ body.work {
     .sidebar {
         text-align: center;
         li {
-            font-size: 12px;
             display: inline;
             padding-right: 16px;
         }
@@ -119,9 +154,6 @@ body.work {
 
 @media (max-width: 768px) {
     .page-header {
-        h1, h2 {
-            text-align: center;
-        }
         h2 {
             font-size: 20px;
         }
@@ -155,8 +187,12 @@ body.work {
 // DEFAULT DESKTOP
 // ---------------
 
-@media (min-width: 980px) {
-
+@media (min-width: 980px) and (max-width: 1200px) {
+    .page-header {
+        h2 {
+            font-size: 20px;
+        }
+    }
 }
 
 // LARGE DESKTOP & UP
