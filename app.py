@@ -6,6 +6,7 @@ from flaskext.flatpages import FlatPages
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
+FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -65,5 +66,18 @@ def page_not_found(error):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    #freezer.freeze()
-    app.run()
+    import sys
+    try:
+        action = sys.argv[1]
+    except IndexError:
+        print "usage: $ python app.py --serve or --build"
+        exit(1)
+    if action == "--serve":
+        app.run()
+    elif action == "--build":
+        print u"building website..."
+        freezer.freeze()
+        print "done."
+    else:
+        print "unknown action"
+        exit(1)
