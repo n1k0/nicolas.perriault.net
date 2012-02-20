@@ -7,6 +7,7 @@ from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
 
 # Configuration
+BASE_URL = 'http://nicolas.perriault.net'
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
@@ -74,6 +75,12 @@ def page(path):
 @app.route('/contact/')
 def contact():
     return render_template('contact.html')
+
+
+@app.route('/feed/')
+def feed():
+    return render_template('feed.rss', pages=get_pages(pages, max=25),
+        base_url=BASE_URL)
 
 
 @app.errorhandler(404)
