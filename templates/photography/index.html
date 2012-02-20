@@ -1,0 +1,16 @@
+{% extends "photography/base.html" %}
+
+{% block contents %}
+<h2>Photography</h2>
+<ul>
+{% for page in pages %}
+    <li>
+        {{ page.date }}:
+        <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
+    </li>
+{% else %}
+    <li>No page.</li>
+{% endfor %}
+</ul>
+<p>Browse the <a href="{{ url_for("section_archives", section="photography") }}">archives</a></p>
+{% endblock contents %}
