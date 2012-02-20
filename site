@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
@@ -70,14 +72,14 @@ if __name__ == '__main__':
     try:
         action = sys.argv[1]
     except IndexError:
-        print "usage: $ python app.py --serve or --build"
+        print("usage: $ python app.py --serve or --build")
         exit(1)
     if action == "--serve":
         app.run()
     elif action == "--build":
-        print u"building website..."
+        print("building website...")
         freezer.freeze()
-        print "done."
+        print("done.")
     else:
-        print "unknown action"
+        print("unknown action")
         exit(1)
