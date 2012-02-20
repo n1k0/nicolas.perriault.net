@@ -72,14 +72,14 @@ if __name__ == '__main__':
     try:
         action = sys.argv[1]
     except IndexError:
-        print("usage: $ python app.py --serve or --build")
+        print("usage: $ ./site --serve or --build")
         exit(1)
     if action == "--serve":
         app.run()
     elif action == "--build":
         print("building website...")
         freezer.freeze()
-        print("done.")
+        print("done. eventually find it at %s" % FREEZER_BASE_URL)
     else:
         print("unknown action")
         exit(1)
