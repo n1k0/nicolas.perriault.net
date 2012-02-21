@@ -8,7 +8,10 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/skeleton.css">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
     <script src="/static/js/libs/modernizr-2.5.2-respond-1.1.0.min.js"></script>
 </head>
@@ -17,18 +20,12 @@
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
     <div class="container">
-        <div class="row">
-            <div class="span9 offset3">
-                <div class="page-header">
-                    <hgroup>
-                        <h1>Hi, I'm <strong>Nicolas.</strong></h1>
-                        <h2>I code stuff. I take photos. I write rants.</h2>
-                    </hgroup>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="span3 sidebar">
+        <header class="twelve columns offset-by-four main-title">
+            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <div class="three columns">
+            <nav class="sidebar">
                 <ul>
                     <li class="home"><a href="/nperriault/build/">Home</a></li>
                     <li class="code"><a href="/nperriault/build/code/">Code</a></li>
@@ -36,10 +33,10 @@
                     <li class="thoughts"><a href="/nperriault/build/thoughts/">Thoughts</a></li>
                     <li class="contact"><a href="/nperriault/build/contact/">Contact</a></li>
                 </ul>
-            </div>
-            <div class="span9">
-                <div class="contents">
-                    
+            </nav>
+        </div>
+        <div class="twelve columns offset-by-one contents">
+            
 <h2>Photography</h2>
 <ul>
 
@@ -53,11 +50,8 @@
     Browse the <a href="/nperriault/build/photography/archives/">archives</a>
 </p>
 
-                </div>
-            </div>
         </div>
-        <footer class="row">
-            <hr>
+        <footer class="site-footer">
             <p>
                 &copy; 2012 Nicolas Perriault
                 — <a href="https://twitter.com/n1k0">Tweet at me</a>
