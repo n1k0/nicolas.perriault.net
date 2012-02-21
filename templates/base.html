@@ -8,10 +8,14 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/skeleton.css">
-    <link rel="stylesheet" href="/static/css/layout.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+    {% assets filter="uglifyjs", output="packed.js",
+        "css/base.css",
+        "css/skeleton.css",
+        "css/layout.css",
+        "css/style.css"
+    %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed") }}" title="Nicolas Perriault - global feed (RSS)" />
     <script src="/static/js/libs/modernizr-2.5.2-respond-1.1.0.min.js"></script>
 </head>
@@ -35,7 +39,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="twelve columns offset-by-one contents">
+        <div class="twelve columns offset-by-four contents">
             {% block contents %}
             <p>These are the default contents.</p>
             {% endblock contents %}
@@ -51,9 +55,13 @@
         </footer>
     </div>
     <!-- /container -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script src="/static/js/script.js"></script>
+    {% assets filter="uglifyjs", output="packed.js",
+        "js/libs/jquery-1.7.1.min.js",
+        "js/libs/tabs.js",
+        "js/app.js"
+    %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
     <script>
         var _gaq=[['_setAccount', '{{ GA_TRACKER }}'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

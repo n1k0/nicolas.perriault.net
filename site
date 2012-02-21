@@ -6,10 +6,12 @@ from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
 from flaskext.markdown import Markdown
+from flaskext.assets import Environment
 
 # Configuration
-BASE_URL = 'http://nicolas.perriault.net'
 DEBUG = True
+BASE_URL = 'http://nicolas.perriault.net'
+ASSETS_DEBUG = DEBUG
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
@@ -20,17 +22,18 @@ app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
 Markdown(app)
+Environment(app)
 
 
 @app.context_processor
 def inject_ga():
-    return dict(GA_TRACKER=GA_TRACKER)
+    return dict(BASE_URL=BASE_URL, GA_TRACKER=GA_TRACKER)
 
 
 def get_pages(pages, min=None, max=None, section=None):
     articles = [p for p in pages if 'published' in p.meta]
     articles = sorted(articles, reverse=True,
-                    key=lambda p: p.meta.get('date'))
+        key=lambda p: p.meta.get('date'))
     if section:
         articles = [p for p in pages if p.path.startswith(section)]
     if min and max:
@@ -68,7 +71,8 @@ def section_archives(section):
 def page(path):
     section = path.split('/')[0]
     page = pages.get_or_404(path)
-    if not page.meta.get('published', False):
+    # allow preview of unpublished stuff in DEBUG mode
+    if not DEBUG and not page.meta.get('published', False):
         abort(404)
     template = page.meta.get('template', '%s/page.html' % section)
     return render_template(template, page=page)
@@ -81,8 +85,7 @@ def contact():
 
 @app.route('/feed/')
 def feed():
-    return render_template('feed.rss', pages=get_pages(pages, max=25),
-        base_url=BASE_URL)
+    return render_template('feed.rss', pages=get_pages(pages, max=25))
 
 
 @app.errorhandler(404)
