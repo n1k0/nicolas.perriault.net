@@ -5,6 +5,7 @@ import sys
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
+from flaskext.markdown import Markdown
 
 # Configuration
 BASE_URL = 'http://nicolas.perriault.net'
@@ -18,6 +19,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
+Markdown(app)
 
 
 @app.context_processor
