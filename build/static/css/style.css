@@ -14,16 +14,24 @@ h6 {
   font-family: Asap, Helvetica, serif;
   font-weight: bold;
 }
+h1:after,
+h2:after,
+h3:after,
+h4:after,
+h5:after,
+h6:after {
+  content: "\00A0\00BB";
+}
 .active {
   color: #333333;
   text-decoration: none;
 }
 .arrow-suffixed:after {
-  content: " »";
+  content: "\00A0\00BB";
 }
 .main-title {
   padding-left: 160px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dddddd;
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
@@ -37,11 +45,20 @@ h6 {
   font-size: 20.8px;
   color: #aaaaaa;
 }
+.contents {
+  min-height: 300px;
+}
 .contents h1 {
   font-size: 32px;
 }
+.contents article header h2 a {
+  text-decoration: none;
+}
+.sidebar {
+  position: fixed;
+  width: 200px;
+}
 .sidebar ul {
-  margin-top: 5px;
   list-style-type: none;
 }
 .sidebar ul li {
@@ -52,6 +69,7 @@ h6 {
 .sidebar ul li a {
   color: #aaaaaa;
   font-weight: bold;
+  text-decoration: none;
 }
 .sidebar ul li a:focus, .sidebar ul li a:hover {
   color: #333333;
@@ -59,51 +77,63 @@ h6 {
 }
 .site-footer {
   clear: both;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
   padding: 1em 0;
   text-align: center;
+}
+.activeSection {
+  color: #333333;
+  text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
+}
+.activeSection:after {
+  content: "\00A0\00BB";
 }
 body.code .sidebar li.code a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.code .sidebar li.code a:after {
-  content: " »";
+  content: "\00A0\00BB";
 }
 body.contact .sidebar li.contact a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.contact .sidebar li.contact a:after {
-  content: " »";
+  content: "\00A0\00BB";
 }
 body.home .sidebar li.home a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.home .sidebar li.home a:after {
-  content: " »";
+  content: "\00A0\00BB";
 }
 body.photography .sidebar li.photography a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.photography .sidebar li.photography a:after {
-  content: " »";
+  content: "\00A0\00BB";
 }
 body.thoughts .sidebar li.thoughts a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.thoughts .sidebar li.thoughts a:after {
-  content: " »";
-}
-body.work .sidebar li.work a {
-  color: #333333;
-  text-decoration: none;
-}
-body.work .sidebar li.work a:after {
-  content: " »";
+  content: "\00A0\00BB";
 }
 @media (max-width: 480px) {
   .sidebar {

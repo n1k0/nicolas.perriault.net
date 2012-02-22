@@ -56,10 +56,9 @@ h6:after {
 }
 .sidebar {
   position: fixed;
-  width: 160px;
+  width: 200px;
 }
 .sidebar ul {
-  margin-top: 5px;
   list-style-type: none;
 }
 .sidebar ul li {
@@ -82,9 +81,20 @@ h6:after {
   padding: 1em 0;
   text-align: center;
 }
+.activeSection {
+  color: #333333;
+  text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
+}
+.activeSection:after {
+  content: "\00A0\00BB";
+}
 body.code .sidebar li.code a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.code .sidebar li.code a:after {
   content: "\00A0\00BB";
@@ -92,6 +102,8 @@ body.code .sidebar li.code a:after {
 body.contact .sidebar li.contact a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.contact .sidebar li.contact a:after {
   content: "\00A0\00BB";
@@ -99,6 +111,8 @@ body.contact .sidebar li.contact a:after {
 body.home .sidebar li.home a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.home .sidebar li.home a:after {
   content: "\00A0\00BB";
@@ -106,6 +120,8 @@ body.home .sidebar li.home a:after {
 body.photography .sidebar li.photography a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.photography .sidebar li.photography a:after {
   content: "\00A0\00BB";
@@ -113,15 +129,10 @@ body.photography .sidebar li.photography a:after {
 body.thoughts .sidebar li.thoughts a {
   color: #333333;
   text-decoration: none;
+  font-size: 32px;
+  line-height: 44px;
 }
 body.thoughts .sidebar li.thoughts a:after {
-  content: "\00A0\00BB";
-}
-body.work .sidebar li.work a {
-  color: #333333;
-  text-decoration: none;
-}
-body.work .sidebar li.work a:after {
   content: "\00A0\00BB";
 }
 @media (max-width: 480px) {

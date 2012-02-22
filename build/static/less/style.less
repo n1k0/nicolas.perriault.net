@@ -6,6 +6,7 @@
 
 @darkGrey:       #333;
 @lightGrey:      #aaa;
+@lighterGrey:    #ddd;
 
 // Tags
 
@@ -21,9 +22,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: @baseFontFamily;
     font-weight: bold;
+    .arrow-suffixed;
 }
 
-// // helpers
+// helpers
 
 .active {
     color: @darkGrey;
@@ -32,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .arrow-suffixed {
     &:after {
-        content: " »";
+        content: "\00A0\00BB";
     }
 }
 
@@ -45,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-title {
     padding-left: 160px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid @lighterGrey;
     padding-bottom: 1em;
     margin-bottom: 1em;
     h1 {
@@ -62,16 +64,19 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .contents {
+    min-height: 300px;
     h1 {
         font-size: @baseFontSize * 2;
+    }
+    article header h2 a {
+        text-decoration: none;
     }
 }
 
 .sidebar {
-    // position: fixed;
-    // width: 160px;
+    position: fixed;
+    width: 200px;
     ul {
-        margin-top: 5px;
         list-style-type: none;
         li {
             .baseFontIncrease(1.5);
@@ -79,6 +84,7 @@ h1, h2, h3, h4, h5, h6 {
             a {
                 color: @lightGrey;
                 font-weight: bold;
+                text-decoration: none;
             }
             a:focus, a:hover {
                 .active;
@@ -89,61 +95,53 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-footer {
     clear: both;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid @lighterGrey;
     padding: 1em 0;
     text-align: center;
 }
 
-// // Page styles
+// Section related
 
-// // Section related
+.activeSection {
+    .active;
+    .baseFontIncrease(2);
+    .arrow-suffixed;
+}
 
 body.code {
     .sidebar li.code a {
-        .active;
-        .arrow-suffixed;
+        .activeSection;
     }
 }
 
 body.contact {
     .sidebar li.contact a {
-        .active;
-        .arrow-suffixed;
+        .activeSection;
     }
 }
 
 body.home {
     .sidebar li.home a {
-        .active;
-        .arrow-suffixed;
+        .activeSection;
     }
 }
 
 body.photography {
     .sidebar li.photography a {
-        .active;
-        .arrow-suffixed;
+        .activeSection;
     }
 }
 
 body.thoughts {
     .sidebar li.thoughts a {
-        .active;
-        .arrow-suffixed;
+        .activeSection;
     }
 }
 
-body.work {
-    .sidebar li.work a {
-        .active;
-        .arrow-suffixed;
-    }
-}
+// Responsive
 
-// // Responsive
-
-// // UP TO LANDSCAPE PHONE
-// // ---------------------
+// UP TO LANDSCAPE PHONE
+// ---------------------
 
 @media (max-width: 480px) {
     .sidebar {
