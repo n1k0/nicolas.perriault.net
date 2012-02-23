@@ -32,8 +32,7 @@ def inject_ga():
 
 def get_pages(pages, min=None, max=None, section=None):
     articles = [p for p in pages if 'published' in p.meta]
-    articles = sorted(articles, reverse=True,
-        key=lambda p: p.meta.get('date'))
+    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
     if section:
         articles = [p for p in pages if p.path.startswith(section)]
     if min and max:
@@ -48,8 +47,10 @@ def get_pages(pages, min=None, max=None, section=None):
 
 @app.route('/')
 def index():
-    latest = get_pages(pages, max=10, section=None)
-    return render_template('index.html', pages=latest)
+    return render_template('index.html',
+        code_posts=get_pages(pages, max=10, section="code"),
+        photos=get_pages(pages, max=10, section="photography"),
+        thoughts=get_pages(pages, max=10, section="thoughts"))
 
 
 @app.route('/<string:section>/')

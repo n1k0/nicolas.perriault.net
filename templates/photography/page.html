@@ -3,12 +3,16 @@
 {% block page_title %}{{ page.title }} | {{ super() }}{% endblock %}
 
 {% block contents %}
-<article>
-    <header>
-        <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
-    </header>
-    {{ page.html|safe }}
-    <hr>
-    <aside>Posted on {{ page.date }} — <a href="{{ url_for("page", path=page.path) }}">permalink</a>.</aside>
-</article>
+    <article>
+        <header>
+            <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
+        </header>
+        <section>
+            {{ page.html|safe }}
+        </section>
+        <aside>
+            <hr>
+            <p>Posted on {{ page.date }} — <a href="{{ url_for("page", path=page.path) }}">permalink</a>.</p>
+        </aside>
+    </article>
 {% endblock contents %}

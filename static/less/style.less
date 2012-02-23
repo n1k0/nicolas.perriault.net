@@ -22,7 +22,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: @baseFontFamily;
     font-weight: bold;
-    .arrow-suffixed;
 }
 
 // helpers
@@ -38,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.baseFontIncrease(@ratio) {
+.baseFontRatio(@ratio) {
     font-size: @baseFontSize * @ratio;
     line-height: @baseLineHeight * @ratio;
 }
@@ -65,11 +64,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .contents {
     min-height: 300px;
+    margin-bottom: 1em;
     h1 {
         font-size: @baseFontSize * 2;
     }
-    article header h2 a {
-        text-decoration: none;
+    article {
+        h1, h2, h3, h4, h5, h6 {
+        }
+        header h2 {
+            .arrow-suffixed;
+            a {
+                text-decoration: none;
+            }
+        }
     }
 }
 
@@ -79,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
     ul {
         list-style-type: none;
         li {
-            .baseFontIncrease(1.5);
+            .baseFontRatio(1.5);
             text-align: right;
             a {
                 color: @lightGrey;
@@ -104,7 +111,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .activeSection {
     .active;
-    .baseFontIncrease(2);
     .arrow-suffixed;
 }
 

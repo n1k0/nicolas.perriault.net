@@ -1,18 +1,14 @@
 {% extends "code/base.html" %}
 
 {% block contents %}
-<h2>Code</h2>
-{% filter markdown %}
-I mostly code in [Python](http://python.org/) and Javascript, and no, I do
-*not* want to code your next project using the PHP programming language.
+    <h2>Code</h2>
+    {% filter markdown %}
+    I mostly code in [Python](http://python.org/) and Javascript, and no, I do
+    *not* want to code your next project using the PHP programming language.
 
-Hope this does sort out any doubt and makes things crystal-clear.
-{% endfilter %}
-<ul>
-{% for page in pages %}
-    <li><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></li>
-{% else %}
-    <li>No page.</li>
-{% endfor %}
-</ul>
+    Hope this does sort out any doubt and makes things crystal-clear.
+    {% endfilter %}
+
+    <h3>Recently published articles</h3>
+    {% include "_list.html" %}
 {% endblock contents %}

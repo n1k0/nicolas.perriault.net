@@ -1,16 +1,11 @@
 {% extends "thoughts/base.html" %}
 
 {% block contents %}
-<h2>Thoughts</h2>
-<p>
-    Here are a collection of random thoughts, rants, speculations and cooking
-    recipes.
-</p>
-<ul>
-{% for page in pages %}
-    <li><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></li>
-{% else %}
-    <li>No page.</li>
-{% endfor %}
-</ul>
+    <h2>Thoughts</h2>
+    <p>
+        Here are a collection of random thoughts, rants, speculations and cooking
+        recipes.
+    </p>
+    <h3>Recently published articles</h3>
+    {% include "_list.html" %}
 {% endblock contents %}
