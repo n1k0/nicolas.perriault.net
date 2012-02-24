@@ -31,10 +31,12 @@ def inject_ga():
 
 
 def get_pages(pages, min=None, max=None, section=None):
-    articles = [p for p in pages if 'published' in p.meta]
+    articles = [p for p in pages]
+    if not DEBUG:
+        articles = [p for p in articles if p.meta.get('published') is True]
     articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
     if section:
-        articles = [p for p in pages if p.path.startswith(section)]
+        articles = [p for p in articles if p.path.startswith(section)]
     if min and max:
         return articles[min:max]
     elif max:

@@ -1,14 +1,13 @@
 {% extends "code/base.html" %}
 
 {% block contents %}
-    <h2>Code</h2>
-    {% filter markdown %}
-    I mostly code in [Python](http://python.org/) and Javascript, and no, I do
-    *not* want to code your next project using the PHP programming language.
+{% filter markdown %}
+I mostly code in [Python](http://python.org/) and Javascript, and no, I do
+*not* want to code your next project using the PHP programming language.
 
-    Hope this does sort out any doubt and makes things crystal-clear.
-    {% endfilter %}
+Hope this does sort out any doubt and makes things crystal-clear.
+{% endfilter %}
 
-    <h3>Recently published articles</h3>
-    {% include "_list.html" %}
+<h3>Recently published articles</h3>
+{% include "_list.html" %}
 {% endblock contents %}

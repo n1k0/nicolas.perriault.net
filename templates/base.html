@@ -7,11 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&amp;subset=latin,latin-ext">
+    <link href="http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     {% assets filter="uglifyjs", output="packed.js",
-        "css/base.css",
         "css/skeleton.css",
-        "css/layout.css",
         "css/style.css"
     %}
         <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
