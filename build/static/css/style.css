@@ -1,9 +1,12 @@
 body {
-  padding-top: 48px;
-  padding-bottom: 40px;
   min-width: 360px;
-  font-family: Asap, Helvetica, serif;
-  font-size: 16px;
+  font-family: "Sorts+Mill+Goudy", Palatino, Georgia, serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #222;
+}
+code, pre {
+  font-family: Consolas, Monaco, "Courier New", monospace;
 }
 h1,
 h2,
@@ -11,8 +14,19 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Asap, Helvetica, serif;
   font-weight: bold;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #000;
+}
+p {
+  line-height: 24px;
+  margin: 24px 0;
 }
 .active {
   color: #333333;
@@ -22,19 +36,19 @@ h6 {
   content: "\00A0\00BB";
 }
 .main-title {
-  padding-left: 160px;
-  border-bottom: 1px solid #dddddd;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
+  margin-top: 48px;
+  padding-bottom: 12px;
 }
 .main-title h1 {
   font-size: 48px;
+  line-height: 12px;
 }
 .main-title h1 a {
   text-decoration: none;
 }
 .main-title small {
-  font-size: 20.8px;
+  display: block;
+  font-size: 24px;
   color: #aaaaaa;
 }
 .contents {
@@ -42,10 +56,7 @@ h6 {
   margin-bottom: 1em;
 }
 .contents h1 {
-  font-size: 32px;
-}
-.contents article header h2:after {
-  content: "\00A0\00BB";
+  font-size: 36px;
 }
 .contents article header h2 a {
   text-decoration: none;
@@ -59,7 +70,7 @@ h6 {
 }
 .sidebar ul li {
   font-size: 24px;
-  line-height: 33px;
+  line-height: 35.5px;
   text-align: right;
 }
 .sidebar ul li a {
@@ -73,51 +84,31 @@ h6 {
 }
 .site-footer {
   clear: both;
-  border-top: 1px solid #dddddd;
-  padding: 1em 0;
   text-align: center;
 }
 .activeSection {
   color: #333333;
   text-decoration: none;
 }
-.activeSection:after {
-  content: "\00A0\00BB";
-}
 body.code .sidebar li.code a {
   color: #333333;
   text-decoration: none;
-}
-body.code .sidebar li.code a:after {
-  content: "\00A0\00BB";
 }
 body.contact .sidebar li.contact a {
   color: #333333;
   text-decoration: none;
 }
-body.contact .sidebar li.contact a:after {
-  content: "\00A0\00BB";
-}
 body.home .sidebar li.home a {
   color: #333333;
   text-decoration: none;
-}
-body.home .sidebar li.home a:after {
-  content: "\00A0\00BB";
 }
 body.photography .sidebar li.photography a {
   color: #333333;
   text-decoration: none;
 }
-body.photography .sidebar li.photography a:after {
-  content: "\00A0\00BB";
-}
 body.thoughts .sidebar li.thoughts a {
   color: #333333;
   text-decoration: none;
-}
-body.thoughts .sidebar li.thoughts a:after {
-  content: "\00A0\00BB";
 }
 @media (max-width: 480px) {
   .sidebar {

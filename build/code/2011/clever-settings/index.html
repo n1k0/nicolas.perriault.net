@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Une autre façon de gérer ses settings d&#39;application Django | Code | Nicolas Perriault</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/skeleton.css">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+    
+    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <script src="/static/js/libs/modernizr-2.5.2-respond-1.1.0.min.js"></script>
+</head>
+<body class="code">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="twelve columns offset-by-four main-title">
+            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <div class="four columns">
+            <nav class="sidebar">
+                <ul>
+                    <li class="home"><a href="/nperriault/build/">Home</a></li>
+                    <li class="code"><a href="/nperriault/build/code/">Code</a></li>
+                    <li class="photography"><a href="/nperriault/build/photography/">Photography</a></li>
+                    <li class="thoughts"><a href="/nperriault/build/thoughts/">Thoughts</a></li>
+                    <li class="contact"><a href="/nperriault/build/contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="twelve columns offset-by-four contents">
+            
+<p>Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème classique de l'exposition de la configuration au développeur via les <em>settings</em> de son propre projet.</p>
+<p>Classiquement, on a tendance à proposer les settings "à plat", dans le module <code>settings.py</code> du projet&nbsp;:</p>
+<pre><code># settings.py
+MY_APP_NAME_FOO = 42
+MY_APP_NAME_ENABLE_CHUCK_NORRIZ_MODE = True
+</code></pre>
+<p>Et donc depuis votre appli, vous pouvez récupérer les settings utilisateur de cette façon, en leur assignant une valeur par défaut s'ils ne sont pas déclarés&nbsp;:</p>
+<pre><code># apps/myapp/foo.py
+from django.conf import settings
+
+FOO = getattr(settings, 'MY_APP_NAME_FOO', 42)
+ENABLE_CHUCK_NORRIZ_MODE = getattr(settings, 'MY_APP_NAME_ENABLE_CHUCK_NORRIZ_MODE', False)
+</code></pre>
+<p>Simple, pratique, suffisant me direz vous. Oui, mais bon, c'est un petit peu verbeux à mon sens, et pas toujours souple pour gérer un catalogue de settings ainsi que leur surcharge. Et puis j'ai l'impression en préfixant systématiquement ces noms de variables de faire insulte à cette merveilleuse fonctionnalité qu'on appelle la gestion des espaces de noms (voire de refaire du PHP &lt; 5.3, ce qui provoque chez moi des bouffées d'angoisse et entame un processus de décapilation douloureux, mais je m'égare).</p>
+<p>Qui plus est, personnellement en temps que développeur, j'aurai tendance à préférer gérer les settings correspondant à une application dans un dictionnaire dédié, un peu comme ce que propose la <code>django-debug-toolbar</code>.</p>
+<p>Par exemple, en reprenant l'exemple de code initial ou seul le setting <code>ENABLE_CHUCK_NORRIZ_MODE</code> est finalement surchargé&nbsp;:</p>
+<pre><code># settings.py
+MY_APP_CONFIG = {
+    'ENABLE_CHUCK_NORRIZ_MODE': True,
+}
+</code></pre>
+<p>J'ai donc trouvé un moyen assez simple de proposer cette fonctionnalité. Dans le fichier <code>__init__.py</code> de votre module d'application, ajoutez le code suivant&nbsp;:</p>
+<pre><code># apps/my_app/__init__.py
+from django.conf import settings
+
+app_settings = dict({
+    'FOO': 42,
+    'ENABLE_CHUCK_NORRIZ_MODE': False,
+}, **getattr(settings, 'MY_APP_CONFIG', {}))
+</code></pre>
+<p>Vous constaterez qu'on fusionne bêtement les settings par défaut et ceux de l'utilisateur qui auront la priorité de surcharge. Ainsi, partout depuis votre application, vous pourrez accéder à ce dictionnaire de settings de cette façon&nbsp;:</p>
+<pre><code># apps/my_app/utils.py
+from . import app_settings
+
+if app_settings.get('ENABLE_CHUCK_NORRIZ_MODE'):
+    print 'Chuck Norriz is watching you'
+else:
+    print 'Dance dance, little lamb'
+</code></pre>
+<p>Et bien entendu, pour importer les settings de l'application depuis n'importe où (sous réserve que le module de l'application soit dans votre <code>PYTHON_PATH</code>)&nbsp;:</p>
+<pre><code># foo/bar.py
+from my_app import app_settings
+
+print app_settings.get('FOO') # 42
+</code></pre>
+<p>Merci de votre attention, et à bientôt pour de nouvelle aventures.</p>
+
+        </div>
+        <footer class="site-footer">
+            <p>
+                &copy; 2012 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">Tweet at me</a>
+                — <a href="https://github.com/n1k0">Get my code</a>
+                — <a href="http://500px.com/n1k0">Enjoy my pics</a>
+                — <a href="/nperriault/build/contact/">Contact me</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/libs/jquery-1.7.1.min.js"></script>
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/libs/tabs.js"></script>
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+    
+    <script>
+        var _gaq=[['_setAccount', 'XXX'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+</body>
+</html>
