@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>About RESTful features of modern Web frameworks | Code | Nicolas Perriault</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/prettify.css">
+    
+    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+</head>
+<body class="code" onload="preparePrettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="twelve columns offset-by-four main-title">
+            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <div class="contents">
+            
+
+    <article lang="en">
+    <header>
+        <h2><a href="/nperriault/build/code/2010/about-rest-frameworks/">About RESTful features of modern Web frameworks</a> &raquo;</h2>
+    </header>
+    <section>
+        <p>Frameworks like <a href="http://www.symfony-project.org/">Symfony</a> or <a href="http://rubyonrails.org/">rails</a> (and probably many others) provide a very convenient feature named <em>RESTful</em> routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entites and several available actions on them over HTTP.</p>
+<p>This is really useful, especially when you deal with WebServices on a daily basis, or if you want to reuse your controllers in both <em>standard html</em> or <em>service oriented architecture</em> (SOA) contexts.</p>
+<p>For example, with Symfony, you can declare an HTTP routes collection this way (all examples are taken from the <a href="http://github.com/n1k0/sftunes">Sftunes Symfony application</a> I recently released on <em>github</em>):</p>
+<pre><code># routing.yml
+fortune:
+  class: sfDoctrineRouteCollection
+  options:
+    model:      Fortune
+    action:     [list, new, create, edit, show]
+    object_actions:
+      comment:  post
+      down:     put
+      up:       put
+    collection_actions:
+      top:      get
+      worst:    get
+</code></pre>
+<p>Here the <code>fortune</code> route collection will expose the <code>Fortune</code> Doctrine ORM model over HTTP, using available HTTP verbs like <code>GET</code>, <code>PUT</code>, <code>POST</code> or <code>DELETE</code> for example, hence providing basic CRUD operations (see <a href="http://www.symfony-project.org/reference/1_4/en/10-Routing#chapter_10_sfroutecollection">documentation</a>).</p>
+<p>You will then be able to obtain several Symfony routes, to list them just run the <code>app:routes</code> task from the command line:</p>
+<pre><code>~ $ ./symfony app:routes main
+&gt;&gt; app       Current routes for application "main"
+Name            Method Pattern
+fortune_top     GET    /fortune/top.:sf_format
+fortune_worst   GET    /fortune/worst.:sf_format
+fortune         GET    /fortune.:sf_format
+fortune_new     GET    /fortune/new.:sf_format
+fortune_create  POST   /fortune.:sf_format
+fortune_edit    GET    /fortune/:id/edit.:sf_format
+fortune_update  PUT    /fortune/:id.:sf_format
+fortune_delete  DELETE /fortune/:id.:sf_format
+fortune_show    GET    /fortune/:id.:sf_format
+fortune_comment POST   /fortune/:id/comment.:sf_format
+fortune_down    PUT    /fortune/:id/down.:sf_format
+fortune_up      PUT    /fortune/:id/up.:sf_format
+homepage        ANY    /
+</code></pre>
+<p>By calling an url such as <code>/fortune/2.html</code> using the <code>GET</code> verb, you'll obtain a response in <em>text/html</em> format, and Symfony will use a standard HTML template to decorate it -- whereas if you call <code>/fortune/2.json</code> using the <code>DELETE</code> verb, you'll ask for the deletion of the fortune related instance and receive a response in JSON format (at least if you provided the related JSON decoration template, of course).</p>
+<p>That's pretty fancy, but a common mistake is to generate links from templates calling verbs other than <code>GET</code>, for example here the <code>fortune_up</code> and <code>fortune_down</code> routes aim to be called via <code>PUT</code> (because they imply a modification of a <code>Fortune</code> object instance), and you may be tempted to write something like this in you templates:</p>
+<pre><code>&lt;?php echo link_to('Vote down this fortune', 'fortune_down', $fortune, array(
+  'method' =&gt; 'put',
+)) ?&gt;
+</code></pre>
+<p>While this is perfectly possible technically speaking, a quick look at the rendered HTML code will temper the interest of this approach:</p>
+<pre><code>&lt;a onclick="var f = document.createElement('form'); f.style.display = 'none';
+  this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;
+  var m = document.createElement('input'); m.setAttribute('type', 'hidden');
+  m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'put');
+  f.appendChild(m);var m=document.createElement('input');m.setAttribute('type', 'hidden');
+  m.setAttribute('name', '_csrf_token');
+  m.setAttribute('value', 'd26d99f7f4f97lsdhklqejshdjkshdf860124');
+  f.appendChild(m);f.submit();return false;" href="/main_dev.php/fortune/19/down"&gt;
+    Vote down this fortune
+&lt;/a&gt;
+</code></pre>
+<p>Yes, calling <code>link_to()</code> with the <code>method</code> option set to something else than <code>GET</code> will generate a form to challenge the url with the correct HTTP verb (through the kinda magic <code>sf_method</code> request parameter), dynamically using Javascript. Not really clean, unobstrusive and accessible. <strong>A link should always only handle <code>GET</code> verb, because it's just a link to another resource in <em>view mode</em>, not a modification of it.</strong> So you should rather use a <code>&lt;form/&gt;</code> tag to deal with such kind of operations in your code, always.</p>
+<p>But there's more: imagine you want to deal with a <code>Fortune</code> modification form, still by using the <code>PUT</code> http verb and the <code>fortune_update</code> route, in a <em>standard html</em> context (not a WebService one); you have a form so it's okay? It's not, a browser, even the most modern one in 2010, will not understand something else than <code>GET</code> and <code>POST</code>. That's a shame actually. Symfony circumvents the problem by adding a supplementary <code>sf_method</code> hidden parameter to the form fields, so the targetted controller will be able to detect an incoming <code>PUT</code> request, but <strong>this is clearly a kind of patch applied to HTTP support in Browsers</strong>.</p>
+<p>I'm searching for a conclusion, but  can't find one except <strong>why on Earth modern browsers don't deal with something else than <code>GET</code> and <code>POST</code> nowadays?</strong></p>
+<p>Feel free to provide hints on this topic in the comments.</p>
+<p><strong>Edit:</strong> Just learnt via the comments that HTML5 draft spec includes support of <code>PUT</code> and <code>DELETE</code> HTTP verbs in forms (<a href="http://bradley-holt.com/2009/07/html-5-http-methods-rest/">source</a> - thx jblanche).</p>
+<p>Great, can't wait for <a href="http://www.webmonkey.com/2008/09/html_5_won_t_be_ready_until_2022dot_yes__2022dot/">2022</a>!</p>
+    </section>
+    <aside>
+        <hr>
+        <p>Posted on 2010-04-28 — <a href="/nperriault/build/code/2010/about-rest-frameworks/">permalink</a>.</p>
+    </aside>
+</article>
+
+
+        </div>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/nperriault/build/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/nperriault/build/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/nperriault/build/photography/" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="/nperriault/build/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="/nperriault/build/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2012 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">Tweet at me</a>
+                — <a href="https://github.com/n1k0">Get my code</a>
+                — <a href="http://500px.com/n1k0">Enjoy my pics</a>
+                — <a href="/nperriault/build/contact/">Contact me</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/libs/prettify.js"></script>
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+    
+    <script>
+    function preparePrettyPrint() {
+        // fuck you, IE.
+        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+            pre.classList.add('prettyprint');
+        });
+        prettyPrint();
+    }
+    </script>
+</body>
+</html>

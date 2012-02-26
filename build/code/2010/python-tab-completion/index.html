@@ -1,0 +1,104 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Enabling tab completion in OS X Python interactive interpreter | Code | Nicolas Perriault</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/prettify.css">
+    
+    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+</head>
+<body class="code" onload="preparePrettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="twelve columns offset-by-four main-title">
+            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <div class="contents">
+            
+
+    <article lang="en">
+    <header>
+        <h2><a href="/nperriault/build/code/2010/python-tab-completion/">Enabling tab completion in OS X Python interactive interpreter</a> &raquo;</h2>
+    </header>
+    <section>
+        <p>Python is awesome, and so is its native interactive interpreter. I <a href="http://sontek.net/tips-and-tricks-for-the-python-interpreter">discovered today</a> that it can even provide autocompletion using a very simple trick:</p>
+<pre><code># in your ~/.profile
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+
+# in a new ~/.pythonrc.py file
+try:
+    import readline
+except ImportError:
+    print("Module readline not available.")
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Don't forget to source your <code>.profile</code> with <code>$ source ~/.profile</code>.</p>
+</blockquote>
+<p>Magic? Well if like me you're running Mac OS X, it won't work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no <code>readline</code> implementation — which is mandatory to achieve our purpose. I even tried to install <code>readline</code> by its own, but it won't solve the problem.</p>
+<p>So while being at tweaking up my python setup, let me get rid of the Apple stuff and install a fresh version of python using <a href="http://mxcl.github.com/homebrew/">Homebrew</a>, a great package manager for OSX:</p>
+<pre><code>$ brew install readline python
+</code></pre>
+<p>Tadaa! Now you get autocompletion, plus a shiny python 2.7.1 (you could also install latest python3 running <code>brew install python3</code> by the way).</p>
+<p>As a side note, if you <a href="http://blog.akei.com/post/573774396/installer-django-dans-un-environnement-python-virtuel">work with virtualenvs</a> like me, creating a new env will now involve specifying which python you want to use:</p>
+<pre><code>$ mkvirtualenv -p /usr/local/Cellar/python/2.7.1/bin/python \
+    --no-site-packages `pwd`/env
+</code></pre>
+<p>That's all folks.</p>
+    </section>
+    <aside>
+        <hr>
+        <p>Posted on 2010-12-29 — <a href="/nperriault/build/code/2010/python-tab-completion/">permalink</a>.</p>
+    </aside>
+</article>
+
+
+        </div>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/nperriault/build/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/nperriault/build/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/nperriault/build/photography/" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="/nperriault/build/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="/nperriault/build/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2012 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">Tweet at me</a>
+                — <a href="https://github.com/n1k0">Get my code</a>
+                — <a href="http://500px.com/n1k0">Enjoy my pics</a>
+                — <a href="/nperriault/build/contact/">Contact me</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/libs/prettify.js"></script>
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+    
+    <script>
+    function preparePrettyPrint() {
+        // fuck you, IE.
+        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+            pre.classList.add('prettyprint');
+        });
+        prettyPrint();
+    }
+    </script>
+</body>
+</html>

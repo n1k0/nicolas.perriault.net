@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Creating a Custom Panel for the Django Debug Toolbar | Code | Nicolas Perriault</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/prettify.css">
+    
+    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+</head>
+<body class="code" onload="preparePrettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="twelve columns offset-by-four main-title">
+            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <div class="contents">
+            
+
+    <article lang="en">
+    <header>
+        <h2><a href="/nperriault/build/code/2011/djt/">Creating a Custom Panel for the Django Debug Toolbar</a> &raquo;</h2>
+    </header>
+    <section>
+        <p>Sometimes you work on stuff you don't really control, eg. when interacting with some mysterious SOAP server accross the Internets, and you'd appreciate a little help from the Django ecosystem to ease debugging.</p>
+<p>That's — you guessed it — my case currently, and I really appreciated being able to create my own custom panel for adding specific debugging capabilities to the awesome <a href="https://github.com/robhudson/django-debug-toolbar">Django Debug Toolbar</a>.</p>
+<p>Here's how I did, learning mainly from the code of the panels shipping with the DJT. I'm supposing you have installed and configured the DJT in your project already.</p>
+<p>First of all, create a <code>panels.py</code> module within one of your app (or wherever you want as it's in your python path) and create a DebugPanel derivated class, like this:</p>
+<pre><code>from debug_toolbar.panels import DebugPanel
+from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
+
+class MyUsefulDebugPanel(DebugPanel):
+    name = 'MyUseful'
+    has_content = True
+
+    def nav_title(self):
+        return _('Useful Infos')
+
+    def title(self):
+        return _('My Useful Debug Panel')
+
+    def url(self):
+        return ''
+
+    def content(self):
+        context = self.context.copy()
+        context.update({
+            'infos': [
+                {'plop': 'plip'},
+                {'plop': 'plup'},
+            ],
+        })
+        return render_to_string('panels/my_useful_panel.html', context)
+</code></pre>
+<p>The debug panel class methods and code should be self-explanatory enough. Just note you have to create a template, here <code>panels/my_useful_panel.html</code> to be stored in your project <code>templates</code> directory, with this kind of contents:</p>
+<pre><code>&lt;p&gt;Hey, these are useful informations, I swear:&lt;/p&gt;
+&lt;ul&gt;
+{% for info in infos %}
+    &lt;li&gt;Plop is {{ info.plop}}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre>
+<p>Now you have to register the new panel by adding its path to the <code>DEBUG_TOOLBAR_PANELS</code> tuple, in your <code>settings.py</code> (create it if it's not there):</p>
+<pre><code>DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+    'my_app_name.panels.MyUsefulDebugPanel',
+)
+</code></pre>
+<p>Of course it's up to you to put really useful informations there, but here's the result, tadaa:</p>
+<p><img alt="result screenshot" src="http://media.tumblr.com/tumblr_lhfpagXiif1qbt2jc.png" /></p>
+<p>Thanks for reading, happy ponying.</p>
+    </section>
+    <aside>
+        <hr>
+        <p>Posted on 2011-03-11 — <a href="/nperriault/build/code/2011/djt/">permalink</a>.</p>
+    </aside>
+</article>
+
+
+        </div>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/nperriault/build/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/nperriault/build/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/nperriault/build/photography/" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="/nperriault/build/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="/nperriault/build/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2012 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">Tweet at me</a>
+                — <a href="https://github.com/n1k0">Get my code</a>
+                — <a href="http://500px.com/n1k0">Enjoy my pics</a>
+                — <a href="/nperriault/build/contact/">Contact me</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/libs/prettify.js"></script>
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+    
+    <script>
+    function preparePrettyPrint() {
+        // fuck you, IE.
+        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+            pre.classList.add('prettyprint');
+        });
+        prettyPrint();
+    }
+    </script>
+</body>
+</html>

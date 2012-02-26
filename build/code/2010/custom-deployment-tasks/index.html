@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tâches de déploiement spécifiques avec Symfony | Code | Nicolas Perriault</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+    
+        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/prettify.css">
+    
+    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+</head>
+<body class="code" onload="preparePrettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="twelve columns offset-by-four main-title">
+            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <div class="contents">
+            
+
+    <article lang="en">
+    <header>
+        <h2><a href="/nperriault/build/code/2010/custom-deployment-tasks/">Tâches de déploiement spécifiques avec Symfony</a> &raquo;</h2>
+    </header>
+    <section>
+        <p><a href="http://www.symfony-project.org/">Symfony</a> propose une tâche de déploiement distant utilisant <a href="http://fr.wikipedia.org/wiki/Rsync"><code>rsync</code></a> fort pratique&nbsp;: une fois configurés les <a href="http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying">paramètres du serveur distant</a> dans le fichier <code>config/properties.ini</code> de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l'hôte distant. Et si vous utilisez une <a href="http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant">clé SSH</a>, l'opération ne vous demandera même pas de saisir votre mot de passe&nbsp;!</p>
+<pre><code>$ ./symfony project:deploy monserveur --go
+</code></pre>
+<p>Mais bien souvent, nous avons besoin de plus&nbsp;: préparer un certain nombre de fichiers statiques comme les assets CSS, JavaScript ou les images, ou vider le cache sur la ou les machines distantes pour prendre en compte d'éventuelles modifications de la configuration ou du templating sur la plateforme de production (qui exploite l'environnement du même nom, nous sommes bien d'accord).</p>
+<p>Aussi, il est très simple de faire face à ces besoins spécifiques en créant vous même une tâche de déploiement projet, en surclassant la classe <code>sfProjectDeployTask</code> fournie en standard par Symfony. Par exemple, voici la tâche de déploiement que j'utilise pour la mise à jour du site <a href="http://www.akei.com/">Akei</a>, exploitant mon plugin <a href="http://github.com/n1k0/npAssetsOptimizerPlugin"><code>npAssetsOptimizerPlugin</code></a> pour la gestion de la minification et l'assemblage des fichiers JavaScript, CSS et images PNG &nbsp;:</p>
+<pre><code>&lt;?php
+class AkeiDeployTask extends sfProjectDeployTask
+{
+  /**
+   * @see sfProjectDeployTask
+   */
+  protected function configure()
+  {
+    $this-&gt;addArguments(array(
+      new sfCommandArgument('server', sfCommandArgument::REQUIRED, 'The server name'),
+    ));
+
+    $this-&gt;addOptions(array(
+      new sfCommandOption('go', null, sfCommandOption::PARAMETER_NONE, 'Do the deployment'),
+      new sfCommandOption('rsync-dir', null, sfCommandOption::PARAMETER_REQUIRED, 'The directory where to look for rsync*.txt files', 'config'),
+      new sfCommandOption('rsync-options', null, sfCommandOption::PARAMETER_OPTIONAL, 'To options to pass to the rsync executable', '-azC --force --delete --progress'),
+      new sfCommandOption('optimize', null, sfCommandOption::PARAMETER_OPTIONAL, 'The asset optimizations to make before deploying'),
+    ));
+
+    $this-&gt;namespace = 'akei';
+    $this-&gt;name = 'deploy';
+    $this-&gt;briefDescription = 'Deploys Akei website to a given server';
+  }
+
+  /**
+   * @see sfProjectDeployTask
+   */
+  protected function execute($arguments = array(), $options = array())
+  {
+    // Assets
+    if (!is_null($options['optimize']))
+    {
+      $this-&gt;logSection('deploy', 'assets optimization before deploying');
+      $task = new npOptimizeAssetsTask($this-&gt;dispatcher, $this-&gt;formatter);
+      $task-&gt;run(array('application' =&gt; 'main'), array('type' =&gt; $options['optimize']));
+    }
+
+    // Deployment
+    $this-&gt;logSection('deploy', 'deploying...');
+    parent::execute($arguments, $options);
+
+    // Remote symfony cc
+    if ($options['go'])
+    {
+      $this-&gt;logSection('deploy', 'remote cache clear');
+      $this-&gt;getFilesystem()-&gt;execute('ssh user@monserveur.foo "/path/to/www/akei/symfony cache:clear"');
+    }
+
+    $this-&gt;logSection('deploy', 'done.');
+  }
+}
+</code></pre>
+<p>Comme vous pouvez le constater, cette tâche déclare un espace de nom <code>akei</code> et propose une option supplémentaire, <code>optimize</code>, permettant de préparer les assets avant déploiement&nbsp;:</p>
+<pre><code>$ ./symfony akei:deploy monserveur --optimize=stylesheet --go
+</code></pre>
+<p>Cette commande va tout simplement minifier et assembler les feuilles de style définies par la configuration du plugin <code>npAssetsOptimizerPlugin</code>, déployer les fichiers en production sur la machine <code>monserveur</code> et vider le cache sur la machine distante une fois l'opération effectuée.</p>
+<p>Notez d'ailleurs l'emploi du très pratique appel à <code>$this-&gt;getFilesystem()-&gt;execute()</code>, qui permet d'executer des appels à la ligne de commande locale depuis la classe de tâche elle-même&nbsp;; ici, une execution distante à travers SSH.</p>
+<p>Bien entendu, cet exemple est très spécifique aux besoins du site Akei, mais vous pourriez en quelques minutes gérer plus finement une tâche de déploiement plus générique et configurable. Pensez-y pour vos projets ;)</p>
+<p>PS&nbsp;: Ce billet a été écrit en 14 minutes. Merci de votre compréhension.</p>
+    </section>
+    <aside>
+        <hr>
+        <p>Posted on 2010-05-25 — <a href="/nperriault/build/code/2010/custom-deployment-tasks/">permalink</a>.</p>
+    </aside>
+</article>
+
+
+        </div>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/nperriault/build/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/nperriault/build/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/nperriault/build/photography/" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="/nperriault/build/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="/nperriault/build/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2012 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">Tweet at me</a>
+                — <a href="https://github.com/n1k0">Get my code</a>
+                — <a href="http://500px.com/n1k0">Enjoy my pics</a>
+                — <a href="/nperriault/build/contact/">Contact me</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/libs/prettify.js"></script>
+    
+        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+    
+    <script>
+    function preparePrettyPrint() {
+        // fuck you, IE.
+        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+            pre.classList.add('prettyprint');
+        });
+        prettyPrint();
+    }
+    </script>
+</body>
+</html>
