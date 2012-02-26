@@ -1,12 +1,20 @@
 body {
-  min-width: 360px;
-  font-family: "Hoefler Text", "Sorts+Mill+Goudy", Palatino, Georgia, serif;
-  font-size: 18px;
-  line-height: 24px;
-  color: #222;
+  background-color: #fafafa;
+  width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Palatino, "Hoefler Text", Georgia, serif;
+  font-size: 19px;
+  line-height: 28px;
+  color: #333334;
+}
+a {
+  color: #555556;
 }
 code, pre {
   font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 90%;
+  color: #555;
 }
 h1,
 h2,
@@ -14,8 +22,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Hoefler Text", serif;
   font-weight: bold;
+  line-height: 30.800000000000004px;
 }
 h1 a,
 h2 a,
@@ -23,99 +31,116 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-  color: #000;
+  color: #333334;
+}
+hr {
+  height: 1px;
+  border-top: 1px solid #aaaaab;
+  border-bottom: none;
 }
 p {
-  line-height: 24px;
-  margin: 24px 0;
+  line-height: 28px;
+  margin: 28px 0;
+}
+pre {
+  padding: 14px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  text-wrap: wrap;
+  white-space: pre;
+  overflow: auto;
 }
 .active {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 .arrow-suffixed:after {
   content: "\00A0\00BB";
 }
 .main-title {
-  margin-top: 48px;
-  padding-bottom: 12px;
+  margin-left: 300px;
+  margin-top: 56px;
+  padding-bottom: 14px;
 }
 .main-title h1 {
-  font-size: 48px;
-  line-height: 12px;
+  font-size: 56px;
+  line-height: 14px;
 }
 .main-title h1 a {
   text-decoration: none;
 }
 .main-title small {
   display: block;
-  font-size: 24px;
-  color: #aaaaaa;
+  font-size: 28px;
+  color: #aaaaab;
 }
 .contents {
+  margin-left: 300px;
   min-height: 300px;
   margin-bottom: 1em;
 }
 .contents h1 {
-  font-size: 36px;
+  font-size: 38px;
 }
 .contents article header h2 a {
   text-decoration: none;
 }
+.contents article img {
+  max-width: 100%;
+}
 .sidebar {
   position: fixed;
-  width: 200px;
+  top: 190px;
+  width: 250px;
 }
 .sidebar ul {
   list-style-type: none;
 }
 .sidebar ul li {
-  font-size: 24px;
-  line-height: 35.5px;
+  font-size: 28px;
+  line-height: 41.5px;
   text-align: right;
 }
 .sidebar ul li a {
-  color: #aaaaaa;
+  color: #aaaaab;
   font-weight: bold;
   text-decoration: none;
 }
 .sidebar ul li a:focus, .sidebar ul li a:hover {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 .site-footer {
   clear: both;
   text-align: center;
-  font-size: 14.399999999999999px;
+  font-size: 16.8px;
 }
 .activeSection {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 body.code .sidebar li.code a {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 body.carnet .sidebar li.carnet a {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 body.contact .sidebar li.contact a {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 body.home .sidebar li.home a {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 body.photography .sidebar li.photography a {
-  color: #333333;
+  color: #333334;
   text-decoration: none;
 }
 @media (max-width: 480px) {
-  .sidebar {
-    text-align: center;
-  }
   .sidebar li {
     display: inline;
     padding-right: 16px;
@@ -123,12 +148,21 @@ body.photography .sidebar li.photography a {
 }
 @media (max-width: 768px) {
   body {
-    font-size: 98%;
+    width: inherit;
+  }
+  body .contents {
+    margin-left: 0;
+  }
+  body .main-title {
+    margin-left: 0;
   }
   .main-title h2 {
     font-size: 20px;
   }
   .sidebar {
+    position: inherit;
+    top: none;
+    width: 100%;
     text-align: center;
   }
   .sidebar li {
@@ -137,8 +171,17 @@ body.photography .sidebar li.photography a {
   }
 }
 @media (min-width: 768px) and (max-width: 960px) {
-  .container {
-    width: 100%;
+  body {
+    width: 768px;
+  }
+  body .contents {
+    margin-left: 200px;
+  }
+  body .main-title {
+    margin-left: 200px;
+  }
+  .contents {
+    margin-left: 200px;
   }
   .main-title h2 {
     font-size: 20px;

@@ -1,8 +1,12 @@
 <ul>
 {% for page in pages %}
     <li>
-        {{ page.date }}<br>
-        <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a>
+        <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a> | {{ page.date }}<br>
+        {% if page.meta.summary %}
+            <q><em>{{ page.summary }}</em></q>
+        {% else %}
+            <q><em>{{ page.html|striptags|trim|truncate(135) }}</em></q>
+        {% endif %}
     </li>
 {% else %}
     <li>No page.</li>

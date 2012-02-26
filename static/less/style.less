@@ -1,40 +1,63 @@
 // Variables
 
-@baseFontSize:   18px;
-@baseFontFamily: "Hoefler Text", "Sorts+Mill+Goudy", Palatino, Georgia, serif;
-@baseHeight:     12px;
+@baseFontSize:   19px;
+@baseFontFamily: Palatino, "Hoefler Text", Georgia, serif;
+@baseHeight:     14px;
 @baseLineHeight: @baseHeight * 2;
 
-@darkGrey:       #333;
-@lightGrey:      #aaa;
-@lighterGrey:    #ddd;
+@darkGrey:       #333334;
+@grey:           #555556;
+@lightGrey:      #aaaaab;
+@lighterGrey:    #ddddde;
+@textColor:      #333334;
 
 // Tags
 
 body {
 //    background: url(http://taat.pl/grid/24x12_lightgrey.gif) fixed;
-    min-width: 360px;
+    background-color: #fafafa;
+    width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px;
     font-family: @baseFontFamily;
     font-size: @baseFontSize;
     line-height: @baseLineHeight;
-    color: #222;
+    color: @textColor;
+}
+
+a {
+    color: @grey;
 }
 
 code, pre {
     font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 90%;
+    color: #555;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Hoefler Text", serif;
     font-weight: bold;
+    line-height: @baseLineHeight*1.1;
     a {
-        color: #000;
+        color: @textColor;
     }
+}
+
+hr {
+    height: 1px;
+    border-top: 1px solid @lightGrey;
+    border-bottom: none;
 }
 
 p {
     line-height: @baseHeight * 2;
     margin: @baseHeight * 2 0;
+}
+
+pre {
+    padding: @baseHeight;
+    .rounded(8px);
+    .wrap();
 }
 
 // helpers
@@ -55,10 +78,23 @@ p {
     line-height: @baseLineHeight * @ratio;
 }
 
+.rounded(@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.wrap () {
+  text-wrap: wrap;
+  white-space: pre;
+  overflow: auto;
+}
+
 // Styles
 
 .main-title {
     //border-bottom: 1px solid @lighterGrey;
+    margin-left: 300px;
     margin-top: @baseHeight * 4;
     padding-bottom: @baseHeight;
     h1 {
@@ -77,6 +113,7 @@ p {
 
 
 .contents {
+    margin-left: 300px;
     min-height: 300px;
     margin-bottom: 1em;
     h1 {
@@ -90,12 +127,16 @@ p {
                 text-decoration: none;
             }
         }
+        img {
+            max-width: 100%;
+        }
     }
 }
 
 .sidebar {
     position: fixed;
-    width: 200px;
+    top: 190px;
+    width: 250px;
     ul {
         list-style-type: none;
         li {
@@ -163,7 +204,6 @@ body.photography {
 
 @media (max-width: 480px) {
     .sidebar {
-        text-align: center;
         li {
             display: inline;
             padding-right: 16px;
@@ -176,7 +216,13 @@ body.photography {
 
 @media (max-width: 768px) {
     body {
-        font-size: 98%;
+        width: inherit;
+        .contents {
+            margin-left: 0;
+        }
+        .main-title {
+            margin-left: 0;
+        }
     }
     .main-title {
         h2 {
@@ -184,6 +230,9 @@ body.photography {
         }
     }
     .sidebar {
+        position: inherit;
+        top: none;
+        width: 100%;
         text-align: center;
         li {
             display: inline;
@@ -196,8 +245,17 @@ body.photography {
 // ----------------------------------
 
 @media (min-width: 768px) and (max-width: 960px) {
-    .container {
-        width: 100%;
+    body {
+        width: 768px;
+        .contents {
+            margin-left: 200px;
+        }
+        .main-title {
+            margin-left: 200px;
+        }
+    }
+    .contents {
+        margin-left: 200px;
     }
     .main-title {
         h2 {

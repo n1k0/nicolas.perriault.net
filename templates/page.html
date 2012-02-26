@@ -1,0 +1,12 @@
+<article lang="{{ page.meta.lang or "en" }}">
+    <header>
+        <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a> &raquo;</h2>
+    </header>
+    <section>
+        {{ page.html|safe }}
+    </section>
+    <aside>
+        <hr>
+        <p>Posted on {{ page.date }} — <a href="{{ url_for("page", path=page.path) }}">permalink</a>.</p>
+    </aside>
+</article>

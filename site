@@ -33,19 +33,21 @@ def inject_ga():
     return dict(BASE_URL=BASE_URL)
 
 
-def get_pages(pages, min=None, max=None, section=None):
+def get_pages(pages, offset=None, limit=None, section=None, year=None):
     articles = [p for p in pages]
     if not DEBUG:
         articles = [p for p in articles if p.meta.get('published') is True]
     articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
     if section:
         articles = [p for p in articles if p.path.startswith(section)]
-    if min and max:
-        return articles[min:max]
-    elif max:
-        return articles[:max]
-    elif min:
-        return articles[min:]
+    if year:
+        articles = [p for p in articles if p.date.year == year]
+    if offset and limit:
+        return articles[offset:limit]
+    elif limit:
+        return articles[:limit]
+    elif offset:
+        return articles[offset:]
     else:
         return articles
 
@@ -57,15 +59,15 @@ def contact():
 
 @app.route('/feed/')
 def feed():
-    return render_template('feed.rss', pages=get_pages(pages, max=25))
+    return render_template('feed.rss', pages=get_pages(pages, limit=25))
 
 
 @app.route('/')
 def index():
     return render_template('index.html',
-        code_posts=get_pages(pages, max=5, section="code"),
-        photos=get_pages(pages, max=5, section="photography"),
-        posts=get_pages(pages, max=5, section="carnet"))
+        code_posts=get_pages(pages, limit=5, section="code"),
+        photos=get_pages(pages, limit=5, section="photography"),
+        posts=get_pages(pages, limit=5, section="carnet"))
 
 
 @app.route('/<path:path>/')
@@ -82,7 +84,7 @@ def page(path):
 @app.route('/<string:section>/')
 def section(section):
     template = '%s/index.html' % section
-    return render_template(template, pages=get_pages(pages, max=10,
+    return render_template(template, pages=get_pages(pages, limit=5,
         section=section))
 
 
@@ -90,8 +92,14 @@ def section(section):
 def section_archives(section):
     """ TODO: group by year """
     template = '%s/index.html' % section
-    return render_template(template, pages=get_pages(pages, max=None,
-        section=section))
+    return render_template(template, pages=get_pages(pages, section=section))
+
+
+@app.route('/<string:section>/archives/<int:year>/')
+def section_archives_year(section, year):
+    template = '%s/index.html' % section
+    return render_template(template, pages=get_pages(pages, section=section,
+        year=year))
 
 
 @app.errorhandler(404)
@@ -100,9 +108,11 @@ def page_not_found(error):
 
 
 @command
-def serve(server='127.0.0.1', port=5000, debug=False):
+def serve(server='127.0.0.1', port=5000, debug=DEBUG):
     """ Serves this site.
     """
+    if isinstance(debug, str):
+        debug = True if debug.lower() == "true" else False
     app.run(host=server, port=port, debug=debug)
 
 

@@ -3,38 +3,38 @@
 {% block contents %}
 {% filter markdown %}
 My name is <strong>Nicolas Perriault</strong>, I'm 35, I live in southern France [near
-Montpellier](http://g.co/maps/z88bs). I have a son, a wife, three cats and am pretty much <strong>enjoying my
-life</strong>.
+Montpellier](http://g.co/maps/z88bs) and am pretty much <strong>enjoying my life</strong>.
 
-I'm a <strong>Web developer</strong>, I made coding a living. And as you may
-suppose, I'm not a Web designer.
+I'm a <strong>Web developer</strong>, I made [coding](/code) a living. And as you may
+suppose, I'm *not* a Web designer.
 
-I also practice <strong>photography</strong>, and rant probably a bit too much.
+I also practice [photography](/photography), and probably
+[rant (in French)](/carnet) a bit too much.
 
-### Latest published stuff
+## Latest published stuff
 {% endfilter %}
 
 <div class="row">
-    <div class="four columns alpha">
-        <h4 lang="en">Code</h4>
+    <section class="code">
+        <h3 lang="en">Code</h3>
         {% with pages = code_posts %}
             {% include "_list.html" %}
         {% endwith %}
         <p><a href="{{ url_for("section", section="code") }}">See more</a></p>
-    </div>
-    <div class="four columns">
-        <h4 lang="en">Photography</h4>
+    </section>
+    <section class="photography">
+        <h3 lang="en">Photography</h3>
         {% with pages = photos %}
             {% include "_list.html" %}
         {% endwith %}
         <p><a href="{{ url_for("section", section="photography") }}">See more</a></p>
-    </div>
-    <div class="four columns omega">
-        <h4 lang="fr">Carnet</h4>
+    </section>
+    <section class="carnet">
+        <h3 lang="fr">Carnet <small>(en français)</small></h3>
         {% with pages = posts %}
             {% include "_list.html" %}
         {% endwith %}
         <p><a href="{{ url_for("section", section="carnet") }}">Voir plus</a></p>
-    </div>
+    </section>
 </div>
 {% endblock contents %}

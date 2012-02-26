@@ -1,4 +1,5 @@
 title: Choisir son métier, arrêter de le (faire) subir
+lang: fr
 date: 2010-10-27
 tags: méthodologie, humeur, qualité
 published: true
@@ -7,7 +8,7 @@ Je viens de finir la lecture de l'excellent billet de [Thibault](http://www.mixi
 
 Ce qui me chagrine plus en revanche, c'est la lecture de certains commentaires, relativement fatalistes et désabusés&nbsp;; je ne resiste pas à la tentation d'en commenter certains.
 
-#### La métaphore du concessionnaire automobile
+### La métaphore du concessionnaire automobile
 
 > Le client qui sait exactement ce qu’il veut voudra acheter son site comme une voiture.
 >
@@ -15,9 +16,9 @@ Ce qui me chagrine plus en revanche, c'est la lecture de certains commentaires, 
 
 Nous y revoila, la fameuse métaphore du concessionnaire automobile, ça faisait longtemps. Comment comparer le développement d'un produit sur-mesures à l'achat d'un produit de type industriel&nbsp;?
 
-<p style="text-align:center">
+<p>
   <a href="http://www.flickr.com/photos/ferdinandreus/4647740287" title="voiture">
-    <img src="http://farm3.static.flickr.com/2175/2406879653_1f9fb2d592.jpg" alt="voiture"/>
+    <img src="http://farm3.static.flickr.com/2175/2406879653_1f9fb2d592_z.jpg" alt="voiture"/>
   </a>
   <br/>
   <small><a href="http://www.flickr.com/photos/mayme/2406879653/">funny car</a>, par <a href="http://www.flickr.com/photos/mayme/">mayme</a></small>
@@ -52,17 +53,22 @@ Allez, j'ai dix minutes à tuer, je vous imagine la discussion&nbsp;:
 
 <div style="float:right;margin:0 0 10px 10px;text-align:center">
   <a href="http://www.flickr.com/photos/ferdinandreus/4647740287">
-    <img src="http://farm5.static.flickr.com/4024/4647740287_4e7f6ab518.jpg" alt="fish" style="width:230px"/>
+    <img src="http://farm5.static.flickr.com/4024/4647740287_4e7f6ab518_z.jpg" alt="fish" style="width:230px"/>
   </a>
   <br/>
   <small><a href="http://www.flickr.com/photos/ferdinandreus/4647740287/">fish</a>, par <a href="http://www.flickr.com/photos/ferdinandreus/">ferdinandreus</a></small>
 </div>
 
 > — Bonjour monsieur le concessionnaire
+>
 > — Bonjour monsieur le client
+>
 > — Je voudrais acheter une voiture
+>
 > — Ma foi, vous êtes au bon endroit&nbsp;! Quel modèle vous a tapé dans l'oeil&nbsp;?
+>
 > — Je veux quelque chose d'assez standard, comme celle-ci là bas, mais avec quelques ajustements mineurs&nbsp;; j'aime bien l'arrière de celle-ci, l'avant de celle-là, l'aspect cabriolet de la petite là-bas, et le bas de caisse de celle cachée dans le fond, là. Il faudra aussi qu'elle soit amphibie, je compte aller pêcher avec quelques amis le week-end prochain. Idéalement, elle pourra également passer d'un mode cabriolet à mobile-home d'une simple pression sur un bouton en cas d'embouteillages prolongés. Avec le meilleur moteur que vous ayez à disposition, cela va sans dire. Ah, précisons tout de suite&nbsp;: il me la faut pour le week-end prochain, puisque j'ai une partie de pêche, vous vous souvenez&nbsp;? Bien entendu, je me résèrve le droit de vous demander dans ce laps de temps quelques options supplémentaires auxquelles je n'ai pas pensé. Vous avez le tarif catalogue sous la main&nbsp;?
+>
 > — *PAN&nbsp;!* (bruit de déflagration)
 
 Redevenons sérieux deux secondes. **Le développement d'une application Web sera *toujours* spécifique et sur-mesures, arrêtons de nourrir l'illusion qu'en utilisant des outils Open Source relativement standardisés *techniquement*, nous standardisons *fonctionnellement* les développements.** Ce n'est tout simplement pas vrai 99% du temps.
@@ -86,9 +92,9 @@ J'identifie la part de demandes entrantes du premier type de prestation à envir
 
 Oui, n'en parlons plus et subissons sans broncher, c'est plus confortable intellectuellement. Et puis si ça se vend plus facilement comme ça, pourquoi diable hésiter&nbsp;? Faut juste s'habituer à marcher en canard au troisième recommandé avec AR. Ah mais oui je suis con, le commercial ayant vendu la chose a déjà touché sa comm' et ne gère plus les conséquences de sa vente depuis longtemps, j'oubliais.
 
-<p style="text-align:center">
+<p>
   <a href="http://www.flickr.com/photos/stumayhew/3747070194" title="The Fear">
-    <img src="http://farm4.static.flickr.com/3434/3747070194_16a125d4ea.jpg" alt="The Fear"/>
+    <img src="http://farm4.static.flickr.com/3434/3747070194_16a125d4ea_z.jpg" alt="The Fear"/>
   </a>
   <br/>
   <small><a href="http://www.flickr.com/photos/stumayhew/3747070194">The Fear</a>, par <a href="http://www.flickr.com/photos/stumayhew/">stumayhew</a></small>
@@ -113,13 +119,13 @@ Gérer des litiges contractuels est un véritable métier, très pointu, qui dem
 
 Par contre, il est clair qu'avec de telles exigences, je ne donne pas suite à neuf appels entrants sur dix. Le mot est lâché&nbsp;: **je refuse des opportunités business**. SACRILÈGE&nbsp;! Combien de gens me regardent avec des yeux ronds lorsque je raconte ça… C'est déprimant, d'un certain côté. Travailler plus pour gagner plus&nbsp;? **Et si on parlait plutôt de *travailler mieux pour vivre mieux*&nbsp;?**
 
-<p style="text-align:center">
+<p>
   <a href="http://twitter.com/laurentLC/status/28895308381">
     <img src="http://media.tumblr.com/tumblr_layfxpSlVV1qbt2jc.png" alt="Avoir le temps…"/>
   </a>
 </p>
 
-#### *Courir plus pour s'essouffler plus*
+### *Courir plus pour s'essouffler plus*
 
 > (…) si ça implique une absence de visibilité sur une enveloppe globale sur laquelle on s’engage, (c')est tout simplement rédhibitoire pour le client
 
@@ -127,15 +133,15 @@ La visibilité s'obtient par la connaissance de la capacité à produire en coll
 
 Enfin, je réalise que beaucoup de gens comprennent l'*agilité* comme la capacité à faire du business malgré tout, voire à tomber du projet coûte que coûte, en s'adaptant aux obstacles au gré du vent et avec les moyens du bord (qui prennent souvent la forme de *stagiaires chef de projet* et autres *experts techniques junior* recrutés à [la râche](http://www.risacher.com/la-rache/index.php?z=2) pour faire face à un surcroît de charge non prévue, soit dit en passant). C'est juste tout l'inverse&nbsp;; **je ne connais rien de plus structurant et contraignant en termes de processus que les méthodes agiles&nbsp;!** Il n'y a pas de vaudou, l'obtention de résultats est à ce prix. Ainsi que d'une certaine façon, au prix d'un lâcher-prise et d'une certaine acceptation du changement, de chaque côté de la barrière (si tant est qu'il y en ait une).
 
-<p style="text-align:center">
+<p>
   <a href="http://www.flickr.com/photos/beginasyouare/549652478/" title="High Wire Act">
-    <img src="http://farm2.static.flickr.com/1235/549652478_ca4758c99c.jpg" alt="High Wire Act"/>
+    <img src="http://farm2.static.flickr.com/1235/549652478_ca4758c99c_z.jpg" alt="High Wire Act"/>
   </a>
   <br/>
   <small><a href="http://www.flickr.com/photos/beginasyouare/549652478/">High Wire Act</a>, par <a href="http://www.flickr.com/photos/beginasyouare/">beginasyouare</a></small>
 </p>
 
-#### «&nbsp;Bon, tu conclues là&nbsp;? J'vais rater l'apéro&nbsp;»
+### «&nbsp;Bon, tu conclues là&nbsp;? J'vais rater l'apéro&nbsp;»
 
 Oui, je suis un peu décontenancé à la lecture de ces quelques commentaires. On constate tous que bien des commanditaires ne comprennent pas les enjeux de leur métier d'acheteur de prestation de développements informatiques. Je découvre qu'il est des professionnels tellement désabusés qu'ils ont visiblement renoncé à toute vélléité d'éducation de leurs prospects sur les questions d'organisation méthodologique et collaborative du travail, part intégrante du champ d'expertise de tout prestataire de développement informatique un tant soit peu digne de ce nom et prétendant offrir un conseil de qualité. Je ne peux me résoudre à croire qu'ils n'ont pas le choix, que tout ceci est inévitable, et que «&nbsp;c'est la crise, il faut bien bouffer, ma pauvre dame&nbsp;».
 

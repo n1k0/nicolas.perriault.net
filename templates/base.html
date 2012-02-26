@@ -7,17 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width">
-    <link href="http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
     {% assets filter="uglifyjs", output="packed.js",
-        "css/skeleton.css",
-        "css/style.css"
+        "css/style.css",
+        "css/prettify.css"
     %}
         <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
     {% endassets %}
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed") }}" title="Nicolas Perriault - global feed (RSS)" />
-    <script src="/static/js/libs/modernizr-2.5.2-respond-1.1.0.min.js"></script>
 </head>
-<body class="{% block section %}home{% endblock %}">
+<body class="{% block section %}home{% endblock %}" onload="preparePrettyPrint()">
     <!--[if lt IE 7]>
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
@@ -26,22 +24,20 @@
             <h1><a href="{{ url_for("index") }}">Hi, I'm <strong>Nicolas.</strong></a></h1>
             <small>I code stuff. I take photos. I write rants.</small>
         </header>
-        <div class="four columns">
-            <nav class="sidebar">
-                <ul>
-                    <li class="home"><a href="{{ url_for("index") }}" lang="en">Home</a></li>
-                    <li class="code"><a href="{{ url_for("section", section="code") }}" lang="en">Code</a></li>
-                    <li class="photography"><a href="{{ url_for("section", section="photography") }}" lang="en">Photography</a></li>
-                    <li class="carnet"><a href="{{ url_for("section", section="carnet") }}" lang="fr">Carnet</a></li>
-                    <li class="contact"><a href="{{ url_for("contact") }}" lang="en">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="twelve columns offset-by-four contents">
+        <div class="contents">
             {% block contents %}
             <p>These are the default contents.</p>
             {% endblock contents %}
         </div>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="{{ url_for("index") }}" hreflang="en">Home</a></li>
+                <li class="code"><a href="{{ url_for("section", section="code") }}" hreflang="en">Code</a></li>
+                <li class="photography"><a href="{{ url_for("section", section="photography") }}" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="{{ url_for("contact") }}" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
         <footer class="site-footer">
             <p>
                 &copy; 2012 Nicolas Perriault
@@ -54,11 +50,19 @@
     </div>
     <!-- /container -->
     {% assets filter="uglifyjs", output="packed.js",
-        "js/libs/jquery-1.7.1.min.js",
-        "js/libs/tabs.js",
+        "js/libs/prettify.js",
         "js/app.js"
     %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
+    <script>
+    function preparePrettyPrint() {
+        // fuck you, IE.
+        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+            pre.classList.add('prettyprint');
+        });
+        prettyPrint();
+    }
+    </script>
 </body>
 </html>

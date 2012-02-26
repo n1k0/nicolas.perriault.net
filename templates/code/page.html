@@ -3,5 +3,7 @@
 {% block page_title %}{{ page.title }} | {{ super() }}{% endblock %}
 
 {% block contents %}
-{{ page.html|safe }}
+{% with page = page  %}
+    {% include "page.html" %}
+{% endwith %}
 {% endblock contents %}

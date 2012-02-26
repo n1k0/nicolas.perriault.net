@@ -2,8 +2,6 @@ title: Some hardcore code action
 published: true
 date: 2012-02-23
 
-## I'm a developer
-
 Didn't you know that already?
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
