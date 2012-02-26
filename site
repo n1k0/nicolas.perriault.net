@@ -120,6 +120,8 @@ def build():
 def post(section, title=None, filename=None):
     """ Create a new empty post.
     """
+    if not os.path.exists(os.path.join(FLATPAGES_ROOT, section)):
+        raise CommandError(u"Section '%s' does not exist" % section)
     date = datetime.today()
     title = unicode(title) if title else "Untitled Post"
     filename = filename if filename else "untitled-post.md"
