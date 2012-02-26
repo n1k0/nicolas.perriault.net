@@ -19,7 +19,6 @@ FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'pages'
 FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
-GA_TRACKER = 'XXX'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -31,7 +30,7 @@ Environment(app)
 
 @app.context_processor
 def inject_ga():
-    return dict(BASE_URL=BASE_URL, GA_TRACKER=GA_TRACKER)
+    return dict(BASE_URL=BASE_URL)
 
 
 def get_pages(pages, min=None, max=None, section=None):
