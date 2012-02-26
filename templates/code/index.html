@@ -8,9 +8,12 @@ I mostly code in [Python](http://python.org/) and Javascript, and no, I do
 Hope this does sort out any doubt and makes things crystal-clear.
 {% endfilter %}
 
-<h3>Latest stuff about « Code »</h3>
+<h3>Latest « Code » stuff</h3>
 {% include "_list.html" %}
 <p>
-    &raquo; Browse the <a href="{{ url_for("section_archives", section="code") }}">archives</a>
+    Browse the archives
+    {% for year in years  %}
+        | <a href="{{ url_for("section_archives_year", section="code", year=year) }}">{{ year }}</a>
+    {% endfor %}
 </p>
 {% endblock contents %}

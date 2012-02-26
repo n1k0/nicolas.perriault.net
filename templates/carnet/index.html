@@ -9,6 +9,9 @@
 <h3>Derniers billets publiés dans le carnet</h3>
 {% include "_list.html" %}
 <p>
-    &raquo; Voir les <a href="{{ url_for("section_archives", section="carnet") }}">archives</a>
+    Browse the archives
+    {% for year in years  %}
+        | <a href="{{ url_for("section_archives_year", section="carnet", year=year) }}">{{ year }}</a>
+    {% endfor %}
 </p>
 {% endblock contents %}

@@ -8,9 +8,12 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-<h3>Latest stuff pushed in « Photography »</h3>
+<h3>Latest « Photography » stuff</h3>
 {% include "_list.html" %}
 <p>
-    &raquo; Browse the <a href="{{ url_for("section_archives", section="photography") }}">archives</a>
+    Browse the archives
+    {% for year in years  %}
+        | <a href="{{ url_for("section_archives_year", section="photography", year=year) }}">{{ year }}</a>
+    {% endfor %}
 </p>
 {% endblock contents %}

@@ -44,9 +44,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr {
-    height: 1px;
-    border-top: 1px solid @lightGrey;
-    border-bottom: none;
+    &:after {
+        content: "✻ ✽ ✻";
+    }
+    border: none;
+    color: lighten(@textColor, 5%);
+    text-align: center;
+    margin: 0 0 40px 0;
 }
 
 p {
@@ -58,6 +62,10 @@ pre {
     padding: @baseHeight;
     .rounded(8px);
     .wrap();
+}
+
+q:before, q:after {
+    content: "";
 }
 
 // helpers
@@ -84,7 +92,7 @@ pre {
   -moz-border-radius: @radius;
 }
 
-.wrap () {
+.wrap() {
   text-wrap: wrap;
   white-space: pre;
   overflow: auto;
@@ -131,6 +139,22 @@ pre {
             max-width: 100%;
         }
     }
+    ul.item-list {
+        @width: 20px;
+        margin-left: @width;
+        padding: 0;
+        list-style-type: none;
+        li {
+            margin-bottom: @baseHeight;
+            &:before {
+                margin-left: -@width;
+                content: "✍\0020";
+            }
+            a {
+                font-weight: bold;
+            }
+        }
+    }
 }
 
 .sidebar {
@@ -165,6 +189,7 @@ pre {
 
 .activeSection {
     .active;
+    .arrow-suffixed;
 }
 
 body.code {

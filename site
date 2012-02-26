@@ -19,6 +19,7 @@ FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'pages'
 FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
+SECTION_MAX_LINKS = 5
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -34,14 +35,16 @@ def inject_ga():
 
 
 def get_pages(pages, offset=None, limit=None, section=None, year=None):
-    articles = [p for p in pages]
+    """ Retrieves pages matching passec criterias.
+    """
+    articles = list(pages)
     if not DEBUG:
         articles = [p for p in articles if p.meta.get('published') is True]
-    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
     if section:
         articles = [p for p in articles if p.path.startswith(section)]
     if year:
-        articles = [p for p in articles if p.date.year == year]
+        articles = [p for p in articles if p.meta.get('date').year == year]
+    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
     if offset and limit:
         return articles[offset:limit]
     elif limit:
@@ -50,6 +53,10 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
         return articles[offset:]
     else:
         return articles
+
+
+def get_years(pages):
+    return list(set([page.meta.get('date').year for page in pages]))
 
 
 @app.route('/contact/')
@@ -84,22 +91,16 @@ def page(path):
 @app.route('/<string:section>/')
 def section(section):
     template = '%s/index.html' % section
-    return render_template(template, pages=get_pages(pages, limit=5,
-        section=section))
+    articles = get_pages(pages, limit=SECTION_MAX_LINKS, section=section)
+    years = get_years(articles)
+    return render_template(template, pages=articles, years=years)
 
 
-@app.route('/<string:section>/archives/')
-def section_archives(section):
-    """ TODO: group by year """
-    template = '%s/index.html' % section
-    return render_template(template, pages=get_pages(pages, section=section))
-
-
-@app.route('/<string:section>/archives/<int:year>/')
+@app.route('/<string:section>/<int:year>/')
 def section_archives_year(section, year):
-    template = '%s/index.html' % section
+    template = '%s/archives.html' % section
     return render_template(template, pages=get_pages(pages, section=section,
-        year=year))
+        year=year), year=year)
 
 
 @app.errorhandler(404)

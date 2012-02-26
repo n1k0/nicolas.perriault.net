@@ -1,4 +1,5 @@
 title: De retour de Djangocong
+lang: fr
 date: 2010-04-26
 tags: django, symfony, django-fr
 published: true

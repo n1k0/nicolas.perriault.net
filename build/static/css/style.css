@@ -34,9 +34,13 @@ h6 a {
   color: #333334;
 }
 hr {
-  height: 1px;
-  border-top: 1px solid #aaaaab;
-  border-bottom: none;
+  border: none;
+  color: #404041;
+  text-align: center;
+  margin: 0 0 40px 0;
+}
+hr:after {
+  content: "✻ ✽ ✻";
 }
 p {
   line-height: 28px;
@@ -50,6 +54,9 @@ pre {
   text-wrap: wrap;
   white-space: pre;
   overflow: auto;
+}
+q:before, q:after {
+  content: "";
 }
 .active {
   color: #333334;
@@ -89,6 +96,21 @@ pre {
 .contents article img {
   max-width: 100%;
 }
+.contents ul.item-list {
+  margin-left: 20px;
+  padding: 0;
+  list-style-type: none;
+}
+.contents ul.item-list li {
+  margin-bottom: 14px;
+}
+.contents ul.item-list li:before {
+  margin-left: -20px;
+  content: "✍\0020";
+}
+.contents ul.item-list li a {
+  font-weight: bold;
+}
 .sidebar {
   position: fixed;
   top: 190px;
@@ -120,25 +142,43 @@ pre {
   color: #333334;
   text-decoration: none;
 }
+.activeSection:after {
+  content: "\00A0\00BB";
+}
 body.code .sidebar li.code a {
   color: #333334;
   text-decoration: none;
+}
+body.code .sidebar li.code a:after {
+  content: "\00A0\00BB";
 }
 body.carnet .sidebar li.carnet a {
   color: #333334;
   text-decoration: none;
 }
+body.carnet .sidebar li.carnet a:after {
+  content: "\00A0\00BB";
+}
 body.contact .sidebar li.contact a {
   color: #333334;
   text-decoration: none;
+}
+body.contact .sidebar li.contact a:after {
+  content: "\00A0\00BB";
 }
 body.home .sidebar li.home a {
   color: #333334;
   text-decoration: none;
 }
+body.home .sidebar li.home a:after {
+  content: "\00A0\00BB";
+}
 body.photography .sidebar li.photography a {
   color: #333334;
   text-decoration: none;
+}
+body.photography .sidebar li.photography a:after {
+  content: "\00A0\00BB";
 }
 @media (max-width: 480px) {
   body {

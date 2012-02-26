@@ -20,21 +20,23 @@ I also practice [photography](/photography), and probably
         {% with pages = code_posts %}
             {% include "_list.html" %}
         {% endwith %}
-        <p><a href="{{ url_for("section", section="code") }}">See more</a></p>
+        <p>&raquo; <a href="{{ url_for("section", section="code") }}">See more Code stuff</a></p>
     </section>
+    <hr>
     <section class="photography">
         <h3 lang="en">Photography</h3>
         {% with pages = photos %}
             {% include "_list.html" %}
         {% endwith %}
-        <p><a href="{{ url_for("section", section="photography") }}">See more</a></p>
+        <p>&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
     </section>
+    <hr>
     <section class="carnet">
         <h3 lang="fr">Carnet <small>(en français)</small></h3>
         {% with pages = posts %}
             {% include "_list.html" %}
         {% endwith %}
-        <p><a href="{{ url_for("section", section="carnet") }}">Voir plus</a></p>
+        <p>&raquo; <a href="{{ url_for("section", section="carnet") }}">Accéder au carnet</a></p>
     </section>
 </div>
 {% endblock contents %}

@@ -1,4 +1,5 @@
 title: Tâches de déploiement spécifiques avec Symfony
+lang: fr
 date: 2010-05-25
 tags: symfony, deploy, hosting
 published: true

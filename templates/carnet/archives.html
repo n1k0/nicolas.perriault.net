@@ -1,0 +1,9 @@
+{% extends "carnet/base.html" %}
+
+{% block contents %}
+<h2>Billets publiés durant {{ year }}</h2>
+{% include "_list.html" %}
+<p>
+    Retour au <a href="{{ url_for("section", section="carnet") }}">Carnet</a>
+</p>
+{% endblock contents %}
