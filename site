@@ -3,13 +3,13 @@
 import codecs
 import os
 
+from argh import *
 from datetime import datetime
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
 from flaskext.markdown import Markdown
 from flaskext.assets import Environment
-from argh import *
 
 # Configuration
 DEBUG = True
