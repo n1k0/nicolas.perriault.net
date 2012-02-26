@@ -10,10 +10,12 @@ Hope this does sort out any doubt and makes things crystal-clear.
 
 <h3>Latest « Code » stuff</h3>
 {% include "_list.html" %}
-<p>
-    Browse the archives
-    {% for year in years  %}
-        | <a href="{{ url_for("section_archives_year", section="code", year=year) }}">{{ year }}</a>
-    {% endfor %}
-</p>
+{% if years|length %}
+    <p>
+        Browse the archives
+        {% for year in years  %}
+            | <a href="{{ url_for("section_archives_year", section="code", year=year) }}">{{ year }}</a>
+        {% endfor %}
+    </p>
+{% endif %}
 {% endblock contents %}

@@ -18,7 +18,7 @@ body {
     background-color: #fafafa;
     width: 960px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 40px 20px 0;
     font-family: @baseFontFamily;
     font-size: @baseFontSize;
     line-height: @baseLineHeight;
@@ -181,7 +181,7 @@ q:before, q:after {
 
 .site-footer {
     clear: both;
-    text-align: center;
+    margin-left: 300px;
     font-size: @baseHeight * 1.2;
 }
 
@@ -231,6 +231,7 @@ body.photography {
     body {
         font-size: 16px;
         padding: 10px;
+        width: auto;
         .main-title {
             h1 {
                 font-size: 40px;
@@ -245,6 +246,10 @@ body.photography {
                 padding-right: 16px;
             }
         }
+        .site-footer {
+            margin-left: 0;
+            text-align: center;
+        }
     }
 }
 
@@ -253,27 +258,28 @@ body.photography {
 
 @media (max-width: 768px) {
     body {
-        width: inherit;
+        width: auto;
         .contents {
             margin-left: 0;
         }
         .main-title {
             margin-left: 0;
+            h2 {
+                font-size: 20px;
+            }
         }
-    }
-    .main-title {
-        h2 {
-            font-size: 20px;
+        .sidebar {
+            position: inherit;
+            top: none;
+            width: 100%;
+            text-align: center;
+            li {
+                display: inline;
+                padding-right: 16px;
+            }
         }
-    }
-    .sidebar {
-        position: inherit;
-        top: none;
-        width: 100%;
-        text-align: center;
-        li {
-            display: inline;
-            padding-right: 16px;
+        .site-footer {
+            margin-left: 0;
         }
     }
 }
@@ -289,20 +295,22 @@ body.photography {
         }
         .main-title {
             margin-left: 200px;
+            h2 {
+                font-size: 20px;
+            }
         }
-    }
-    .contents {
-        margin-left: 200px;
-    }
-    .main-title {
-        h2 {
-            font-size: 20px;
+        .contents {
+            margin-left: 200px;
         }
-    }
-    .sidebar {
-        width: 150px;
-        ul {
-            padding: 0;
+        .sidebar {
+            width: 150px;
+            ul {
+                padding: 0;
+            }
+        }
+        .site-footer {
+            text-align: center;
+            margin-left: 200px;
         }
     }
 }

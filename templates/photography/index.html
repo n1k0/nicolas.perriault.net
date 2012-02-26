@@ -1,19 +1,14 @@
 {% extends "photography/base.html" %}
 
 {% block contents %}
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<h3>Latest « Photography » stuff</h3>
+<h3>Latest entries</h3>
 {% include "_list.html" %}
-<p>
-    Browse the archives
-    {% for year in years  %}
-        | <a href="{{ url_for("section_archives_year", section="photography", year=year) }}">{{ year }}</a>
-    {% endfor %}
-</p>
+{% if years|length %}
+    <p>
+        Browse the archives
+        {% for year in years  %}
+            | <a href="{{ url_for("section_archives_year", section="photography", year=year) }}">{{ year }}</a>
+        {% endfor %}
+    </p>
+{% endif %}
 {% endblock contents %}

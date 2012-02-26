@@ -4,15 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Hosting a Symfony app on NginX using PHP-FPM | Code | Nicolas Perriault</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
     
-        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     
-        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/prettify.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/prettify.css">
     
-    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
 </head>
 <body class="code" onload="preparePrettyPrint()">
     <!--[if lt IE 7]>
@@ -20,7 +19,7 @@
     <![endif]-->
     <div class="container">
         <header class="twelve columns offset-by-four main-title">
-            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
             <small>I code stuff. I take photos. I write rants.</small>
         </header>
         <div class="contents">
@@ -28,7 +27,7 @@
 
     <article lang="en">
     <header>
-        <h2><a href="/nperriault/build/code/2010/symfony-nginx-php-fpm/">Hosting a Symfony app on NginX using PHP-FPM</a> &raquo;</h2>
+        <h2><a href="/code/2010/symfony-nginx-php-fpm/">Hosting a Symfony app on NginX using PHP-FPM</a> &raquo;</h2>
     </header>
     <section>
         <p>I recently had to make a capacity planning study for a client of mine for which I've been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on <a href="http://php-fpm.org/">PHP-FPM</a>, a PHP <a href="http://www.fastcgi.com/">FastCGI</a> implementation and the <a href="http://nginx.org/">NginX</a> web server.</p>
@@ -130,7 +129,7 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
     </section>
     <aside>
         <hr>
-        <p>Posted on 2010-09-27 — <a href="/nperriault/build/code/2010/symfony-nginx-php-fpm/">permalink</a>.</p>
+        <p>Posted on 2010-09-27 — <a href="/code/2010/symfony-nginx-php-fpm/">permalink</a>.</p>
     </aside>
 </article>
 
@@ -138,11 +137,11 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
         </div>
         <nav class="sidebar">
             <ul>
-                <li class="home"><a href="/nperriault/build/" hreflang="en">Home</a></li>
-                <li class="code"><a href="/nperriault/build/code/" hreflang="en">Code</a></li>
-                <li class="photography"><a href="/nperriault/build/photography/" hreflang="en">Photography</a></li>
-                <li class="carnet"><a href="/nperriault/build/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
-                <li class="contact"><a href="/nperriault/build/contact/" hreflang="en">Contact</a></li>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
         <footer class="site-footer">
@@ -151,15 +150,13 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
                 — <a href="https://twitter.com/n1k0">Tweet at me</a>
                 — <a href="https://github.com/n1k0">Get my code</a>
                 — <a href="http://500px.com/n1k0">Enjoy my pics</a>
-                — <a href="/nperriault/build/contact/">Contact me</a>
+                — <a href="/contact/">Contact me</a>
             </p>
         </footer>
     </div>
     <!-- /container -->
     
-        <script type="text/javascript" src="/nperriault/build/static/js/libs/prettify.js"></script>
-    
-        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/libs/prettify.js"></script>
     
     <script>
     function preparePrettyPrint() {

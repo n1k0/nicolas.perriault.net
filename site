@@ -5,6 +5,7 @@ import os
 
 from argh import *
 from datetime import datetime
+from fabric.api import local
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
@@ -18,7 +19,10 @@ ASSETS_DEBUG = DEBUG
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'pages'
-FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
+# if DEBUG:
+#     FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
+# else:
+#     FREEZER_BASE_URL = 'http://nicolas.perriault.net/'
 SECTION_MAX_LINKS = 5
 
 app = Flask(__name__)
@@ -107,14 +111,7 @@ def section_archives_year(section, year):
 def page_not_found(error):
     return render_template('404.html'), 404
 
-
-@command
-def serve(server='127.0.0.1', port=5000, debug=DEBUG):
-    """ Serves this site.
-    """
-    if isinstance(debug, str):
-        debug = True if debug.lower() == "true" else False
-    app.run(host=server, port=port, debug=debug)
+### Commands
 
 
 @command
@@ -123,7 +120,13 @@ def build():
     """
     print("Building website...")
     freezer.freeze()
-    print("Done. Eventually find it at %s" % FREEZER_BASE_URL)
+    print("Done.")
+
+
+@command
+def deploy():
+    build()
+    local("rsync -avz -e ssh ./build/ akeiaws:/var/www/nperriault")
 
 
 @command
@@ -153,7 +156,16 @@ def post(section, title=None, filename=None):
         raise CommandError(error)
 
 
+@command
+def serve(server='127.0.0.1', port=5000, debug=DEBUG):
+    """ Serves this site.
+    """
+    if isinstance(debug, str):
+        debug = True if debug.lower() == "true" else False
+    app.run(host=server, port=port, debug=debug)
+
+
 if __name__ == '__main__':
     parser = ArghParser()
-    parser.add_commands([serve, build, post])
+    parser.add_commands([build, deploy, post, serve, ])
     parser.dispatch()

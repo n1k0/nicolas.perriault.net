@@ -2,7 +2,7 @@ body {
   background-color: #fafafa;
   width: 960px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px 20px 0;
   font-family: Palatino, "Hoefler Text", Georgia, serif;
   font-size: 19px;
   line-height: 28px;
@@ -135,7 +135,7 @@ q:before, q:after {
 }
 .site-footer {
   clear: both;
-  text-align: center;
+  margin-left: 300px;
   font-size: 16.8px;
 }
 .activeSection {
@@ -184,6 +184,7 @@ body.photography .sidebar li.photography a:after {
   body {
     font-size: 16px;
     padding: 10px;
+    width: auto;
   }
   body .main-title h1 {
     font-size: 40px;
@@ -195,10 +196,14 @@ body.photography .sidebar li.photography a:after {
     display: inline;
     padding-right: 16px;
   }
+  body .site-footer {
+    margin-left: 0;
+    text-align: center;
+  }
 }
 @media (max-width: 768px) {
   body {
-    width: inherit;
+    width: auto;
   }
   body .contents {
     margin-left: 0;
@@ -206,18 +211,21 @@ body.photography .sidebar li.photography a:after {
   body .main-title {
     margin-left: 0;
   }
-  .main-title h2 {
+  body .main-title h2 {
     font-size: 20px;
   }
-  .sidebar {
+  body .sidebar {
     position: inherit;
     top: none;
     width: 100%;
     text-align: center;
   }
-  .sidebar li {
+  body .sidebar li {
     display: inline;
     padding-right: 16px;
+  }
+  body .site-footer {
+    margin-left: 0;
   }
 }
 @media (min-width: 768px) and (max-width: 960px) {
@@ -230,17 +238,21 @@ body.photography .sidebar li.photography a:after {
   body .main-title {
     margin-left: 200px;
   }
-  .contents {
-    margin-left: 200px;
-  }
-  .main-title h2 {
+  body .main-title h2 {
     font-size: 20px;
   }
-  .sidebar {
+  body .contents {
+    margin-left: 200px;
+  }
+  body .sidebar {
     width: 150px;
   }
-  .sidebar ul {
+  body .sidebar ul {
     padding: 0;
+  }
+  body .site-footer {
+    text-align: center;
+    margin-left: 200px;
   }
 }
 @media (max-width: 960px) {

@@ -4,15 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Tâches de déploiement spécifiques avec Symfony | Code | Nicolas Perriault</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
     
-        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     
-        <link rel="stylesheet" type="text/css" href="/nperriault/build/static/css/prettify.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/prettify.css">
     
-    <link rel="alternate" type="application/rss+xml" href="/nperriault/build/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
 </head>
 <body class="code" onload="preparePrettyPrint()">
     <!--[if lt IE 7]>
@@ -20,7 +19,7 @@
     <![endif]-->
     <div class="container">
         <header class="twelve columns offset-by-four main-title">
-            <h1><a href="/nperriault/build/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
             <small>I code stuff. I take photos. I write rants.</small>
         </header>
         <div class="contents">
@@ -28,7 +27,7 @@
 
     <article lang="fr">
     <header>
-        <h2><a href="/nperriault/build/code/2010/custom-deployment-tasks/">Tâches de déploiement spécifiques avec Symfony</a> &raquo;</h2>
+        <h2><a href="/code/2010/custom-deployment-tasks/">Tâches de déploiement spécifiques avec Symfony</a> &raquo;</h2>
     </header>
     <section>
         <p><a href="http://www.symfony-project.org/">Symfony</a> propose une tâche de déploiement distant utilisant <a href="http://fr.wikipedia.org/wiki/Rsync"><code>rsync</code></a> fort pratique&nbsp;: une fois configurés les <a href="http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying">paramètres du serveur distant</a> dans le fichier <code>config/properties.ini</code> de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l'hôte distant. Et si vous utilisez une <a href="http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant">clé SSH</a>, l'opération ne vous demandera même pas de saisir votre mot de passe&nbsp;!</p>
@@ -98,7 +97,7 @@ class AkeiDeployTask extends sfProjectDeployTask
     </section>
     <aside>
         <hr>
-        <p>Posted on 2010-05-25 — <a href="/nperriault/build/code/2010/custom-deployment-tasks/">permalink</a>.</p>
+        <p>Posted on 2010-05-25 — <a href="/code/2010/custom-deployment-tasks/">permalink</a>.</p>
     </aside>
 </article>
 
@@ -106,11 +105,11 @@ class AkeiDeployTask extends sfProjectDeployTask
         </div>
         <nav class="sidebar">
             <ul>
-                <li class="home"><a href="/nperriault/build/" hreflang="en">Home</a></li>
-                <li class="code"><a href="/nperriault/build/code/" hreflang="en">Code</a></li>
-                <li class="photography"><a href="/nperriault/build/photography/" hreflang="en">Photography</a></li>
-                <li class="carnet"><a href="/nperriault/build/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
-                <li class="contact"><a href="/nperriault/build/contact/" hreflang="en">Contact</a></li>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
         <footer class="site-footer">
@@ -119,15 +118,13 @@ class AkeiDeployTask extends sfProjectDeployTask
                 — <a href="https://twitter.com/n1k0">Tweet at me</a>
                 — <a href="https://github.com/n1k0">Get my code</a>
                 — <a href="http://500px.com/n1k0">Enjoy my pics</a>
-                — <a href="/nperriault/build/contact/">Contact me</a>
+                — <a href="/contact/">Contact me</a>
             </p>
         </footer>
     </div>
     <!-- /container -->
     
-        <script type="text/javascript" src="/nperriault/build/static/js/libs/prettify.js"></script>
-    
-        <script type="text/javascript" src="/nperriault/build/static/js/app.js"></script>
+        <script type="text/javascript" src="/static/js/libs/prettify.js"></script>
     
     <script>
     function preparePrettyPrint() {

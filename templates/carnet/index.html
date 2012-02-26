@@ -2,16 +2,19 @@
 
 {% block contents %}
 <p>
-    N'étant pas assez à l'aise en anglais et m'adressant la plupart du temps à
-    un auditoire francophone, j'ai choisi de tenir ce carnet en français.
+    M'adressant la plupart du temps à
+    un auditoire francophone pour tout ce qui n'a pas trait au code ou à mon
+    métier, j'ai choisi de tenir ce carnet en français.
     <em>Mind you.</em>
 </p>
 <h3>Derniers billets publiés dans le carnet</h3>
 {% include "_list.html" %}
-<p>
-    Browse the archives
-    {% for year in years  %}
-        | <a href="{{ url_for("section_archives_year", section="carnet", year=year) }}">{{ year }}</a>
-    {% endfor %}
-</p>
+{% if years|length %}
+    <p>
+        Browse the archives
+        {% for year in years  %}
+            | <a href="{{ url_for("section_archives_year", section="carnet", year=year) }}">{{ year }}</a>
+        {% endfor %}
+    </p>
+{% endif %}
 {% endblock contents %}
