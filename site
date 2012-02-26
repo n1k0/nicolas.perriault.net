@@ -50,12 +50,33 @@ def get_pages(pages, min=None, max=None, section=None):
         return articles
 
 
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/feed/')
+def feed():
+    return render_template('feed.rss', pages=get_pages(pages, max=25))
+
+
 @app.route('/')
 def index():
     return render_template('index.html',
         code_posts=get_pages(pages, max=5, section="code"),
         photos=get_pages(pages, max=5, section="photography"),
         posts=get_pages(pages, max=5, section="carnet"))
+
+
+@app.route('/<path:path>/')
+def page(path):
+    section = path.split('/')[0]
+    page = pages.get_or_404(path)
+    # allow preview of unpublished stuff in DEBUG mode
+    if not DEBUG and not page.meta.get('published', False):
+        abort(404)
+    template = page.meta.get('template', '%s/page.html' % section)
+    return render_template(template, page=page)
 
 
 @app.route('/<string:section>/')
@@ -73,37 +94,16 @@ def section_archives(section):
         section=section))
 
 
-@app.route('/<path:path>/')
-def page(path):
-    section = path.split('/')[0]
-    page = pages.get_or_404(path)
-    # allow preview of unpublished stuff in DEBUG mode
-    if not DEBUG and not page.meta.get('published', False):
-        abort(404)
-    template = page.meta.get('template', '%s/page.html' % section)
-    return render_template(template, page=page)
-
-
-@app.route('/contact/')
-def contact():
-    return render_template('contact.html')
-
-
-@app.route('/feed/')
-def feed():
-    return render_template('feed.rss', pages=get_pages(pages, max=25))
-
-
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
 
 
 @command
-def serve():
+def serve(server='127.0.0.1', port=5000, debug=False):
     """ Serves this site.
     """
-    app.run()
+    app.run(host=server, port=port, debug=debug)
 
 
 @command
