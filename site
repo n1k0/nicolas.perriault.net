@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-import datetime
+import codecs
+import os
 
+from datetime import datetime
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
@@ -15,6 +17,7 @@ BASE_URL = 'http://nicolas.perriault.net'
 ASSETS_DEBUG = DEBUG
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
+FLATPAGES_ROOT = 'pages'
 FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
 GA_TRACKER = 'XXX'
 
@@ -114,10 +117,28 @@ def build():
 
 
 @command
-def post(title=None, section=None, date=None, filename=None):
+def post(section, title=None, filename=None):
     """ Create a new empty post.
     """
-    pass
+    date = datetime.today()
+    title = unicode(title) if title else "Untitled Post"
+    filename = filename if filename else "untitled-post.md"
+    year = date.year
+    pathargs = [section, str(year), filename, ]
+    filepath = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+        FLATPAGES_ROOT, '/'.join(pathargs))
+    if os.path.exists(filepath):
+        raise CommandError("File %s exists" % filepath)
+    content = '\n'.join([
+        u"title: %s" % title,
+        u"date: %s" % date.strftime("%Y-%m-%d"),
+        u"published: false\n\n",
+    ])
+    try:
+        codecs.open(filepath, 'w', encoding='utf8').write(content)
+        print(u'Created %s' % filepath)
+    except Exception, error:
+        raise CommandError(error)
 
 
 if __name__ == '__main__':
