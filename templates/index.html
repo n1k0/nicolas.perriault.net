@@ -16,22 +16,25 @@ I also practice <strong>photography</strong>, and rant probably a bit too much.
 
 <div class="row">
     <div class="four columns alpha">
-        <h4>Code</h4>
+        <h4 lang="en">Code</h4>
         {% with pages = code_posts %}
             {% include "_list.html" %}
         {% endwith %}
+        <p><a href="{{ url_for("section", section="code") }}">See more</a></p>
     </div>
     <div class="four columns">
-        <h4>Photography</h4>
+        <h4 lang="en">Photography</h4>
         {% with pages = photos %}
             {% include "_list.html" %}
         {% endwith %}
+        <p><a href="{{ url_for("section", section="photography") }}">See more</a></p>
     </div>
     <div class="four columns omega">
-        <h4>Thoughts</h4>
-        {% with pages = thoughts %}
+        <h4 lang="fr">Carnet</h4>
+        {% with pages = posts %}
             {% include "_list.html" %}
         {% endwith %}
+        <p><a href="{{ url_for("section", section="carnet") }}">Voir plus</a></p>
     </div>
 </div>
 {% endblock contents %}

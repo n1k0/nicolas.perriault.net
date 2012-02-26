@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{% block lang %}en{% endblock lang %}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -29,11 +29,11 @@
         <div class="four columns">
             <nav class="sidebar">
                 <ul>
-                    <li class="home"><a href="{{ url_for("index") }}">Home</a></li>
-                    <li class="code"><a href="{{ url_for("section", section="code") }}">Code</a></li>
-                    <li class="photography"><a href="{{ url_for("section", section="photography") }}">Photography</a></li>
-                    <li class="thoughts"><a href="{{ url_for("section", section="thoughts") }}">Thoughts</a></li>
-                    <li class="contact"><a href="{{ url_for("contact") }}">Contact</a></li>
+                    <li class="home"><a href="{{ url_for("index") }}" lang="en">Home</a></li>
+                    <li class="code"><a href="{{ url_for("section", section="code") }}" lang="en">Code</a></li>
+                    <li class="photography"><a href="{{ url_for("section", section="photography") }}" lang="en">Photography</a></li>
+                    <li class="carnet"><a href="{{ url_for("section", section="carnet") }}" lang="fr">Carnet</a></li>
+                    <li class="contact"><a href="{{ url_for("contact") }}" lang="en">Contact</a></li>
                 </ul>
             </nav>
         </div>

@@ -25,6 +25,7 @@ code, pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica", Monaco, "Courier New", monospace;
     font-weight: bold;
     a {
         color: #000;
@@ -115,9 +116,8 @@ p {
 
 .site-footer {
     clear: both;
-    //border-top: 1px solid @lighterGrey;
-    //padding: @baseHeight 0;
     text-align: center;
+    font-size: @baseHeight * 1.2;
 }
 
 // Section related
@@ -128,6 +128,12 @@ p {
 
 body.code {
     .sidebar li.code a {
+        .activeSection;
+    }
+}
+
+body.carnet {
+    .sidebar li.carnet a {
         .activeSection;
     }
 }
@@ -146,12 +152,6 @@ body.home {
 
 body.photography {
     .sidebar li.photography a {
-        .activeSection;
-    }
-}
-
-body.thoughts {
-    .sidebar li.thoughts a {
         .activeSection;
     }
 }
@@ -175,6 +175,9 @@ body.thoughts {
 // --------------------------------------------------
 
 @media (max-width: 768px) {
+    body {
+        font-size: 98%;
+    }
     .main-title {
         h2 {
             font-size: 20px;
@@ -192,29 +195,34 @@ body.thoughts {
 // PORTRAIT TABLET TO DEFAULT DESKTOP
 // ----------------------------------
 
-@media (min-width: 768px) and (max-width: 980px) {
+@media (min-width: 768px) and (max-width: 960px) {
+    .container {
+        width: 100%;
+    }
     .main-title {
         h2 {
             font-size: 20px;
+        }
+    }
+    .sidebar {
+        width: 150px;
+        ul {
+            padding: 0;
         }
     }
 }
 
 // TABLETS AND BELOW
 // -----------------
-@media (max-width: 980px) {
+@media (max-width: 960px) {
 
 }
 
 // DEFAULT DESKTOP
 // ---------------
 
-@media (min-width: 980px) and (max-width: 1200px) {
-    .main-title {
-        h2 {
-            font-size: 20px;
-        }
-    }
+@media (min-width: 960px) and (max-width: 1200px) {
+
 }
 
 // LARGE DESKTOP & UP
