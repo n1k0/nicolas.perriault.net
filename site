@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import codecs
+import locale
 import os
 
 from argh import *
@@ -15,14 +16,13 @@ from flaskext.assets import Environment
 # Configuration
 DEBUG = True
 BASE_URL = 'http://nicolas.perriault.net'
-ASSETS_DEBUG = DEBUG
+#ASSETS_DEBUG = DEBUG
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'pages'
-# if DEBUG:
-#     FREEZER_BASE_URL = 'http://localhost/nperriault/build/'
-# else:
-#     FREEZER_BASE_URL = 'http://nicolas.perriault.net/'
+
+# App configuration
+FEED_MAX_LINKS = 25
 SECTION_MAX_LINKS = 5
 
 app = Flask(__name__)
@@ -33,10 +33,8 @@ Markdown(app)
 Environment(app)
 
 
-@app.context_processor
-def inject_ga():
-    return dict(BASE_URL=BASE_URL)
-
+###############################################################################
+# Model helpers
 
 def get_pages(pages, offset=None, limit=None, section=None, year=None):
     """ Retrieves pages matching passec criterias.
@@ -63,6 +61,31 @@ def get_years(pages):
     return list(set([page.meta.get('date').year for page in pages]))
 
 
+###############################################################################
+# Filters
+
+@app.template_filter()
+def to_rfc2822(dt):
+    if not dt:
+        return
+    current_locale = locale.getlocale(locale.LC_TIME)
+    locale.setlocale(locale.LC_TIME, "en_US")
+    formatted = dt.strftime("%a, %d %b %Y %H:%M:%S +0000")
+    locale.setlocale(locale.LC_TIME, current_locale)
+    return formatted
+
+
+###############################################################################
+# Context processors
+
+@app.context_processor
+def inject_ga():
+    return dict(BASE_URL=BASE_URL)
+
+
+###############################################################################
+# Routes
+
 @app.route('/contact/')
 def contact():
     return render_template('contact.html')
@@ -70,7 +93,16 @@ def contact():
 
 @app.route('/feed/')
 def feed():
-    return render_template('feed.rss', pages=get_pages(pages, limit=25))
+    return render_template('feed.rss', pages=get_pages(pages,
+        limit=FEED_MAX_LINKS),
+        build_date=datetime.now())
+
+
+@app.route('/<string:section>/feed/')
+def feed_section(section):
+    articles = get_pages(pages, limit=FEED_MAX_LINKS, section=section)
+    return render_template('%s/feed.rss' % section, pages=articles,
+        build_date=datetime.now())
 
 
 @app.route('/')
@@ -107,18 +139,30 @@ def section_archives_year(section, year):
         year=year), year=year)
 
 
+@app.route('/404.html')
+def error404():
+    return render_template('404.html')
+
+
+@app.route('/500.html')
+def error500():
+    return render_template('500.html')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
 
-### Commands
 
+###############################################################################
+# Commands
 
 @command
 def build():
     """ Builds this site.
     """
     print("Building website...")
+    app.debug = False
     freezer.freeze()
     print("Done.")
 

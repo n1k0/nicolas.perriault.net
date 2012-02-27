@@ -1,0 +1,5 @@
+{% extends "base.rss" %}
+
+{% block lang %}en{% endblock %}
+{% block title %}Photography{% endblock %}
+{% block description %}Nicolas Perriault photography. Or so called.{% endblock %}

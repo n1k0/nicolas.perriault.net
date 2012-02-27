@@ -2,13 +2,13 @@
 
 {% block contents %}
 {% filter markdown %}
-I mostly code in [Python](http://python.org/) and Javascript, and no, I do
+**I mostly code in [Python](http://python.org/) and Javascript**, and no, I do
 *not* want to code your next project using the PHP programming language.
 
-Hope this does sort out any doubt and makes things crystal-clear.
+Hope this sorts out any doubt and makes things crystal-clear.
 {% endfilter %}
 
-<h3>Latest « Code » stuff</h3>
+<h3>Latest entries <sup><a href="{{ url_for("feed_section", section="code") }}">feed</a></sup></h3>
 {% include "_list.html" %}
 {% if years|length %}
     <p>

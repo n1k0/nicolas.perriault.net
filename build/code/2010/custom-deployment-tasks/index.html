@@ -6,12 +6,11 @@
     <title>Tâches de déploiement spécifiques avec Symfony | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    
-        <link rel="stylesheet" type="text/css" href="/static/css/prettify.css">
-    
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330338283">
     <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body class="code" onload="preparePrettyPrint()">
     <!--[if lt IE 7]>
@@ -123,18 +122,19 @@ class AkeiDeployTask extends sfProjectDeployTask
         </footer>
     </div>
     <!-- /container -->
-    
-        <script type="text/javascript" src="/static/js/libs/prettify.js"></script>
-    
+    <script type="text/javascript" src="/static/packed.js?1330338251"></script>
     <script>
     function preparePrettyPrint() {
-        // fuck you, IE.
-        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
-            var text = (pre.innerText || pre.textContent).trim();
-            if (text.indexOf('$') !== 0) {
-                pre.classList.add('prettyprint');
-            }
-        });
+        try {
+            [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+                var text = (pre.innerText || pre.textContent).trim();
+                if (text.indexOf('$') !== 0) {
+                    pre.classList.add('prettyprint');
+                }
+            });
+        } catch (e) {
+            // fuck you, IE.
+        }
         prettyPrint();
     }
     </script>

@@ -1,14 +1,16 @@
 <ul class="item-list">
-{% for page in pages %}
+{%- for page in pages %}
     <li>
         <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a> | {{ page.date }}<br>
-        {% if page.meta.summary and page.meta.summary|striptags|trim %}
-            <q><em>{{ page.summary }}</em></q>
-        {% elif page.html|striptags|trim %}
-            <q><em>{{ page.html|striptags|trim|truncate(135) }}</em></q>
-        {% endif %}
+        <q><em>
+            {%- if page.meta.summary and page.meta.summary|striptags|trim %}
+                {{- page.summary|trim }}
+            {%- elif page.html|striptags|trim -%}
+                {{- page.html|striptags|trim|truncate(135) }}
+            {%- endif -%}
+        </em></q> <a href="">read more</a>
     </li>
-{% else %}
+{%- else %}
     <li>No page (yet?)</li>
-{% endfor %}
+{%- endfor %}
 </ul>

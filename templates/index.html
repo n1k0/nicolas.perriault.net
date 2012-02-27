@@ -2,21 +2,22 @@
 
 {% block contents %}
 {% filter markdown %}
-My name is <strong>Nicolas Perriault</strong>, I'm 35, I live in southern France [near
-Montpellier](http://g.co/maps/z88bs) and am pretty much <strong>enjoying my life</strong>.
+My name is **Nicolas Perriault**, I'm 35, I live in southern France [near
+Montpellier](http://g.co/maps/z88bs) and am pretty much **enjoying my life**.
 
-I'm a <strong>Web developer</strong>, I made [coding](/code) a living. And as you may
-suppose, I'm *not* a Web designer.
+I'm a <a href="{{ url_for("section", section="code") }}">Web developer</a>,
+but as you may suppose, I'm *not* a Web designer.
 
-I also practice [photography](/photography), and probably
-[rant (in French)](/carnet) a bit too much.
+I also practice <a href="{{ url_for("section", section="photography") }}">photography</a>,
+and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">rant
+(in French)</a> a bit too much.
 
 ## Latest published stuff
 {% endfilter %}
 
 <div class="row">
     <section class="code">
-        <h3 lang="en">Code</h3>
+        <h3>Code <sup><a href="{{ url_for("feed_section", section="code") }}">feed</a></sup></h3>
         {% with pages = code_posts %}
             {% include "_list.html" %}
         {% endwith %}
@@ -24,19 +25,19 @@ I also practice [photography](/photography), and probably
     </section>
     <hr>
     <section class="photography">
-        <h3 lang="en">Photography</h3>
+        <h3>Photography <sup><a href="{{ url_for("feed_section", section="photography") }}">feed</a></sup></h3>
         {% with pages = photos %}
             {% include "_list.html" %}
         {% endwith %}
         <p>&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
     </section>
     <hr>
-    <section class="carnet">
-        <h3 lang="fr">Carnet <small>(en français)</small></h3>
+    <section class="carnet" lang="fr">
+        <h3>Carnet <small>(en français)</small> <sup><a href="{{ url_for("feed_section", section="carnet") }}">flux</a></sup></h3>
         {% with pages = posts %}
             {% include "_list.html" %}
         {% endwith %}
-        <p>&raquo; <a href="{{ url_for("section", section="carnet") }}">Accéder au carnet</a></p>
+        <p>&raquo; <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Accéder au carnet</a></p>
     </section>
 </div>
 {% endblock contents %}

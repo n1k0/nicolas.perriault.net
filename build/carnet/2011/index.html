@@ -6,12 +6,11 @@
     <title>Carnet | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    
-        <link rel="stylesheet" type="text/css" href="/static/css/prettify.css">
-    
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330338283">
     <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body class="carnet" onload="preparePrettyPrint()">
     <!--[if lt IE 7]>
@@ -26,10 +25,8 @@
             
 <h2>Billets publiés durant 2011</h2>
 <ul class="item-list">
-
     <li>
         <a href="/carnet/2011/sudweb/">Du Sud avec du Web dedans, et réciproquement</a> | 2011-01-28<br>
-        
             <q><em>Ceux qui me connaissent le savent, je suis partisan d&#39;une gestion intransigeante de la qualité sur le Web, et suis donc — comme ...</em></q>
         
     </li>
@@ -60,18 +57,19 @@
         </footer>
     </div>
     <!-- /container -->
-    
-        <script type="text/javascript" src="/static/js/libs/prettify.js"></script>
-    
+    <script type="text/javascript" src="/static/packed.js?1330338251"></script>
     <script>
     function preparePrettyPrint() {
-        // fuck you, IE.
-        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
-            var text = (pre.innerText || pre.textContent).trim();
-            if (text.indexOf('$') !== 0) {
-                pre.classList.add('prettyprint');
-            }
-        });
+        try {
+            [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+                var text = (pre.innerText || pre.textContent).trim();
+                if (text.indexOf('$') !== 0) {
+                    pre.classList.add('prettyprint');
+                }
+            });
+        } catch (e) {
+            // fuck you, IE.
+        }
         prettyPrint();
     }
     </script>

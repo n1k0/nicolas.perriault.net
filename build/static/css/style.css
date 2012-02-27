@@ -11,6 +11,11 @@ body {
 a {
   color: #555556;
 }
+blockquote {
+  font-style: italic;
+  border-left: 7px solid #eeeeee;
+  padding-left: 14px;
+}
 code, pre {
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-size: 90%;

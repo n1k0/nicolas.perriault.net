@@ -6,12 +6,11 @@
     <title>Home | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    
-        <link rel="stylesheet" type="text/css" href="/static/css/prettify.css">
-    
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330338283">
     <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body class="home" onload="preparePrettyPrint()">
     <!--[if lt IE 7]>
@@ -26,10 +25,11 @@
             
 <p>My name is <strong>Nicolas Perriault</strong>, I'm 35, I live in southern France <a href="http://g.co/maps/z88bs">near
 Montpellier</a> and am pretty much <strong>enjoying my life</strong>.</p>
-<p>I'm a <strong>Web developer</strong>, I made <a href="/code">coding</a> a living. And as you may
-suppose, I'm <em>not</em> a Web designer.</p>
-<p>I also practice <a href="/photography">photography</a>, and probably
-<a href="/carnet">rant (in French)</a> a bit too much.</p>
+<p>I'm a <a href="/code/">Web developer</a>,
+but as you may suppose, I'm <em>not</em> a Web designer.</p>
+<p>I also practice <a href="/photography/">photography</a>,
+and probably <a href="/carnet/" hreflang="fr">rant
+(in French)</a> a bit too much.</p>
 <h2>Latest published stuff</h2>
 
 <div class="row">
@@ -37,38 +37,32 @@ suppose, I'm <em>not</em> a Web designer.</p>
         <h3 lang="en">Code</h3>
         
             <ul class="item-list">
-
     <li>
         <a href="/code/2011/setup-jenkins-github-private-repository-ubuntu/">Setup Jenkins for working with a private repository</a> | 2011-11-16<br>
-        
             <q><em>As I&#39;ve just lost an hour and some hairs dealing with trying to setup a Jenkins project connected to a private repository hosted on ...</em></q>
         
     </li>
 
     <li>
         <a href="/code/2011/clever-settings/">Une autre façon de gérer ses settings d&#39;application Django</a> | 2011-04-13<br>
-        
             <q><em>Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème ...</em></q>
         
     </li>
 
     <li>
         <a href="/code/2011/djt/">Creating a Custom Panel for the Django Debug Toolbar</a> | 2011-03-11<br>
-        
             <q><em>Sometimes you work on stuff you don&#39;t really control, eg. when interacting with some mysterious SOAP server accross the Internets, and ...</em></q>
         
     </li>
 
     <li>
         <a href="/code/2010/python-tab-completion/">Enabling tab completion in OS X Python interactive interpreter</a> | 2010-12-29<br>
-        
             <q><em>Python is awesome, and so is its native interactive interpreter. I discovered today that it can even provide autocompletion using a ...</em></q>
         
     </li>
 
     <li>
         <a href="/code/2010/pil-install/">Install PIL within a virtualenv on Snow Leopard</a> | 2010-12-03<br>
-        
             <q><em>As a personal reminder, here&#39;s how to install PIL with jpeg and freetype support in a Python virtualenv with a little help from ...</em></q>
         
     </li>
@@ -82,7 +76,6 @@ suppose, I'm <em>not</em> a Web designer.</p>
         <h3 lang="en">Photography</h3>
         
             <ul class="item-list">
-
     <li>No page (yet?)</li>
 
 </ul>
@@ -94,31 +87,27 @@ suppose, I'm <em>not</em> a Web designer.</p>
         <h3 lang="fr">Carnet <small>(en français)</small></h3>
         
             <ul class="item-list">
-
     <li>
         <a href="/carnet/2011/sudweb/">Du Sud avec du Web dedans, et réciproquement</a> | 2011-01-28<br>
-        
             <q><em>Ceux qui me connaissent le savent, je suis partisan d&#39;une gestion intransigeante de la qualité sur le Web, et suis donc — comme ...</em></q>
         
     </li>
 
     <li>
         <a href="/carnet/2010/choisir-son-metier/">Choisir son métier, arrêter de le (faire) subir</a> | 2010-10-27<br>
-        
             <q><em>Je viens de finir la lecture de l&#39;excellent billet de Thibault, « Dialogue avec un client ». Ce billet présente point pour point ma ...</em></q>
         
     </li>
 
     <li>
         <a href="/carnet/2010/back-from-djangocong-2010/">De retour de Djangocong</a> | 2010-04-26<br>
-        
             <q><em>Les rencontres Django francophones 2010, tenues à Marseille, viennent de s&#39;achever. David Larlet m&#39;ayant invité à y participer, j&#39;y ai ...</em></q>
         
     </li>
 
 </ul>
         
-        <p>&raquo; <a href="/carnet/">Accéder au carnet</a></p>
+        <p>&raquo; <a href="/carnet/" hreflang="fr">Accéder au carnet</a></p>
     </section>
 </div>
 
@@ -143,18 +132,19 @@ suppose, I'm <em>not</em> a Web designer.</p>
         </footer>
     </div>
     <!-- /container -->
-    
-        <script type="text/javascript" src="/static/js/libs/prettify.js"></script>
-    
+    <script type="text/javascript" src="/static/packed.js?1330338251"></script>
     <script>
     function preparePrettyPrint() {
-        // fuck you, IE.
-        [].forEach.call(document.querySelectorAll("pre"), function(pre) {
-            var text = (pre.innerText || pre.textContent).trim();
-            if (text.indexOf('$') !== 0) {
-                pre.classList.add('prettyprint');
-            }
-        });
+        try {
+            [].forEach.call(document.querySelectorAll("pre"), function(pre) {
+                var text = (pre.innerText || pre.textContent).trim();
+                if (text.indexOf('$') !== 0) {
+                    pre.classList.add('prettyprint');
+                }
+            });
+        } catch (e) {
+            // fuck you, IE.
+        }
         prettyPrint();
     }
     </script>

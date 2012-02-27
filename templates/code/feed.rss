@@ -1,0 +1,5 @@
+{% extends "base.rss" %}
+
+{% block lang %}en{% endblock %}
+{% block title %}Code{% endblock %}
+{% block description %}Nicolas Perriault rants about whatever looks like a technology.{% endblock %}

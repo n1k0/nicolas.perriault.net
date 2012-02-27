@@ -1,0 +1,5 @@
+{% extends "base.rss" %}
+
+{% block lang %}fr{% endblock %}
+{% block title %}Carnet{% endblock %}
+{% block description %}Le petit coin d'aigreur sur la toile de Nicolas Perriault.{% endblock %}
