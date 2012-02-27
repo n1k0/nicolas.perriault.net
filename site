@@ -11,13 +11,13 @@ from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
 from flaskext.markdown import Markdown
-from flaskext.assets import Environment
+from flaskext.assets import Environment as AssetManager
 
 # Configuration
-DEBUG = True
+DEBUG = False
 BASE_URL = 'http://nicolas.perriault.net'
-#ASSETS_DEBUG = DEBUG
-FLATPAGES_AUTO_RELOAD = DEBUG
+ASSETS_DEBUG = DEBUG
+FLATPAGES_AUTO_RELOAD = True
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'pages'
 
@@ -29,8 +29,8 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
-Markdown(app)
-Environment(app)
+markdown_manager = Markdown(app)
+asset_manager = AssetManager(app)
 
 
 ###############################################################################
@@ -58,7 +58,9 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
 
 
 def get_years(pages):
-    return list(set([page.meta.get('date').year for page in pages]))
+    years = list(set([page.meta.get('date').year for page in pages]))
+    years.reverse()
+    return years
 
 
 ###############################################################################
@@ -93,9 +95,8 @@ def contact():
 
 @app.route('/feed/')
 def feed():
-    return render_template('feed.rss', pages=get_pages(pages,
-        limit=FEED_MAX_LINKS),
-        build_date=datetime.now())
+    return render_template('base.rss', pages=get_pages(pages,
+        limit=FEED_MAX_LINKS), build_date=datetime.now())
 
 
 @app.route('/<string:section>/feed/')
@@ -163,6 +164,7 @@ def build():
     """
     print("Building website...")
     app.debug = False
+    asset_manager.config['ASSETS_DEBUG'] = False
     freezer.freeze()
     print("Done.")
 
@@ -206,6 +208,7 @@ def serve(server='127.0.0.1', port=5000, debug=DEBUG):
     """
     if isinstance(debug, str):
         debug = True if debug.lower() == "true" else False
+    asset_manager.config['ASSETS_DEBUG'] = debug
     app.run(host=server, port=port, debug=debug)
 
 

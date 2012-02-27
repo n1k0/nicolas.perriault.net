@@ -6,13 +6,16 @@
     <title>Photography | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330338283">
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330354739">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body class="photography" onload="preparePrettyPrint()">
+<body class="photography">
     <!--[if lt IE 7]>
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
@@ -23,10 +26,9 @@
         </header>
         <div class="contents">
             
-<h3>Latest entries</h3>
+<h3>Latest entries <sup><a href="/photography/feed/">feed</a></sup></h3>
 <ul class="item-list">
     <li>No page (yet?)</li>
-
 </ul>
 
 
@@ -51,21 +53,6 @@
         </footer>
     </div>
     <!-- /container -->
-    <script type="text/javascript" src="/static/packed.js?1330338251"></script>
-    <script>
-    function preparePrettyPrint() {
-        try {
-            [].forEach.call(document.querySelectorAll("pre"), function(pre) {
-                var text = (pre.innerText || pre.textContent).trim();
-                if (text.indexOf('$') !== 0) {
-                    pre.classList.add('prettyprint');
-                }
-            });
-        } catch (e) {
-            // fuck you, IE.
-        }
-        prettyPrint();
-    }
-    </script>
+    <script type="text/javascript" src="/static/packed.js?1330360123"></script>
 </body>
 </html>

@@ -6,13 +6,16 @@
     <title>Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330338283">
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Nicolas Perriault - global feed (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330354739">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body class="code" onload="preparePrettyPrint()">
+<body class="code">
     <!--[if lt IE 7]>
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
@@ -158,7 +161,6 @@ wsgiref==0.1.2
 <p><strong>Edit&nbsp;:</strong> Prise en compte de la variable d'environnement <code>PIP_RESPECT_VIRTUALENV</code> pour que <code>pip</code> detecte automatiquement la présence d'un environnement virtuel lors de son utilisation (merci Mathieu !)</p>
     </section>
     <aside>
-        <hr>
         <p>Posted on 2010-05-05 — <a href="/code/2010/django-with-pip-virtualenv/">permalink</a>.</p>
     </aside>
 </article>
@@ -185,21 +187,6 @@ wsgiref==0.1.2
         </footer>
     </div>
     <!-- /container -->
-    <script type="text/javascript" src="/static/packed.js?1330338251"></script>
-    <script>
-    function preparePrettyPrint() {
-        try {
-            [].forEach.call(document.querySelectorAll("pre"), function(pre) {
-                var text = (pre.innerText || pre.textContent).trim();
-                if (text.indexOf('$') !== 0) {
-                    pre.classList.add('prettyprint');
-                }
-            });
-        } catch (e) {
-            // fuck you, IE.
-        }
-        prettyPrint();
-    }
-    </script>
+    <script type="text/javascript" src="/static/packed.js?1330360123"></script>
 </body>
 </html>
