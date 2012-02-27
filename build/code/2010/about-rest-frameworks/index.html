@@ -18,7 +18,7 @@
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
     <div class="container">
-        <header class="twelve columns offset-by-four main-title">
+        <header class="main-title">
             <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
             <small>I code stuff. I take photos. I write rants.</small>
         </header>
@@ -126,7 +126,10 @@ homepage        ANY    /
     function preparePrettyPrint() {
         // fuck you, IE.
         [].forEach.call(document.querySelectorAll("pre"), function(pre) {
-            pre.classList.add('prettyprint');
+            var text = (pre.innerText || pre.textContent).trim();
+            if (text.indexOf('$') !== 0) {
+                pre.classList.add('prettyprint');
+            }
         });
         prettyPrint();
     }

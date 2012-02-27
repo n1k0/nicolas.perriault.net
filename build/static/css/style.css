@@ -48,12 +48,17 @@ p {
 }
 pre {
   padding: 14px;
+  color: #eee;
+  background: #000;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   text-wrap: wrap;
   white-space: pre;
   overflow: auto;
+}
+pre code {
+  color: #eee;
 }
 q:before, q:after {
   content: "";
@@ -136,6 +141,7 @@ q:before, q:after {
 .site-footer {
   clear: both;
   margin-left: 300px;
+  text-align: center;
   font-size: 16.8px;
 }
 .activeSection {
@@ -186,19 +192,31 @@ body.photography .sidebar li.photography a:after {
     padding: 10px;
     width: auto;
   }
+  body .main-title {
+    margin: 0;
+  }
   body .main-title h1 {
     font-size: 40px;
   }
   body .main-title small {
     font-size: 20px;
   }
-  body .sidebar li {
+  body .sidebar ul {
+    margin: 0;
+    padding: 0;
+  }
+  body .sidebar ul li {
     display: inline;
     padding-right: 16px;
   }
   body .site-footer {
     margin-left: 0;
     text-align: center;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 17px;
   }
 }
 @media (max-width: 768px) {
@@ -217,6 +235,7 @@ body.photography .sidebar li.photography a:after {
   body .sidebar {
     position: inherit;
     top: none;
+    margin: 0;
     width: 100%;
     text-align: center;
   }

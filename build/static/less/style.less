@@ -60,8 +60,13 @@ p {
 
 pre {
     padding: @baseHeight;
+    color: #eee;
+    background: #000;
     .rounded(8px);
     .wrap();
+    code {
+        color: #eee;
+    }
 }
 
 q:before, q:after {
@@ -182,6 +187,7 @@ q:before, q:after {
 .site-footer {
     clear: both;
     margin-left: 300px;
+    text-align: center;
     font-size: @baseHeight * 1.2;
 }
 
@@ -233,6 +239,7 @@ body.photography {
         padding: 10px;
         width: auto;
         .main-title {
+            margin: 0;
             h1 {
                 font-size: 40px;
             }
@@ -241,15 +248,25 @@ body.photography {
             }
         }
         .sidebar {
-            li {
-                display: inline;
-                padding-right: 16px;
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    display: inline;
+                    padding-right: 16px;
+                }
             }
         }
         .site-footer {
             margin-left: 0;
             text-align: center;
         }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        font-size: 17px;
     }
 }
 
@@ -271,6 +288,7 @@ body.photography {
         .sidebar {
             position: inherit;
             top: none;
+            margin: 0;
             width: 100%;
             text-align: center;
             li {
