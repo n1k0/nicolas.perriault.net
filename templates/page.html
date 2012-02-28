@@ -14,7 +14,7 @@
     </section>
     <aside>
         <p>
-            {{ page.date }} — <a href="{{ url_for("section", section=section) }}">{{ section|capitalize }}</a>
+            {{ page.date }}{% if section %} — <a href="{{ url_for("section", section=section) }}">{{ section|capitalize }}</a>{% endif %}
             — <a href="{{ url_for("page", path=page.path) }}">Permalink</a>.
         </p>
     </aside>

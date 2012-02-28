@@ -6,11 +6,15 @@
     taking and processing pictures. <strong>For fun.</strong>
 </p>
 <p>
-    You can eventually subscribe to the
-    <a href="{{ url_for("feed_section", section="photography") }}">photography feed</a>
-    or <a href="http://500px.com/n1k0/">follow me on 500px</a>.
+    You can eventually <a href="http://500px.com/n1k0/">follow me on 500px</a>.
 </p>
-{% include "_list.html" %}
+
+{%- for page in pages %}
+    {% include "page.html" %}
+    <hr>
+{%- else %}
+    <p>No photo (yet?)</p>
+{%- endfor %}
 
 {% if years|length %}
     <p>

@@ -12,32 +12,27 @@ I also practice <a href="{{ url_for("section", section="photography") }}">photog
 and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">rant
 (in French)</a> a bit too much.
 
-## Latest published stuff
 {% endfilter %}
 
-<div class="row">
-    <section class="code">
-        <h3>Code <sup><a href="{{ url_for("feed_section", section="code") }}">feed</a></sup></h3>
-        {% with pages = code_posts %}
-            {% include "_list.html" %}
-        {% endwith %}
-        <p>&raquo; <a href="{{ url_for("section", section="code") }}">See more Code stuff</a></p>
-    </section>
-    <hr>
-    <section class="photography">
-        <h3>Photography <sup><a href="{{ url_for("feed_section", section="photography") }}">feed</a></sup></h3>
-        {% with pages = photos %}
-            {% include "_list.html" %}
-        {% endwith %}
-        <p>&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
-    </section>
-    <hr>
-    <section class="carnet" lang="fr">
-        <h3>Carnet <small>(en français)</small> <sup><a href="{{ url_for("feed_section", section="carnet") }}">flux</a></sup></h3>
-        {% with pages = posts %}
-            {% include "_list.html" %}
-        {% endwith %}
-        <p>&raquo; <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Accéder au carnet</a></p>
-    </section>
-</div>
+<section class="code">
+    <h2>Code</h2>
+    {% with pages = code_posts %}
+        {% include "_list.html" %}
+    {% endwith %}
+    <p class="more">&raquo; <a href="{{ url_for("section", section="code") }}">See more Code stuff</a></p>
+</section>
+<section class="photography">
+    <h2>Photography</h2>
+    {% with pages = photos %}
+        {% include "_list.html" %}
+    {% endwith %}
+    <p class="more">&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
+</section>
+<section class="carnet" lang="fr">
+    <h2>Carnet <small>(en français)</small></h2>
+    {% with pages = posts %}
+        {% include "_list.html" %}
+    {% endwith %}
+    <p class="more">&raquo; <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Accéder au carnet</a></p>
+</section>
 {% endblock contents %}

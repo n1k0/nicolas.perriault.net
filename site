@@ -3,6 +3,7 @@
 import codecs
 import locale
 import os
+import re
 
 from argh import *
 from datetime import datetime
@@ -12,6 +13,10 @@ from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
 from flaskext.markdown import Markdown
 from flaskext.assets import Environment as AssetManager
+from unicodedata import normalize
+
+# Locals
+_punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 # Configuration
 DEBUG = False
@@ -47,8 +52,10 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
     if year:
         articles = [p for p in articles if p.meta.get('date').year == year]
     articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
+    # assign section value if none was provided in the metas
     for article in articles:
-        article.meta['section'] = article.path.split('/')[0]
+        if not article.meta.get('section'):
+            article.meta['section'] = article.path.split('/')[0]
     if offset and limit:
         return articles[offset:limit]
     elif limit:
@@ -63,6 +70,16 @@ def get_years(pages):
     years = list(set([page.meta.get('date').year for page in pages]))
     years.reverse()
     return years
+
+
+def slugify(text, delim=u'-'):
+    """Generates an slightly worse ASCII-only slug."""
+    result = []
+    for word in _punct_re.split(text.lower()):
+        word = normalize('NFKD', word).encode('ascii', 'ignore')
+        if word:
+            result.append(word)
+    return unicode(delim.join(result))
 
 
 ###############################################################################
@@ -134,7 +151,7 @@ def page(path):
 def section(section):
     template = '%s/index.html' % section
     articles = get_pages(pages, limit=SECTION_MAX_LINKS, section=section)
-    years = get_years(articles)
+    years = get_years(get_pages(pages, section=section))
     return render_template(template, pages=articles, years=years)
 
 
@@ -189,7 +206,8 @@ def post(section, title=None, filename=None):
         raise CommandError(u"Section '%s' does not exist" % section)
     date = datetime.today()
     title = unicode(title) if title else "Untitled Post"
-    filename = filename if filename else "untitled-post.md"
+    if not filename:
+        filename = u"%s.md" % slugify(title)
     year = date.year
     pathargs = [section, str(year), filename, ]
     filepath = os.path.join(os.path.abspath(os.path.dirname(__file__)),

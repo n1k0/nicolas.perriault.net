@@ -11,6 +11,46 @@
 @lighterGrey:    #ddddde;
 @textColor:      #333334;
 
+// helpers
+
+.active {
+    color: @darkGrey;
+    text-decoration: none;
+}
+
+.arrow-suffixed {
+    &:after {
+        content: "\00A0\00BB";
+    }
+}
+
+.baseFontRatio(@ratio) {
+    font-size: @baseFontSize * @ratio;
+    line-height: @baseLineHeight * @ratio;
+}
+
+.dingbats-decorated {
+    &:after {
+        font-size: @baseHeight;
+        content: "✻ ✽ ✻";
+    }
+}
+
+.more {
+    text-align: right;
+}
+
+.rounded(@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.wrap() {
+  white-space: pre;
+  overflow: auto;
+}
+
 // Tags
 
 body {
@@ -44,21 +84,18 @@ code, pre {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
-    line-height: @baseLineHeight*1.1;
+    line-height: @baseLineHeight * 1.1;
     a {
         color: @textColor;
     }
 }
 
 hr {
-    &:after {
-        font-size: @baseHeight;
-        content: "✻ ✽ ✻";
-    }
+    .dingbats-decorated;
     border: none;
     color: lighten(@textColor, 5%);
     text-align: center;
-    margin: @baseHeight 0;
+    margin: (@baseHeight) 0 (@baseHeight * 3) 0;
 }
 
 p {
@@ -79,35 +116,6 @@ pre {
 
 q:before, q:after {
     content: "";
-}
-
-// helpers
-
-.active {
-    color: @darkGrey;
-    text-decoration: none;
-}
-
-.arrow-suffixed {
-    &:after {
-        content: "\00A0\00BB";
-    }
-}
-
-.baseFontRatio(@ratio) {
-    font-size: @baseFontSize * @ratio;
-    line-height: @baseLineHeight * @ratio;
-}
-
-.rounded(@radius: 5px) {
-  border-radius: @radius;
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-}
-
-.wrap() {
-  white-space: pre;
-  overflow: auto;
 }
 
 // Styles
@@ -160,7 +168,7 @@ q:before, q:after {
         padding: 0;
         list-style-type: none;
         li {
-            margin-bottom: @baseHeight;
+            margin-bottom: @baseHeight * 2;
             a {
                 font-weight: bold;
             }
@@ -205,8 +213,11 @@ q:before, q:after {
 .site-footer {
     clear: both;
     margin-left: 300px;
-    text-align: center;
-    font-size: @baseHeight * 1.2;
+    font-size: @baseHeight * 1.1;
+    p {
+        padding-top: @baseHeight;
+        border-top: 1px solid #ddd;
+    }
 }
 
 // Section related

@@ -1,3 +1,17 @@
+.active {
+  color: #333334;
+  text-decoration: none;
+}
+.arrow-suffixed:after {
+  content: "\00A0\00BB";
+}
+.dingbats-decorated:after {
+  font-size: 14px;
+  content: "✻ ✽ ✻";
+}
+.more {
+  text-align: right;
+}
 body {
   background-color: #fafafa;
   width: 960px;
@@ -43,7 +57,7 @@ hr {
   border: none;
   color: #404041;
   text-align: center;
-  margin: 14px 0;
+  margin: 14px 0 42px 0;
 }
 hr:after {
   font-size: 14px;
@@ -68,13 +82,6 @@ pre code {
 }
 q:before, q:after {
   content: "";
-}
-.active {
-  color: #333334;
-  text-decoration: none;
-}
-.arrow-suffixed:after {
-  content: "\00A0\00BB";
 }
 .main-title {
   margin-left: 300px;
@@ -119,7 +126,7 @@ q:before, q:after {
   list-style-type: none;
 }
 .contents ul.item-list li {
-  margin-bottom: 14px;
+  margin-bottom: 28px;
 }
 .contents ul.item-list li a {
   font-weight: bold;
@@ -161,8 +168,11 @@ q:before, q:after {
 .site-footer {
   clear: both;
   margin-left: 300px;
-  text-align: center;
-  font-size: 16.8px;
+  font-size: 15.400000000000002px;
+}
+.site-footer p {
+  padding-top: 14px;
+  border-top: 1px solid #ddd;
 }
 .activeSection {
   color: #333334;
