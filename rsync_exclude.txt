@@ -1,0 +1,20 @@
+# Dotstuff, crap
+.buildpath
+.DS_Store
+.project
+.settings
+*.sublime-*
+thumbs.db
+*.kpf
+*.tmproj
+.webassets-cache
+
+# SCM files
+.arch-params
+.bzr
+_darcs
+.git
+.hg
+.monotone
+.svn
+CVS

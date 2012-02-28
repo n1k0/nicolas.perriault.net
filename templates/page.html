@@ -1,11 +1,21 @@
-<article lang="{{ page.meta.lang or "en" }}">
+<article lang="{{ page.meta.lang or "en" }}" class="{{ page.meta.section }}">
     <header>
-        <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a> &raquo;</h2>
+        <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
     </header>
     <section>
+        {% if page.meta.type == "photo" and page.meta.image_url %}
+        {% if page.meta.image_link %}
+            <a href="{{ page.meta.image_link }}"><img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/></a>
+        {% else %}
+            <img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/>
+        {% endif %}
+        {% endif %}
         {{ page.html|safe }}
     </section>
     <aside>
-        <p>Posted on {{ page.date }} — <a href="{{ url_for("page", path=page.path) }}">permalink</a>.</p>
+        <p>
+            {{ page.date }} — <a href="{{ url_for("section", section=section) }}">{{ section|capitalize }}</a>
+            — <a href="{{ url_for("page", path=page.path) }}">Permalink</a>.
+        </p>
     </aside>
 </article>

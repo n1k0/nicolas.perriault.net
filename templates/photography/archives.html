@@ -1,7 +1,7 @@
 {% extends "photography/base.html" %}
 
 {% block contents %}
-<h2>Photography stuff published during {{ year }}</h2>
+<h2>Photography | {{ year }}</h2>
 {% include "_list.html" %}
 <p>
     Back to « <a href="{{ url_for("section", section="photography") }}">Photography</a> »

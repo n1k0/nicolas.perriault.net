@@ -52,12 +52,13 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
     &:after {
+        font-size: @baseHeight;
         content: "✻ ✽ ✻";
     }
     border: none;
     color: lighten(@textColor, 5%);
     text-align: center;
-    margin: 0 0 40px 0;
+    margin: @baseHeight 0;
 }
 
 p {
@@ -144,6 +145,7 @@ q:before, q:after {
         header h2 {
             a {
                 text-decoration: none;
+                .arrow-suffixed;
             }
         }
         img {
@@ -155,18 +157,15 @@ q:before, q:after {
         }
     }
     ul.item-list {
-        @width: 20px;
-        margin-left: @width;
         padding: 0;
         list-style-type: none;
         li {
             margin-bottom: @baseHeight;
-            &:before {
-                margin-left: -@width;
-                content: "✍\0020";
-            }
             a {
                 font-weight: bold;
+            }
+            img {
+                max-width: 100%;
             }
         }
     }
@@ -186,6 +185,15 @@ q:before, q:after {
                 color: @lightGrey;
                 font-weight: bold;
                 text-decoration: none;
+                sup {
+                    &:before {
+                        content: "\00A0(";
+                    }
+                    &:after {
+                        content: ")";
+                    }
+                    font-size: 14px;
+                }
             }
             a:focus, a:hover {
                 .active;
@@ -246,6 +254,7 @@ body.photography {
 @media (max-width: 480px) {
     body {
         font-size: 16px;
+        line-height: 20px;
         padding: 10px;
         width: auto;
         .main-title {
@@ -297,7 +306,7 @@ body.photography {
         }
         .sidebar {
             position: inherit;
-            top: none;
+            top: inherit;
             margin: 0;
             width: 100%;
             text-align: center;

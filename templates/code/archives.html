@@ -1,7 +1,7 @@
 {% extends "code/base.html" %}
 
 {% block contents %}
-<h2>« Code » stuff published during {{ year }}</h2>
+<h2>Code | {{ year }}</h2>
 {% include "_list.html" %}
 <p>
     Back to « <a href="{{ url_for("section", section="code") }}">Code</a> »

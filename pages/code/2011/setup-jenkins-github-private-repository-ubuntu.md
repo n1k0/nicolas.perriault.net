@@ -25,4 +25,4 @@ Now, in the Jenkins project configuration interface, set the private repository 
 
 That's it, Jenkins will be able to clone and use your private repo.
 
-If you know a better way, I'm all ears.
+If you know a better way, [I'm all ears](/contact/).

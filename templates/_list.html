@@ -2,13 +2,21 @@
 {%- for page in pages %}
     <li>
         <a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a> | {{ page.date }}<br>
+        {%- if page.meta.type == "photo" and page.meta.image_url %}
+        {%- if page.meta.image_link %}
+            <a href="{{ page.meta.image_link }}"><img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/></a>
+        {%- else %}
+            <img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/>
+        {%- endif %}
+        {%- endif %}
         <q><em>
             {%- if page.meta.summary and page.meta.summary|striptags|trim %}
                 {{- page.summary|trim }}
             {%- elif page.html|striptags|trim -%}
                 {{- page.html|striptags|trim|truncate(135) }}
             {%- endif -%}
-        </em></q> <a href="">read more</a>
+        </em></q>
+        <hr>
     </li>
 {%- else %}
     <li>No page (yet?)</li>

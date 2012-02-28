@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Setup Jenkins for working with a private repository | Code | Nicolas Perriault</title>
+    <title>Photography | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="/static/packed.css?1330414525">
@@ -15,7 +15,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body class="code">
+<body class="photography">
     <!--[if lt IE 7]>
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
@@ -26,38 +26,18 @@
         </header>
         <div class="contents">
             
-
-    <article lang="en" class="code">
-    <header>
-        <h2><a href="/code/2011/setup-jenkins-github-private-repository-ubuntu/">Setup Jenkins for working with a private repository</a></h2>
-    </header>
-    <section>
-        
-        <p>As I've just lost an hour and some hairs dealing with trying to setup a <a href="http://jenkins-ci.org/">Jenkins</a> project connected to a private repository hosted on <a href="https://github.com/">Github</a>, I thought it's worth a quick blog post. I'm using <a href="http://ubuntu.com/">Ubuntu</a>.</p>
-<p>So first <code>su</code> as the <code>jenkins</code> user to create some SSH keypair:</p>
-<pre><code>$ ssh-keygen -p
-</code></pre>
-<p>Notice the <code>-p</code> option; this will allow to avoid asking for a passphrase (which Jenkins cannot so running as a daemon).</p>
-<p>Try to ssh on github:</p>
-<pre><code>$ ssh -T git@github.com
-The authenticity of host 'github.com (207.97.227.239)' can't be established.
-RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-Are you sure you want to continue connecting (yes/no)? yes
-Hi username/reponame! You've successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
-<p>Notice that you're asked to allow github's hostname to be added to your <code>known_hosts</code> file: without completing this step, you're doomed.</p>
-<p>Now, in the Jenkins project configuration interface, set the private repository url using the <code>git</code> protocol, eg. <code>git@github.com:username/reponame.git</code>.</p>
-<p>That's it, Jenkins will be able to clone and use your private repo.</p>
-<p>If you know a better way, <a href="/contact/">I'm all ears</a>.</p>
-    </section>
-    <aside>
-        <p>
-            2011-11-16 — <a href="/code/">Code</a>
-            — <a href="/code/2011/setup-jenkins-github-private-repository-ubuntu/">Permalink</a>.
-        </p>
-    </aside>
-</article>
-
+<h2>Photography | 2012</h2>
+<ul class="item-list">
+    <li>
+        <a href="/photography/2012/l-espiguette/">L&#39;Espiguette</a> | 2012-01-01<br>
+            <a href="http://500px.com/photo/5114175"><img src="http://pcdn.500px.net/5114175/4876729afb770c017069b68f786b2801c1d072de/4.jpg" alt="L&#39;Espiguette by Nicolas Perriault"/></a>
+        <q><em>Some oldies I never took the time to publish.</em></q>
+        <hr>
+    </li>
+</ul>
+<p>
+    Back to « <a href="/photography/">Photography</a> »
+</p>
 
         </div>
         <nav class="sidebar">

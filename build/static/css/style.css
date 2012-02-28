@@ -43,9 +43,10 @@ hr {
   border: none;
   color: #404041;
   text-align: center;
-  margin: 0 0 40px 0;
+  margin: 14px 0;
 }
 hr:after {
+  font-size: 14px;
   content: "✻ ✽ ✻";
 }
 p {
@@ -103,6 +104,9 @@ q:before, q:after {
 .contents article header h2 a {
   text-decoration: none;
 }
+.contents article header h2 a:after {
+  content: "\00A0\00BB";
+}
 .contents article img {
   max-width: 100%;
 }
@@ -111,19 +115,17 @@ q:before, q:after {
   font-style: italic;
 }
 .contents ul.item-list {
-  margin-left: 20px;
   padding: 0;
   list-style-type: none;
 }
 .contents ul.item-list li {
   margin-bottom: 14px;
 }
-.contents ul.item-list li:before {
-  margin-left: -20px;
-  content: "✍\0020";
-}
 .contents ul.item-list li a {
   font-weight: bold;
+}
+.contents ul.item-list li img {
+  max-width: 100%;
 }
 .sidebar {
   position: fixed;
@@ -142,6 +144,15 @@ q:before, q:after {
   color: #aaaaab;
   font-weight: bold;
   text-decoration: none;
+}
+.sidebar ul li a sup {
+  font-size: 14px;
+}
+.sidebar ul li a sup:before {
+  content: "\00A0(";
+}
+.sidebar ul li a sup:after {
+  content: ")";
 }
 .sidebar ul li a:focus, .sidebar ul li a:hover {
   color: #333334;
@@ -198,6 +209,7 @@ body.photography .sidebar li.photography a:after {
 @media (max-width: 480px) {
   body {
     font-size: 16px;
+    line-height: 20px;
     padding: 10px;
     width: auto;
   }
@@ -243,7 +255,7 @@ body.photography .sidebar li.photography a:after {
   }
   body .sidebar {
     position: inherit;
-    top: none;
+    top: inherit;
     margin: 0;
     width: 100%;
     text-align: center;

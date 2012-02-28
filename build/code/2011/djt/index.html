@@ -6,7 +6,7 @@
     <title>Creating a Custom Panel for the Django Debug Toolbar | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330354739">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330414525">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
     <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
@@ -27,11 +27,12 @@
         <div class="contents">
             
 
-    <article lang="en">
+    <article lang="en" class="code">
     <header>
-        <h2><a href="/code/2011/djt/">Creating a Custom Panel for the Django Debug Toolbar</a> &raquo;</h2>
+        <h2><a href="/code/2011/djt/">Creating a Custom Panel for the Django Debug Toolbar</a></h2>
     </header>
     <section>
+        
         <p>Sometimes you work on stuff you don't really control, eg. when interacting with some mysterious SOAP server accross the Internets, and you'd appreciate a little help from the Django ecosystem to ease debugging.</p>
 <p>That's — you guessed it — my case currently, and I really appreciated being able to create my own custom panel for adding specific debugging capabilities to the awesome <a href="https://github.com/robhudson/django-debug-toolbar">Django Debug Toolbar</a>.</p>
 <p>Here's how I did, learning mainly from the code of the panels shipping with the DJT. I'm supposing you have installed and configured the DJT in your project already.</p>
@@ -90,7 +91,10 @@ class MyUsefulDebugPanel(DebugPanel):
 <p>Thanks for reading, happy ponying.</p>
     </section>
     <aside>
-        <p>Posted on 2011-03-11 — <a href="/code/2011/djt/">permalink</a>.</p>
+        <p>
+            2011-03-11 — <a href="/code/">Code</a>
+            — <a href="/code/2011/djt/">Permalink</a>.
+        </p>
     </aside>
 </article>
 
@@ -101,7 +105,7 @@ class MyUsefulDebugPanel(DebugPanel):
                 <li class="home"><a href="/" hreflang="en">Home</a></li>
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
-                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>(fr)</sup></a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>

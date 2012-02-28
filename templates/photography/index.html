@@ -1,8 +1,17 @@
 {% extends "photography/base.html" %}
 
 {% block contents %}
-<h3>Latest entries <sup><a href="{{ url_for("feed_section", section="photography") }}">feed</a></sup></h3>
+<p>
+    I don't pretend to be a <em>photographer</em>, even though I find myself quite enjoying
+    taking and processing pictures. <strong>For fun.</strong>
+</p>
+<p>
+    You can eventually subscribe to the
+    <a href="{{ url_for("feed_section", section="photography") }}">photography feed</a>
+    or <a href="http://500px.com/n1k0/">follow me on 500px</a>.
+</p>
 {% include "_list.html" %}
+
 {% if years|length %}
     <p>
         Browse the archives

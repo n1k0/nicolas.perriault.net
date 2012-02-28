@@ -47,6 +47,8 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
     if year:
         articles = [p for p in articles if p.meta.get('date').year == year]
     articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
+    for article in articles:
+        article.meta['section'] = article.path.split('/')[0]
     if offset and limit:
         return articles[offset:limit]
     elif limit:
@@ -116,13 +118,16 @@ def index():
 
 @app.route('/<path:path>/')
 def page(path):
+    # compute current "section" from path
     section = path.split('/')[0]
     page = pages.get_or_404(path)
+    # ensure an accurate "section" meta is available
+    page.meta['section'] = page.meta.get('section', section)
     # allow preview of unpublished stuff in DEBUG mode
     if not DEBUG and not page.meta.get('published', False):
         abort(404)
     template = page.meta.get('template', '%s/page.html' % section)
-    return render_template(template, page=page)
+    return render_template(template, page=page, section=section)
 
 
 @app.route('/<string:section>/')
@@ -172,7 +177,8 @@ def build():
 @command
 def deploy():
     build()
-    local("rsync -avz -e ssh ./build/ akeiaws:/var/www/nperriault")
+    local("rsync -avz -e ssh --exclude-from=rsync_exclude.txt "
+          "./build/ akeiaws:/var/www/nperriault")
 
 
 @command
