@@ -3,7 +3,19 @@
 {% block contents %}
 <h2>Carnet | {{ year }}</h2>
 {% include "_list.html" %}
-<p>
-    Retour au <a href="{{ url_for("section", section="carnet") }}">Carnet</a>
-</p>
+{% if years|length %}
+    <p>
+        &laquo; Retour au <a href="{{ url_for("section", section="carnet") }}">Carnet</a>
+        | Parcourir les archives
+        {%- with current_year = year -%}
+            {%- for year in years -%}
+            {%- if current_year == year %}
+                | <strong>{{ year }}</strong>
+            {%- else %}
+                | <a href="{{ url_for("section_archives_year", section="carnet", year=year) }}">{{ year }}</a>
+            {%- endif -%}
+        {%- endfor -%}
+        {%- endwith -%}
+    </p>
+{% endif %}
 {% endblock contents %}

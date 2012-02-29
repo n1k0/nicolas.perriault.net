@@ -6,6 +6,7 @@
     <title>Creating a Custom Panel for the Django Debug Toolbar | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
     <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
@@ -32,7 +33,7 @@
         <h2><a href="/code/2011/djt/">Creating a Custom Panel for the Django Debug Toolbar</a></h2>
     </header>
     <section>
-        
+        <p>
         <p>Sometimes you work on stuff you don't really control, eg. when interacting with some mysterious SOAP server accross the Internets, and you'd appreciate a little help from the Django ecosystem to ease debugging.</p>
 <p>That's — you guessed it — my case currently, and I really appreciated being able to create my own custom panel for adding specific debugging capabilities to the awesome <a href="https://github.com/robhudson/django-debug-toolbar">Django Debug Toolbar</a>.</p>
 <p>Here's how I did, learning mainly from the code of the panels shipping with the DJT. I'm supposing you have installed and configured the DJT in your project already.</p>
@@ -88,7 +89,7 @@ class MyUsefulDebugPanel(DebugPanel):
 </code></pre>
 <p>Of course it's up to you to put really useful informations there, but here's the result, tadaa:</p>
 <p><img alt="result screenshot" src="http://media.tumblr.com/tumblr_lhfpagXiif1qbt2jc.png" /></p>
-<p>Thanks for reading, happy ponying.</p>
+<p>Thanks for reading, happy ponying.</p></p>
     </section>
     <aside>
         <p>

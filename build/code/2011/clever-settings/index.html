@@ -6,6 +6,7 @@
     <title>Une autre façon de gérer ses settings d&#39;application Django | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
     <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
@@ -32,7 +33,7 @@
         <h2><a href="/code/2011/clever-settings/">Une autre façon de gérer ses settings d&#39;application Django</a></h2>
     </header>
     <section>
-        
+        <p>
         <p>Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème classique de l'exposition de la configuration au développeur via les <em>settings</em> de son propre projet.</p>
 <p>Classiquement, on a tendance à proposer les settings "à plat", dans le module <code>settings.py</code> du projet&nbsp;:</p>
 <pre><code># settings.py
@@ -78,7 +79,7 @@ from my_app import app_settings
 
 print app_settings.get('FOO') # 42
 </code></pre>
-<p>Merci de votre attention, et à bientôt pour de nouvelle aventures.</p>
+<p>Merci de votre attention, et à bientôt pour de nouvelle aventures.</p></p>
     </section>
     <aside>
         <p>

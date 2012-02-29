@@ -6,7 +6,7 @@ import os
 import re
 
 from argh import *
-from datetime import datetime
+from datetime import date, datetime
 from fabric.api import local
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
@@ -14,9 +14,6 @@ from flaskext.flatpages import FlatPages
 from flaskext.markdown import Markdown
 from flaskext.assets import Environment as AssetManager
 from unicodedata import normalize
-
-# Locals
-_punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 # Configuration
 DEBUG = False
@@ -45,13 +42,14 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
     """ Retrieves pages matching passec criterias.
     """
     articles = list(pages)
-    if not DEBUG:
+    if not app.debug:
         articles = [p for p in articles if p.meta.get('published') is True]
     if section:
         articles = [p for p in articles if p.path.startswith(section)]
     if year:
         articles = [p for p in articles if p.meta.get('date').year == year]
-    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date'))
+    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date',
+        date.today()))
     # assign section value if none was provided in the metas
     for article in articles:
         if not article.meta.get('section'):
@@ -74,6 +72,7 @@ def get_years(pages):
 
 def slugify(text, delim=u'-'):
     """Generates an slightly worse ASCII-only slug."""
+    _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
     result = []
     for word in _punct_re.split(text.lower()):
         word = normalize('NFKD', word).encode('ascii', 'ignore')
@@ -141,7 +140,7 @@ def page(path):
     # ensure an accurate "section" meta is available
     page.meta['section'] = page.meta.get('section', section)
     # allow preview of unpublished stuff in DEBUG mode
-    if not DEBUG and not page.meta.get('published', False):
+    if not app.debug and not page.meta.get('published', False):
         abort(404)
     template = page.meta.get('template', '%s/page.html' % section)
     return render_template(template, page=page, section=section)
@@ -158,8 +157,9 @@ def section(section):
 @app.route('/<string:section>/<int:year>/')
 def section_archives_year(section, year):
     template = '%s/archives.html' % section
+    years = get_years(get_pages(pages, section=section))
     return render_template(template, pages=get_pages(pages, section=section,
-        year=year), year=year)
+        year=year), years=years, year=year)
 
 
 @app.route('/404.html')
@@ -230,9 +230,9 @@ def post(section, title=None, filename=None):
 def serve(server='127.0.0.1', port=5000, debug=DEBUG):
     """ Serves this site.
     """
-    if isinstance(debug, str):
-        debug = True if debug.lower() == "true" else False
     asset_manager.config['ASSETS_DEBUG'] = debug
+    if debug:
+        app.debug = True
     app.run(host=server, port=port, debug=debug)
 
 

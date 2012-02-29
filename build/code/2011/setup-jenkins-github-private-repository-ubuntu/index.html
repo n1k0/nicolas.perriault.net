@@ -6,6 +6,7 @@
     <title>Setup Jenkins for working with a private repository | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
     <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
@@ -32,7 +33,7 @@
         <h2><a href="/code/2011/setup-jenkins-github-private-repository-ubuntu/">Setup Jenkins for working with a private repository</a></h2>
     </header>
     <section>
-        
+        <p>
         <p>As I've just lost an hour and some hairs dealing with trying to setup a <a href="http://jenkins-ci.org/">Jenkins</a> project connected to a private repository hosted on <a href="https://github.com/">Github</a>, I thought it's worth a quick blog post. I'm using <a href="http://ubuntu.com/">Ubuntu</a>.</p>
 <p>So first <code>su</code> as the <code>jenkins</code> user to create some SSH keypair:</p>
 <pre><code>$ ssh-keygen -p
@@ -48,7 +49,7 @@ Hi username/reponame! You've successfully authenticated, but GitHub does not pro
 <p>Notice that you're asked to allow github's hostname to be added to your <code>known_hosts</code> file: without completing this step, you're doomed.</p>
 <p>Now, in the Jenkins project configuration interface, set the private repository url using the <code>git</code> protocol, eg. <code>git@github.com:username/reponame.git</code>.</p>
 <p>That's it, Jenkins will be able to clone and use your private repo.</p>
-<p>If you know a better way, <a href="/contact/">I'm all ears</a>.</p>
+<p>If you know a better way, <a href="/contact/">I'm all ears</a>.</p></p>
     </section>
     <aside>
         <p>

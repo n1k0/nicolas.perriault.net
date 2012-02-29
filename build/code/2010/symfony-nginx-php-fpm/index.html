@@ -6,6 +6,7 @@
     <title>Hosting a Symfony app on NginX using PHP-FPM | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
     <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
@@ -32,7 +33,7 @@
         <h2><a href="/code/2010/symfony-nginx-php-fpm/">Hosting a Symfony app on NginX using PHP-FPM</a></h2>
     </header>
     <section>
-        
+        <p>
         <p>I recently had to make a capacity planning study for a client of mine for which I've been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on <a href="http://php-fpm.org/">PHP-FPM</a>, a PHP <a href="http://www.fastcgi.com/">FastCGI</a> implementation and the <a href="http://nginx.org/">NginX</a> web server.</p>
 <p>While PHP-FPM has just <a href="http://www.php.net/manual/fr/install.fpm.php">made it to PHP core</a> in version 5.3.3, the OS version of the linux server we are using, Ubuntu 10.04 LTS, only ships with 5.3.2. Fortunately, <a href="https://launchpad.net/~brianmercer/+archive/php">Brian Mercer released a PHP-FPM sapi</a> for these particular OS and PHP versions.</p>
 <p>So installing PHP and PHP-FPM on Ubuntu Lucid Lynx is as easy as:</p>
@@ -128,7 +129,7 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
 <ul>
 <li><a href="http://constantshift.com/install-php-fpm-5-3-2-on-ubuntu-10-04-lucid-lynx/">Install PHP-FPM 5.3.2 on Ubuntu 10.04 (Lucid Lynx) | Constant Shift</a></li>
 <li><a href="http://symfonynotes.com/2009/12/04/hosting-symfony-based-website-with-nginx/">Hosting symfony based website with nginx</a></li>
-</ul>
+</ul></p>
     </section>
     <aside>
         <p>

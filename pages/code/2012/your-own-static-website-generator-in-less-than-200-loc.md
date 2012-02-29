@@ -1,6 +1,6 @@
 title: A static site generator in less than 200 LOC
 date: 2012-02-28
-published: true
+published: false
 
 It's been a long time I wanted to federate my online identities in a single, managed place — hence the website you're currently browsing. I've also been looking for a static website builder for some times, trying many and retaining zero. It was a bit depressing, frustrating to say the least.
 

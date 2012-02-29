@@ -3,14 +3,14 @@
         <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
     </header>
     <section>
-        {% if page.meta.type == "photo" and page.meta.image_url %}
-        {% if page.meta.image_link %}
-            <a href="{{ page.meta.image_link }}"><img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/></a>
-        {% else %}
-            <img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/>
-        {% endif %}
-        {% endif %}
-        {{ page.html|safe }}
+        <p>{%- if page.meta.type == "photo" and page.meta.image_url %}
+        {%- if page.meta.image_link %}
+            <a href="{{ page.meta.image_link }}"><img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/></a></p>
+        {%- else %}
+            <img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault">
+        {%- endif %}
+        {%- endif %}
+        {{ page.html|safe }}</p>
     </section>
     <aside>
         <p>
