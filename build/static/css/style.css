@@ -147,6 +147,9 @@ q:before, q:after {
   padding: 0;
   overflow: hidden;
 }
+.contents article .article-author {
+  visibility: hidden;
+}
 .contents ul.gallery {
   padding: 0;
   margin: 0;
@@ -169,11 +172,22 @@ q:before, q:after {
 .contents ul.item-list li {
   margin-bottom: 28px;
 }
-.contents ul.item-list li a {
-  font-weight: bold;
+.contents ul.item-list li h3 {
+  font-size: 19px;
+  margin: 0;
+}
+.contents ul.item-list li h3 time {
+  font-weight: normal;
 }
 .contents ul.item-list li img {
   max-width: 100%;
+}
+.contents ul.item-list li p {
+  margin: 0;
+}
+.contents ul.item-list li.unpublished {
+  background: #ddd;
+  padding: 5px 10px;
 }
 .sidebar {
   position: fixed;
@@ -263,6 +277,19 @@ body.talks .sidebar li.talks a {
 }
 body.talks .sidebar li.talks a:after {
   content: "\00A0\00BB";
+}
+body.darkroom {
+  background: #000;
+  color: #eee;
+}
+body.darkroom a {
+  color: #eee;
+}
+body.darkroom .sidebar li a:hover {
+  color: #fff;
+}
+body.darkroom .sidebar li.photography a {
+  color: #fff;
 }
 @media (max-width: 480px) {
   body {

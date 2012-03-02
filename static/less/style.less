@@ -195,6 +195,9 @@ q:before, q:after {
             padding: 0;
             overflow: hidden;
         }
+        .article-author {
+            visibility: hidden;
+        }
     }
     ul.gallery {
         padding: 0;
@@ -216,11 +219,22 @@ q:before, q:after {
         list-style-type: none;
         li {
             margin-bottom: @baseHeight * 2;
-            a {
-                font-weight: bold;
+            h3 {
+                font-size: @baseFontSize;
+                margin: 0;
+                time {
+                    font-weight: normal;
+                }
             }
             img {
                 max-width: 100%;
+            }
+            p {
+                margin: 0;
+            }
+            &.unpublished {
+                background: #ddd;
+                padding: 5px 10px;
             }
         }
     }
@@ -307,6 +321,22 @@ body.photography {
 body.talks {
     .sidebar li.talks a {
         .activeSection;
+    }
+}
+
+// Special themes
+
+body.darkroom {
+    background: #000;
+    color: #eee;
+    a {
+        color: #eee;
+    }
+    .sidebar li a:hover {
+        color: #fff;
+    }
+    .sidebar li.photography a {
+        color: #fff;
     }
 }
 

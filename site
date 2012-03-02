@@ -25,7 +25,7 @@ FLATPAGES_ROOT = 'pages'
 
 # App configuration
 FEED_MAX_LINKS = 25
-SECTION_MAX_LINKS = 8
+SECTION_MAX_LINKS = 12
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -68,6 +68,10 @@ def get_years(pages):
     years = list(set([page.meta.get('date').year for page in pages]))
     years.reverse()
     return years
+
+
+def section_exists(section):
+    return not len(get_pages(pages, section=section)) == 0
 
 
 def slugify(text, delim=u'-'):
@@ -149,6 +153,8 @@ def page(path):
 
 @app.route('/<string:section>/')
 def section(section):
+    if not section_exists(section):
+        abort(404)
     template = '%s/index.html' % section
     articles = get_pages(pages, limit=SECTION_MAX_LINKS, section=section)
     years = get_years(get_pages(pages, section=section))
@@ -157,6 +163,8 @@ def section(section):
 
 @app.route('/<string:section>/<int:year>/')
 def section_archives_year(section, year):
+    if not section_exists(section):
+        abort(404)
     template = '%s/archives.html' % section
     years = get_years(get_pages(pages, section=section))
     return render_template(template, pages=get_pages(pages, section=section,

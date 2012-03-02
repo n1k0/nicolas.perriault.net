@@ -14,14 +14,14 @@
 {%- endassets %}
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="code") }}" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="photography") }}" title="Photography (RSS)">
-    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="carnet") }}" title="Carnet (RSS)">
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="talks") }}" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="carnet") }}" title="Carnet (RSS)">
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed") }}" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body class="{% block section %}home{% endblock %}">
+<body class="{% block section %}home{% endblock %} {% block body_class %}{% endblock body_class %}">
     <!--[if lt IE 7]>
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
@@ -40,8 +40,8 @@
                 <li class="home"><a href="{{ url_for("index") }}" hreflang="en">Home</a></li>
                 <li class="code"><a href="{{ url_for("section", section="code") }}" hreflang="en">Code</a></li>
                 <li class="photography"><a href="{{ url_for("section", section="photography") }}" hreflang="en">Photography</a></li>
-                <li class="carnet"><a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Carnet<sup>fr</sup></a></li>
                 <li class="talks"><a href="{{ url_for("section", section="talks") }}" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Carnet<sup>fr</sup></a></li>
                 <li class="contact"><a href="{{ url_for("contact") }}" hreflang="en">Contact</a></li>
             </ul>
         </nav>

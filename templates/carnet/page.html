@@ -2,6 +2,10 @@
 
 {% block page_title %}{{ page.title }} | {{ super() }}{% endblock %}
 
+{% if page.body_class %}
+    {% block body_class %}{{ page.body_class }}{% endblock body_class %}
+{% endif %}
+
 {% block contents %}
 {% with page = page  %}
     {% include "page.html" %}

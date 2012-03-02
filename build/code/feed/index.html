@@ -5,9 +5,79 @@
       <link>http://nicolas.perriault.net</link>
       <description>Nicolas Perriault rants about whatever looks like a technology.</description>
       <language>en</language>
-      <pubDate>Fri, 02 Mar 2012 16:01:39 +0000</pubDate>
-      <lastBuildDate>Fri, 02 Mar 2012 16:01:39 +0000</lastBuildDate>
+      <pubDate>Fri, 02 Mar 2012 19:04:42 +0000</pubDate>
+      <lastBuildDate>Fri, 02 Mar 2012 19:04:42 +0000</lastBuildDate>
       
+      <item>
+          <title>Gandi Standard SSL Certificate &amp; Nginx</title>
+          <link>http://nicolas.perriault.net/code/2012/gandi-standard-ssl-certificate-nginx</link>
+          <description>&lt;p&gt;&lt;a href=&#34;http://gandi.net/&#34;&gt;Gandi&lt;/a&gt; offers a &lt;a href=&#34;http://wiki.gandi.net/en/ssl/free&#34;&gt;free SSL certificate&lt;/a&gt; during one year for any domain you buy there, nice. But the setup is a bit tedious and the documentation a bit disparate, so here&#39;s an attempt for a comprehensive howto for configuring a secured &lt;a href=&#34;http://nginx.org/&#34;&gt;nginx&lt;/a&gt; vhost using your &lt;em&gt;free&lt;/em&gt; certificate.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; &lt;em&gt;Gandi&#39;s quite complicated email confirmation and validation worflow won&#39;t be covered in this post. Just ensure you can receive emails at &lt;code&gt;admin@domain.tld&lt;/code&gt; where &lt;code&gt;domain.tld&lt;/code&gt; is your domain.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;Creating your certificate&lt;/h2&gt;
+&lt;p&gt;On your server, ensure you have the &lt;a href=&#34;http://openssl.org/&#34;&gt;&lt;code&gt;openssl&lt;/code&gt;&lt;/a&gt; command available or install it. Then, &lt;a href=&#34;http://wiki.gandi.net/en/ssl/csr&#34;&gt;generate your CSR&lt;/a&gt; (&lt;code&gt;domain.tld&lt;/code&gt; is your actual domain):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ openssl req -nodes -newkey rsa:2048 -keyout domain.tld.key \
+    -out domain.tld.csr
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Answer a few questions from the program, but here&#39;s the most important bit: &lt;strong&gt;enter your domain or subdomain when prompted to provide a &lt;em&gt;Common Name&lt;/em&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Common Name (eg, YOUR name) []: domain.tld
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As they say:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The process will create 2 files: a public &lt;code&gt;.csr&lt;/code&gt; file, and a private &lt;code&gt;.key&lt;/code&gt; file which you must absolutely keep private.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;Alas, you won&#39;t be able to extend your certicate to all possible subdomains using a wildcard as it is &lt;a href=&#34;http://wiki.gandi.net/questions/fr/ssl/csr/multi-domaine-non-accepte&#34;&gt;only supported starting with their &lt;em&gt;«Pro»&lt;/em&gt; offer&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Have a coffee.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Enter &lt;del&gt;Sandman&lt;/del&gt; Franz Kafka&lt;/h2&gt;
+&lt;p&gt;Next, head to your &lt;a href=&#34;https://www.gandi.net/admin/domain&#34;&gt;Gandi domain management page&lt;/a&gt;, select your domain, click on  &lt;em&gt;SSL Certificate: Manage&lt;/em&gt;, click on &lt;em&gt;Activate this certificate&lt;/em&gt; then Paste the content of the generated &lt;code&gt;domain.tld.csr&lt;/code&gt; file into the textarea and submit the form. Then wait for some email from Gandi to confirm your demand.&lt;/p&gt;
+&lt;p&gt;In the meanwhile, &lt;a href=&#34;http://wiki.gandi.net/en/ssl/intermediate&#34;&gt;retrieve the intermediate certificate&lt;/a&gt; from the &lt;a href=&#34;https://www.gandi.net/admin/ssl/manage&#34;&gt;SSL certificate management page&lt;/a&gt; of your Gandi account, clicking on the tiny magnifying glass next to your domain name (the one with a nicely hidden &lt;em&gt;«Get the certificate»&lt;/em&gt; tooltip on rollover); you&#39;ll get both the certificate and &lt;em&gt;Gandi&#39;s operational certificate authority&lt;/em&gt; files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cert-domain.tld.pem&lt;/code&gt;, where &lt;code&gt;domain.tld&lt;/code&gt; is your actual domain&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GandiStandardSSLCA.pem&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Upload them both to your server, store them in eg. &lt;code&gt;/etc/nginx/certificates/&lt;/code&gt; (nope, this directory is unlikely to exist by default; do as you like).&lt;/p&gt;
+&lt;p&gt;Last, you have to append the Gandi CA to your domain certificate:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ cat GandiStandardSSLCA.pem &amp;gt;&amp;gt; cert-domain.tld.crt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Have a capuccino.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Configuring the nginx vhost&lt;/h2&gt;
+&lt;p&gt;Here&#39;s a sample vhost server configuration for nginx, kept as concise as possible for the sake of brevity and clarity:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server {
+    listen 443;
+    server_name &#34;domain.tld&#34;;
+    root /var/www/your_website_root;
+
+    ssl on;
+    ssl_certificate     /etc/nginx/certificates/cert-domain.tld.crt;
+    ssl_certificate_key /etc/nginx/certificates/domain.tld.key;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Restart nginx and you should be able to access your website using &lt;code&gt;https://domain.tld/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To redirect all HTTP trafic to HTTPS for this server, add this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server {
+    listen 80;
+    server_name &#34;domain.tld&#34;;
+    rewrite ^(.*) https://$host$1 permanent;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Have a latte.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;At this point, you should be seriously considering quitting caffeine. As a positive note, it looks like the whole process will be revamped in &lt;em&gt;some weeks&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote class=&#34;twitter-tweet tw-align-center&#34; data-in-reply-to=&#34;174864441731588096&#34;&gt;
+    &lt;p&gt;@&lt;a href=&#34;https://twitter.com/n1k0&#34;&gt;n1k0&lt;/a&gt; browsers (ff and others) allow us to validate via a DNS entry we will change the workflow in some weeks when we&#39;ll put it in the API.&lt;/p&gt;&amp;mdash; gandi.net (@gandi_net) &lt;a href=&#34;https://twitter.com/gandi_net/status/174909743612166144&#34; data-datetime=&#34;2012-02-29T17:31:47+00:00&#34;&gt;February 29, 2012&lt;/a&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you&#39;re looking for other alternatives than Gandi for getting SSL certs, it seems that many people are speaking well of &lt;a href=&#34;http://www.startssl.com/&#34;&gt;StartSSL&lt;/a&gt; despite their ugly site, but I didn&#39;t use the service myself.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.gandi.net/en/ssl&#34;&gt;Gandi SSL wiki pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.informathic.com/post/2010/12/24/installer-ssl-gandi-nginx&#34;&gt;Installer un certificat Gandi SSL Standard sur Nginx&lt;/a&gt; (French)&lt;/li&gt;
+&lt;/ul&gt;</description>
+          <pubDate>Wed, 29 Feb 2012 00:00:00 +0000</pubDate>
+          <guid>http://nicolas.perriault.net/code/2012/gandi-standard-ssl-certificate-nginx</guid>
+      </item>
       <item>
           <title>Setup Jenkins for working with a private repository</title>
           <link>http://nicolas.perriault.net/code/2011/setup-jenkins-github-private-repository-ubuntu</link>
