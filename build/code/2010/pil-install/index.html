@@ -6,12 +6,12 @@
     <title>Install PIL within a virtualenv on Snow Leopard | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="en" class="code">
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/pil-install/">
     <header>
-        <h2><a href="/code/2010/pil-install/">Install PIL within a virtualenv on Snow Leopard</a></h2>
+        <h2><a itemprop="name" href="/code/2010/pil-install/">Install PIL within a virtualenv on Snow Leopard</a></h2>
     </header>
     <section>
-        <p>
         <p>As a personal reminder, here's how to install <a href="http://www.pythonware.com/products/pil/">PIL</a> with jpeg and freetype support in a Python <a href="/post/573774396/installer-django-dans-un-environnement-python-virtuel">virtualenv</a> with a little help from <a href="https://github.com/mxcl/homebrew">Homebrew</a>:</p>
 <pre><code>$ brew install jpeg
 $ wget http://mirrors.fe.up.pt/pub/nongnu/freetype/freetype-2.4.4.tar.gz
@@ -62,11 +62,15 @@ platform      darwin 2.6.1 (r261:67515, Jun 24 2010, 21:47:49)
 <p><strong>EDIT:</strong> If you want <a href="http://www.littlecms.com/">little-cms</a> support, just run:</p>
 <pre><code>$ brew install little-cms
 (fubar)$ pip install PIL
-</code></pre></p>
+</code></pre>
     </section>
     <aside>
         <p>
-            2010-12-03 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2010-12-03" itemprop="datePublished">2010-12-03</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2010/pil-install/">Permalink</a>.
         </p>
     </aside>
@@ -80,6 +84,7 @@ platform      darwin 2.6.1 (r261:67515, Jun 24 2010, 21:47:49)
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -95,5 +100,6 @@ platform      darwin 2.6.1 (r261:67515, Jun 24 2010, 21:47:49)
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

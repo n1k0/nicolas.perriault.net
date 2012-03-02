@@ -6,12 +6,12 @@
     <title>Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="fr" class="code">
+    <article lang="fr" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/django-with-pip-virtualenv/">
     <header>
-        <h2><a href="/code/2010/django-with-pip-virtualenv/">Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper</a></h2>
+        <h2><a itemprop="name" href="/code/2010/django-with-pip-virtualenv/">Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper</a></h2>
     </header>
     <section>
-        <p>
         <p><strong>Ce billet résume les étapes nécessaires pour installer un ou plusieurs environnements de développement <a href="http://www.djangoproject.com/">Django</a> fonctionnels, portables et faciles à maintenir sous Mac OS X.</strong></p>
 <p>Même si Django est un framework relativement simple à installer, lorsqu'il s'agit de développer plusieurs projets mettant en œuvre différentes versions de ce dernier ou de librairies tierces nécessaires pour assurer son bon fonctionnement, le casse-tête peut rapidement devenir ingérable si l'on ne prend pas garde à bien isoler le contexte applicatif dans un environnement dédié, isolé du reste du système.</p>
 <p>Concrètement, imaginons que j'ai deux projets Django&nbsp;:</p>
@@ -160,11 +160,15 @@ wsgiref==0.1.2
 <pre><code>(WtfDevEnv)$ pip install -r /path/to/requirements.txt
 </code></pre>
 <p>En espérant vous avoir été utile avec ce billet, je m'en retourne vaquer à mes occupations, et vous rappelle à toutes fins utiles qu'<a href="http://www.akei.com/">Akei</a> serait quand même super contente d'avoir <a href="http://www.akei.com/fr/contact">un coup de fil de votre part</a> pour travailler sur vos chouettes projets en devenir, pourquoi pas en créant plein de <code>virtualenv</code> Python sympas comme tout ;)</p>
-<p><strong>Edit&nbsp;:</strong> Prise en compte de la variable d'environnement <code>PIP_RESPECT_VIRTUALENV</code> pour que <code>pip</code> detecte automatiquement la présence d'un environnement virtuel lors de son utilisation (merci Mathieu !)</p></p>
+<p><strong>Edit&nbsp;:</strong> Prise en compte de la variable d'environnement <code>PIP_RESPECT_VIRTUALENV</code> pour que <code>pip</code> detecte automatiquement la présence d'un environnement virtuel lors de son utilisation (merci Mathieu !)</p>
     </section>
     <aside>
         <p>
-            2010-05-05 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2010-05-05" itemprop="datePublished">2010-05-05</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2010/django-with-pip-virtualenv/">Permalink</a>.
         </p>
     </aside>
@@ -178,6 +182,7 @@ wsgiref==0.1.2
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -193,5 +198,6 @@ wsgiref==0.1.2
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

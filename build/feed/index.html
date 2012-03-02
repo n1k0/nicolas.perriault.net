@@ -5,15 +5,15 @@
       <link>http://nicolas.perriault.net</link>
       <description>Nicolas Perriault's personal website.</description>
       <language>en-us</language>
-      <pubDate>Wed, 29 Feb 2012 17:43:43 +0000</pubDate>
-      <lastBuildDate>Wed, 29 Feb 2012 17:43:43 +0000</lastBuildDate>
+      <pubDate>Fri, 02 Mar 2012 16:01:39 +0000</pubDate>
+      <lastBuildDate>Fri, 02 Mar 2012 16:01:39 +0000</lastBuildDate>
       
       <item>
           <title>L’Espiguette</title>
-          <link>http://nicolas.perriault.net/photography/2012/l-espiguette</link>
+          <link>http://nicolas.perriault.net/photography/2012/espiguette</link>
           <description>&lt;p&gt;Some oldies I never took the time to publish.&lt;/p&gt;</description>
           <pubDate>Wed, 15 Feb 2012 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/photography/2012/l-espiguette</guid>
+          <guid>http://nicolas.perriault.net/photography/2012/espiguette</guid>
       </item>
       <item>
           <title>Café du Commerce</title>
@@ -347,6 +347,17 @@ bit more about it soon, who knows!&lt;/p&gt;</description>
           <guid>http://nicolas.perriault.net/code/2011/scrape-and-test-any-webpage-using-phantomjs</guid>
       </item>
       <item>
+          <title>Intégration continue d&#39;un projet Django</title>
+          <link>http://nicolas.perriault.net/talks/2011/integration-continue-projet-django</link>
+          <description>&lt;p&gt;Conférence donnée lors des &lt;a href=&#34;http://rencontres.django-fr.org/2011/&#34;&gt;rencontres Django francophones 2011&lt;/a&gt;&amp;nbsp;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Même si Django est un framework puissant réconciliant productivité et qualité, son utilisation ne prémunit pas pour autant de la mise en place d&#39;une procédure de contrôle de la qualité via l&#39;écriture de tests unitaires et fonctionnels. L&#39;intégration continue d&#39;un projet Django permet, au travers d&#39;outils dédiés et la mise en place de bonnes pratiques, de s&#39;assurer de l&#39;absence de régressions tout au long des développements et d&#39;être notifié rapidement lorsque c&#39;est le cas pour pouvoir réagir efficacement.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Les slides de la présentation sont disponibles &lt;a href=&#34;http://www.akei.com/presentations/2011-Djangocong/index.html#slide1&#34;&gt;sur le site d&#39;Akei&lt;/a&gt;.&lt;/p&gt;</description>
+          <pubDate>Sat, 16 Apr 2011 00:00:00 +0000</pubDate>
+          <guid>http://nicolas.perriault.net/talks/2011/integration-continue-projet-django</guid>
+      </item>
+      <item>
           <title>Une autre façon de gérer ses settings d&#39;application Django</title>
           <link>http://nicolas.perriault.net/code/2011/clever-settings</link>
           <description>&lt;p&gt;Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème classique de l&#39;exposition de la configuration au développeur via les &lt;em&gt;settings&lt;/em&gt; de son propre projet.&lt;/p&gt;
@@ -495,11 +506,11 @@ class MyUsefulDebugPanel(DebugPanel):
           <title>Enabling tab completion in OS X Python interactive interpreter</title>
           <link>http://nicolas.perriault.net/code/2010/python-tab-completion</link>
           <description>&lt;p&gt;Python is awesome, and so is its native interactive interpreter. I &lt;a href=&#34;http://sontek.net/tips-and-tricks-for-the-python-interpreter&#34;&gt;discovered today&lt;/a&gt; that it can even provide autocompletion using a very simple trick:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# in your ~/.profile
-export PYTHONSTARTUP=$HOME/.pythonrc.py
-
-# in a new ~/.pythonrc.py file
-try:
+&lt;p&gt;Append this to your &lt;code&gt;~/.profile&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export PYTHONSTARTUP=$HOME/.pythonrc.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And in a new &lt;code&gt;~/.pythonrc.py&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;try:
     import readline
 except ImportError:
     print(&#34;Module readline not available.&#34;)
@@ -507,10 +518,10 @@ else:
     import rlcompleter
     readline.parse_and_bind(&#34;tab: complete&#34;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Don&#39;t forget to source your &lt;code&gt;.profile&lt;/code&gt; with &lt;code&gt;$ source ~/.profile&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Magic? Well if like me you&#39;re running Mac OS X, it won&#39;t work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no &lt;code&gt;readline&lt;/code&gt; implementation — which is mandatory to achieve our purpose. I even tried to install &lt;code&gt;readline&lt;/code&gt; by its own, but it won&#39;t solve the problem.&lt;/p&gt;
+&lt;p&gt;Source it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ source ~/.profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Magic? Well if like me you&#39;re running Mac OS X, it won&#39;t work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no &lt;code&gt;readline&lt;/code&gt; implementation — which is mandatory to achieve our purpose.&lt;/p&gt;
 &lt;p&gt;So while being at tweaking up my python setup, let me get rid of the Apple stuff and install a fresh version of python using &lt;a href=&#34;http://mxcl.github.com/homebrew/&#34;&gt;Homebrew&lt;/a&gt;, a great package manager for OSX:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ brew install readline python
 &lt;/code&gt;&lt;/pre&gt;
@@ -557,131 +568,6 @@ platform      darwin 2.6.1 (r261:67515, Jun 24 2010, 21:47:49)
 &lt;/code&gt;&lt;/pre&gt;</description>
           <pubDate>Fri, 03 Dec 2010 00:00:00 +0000</pubDate>
           <guid>http://nicolas.perriault.net/code/2010/pil-install</guid>
-      </item>
-      <item>
-          <title>Choisir son métier, arrêter de le (faire) subir</title>
-          <link>http://nicolas.perriault.net/carnet/2010/choisir-son-metier</link>
-          <description>&lt;p&gt;Je viens de finir la lecture de l&#39;excellent billet de &lt;a href=&#34;http://www.miximum.fr/&#34;&gt;Thibault&lt;/a&gt;, «&amp;nbsp;&lt;a href=&#34;http://www.miximum.fr/bien-developper/525-dialogue-avec-un-client&#34;&gt;Dialogue avec un client&lt;/a&gt;&amp;nbsp;». Ce billet présente point pour point ma vision de ce qu&#39;est une collaboration efficace autour d&#39;un projet informatique&amp;nbsp;; je n&#39;y apprends rien de vraiment nouveau (ayant partiellement nourri la conversation qu&#39;il y relate), mais je suis ravi de voir que je ne suis pas le seul à partager le sentiment que la collaboration est vraiment à réinventer dans ce métier.&lt;/p&gt;
-&lt;p&gt;Ce qui me chagrine plus en revanche, c&#39;est la lecture de certains commentaires, relativement fatalistes et désabusés&amp;nbsp;; je ne resiste pas à la tentation d&#39;en commenter certains.&lt;/p&gt;
-&lt;h3&gt;La métaphore du concessionnaire automobile&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Le client qui sait exactement ce qu’il veut voudra acheter son site comme une voiture.&lt;/p&gt;
-&lt;p&gt;Il veut choisir les options et la peinture tout de suite et connaitre l’enveloppe budgétaire dès le début.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Nous y revoila, la fameuse métaphore du concessionnaire automobile, ça faisait longtemps. Comment comparer le développement d&#39;un produit sur-mesures à l&#39;achat d&#39;un produit de type industriel&amp;nbsp;?&lt;/p&gt;
-&lt;p&gt;
-  &lt;a href=&#34;http://www.flickr.com/photos/ferdinandreus/4647740287&#34; title=&#34;voiture&#34;&gt;
-    &lt;img src=&#34;http://farm3.static.flickr.com/2175/2406879653_1f9fb2d592_z.jpg&#34; alt=&#34;voiture&#34;/&gt;
-  &lt;/a&gt;
-  &lt;br/&gt;
-  &lt;small&gt;&lt;a href=&#34;http://www.flickr.com/photos/mayme/2406879653/&#34;&gt;funny car&lt;/a&gt;, par &lt;a href=&#34;http://www.flickr.com/photos/mayme/&#34;&gt;mayme&lt;/a&gt;&lt;/small&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Je peux comprendre que certains, dans notre secteur, s&#39;emploient à minimiser les coûts de production en génériquant des sites vitrines à base de CMS — voire de frameworks surpluginisés — généralement open-source, mais quand vous avez un client qui arrive avec un &lt;em&gt;cahier-décharge&lt;/em&gt; de quelques lignes du type&amp;nbsp;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Mâcon, le 27 juin,&lt;/p&gt;
-&lt;p&gt;Monsieur,&lt;/p&gt;
-&lt;p&gt;Veuillez trouver ci-après notre cahier des charges pour notre projet d&#39;application Internet&amp;nbsp;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Un réseau social orienté vente de clous rouillés online, sans oublier les groupes géolocalisés d&#39;amateurs et de collectionneurs&lt;/li&gt;
-&lt;li&gt;Une place de marché permettant d&#39;échanger des clous rouillés, avec des graphiques permettant de suivre les enchères en temps réel&lt;/li&gt;
-&lt;li&gt;Fournir un extranet fournisseurs leur permettant de saisir leurs prix et leurs quantités&lt;/li&gt;
-&lt;li&gt;En option l&#39;intégration d&#39;un service de location de marteaux d&#39;occasion avec un partenaire qu&#39;il nous reste à trouver&lt;/li&gt;
-&lt;li&gt;L&#39;intégration avec notre outil CRM maison &#34;SugarForce&#34;, codé en Delphi par Mr Paul, ancien interne polyvalent décédé depuis&lt;/li&gt;
-&lt;li&gt;Un &lt;em&gt;dacheborde&lt;/em&gt;, parcequ&#39;il parait que cela booste la productivité des forces de vente&lt;/li&gt;
-&lt;li&gt;Avec bien entendu des widgets 2.0 pour dynamiser l&#39;ensemble&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Non seulement c&#39;est peu précis, vague, mal défini, mais quand vous lisez la dernière ligne, généralement l&#39;envie vous prend d&#39;arrêter ce métier séance tenante pour partir élever des chèvres dans le Larzac&amp;nbsp;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Pouvez-vous me fournir un devis &lt;em&gt;à tiroirs&lt;/em&gt; et vous engager sur une livraison  à la rentrée prochaine&amp;nbsp;?&lt;/p&gt;
-&lt;p&gt;PS&amp;nbsp;: Je serai absent du 1er juillet au 31 août, voyez avec ma secrétaire (en congés du 15/07 au 15/08) pour toute questions complémentaires
-PPS&amp;nbsp;: Je vous ai parlé de l&#39;application Blackberry&amp;nbsp;?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Peut-on imaginer comparer ce type de demande à l&#39;achat d&#39;une &lt;em&gt;voiture&lt;/em&gt; en concession&amp;nbsp;?&lt;/p&gt;
-&lt;p&gt;Allez, j&#39;ai dix minutes à tuer, je vous imagine la discussion&amp;nbsp;:&lt;/p&gt;
-&lt;div style=&#34;float:right;margin:0 0 10px 10px;text-align:center&#34;&gt;
-  &lt;a href=&#34;http://www.flickr.com/photos/ferdinandreus/4647740287&#34;&gt;
-    &lt;img src=&#34;http://farm5.static.flickr.com/4024/4647740287_4e7f6ab518_z.jpg&#34; alt=&#34;fish&#34; style=&#34;width:230px&#34;/&gt;
-  &lt;/a&gt;
-  &lt;br/&gt;
-  &lt;small&gt;&lt;a href=&#34;http://www.flickr.com/photos/ferdinandreus/4647740287/&#34;&gt;fish&lt;/a&gt;, par &lt;a href=&#34;http://www.flickr.com/photos/ferdinandreus/&#34;&gt;ferdinandreus&lt;/a&gt;&lt;/small&gt;
-&lt;/div&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;— Bonjour monsieur le concessionnaire&lt;/p&gt;
-&lt;p&gt;— Bonjour monsieur le client&lt;/p&gt;
-&lt;p&gt;— Je voudrais acheter une voiture&lt;/p&gt;
-&lt;p&gt;— Ma foi, vous êtes au bon endroit&amp;nbsp;! Quel modèle vous a tapé dans l&#39;oeil&amp;nbsp;?&lt;/p&gt;
-&lt;p&gt;— Je veux quelque chose d&#39;assez standard, comme celle-ci là bas, mais avec quelques ajustements mineurs&amp;nbsp;; j&#39;aime bien l&#39;arrière de celle-ci, l&#39;avant de celle-là, l&#39;aspect cabriolet de la petite là-bas, et le bas de caisse de celle cachée dans le fond, là. Il faudra aussi qu&#39;elle soit amphibie, je compte aller pêcher avec quelques amis le week-end prochain. Idéalement, elle pourra également passer d&#39;un mode cabriolet à mobile-home d&#39;une simple pression sur un bouton en cas d&#39;embouteillages prolongés. Avec le meilleur moteur que vous ayez à disposition, cela va sans dire. Ah, précisons tout de suite&amp;nbsp;: il me la faut pour le week-end prochain, puisque j&#39;ai une partie de pêche, vous vous souvenez&amp;nbsp;? Bien entendu, je me résèrve le droit de vous demander dans ce laps de temps quelques options supplémentaires auxquelles je n&#39;ai pas pensé. Vous avez le tarif catalogue sous la main&amp;nbsp;?&lt;/p&gt;
-&lt;p&gt;— &lt;em&gt;PAN&amp;nbsp;!&lt;/em&gt; (bruit de déflagration)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Redevenons sérieux deux secondes. &lt;strong&gt;Le développement d&#39;une application Web sera &lt;em&gt;toujours&lt;/em&gt; spécifique et sur-mesures, arrêtons de nourrir l&#39;illusion qu&#39;en utilisant des outils Open Source relativement standardisés &lt;em&gt;techniquement&lt;/em&gt;, nous standardisons &lt;em&gt;fonctionnellement&lt;/em&gt; les développements.&lt;/strong&gt; Ce n&#39;est tout simplement pas vrai 99% du temps.&lt;/p&gt;
-&lt;p&gt;Et pour les fans de maquillage d&#39;outils tout-prêts et autres produits industrial-wanabee, j&#39;utilise souvent la formule suivante auprès de mes clients&amp;nbsp;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Un développement spécifique adaptera l&#39;outil à votre métier&amp;nbsp;; un CMS adaptera votre métier à l&#39;outil. La balle est dans votre camp (ou accessoirement dans votre pied.)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ce qui m&#39;amène à un deuxième constat que je fais de plus en plus au gré des avant-ventes&amp;nbsp;; il existe bel et bien deux métiers distincts, que beaucoup de prospects (et hélas, soyons francs, de prestataires) confondent allégrement&amp;nbsp;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;le métier &lt;em&gt;d&#39;intégrateur&lt;/em&gt; de solutions&amp;nbsp;;&lt;/li&gt;
-&lt;li&gt;le métier de &lt;em&gt;concepteur&lt;/em&gt; de solutions spécifiques.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;J&#39;identifie la part de demandes entrantes du premier type de prestation à environ 80%, si ce n&#39;est plus. J&#39;ai personnellement décidé en créant mon activité de me consacrer exclusivement aux 20% restants. Et ma vie a changé, en plus mieux. Juste pour dire.&lt;/p&gt;
-&lt;h3&gt;«&amp;nbsp;Parle pas aux cons, ça les instruit&amp;nbsp;»&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;La moindre tentative de développement modulaire et par priorité sera rejetée et incomprise.&lt;/p&gt;
-&lt;p&gt;Les méthodes agiles seront rejetées par la grande majorité des clients par peur. J’en viens même à penser que c’est une perte de temps d’en parler.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Oui, n&#39;en parlons plus et subissons sans broncher, c&#39;est plus confortable intellectuellement. Et puis si ça se vend plus facilement comme ça, pourquoi diable hésiter&amp;nbsp;? Faut juste s&#39;habituer à marcher en canard au troisième recommandé avec AR. Ah mais oui je suis con, le commercial ayant vendu la chose a déjà touché sa comm&#39; et ne gère plus les conséquences de sa vente depuis longtemps, j&#39;oubliais.&lt;/p&gt;
-&lt;p&gt;
-  &lt;a href=&#34;http://www.flickr.com/photos/stumayhew/3747070194&#34; title=&#34;The Fear&#34;&gt;
-    &lt;img src=&#34;http://farm4.static.flickr.com/3434/3747070194_16a125d4ea_z.jpg&#34; alt=&#34;The Fear&#34;/&gt;
-  &lt;/a&gt;
-  &lt;br/&gt;
-  &lt;small&gt;&lt;a href=&#34;http://www.flickr.com/photos/stumayhew/3747070194&#34;&gt;The Fear&lt;/a&gt;, par &lt;a href=&#34;http://www.flickr.com/photos/stumayhew/&#34;&gt;stumayhew&lt;/a&gt;&lt;/small&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Sérieusement, il faut se battre. Il faut chercher à convaincre, expliquer sans relâche. Et en cas de blocage rhédibitoire, ne rien lâcher, &lt;strong&gt;car d&#39;expérience quelqu&#39;un qui n&#39;accepte aucune concession sur un plan méthodologique ne vous passera vraisemblablement &lt;em&gt;rien&lt;/em&gt; sur les aspects commerciaux.&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;De plus dans les méthodes de développement modulaires et surtout évolutives, les litiges sont beaucoup plus complexes à gérer.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Si litige il y a, c&#39;est vraisemblablement que les principes fondamentaux de l&#39;agilité n&#39;ont jamais été appliqués sur le projet en question. Quelques rappels issus du &lt;a href=&#34;http://agilemanifesto.org/&#34;&gt;manifeste agile&lt;/a&gt;&amp;nbsp;:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Les individus et leurs interactions&lt;/strong&gt; plus que les processus et les outils&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Des logiciels opérationnels&lt;/strong&gt; plus qu’une documentation exhaustive&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;La collaboration avec les clients&lt;/strong&gt; plus que la négociation contractuelle&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;L’adaptation au changement&lt;/strong&gt; plus que le suivi d’un plan&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Vous avez noté le point 3&amp;nbsp;? Ah ben zut. Et je vous parle pas des trois autres, j&#39;imagine que la lecture du compte-rendu de la décision de justice post-echec-projet vous accapare déjà un temps précieux.&lt;/p&gt;
-&lt;p&gt;Enfin, j&#39;aimerai bien savoir qu&#39;est ce qui rend les litiges plus évidents à gérer à grands coups d&#39;avenants avec A/R sur un forfait plutôt qu&#39;un bon vieux dialogue autour d&#39;une table dans le cadre d&#39;un projet agile&amp;nbsp;?&lt;/p&gt;
-&lt;p&gt;Gérer des litiges contractuels est un véritable métier, très pointu, qui demande de grosses compétences et un sang-froid certain. Ce métier ne me passionne personnellement pas, et je ne peux me résoudre à le considérer comme une fatalité inhérente à mon corps de métier. Je suis là pour fournir des réponses à des besoins précis, quitte à fournir une assistance pour faciliter leur formulation, dans la collaboration et le respect mutuel, au travers d&#39;une communication de type horizontal. &lt;strong&gt;J&#39;axe toute relation avant tout sur la confiance.&lt;/strong&gt; Libre à chacun de se raconter que tout ceci n&#39;est qu&#39;utopie, mais force est de constater qu&#39;après un an d&#39;activité je trouve des gens (des clients pardon, je crois que je m&#39;y ferai jamais) qui embrassent cette manière de fonctionner. Avec d&#39;excellents résultats, par ailleurs.&lt;/p&gt;
-&lt;p&gt;Par contre, il est clair qu&#39;avec de telles exigences, je ne donne pas suite à neuf appels entrants sur dix. Le mot est lâché&amp;nbsp;: &lt;strong&gt;je refuse des opportunités business&lt;/strong&gt;. SACRILÈGE&amp;nbsp;! Combien de gens me regardent avec des yeux ronds lorsque je raconte ça… C&#39;est déprimant, d&#39;un certain côté. Travailler plus pour gagner plus&amp;nbsp;? &lt;strong&gt;Et si on parlait plutôt de &lt;em&gt;travailler mieux pour vivre mieux&lt;/em&gt;&amp;nbsp;?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;
-  &lt;a href=&#34;http://twitter.com/laurentLC/status/28895308381&#34;&gt;
-    &lt;img src=&#34;http://media.tumblr.com/tumblr_layfxpSlVV1qbt2jc.png&#34; alt=&#34;Avoir le temps…&#34;/&gt;
-  &lt;/a&gt;
-&lt;/p&gt;
-
-&lt;h3&gt;&lt;em&gt;Courir plus pour s&#39;essouffler plus&lt;/em&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;(…) si ça implique une absence de visibilité sur une enveloppe globale sur laquelle on s’engage, (c&#39;)est tout simplement rédhibitoire pour le client&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;La visibilité s&#39;obtient par la connaissance de la capacité à produire en collaboration avec le client (on appelle ça la &lt;em&gt;vélocité&lt;/em&gt;, dans le jargon agile). &lt;strong&gt;C&#39;est complètement utopique de prétendre estimer une capacité à produire sans connaître la capacité du client à fournir les éléments nécessaires à l&#39;obtention de cette productivité dans la collaboration&lt;/strong&gt;. Et par pitié, qu&#39;on ne me parle pas du cahier des charges de 400 pages que personne ne lit puisqu&#39;obsolète au bout d&#39;une semaine, le besoin ayant déjà changé par trois fois suite à la remontée de l&#39;avis du numéro deux groupe/worldwide et de sa cousine Berthe qui est en deuxième année aux Gobelins.&lt;/p&gt;
-&lt;p&gt;Enfin, je réalise que beaucoup de gens comprennent l&#39;&lt;em&gt;agilité&lt;/em&gt; comme la capacité à faire du business malgré tout, voire à tomber du projet coûte que coûte, en s&#39;adaptant aux obstacles au gré du vent et avec les moyens du bord (qui prennent souvent la forme de &lt;em&gt;stagiaires chef de projet&lt;/em&gt; et autres &lt;em&gt;experts techniques junior&lt;/em&gt; recrutés à &lt;a href=&#34;http://www.risacher.com/la-rache/index.php?z=2&#34;&gt;la râche&lt;/a&gt; pour faire face à un surcroît de charge non prévue, soit dit en passant). C&#39;est juste tout l&#39;inverse&amp;nbsp;; &lt;strong&gt;je ne connais rien de plus structurant et contraignant en termes de processus que les méthodes agiles&amp;nbsp;!&lt;/strong&gt; Il n&#39;y a pas de vaudou, l&#39;obtention de résultats est à ce prix. Ainsi que d&#39;une certaine façon, au prix d&#39;un lâcher-prise et d&#39;une certaine acceptation du changement, de chaque côté de la barrière (si tant est qu&#39;il y en ait une).&lt;/p&gt;
-&lt;p&gt;
-  &lt;a href=&#34;http://www.flickr.com/photos/beginasyouare/549652478/&#34; title=&#34;High Wire Act&#34;&gt;
-    &lt;img src=&#34;http://farm2.static.flickr.com/1235/549652478_ca4758c99c_z.jpg&#34; alt=&#34;High Wire Act&#34;/&gt;
-  &lt;/a&gt;
-  &lt;br/&gt;
-  &lt;small&gt;&lt;a href=&#34;http://www.flickr.com/photos/beginasyouare/549652478/&#34;&gt;High Wire Act&lt;/a&gt;, par &lt;a href=&#34;http://www.flickr.com/photos/beginasyouare/&#34;&gt;beginasyouare&lt;/a&gt;&lt;/small&gt;
-&lt;/p&gt;
-
-&lt;h3&gt;«&amp;nbsp;Bon, tu conclues là&amp;nbsp;? J&#39;vais rater l&#39;apéro&amp;nbsp;»&lt;/h3&gt;
-&lt;p&gt;Oui, je suis un peu décontenancé à la lecture de ces quelques commentaires. On constate tous que bien des commanditaires ne comprennent pas les enjeux de leur métier d&#39;acheteur de prestation de développements informatiques. Je découvre qu&#39;il est des professionnels tellement désabusés qu&#39;ils ont visiblement renoncé à toute vélléité d&#39;éducation de leurs prospects sur les questions d&#39;organisation méthodologique et collaborative du travail, part intégrante du champ d&#39;expertise de tout prestataire de développement informatique un tant soit peu digne de ce nom et prétendant offrir un conseil de qualité. Je ne peux me résoudre à croire qu&#39;ils n&#39;ont pas le choix, que tout ceci est inévitable, et que «&amp;nbsp;c&#39;est la crise, il faut bien bouffer, ma pauvre dame&amp;nbsp;».&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Je pense au contraire qu&#39;une part importante de notre métier, j&#39;irai même jusqu&#39;à parler de notre devoir déontologique, est de les accompagner dans la compréhension de leur rôle dans les processus collaboratifs projet afin de maximiser le potentiel de réussite de ces derniers coûte que coûte.&lt;/strong&gt; Et d&#39;&lt;a href=&#34;http://www.alistapart.com/articles/no-one-nos-learning-to-say-no-to-bad-ideas/&#34;&gt;apprendre à dire non&lt;/a&gt; lorsque cela s&#39;avère nécessaire, plutôt que de s&#39;engluer dans cette vision fataliste, nivelant par le bas la qualité globale d&#39;une partie grandissante des réalisations auquel le Web est confronté (france.fr anyone?).&lt;/p&gt;
-&lt;p&gt;Vous pouvez maintenant basher en commentaire, c&#39;est fait pour ça ;)&lt;/p&gt;</description>
-          <pubDate>Wed, 27 Oct 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/carnet/2010/choisir-son-metier</guid>
       </item>
       
    </channel>

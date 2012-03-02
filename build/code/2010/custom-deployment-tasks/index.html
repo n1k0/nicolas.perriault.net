@@ -6,12 +6,12 @@
     <title>Tâches de déploiement spécifiques avec Symfony | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="fr" class="code">
+    <article lang="fr" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/custom-deployment-tasks/">
     <header>
-        <h2><a href="/code/2010/custom-deployment-tasks/">Tâches de déploiement spécifiques avec Symfony</a></h2>
+        <h2><a itemprop="name" href="/code/2010/custom-deployment-tasks/">Tâches de déploiement spécifiques avec Symfony</a></h2>
     </header>
     <section>
-        <p>
         <p><a href="http://www.symfony-project.org/">Symfony</a> propose une tâche de déploiement distant utilisant <a href="http://fr.wikipedia.org/wiki/Rsync"><code>rsync</code></a> fort pratique&nbsp;: une fois configurés les <a href="http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying">paramètres du serveur distant</a> dans le fichier <code>config/properties.ini</code> de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l'hôte distant. Et si vous utilisez une <a href="http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant">clé SSH</a>, l'opération ne vous demandera même pas de saisir votre mot de passe&nbsp;!</p>
 <pre><code>$ ./symfony project:deploy monserveur --go
 </code></pre>
@@ -97,11 +97,15 @@ class AkeiDeployTask extends sfProjectDeployTask
 <p>Cette commande va tout simplement minifier et assembler les feuilles de style définies par la configuration du plugin <code>npAssetsOptimizerPlugin</code>, déployer les fichiers en production sur la machine <code>monserveur</code> et vider le cache sur la machine distante une fois l'opération effectuée.</p>
 <p>Notez d'ailleurs l'emploi du très pratique appel à <code>$this-&gt;getFilesystem()-&gt;execute()</code>, qui permet d'executer des appels à la ligne de commande locale depuis la classe de tâche elle-même&nbsp;; ici, une execution distante à travers SSH.</p>
 <p>Bien entendu, cet exemple est très spécifique aux besoins du site Akei, mais vous pourriez en quelques minutes gérer plus finement une tâche de déploiement plus générique et configurable. Pensez-y pour vos projets ;)</p>
-<p>PS&nbsp;: Ce billet a été écrit en 14 minutes. Merci de votre compréhension.</p></p>
+<p>PS&nbsp;: Ce billet a été écrit en 14 minutes. Merci de votre compréhension.</p>
     </section>
     <aside>
         <p>
-            2010-05-25 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2010-05-25" itemprop="datePublished">2010-05-25</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2010/custom-deployment-tasks/">Permalink</a>.
         </p>
     </aside>
@@ -115,6 +119,7 @@ class AkeiDeployTask extends sfProjectDeployTask
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -130,5 +135,6 @@ class AkeiDeployTask extends sfProjectDeployTask
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

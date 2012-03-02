@@ -5,8 +5,10 @@
 My name is **Nicolas Perriault**, I'm 35, I live in southern France [near
 Montpellier](http://g.co/maps/z88bs) and am pretty much **enjoying my life**.
 
-I'm a <a href="{{ url_for("section", section="code") }}">Web developer</a>,
-but as you may suppose, I'm *not* a Web designer.
+I'm mostly a <a href="{{ url_for("section", section="code") }}">Web developer</a>,
+but as you may suppose, I'm *not* a Web designer. I also
+<a href="{{ url_for("section", section="talks") }}">speak</a> at conferences,
+sometimes.
 
 I also practice <a href="{{ url_for("section", section="photography") }}">photography</a>,
 and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">rant
@@ -24,7 +26,7 @@ and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">
 <section class="photography">
     <h2>Photography</h2>
     {% with pages = photos %}
-        {% include "_list.html" %}
+        {% include "photography/gallery.html" %}
     {% endwith %}
     <p class="more">&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
 </section>
@@ -34,5 +36,12 @@ and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">
         {% include "_list.html" %}
     {% endwith %}
     <p class="more">&raquo; <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Accéder au carnet</a></p>
+</section>
+<section class="talks">
+    <h2>Talks</h2>
+    {% with pages = talks %}
+        {% include "_list.html" %}
+    {% endwith %}
+    <p class="more">&raquo; <a href="{{ url_for("section", section="talks") }}">See more talks</a></p>
 </section>
 {% endblock contents %}

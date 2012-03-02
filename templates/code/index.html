@@ -9,7 +9,11 @@ Hope this sorts out any doubt and makes things crystal-clear.
 {% endfilter %}
 
 <h2>Latest entries</h2>
-{% include "_list.html" %}
+
+<div itemscope itemtype="http://schema.org/Blog">
+    {% include "_list.html" %}
+</div>
+
 {% if years|length %}
     <p>
         Browse the archives

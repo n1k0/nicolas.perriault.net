@@ -2,7 +2,13 @@
 
 {% block contents %}
 <h2>Photography | {{ year }}</h2>
-{% include "_list.html" %}
+
+<p>Photos taken during year {{ year }}.</p>
+
+{% include "photography/gallery.html" %}
+
+<hr>
+
 {% if years|length %}
     <p>
         &laquo; Back to <a href="{{ url_for("section", section="photography") }}">Photography</a>

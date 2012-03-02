@@ -5,10 +5,12 @@ published: true
 
 Python is awesome, and so is its native interactive interpreter. I [discovered today](http://sontek.net/tips-and-tricks-for-the-python-interpreter) that it can even provide autocompletion using a very simple trick:
 
-    # in your ~/.profile
+Append this to your `~/.profile`:
+
     export PYTHONSTARTUP=$HOME/.pythonrc.py
 
-    # in a new ~/.pythonrc.py file
+And in a new `~/.pythonrc.py` file:
+
     try:
         import readline
     except ImportError:
@@ -17,9 +19,11 @@ Python is awesome, and so is its native interactive interpreter. I [discovered t
         import rlcompleter
         readline.parse_and_bind("tab: complete")
 
->**Note:** Don't forget to source your `.profile` with `$ source ~/.profile`.
+Source it:
 
-Magic? Well if like me you're running Mac OS X, it won't work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no `readline` implementation — which is mandatory to achieve our purpose. I even tried to install `readline` by its own, but it won't solve the problem.
+    $ source ~/.profile
+
+Magic? Well if like me you're running Mac OS X, it won't work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no `readline` implementation — which is mandatory to achieve our purpose.
 
 So while being at tweaking up my python setup, let me get rid of the Apple stuff and install a fresh version of python using [Homebrew](http://mxcl.github.com/homebrew/), a great package manager for OSX:
 

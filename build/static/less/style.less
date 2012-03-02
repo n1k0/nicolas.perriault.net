@@ -11,6 +11,29 @@
 @lighterGrey:    #ddddde;
 @textColor:      #333334;
 
+// quirks
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
 // helpers
 
 .active {
@@ -92,6 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
     .dingbats-decorated;
+    clear: both;
     border: none;
     color: lighten(@textColor, 5%);
     text-align: center;
@@ -162,6 +186,29 @@ q:before, q:after {
         aside {
             text-align: right;
             font-style: italic;
+        }
+        .slideshare {
+            width: 100%;
+            height: 530px;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    }
+    ul.gallery {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        li {
+            float: left;
+            margin-right: 10px;
+            a {
+                font-weight: bold;
+            }
+            img {
+                width: 155px;
+            }
         }
     }
     ul.item-list {
@@ -253,6 +300,12 @@ body.home {
 
 body.photography {
     .sidebar li.photography a {
+        .activeSection;
+    }
+}
+
+body.talks {
+    .sidebar li.talks a {
         .activeSection;
     }
 }

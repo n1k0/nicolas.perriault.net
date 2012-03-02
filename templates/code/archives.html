@@ -2,7 +2,11 @@
 
 {% block contents %}
 <h2>Code | {{ year }}</h2>
+
+<p>All posts published during {{ year}}.</p>
+
 {% include "_list.html" %}
+
 {% if years|length %}
     <p>
         &laquo; Back to <a href="{{ url_for("section", section="code") }}">Code</a>
@@ -18,4 +22,5 @@
         {%- endwith -%}
     </p>
 {% endif %}
+
 {% endblock contents %}

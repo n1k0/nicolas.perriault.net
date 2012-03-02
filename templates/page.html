@@ -1,20 +1,28 @@
-<article lang="{{ page.meta.lang or "en" }}" class="{{ page.meta.section }}">
+<article lang="{{ page.meta.lang or "en" }}" class="{{ page.meta.section }}" itemscope itemtype="http://schema.org/{{ item_type or "BlogPosting" }}">
+    <link itemprop="url" href="{{ url_for("page", path=page.path) }}">
     <header>
-        <h2><a href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
+        <h2><a itemprop="name" href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
     </header>
     <section>
-        <p>{%- if page.meta.type == "photo" and page.meta.image_url %}
+        {%- if page.meta.type == "photo" and page.meta.image_url %}
+        <p>
         {%- if page.meta.image_link %}
-            <a href="{{ page.meta.image_link }}"><img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault"/></a></p>
+            <a href="{{ page.meta.image_link }}" title="{{ page.title }} - View it on 500px">
+                <img src="{{ page.meta.image_url }}" alt="{{ page.title }} by Nicolas Perriault"/></a></p>
         {%- else %}
-            <img src="{{ page.meta.image_url }}" alt="{{ page.meta.title }} by Nicolas Perriault">
+            <img src="{{ page.meta.image_url }}" alt="{{ page.title }} by Nicolas Perriault">
         {%- endif %}
+        </p>
         {%- endif %}
-        {{ page.html|safe }}</p>
+        {{ page.html|safe }}
     </section>
     <aside>
         <p>
-            {{ page.date }}{% if section %} — <a href="{{ url_for("section", section=section) }}">{{ section|capitalize }}</a>{% endif %}
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="{{ page.date }}" itemprop="datePublished">{{ page.date }}</time>
+            {% if section %}— <a href="{{ url_for("section", section=section) }}" itemprop="genre">{{ section|capitalize }}</a>{% endif %}
             — <a href="{{ url_for("page", path=page.path) }}">Permalink</a>.
         </p>
     </aside>

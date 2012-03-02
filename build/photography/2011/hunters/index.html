@@ -6,12 +6,12 @@
     <title>Hunters | Photography | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,18 +28,25 @@
         <div class="contents">
             
 
-    <article lang="en" class="photography">
+    <article lang="en" class="photography" itemscope itemtype="http://schema.org/Photograph">
+    <link itemprop="url" href="/photography/2011/hunters/">
     <header>
-        <h2><a href="/photography/2011/hunters/">Hunters</a></h2>
+        <h2><a itemprop="name" href="/photography/2011/hunters/">Hunters</a></h2>
     </header>
     <section>
         <p>
-            <a href="http://500px.com/photo/3514221"><img src="http://pcdn.500px.net/3514221/842b28a92cdf8ceca8a35de7c2bac9f416ffffb9/4.jpg" alt="Hunters by Nicolas Perriault"/></a></p>
+            <a href="http://500px.com/photo/3514221" title="Hunters - View it on 500px">
+                <img src="http://pcdn.500px.net/3514221/842b28a92cdf8ceca8a35de7c2bac9f416ffffb9/4.jpg" alt="Hunters by Nicolas Perriault"/></a></p>
         </p>
+        
     </section>
     <aside>
         <p>
-            2011-12-02 — <a href="/photography/">Photography</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2011-12-02" itemprop="datePublished">2011-12-02</time>
+            — <a href="/photography/" itemprop="genre">Photography</a>
             — <a href="/photography/2011/hunters/">Permalink</a>.
         </p>
     </aside>
@@ -53,6 +60,7 @@
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -68,5 +76,6 @@
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

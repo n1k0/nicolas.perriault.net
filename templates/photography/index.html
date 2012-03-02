@@ -9,12 +9,9 @@
     You can eventually <a href="http://500px.com/n1k0/">follow me on 500px</a>.
 </p>
 
-{%- for page in pages %}
-    {% include "page.html" %}
-    <hr>
-{%- else %}
-    <p>No photo (yet?)</p>
-{%- endfor %}
+{% include "photography/gallery.html" %}
+
+<hr>
 
 {% if years|length %}
     <p>

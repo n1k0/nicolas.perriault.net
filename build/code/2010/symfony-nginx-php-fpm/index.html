@@ -6,12 +6,12 @@
     <title>Hosting a Symfony app on NginX using PHP-FPM | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="en" class="code">
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/symfony-nginx-php-fpm/">
     <header>
-        <h2><a href="/code/2010/symfony-nginx-php-fpm/">Hosting a Symfony app on NginX using PHP-FPM</a></h2>
+        <h2><a itemprop="name" href="/code/2010/symfony-nginx-php-fpm/">Hosting a Symfony app on NginX using PHP-FPM</a></h2>
     </header>
     <section>
-        <p>
         <p>I recently had to make a capacity planning study for a client of mine for which I've been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on <a href="http://php-fpm.org/">PHP-FPM</a>, a PHP <a href="http://www.fastcgi.com/">FastCGI</a> implementation and the <a href="http://nginx.org/">NginX</a> web server.</p>
 <p>While PHP-FPM has just <a href="http://www.php.net/manual/fr/install.fpm.php">made it to PHP core</a> in version 5.3.3, the OS version of the linux server we are using, Ubuntu 10.04 LTS, only ships with 5.3.2. Fortunately, <a href="https://launchpad.net/~brianmercer/+archive/php">Brian Mercer released a PHP-FPM sapi</a> for these particular OS and PHP versions.</p>
 <p>So installing PHP and PHP-FPM on Ubuntu Lucid Lynx is as easy as:</p>
@@ -129,11 +129,15 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
 <ul>
 <li><a href="http://constantshift.com/install-php-fpm-5-3-2-on-ubuntu-10-04-lucid-lynx/">Install PHP-FPM 5.3.2 on Ubuntu 10.04 (Lucid Lynx) | Constant Shift</a></li>
 <li><a href="http://symfonynotes.com/2009/12/04/hosting-symfony-based-website-with-nginx/">Hosting symfony based website with nginx</a></li>
-</ul></p>
+</ul>
     </section>
     <aside>
         <p>
-            2010-09-27 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2010-09-27" itemprop="datePublished">2010-09-27</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2010/symfony-nginx-php-fpm/">Permalink</a>.
         </p>
     </aside>
@@ -147,6 +151,7 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -162,5 +167,6 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

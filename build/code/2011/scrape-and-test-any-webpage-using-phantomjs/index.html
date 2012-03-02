@@ -6,12 +6,12 @@
     <title>Scrape and test any webpage using PhantomJS | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="en" class="code">
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">
     <header>
-        <h2><a href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">Scrape and test any webpage using PhantomJS</a></h2>
+        <h2><a itemprop="name" href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">Scrape and test any webpage using PhantomJS</a></h2>
     </header>
     <section>
-        <p>
         <p>Have you ever tried to scrape or harvest data from an existing website —
 I mean, even ajax-bloated ones? Did you ever attempt to test
 javascript-dependent interactions within a Web application you built?
@@ -224,11 +224,15 @@ stored in <code>meteo.jpg</code>:</p>
 <p>There are tons of other cool topics to cover about PhantomJS, like
 navigation handling, automated logging in, external resources
 retrieving, functional testing, code organization… so I'll maybe post a
-bit more about it soon, who knows!</p></p>
+bit more about it soon, who knows!</p>
     </section>
     <aside>
         <p>
-            2011-08-27 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2011-08-27" itemprop="datePublished">2011-08-27</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">Permalink</a>.
         </p>
     </aside>
@@ -242,6 +246,7 @@ bit more about it soon, who knows!</p></p>
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -257,5 +262,6 @@ bit more about it soon, who knows!</p></p>
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

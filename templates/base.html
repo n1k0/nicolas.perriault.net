@@ -6,17 +6,17 @@
     <title>{% block page_title %}Home{% endblock page_title %} | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
 {%- assets filter="cssmin", output="packed.css",
     "css/style.css",
     "css/prettify.css"
 %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
 {%- endassets %}
-    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="code") }}" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="photography") }}" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="carnet") }}" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed") }}" title="Everything (RSS)" />
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="code") }}" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="photography") }}" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="carnet") }}" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="talks") }}" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed") }}" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -41,6 +41,7 @@
                 <li class="code"><a href="{{ url_for("section", section="code") }}" hreflang="en">Code</a></li>
                 <li class="photography"><a href="{{ url_for("section", section="photography") }}" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="{{ url_for("section", section="talks") }}" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="{{ url_for("contact") }}" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -62,5 +63,6 @@
 %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {%- endassets %}
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

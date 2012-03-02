@@ -1,0 +1,10 @@
+<ul class="gallery clearfix">
+{%- for page in pages %}
+    <li>
+        <a href="{{ url_for("page", path=page.path) }}" title="{{ page.title }}">
+            <img src="{{ page.image_url|replace('4.jpg', '3.jpg') }}" alt="{{ page.title }}"></a>
+    </li>
+{%- else %}
+    <li>No photo (yet?)</li>
+{%- endfor %}
+</ul>

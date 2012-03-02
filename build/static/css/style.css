@@ -1,3 +1,20 @@
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
 .active {
   color: #333334;
   text-decoration: none;
@@ -54,6 +71,7 @@ h6 a {
   color: #333334;
 }
 hr {
+  clear: both;
   border: none;
   color: #404041;
   text-align: center;
@@ -120,6 +138,29 @@ q:before, q:after {
 .contents article aside {
   text-align: right;
   font-style: italic;
+}
+.contents article .slideshare {
+  width: 100%;
+  height: 530px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.contents ul.gallery {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.contents ul.gallery li {
+  float: left;
+  margin-right: 10px;
+}
+.contents ul.gallery li a {
+  font-weight: bold;
+}
+.contents ul.gallery li img {
+  width: 155px;
 }
 .contents ul.item-list {
   padding: 0;
@@ -214,6 +255,13 @@ body.photography .sidebar li.photography a {
   text-decoration: none;
 }
 body.photography .sidebar li.photography a:after {
+  content: "\00A0\00BB";
+}
+body.talks .sidebar li.talks a {
+  color: #333334;
+  text-decoration: none;
+}
+body.talks .sidebar li.talks a:after {
   content: "\00A0\00BB";
 }
 @media (max-width: 480px) {

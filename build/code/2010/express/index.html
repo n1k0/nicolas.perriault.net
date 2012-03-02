@@ -6,12 +6,12 @@
     <title>A First Look at node.js and Express | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="en" class="code">
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/express/">
     <header>
-        <h2><a href="/code/2010/express/">A First Look at node.js and Express</a></h2>
+        <h2><a itemprop="name" href="/code/2010/express/">A First Look at node.js and Express</a></h2>
     </header>
     <section>
-        <p>
         <p>With all the hype coming to server-side Javascript lately, especially around <a href="http://nodejs.org/">Node</a>, I was feeling the need to give it a try to see how it goes. Also, getting back to work after three full weeks of unwired holidays was hard enough to worth deserving some playtime with cool and fun technologies.</p>
 <p>Node is described as an <em>Evented I/O Framework for Google's V8 JavaScript Engine</em>. Think of it as a toolkit to produce high-performance distributed, event-driven and scalable non-blocking network servers. Okay, whatever the way I want to describe the project, it's buzzword-bingo™. Let's say it's mainly about catching events and react accordingly, to make load distribution and parallel processing easier and more effective.</p>
 <h3>Installing Node</h3>
@@ -113,11 +113,15 @@ Express server listening on port 3000
 <h3>Conclusion</h3>
 <p>As you can see, installing and using Node and Express is quite straightforward, even if you have to dig into the deeper Web to find docs, when they exist. Javascript is a great, agile and well-known language, and taking part of it server-side definitely makes sense if you want my opinion.</p>
 <p>Let's see how this will evolve in the future, as there are not as many backend-oriented libs in JavaScript as there are in other languages like python, ruby or php yet. But <a href="http://github.com/ry/node/wiki/modules">more and more node modules</a> are appearing day after day, such as <a href="http://www.learnboost.com/mongoose/">Mongoose</a> or <a href="http://socket.io/">Socket.IO</a>, which I'll definitely be playing with as soon as possible.</p>
-<p>Thanks for your attention, have fun, take care and don't break the Web.</p></p>
+<p>Thanks for your attention, have fun, take care and don't break the Web.</p>
     </section>
     <aside>
         <p>
-            2010-09-01 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2010-09-01" itemprop="datePublished">2010-09-01</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2010/express/">Permalink</a>.
         </p>
     </aside>
@@ -131,6 +135,7 @@ Express server listening on port 3000
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -146,5 +151,6 @@ Express server listening on port 3000
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

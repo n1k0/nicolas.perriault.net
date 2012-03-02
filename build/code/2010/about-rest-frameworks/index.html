@@ -6,12 +6,12 @@
     <title>About RESTful features of modern Web frameworks | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330467921">
-    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)" />
-    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)" />
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330698599">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -28,12 +28,12 @@
         <div class="contents">
             
 
-    <article lang="en" class="code">
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/about-rest-frameworks/">
     <header>
-        <h2><a href="/code/2010/about-rest-frameworks/">About RESTful features of modern Web frameworks</a></h2>
+        <h2><a itemprop="name" href="/code/2010/about-rest-frameworks/">About RESTful features of modern Web frameworks</a></h2>
     </header>
     <section>
-        <p>
         <p>Frameworks like <a href="http://www.symfony-project.org/">Symfony</a> or <a href="http://rubyonrails.org/">rails</a> (and probably many others) provide a very convenient feature named <em>RESTful</em> routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entites and several available actions on them over HTTP.</p>
 <p>This is really useful, especially when you deal with WebServices on a daily basis, or if you want to reuse your controllers in both <em>standard html</em> or <em>service oriented architecture</em> (SOA) contexts.</p>
 <p>For example, with Symfony, you can declare an HTTP routes collection this way (all examples are taken from the <a href="http://github.com/n1k0/sftunes">Sftunes Symfony application</a> I recently released on <em>github</em>):</p>
@@ -93,11 +93,15 @@ homepage        ANY    /
 <p>I'm searching for a conclusion, but  can't find one except <strong>why on Earth modern browsers don't deal with something else than <code>GET</code> and <code>POST</code> nowadays?</strong></p>
 <p>Feel free to provide hints on this topic in the comments.</p>
 <p><strong>Edit:</strong> Just learnt via the comments that HTML5 draft spec includes support of <code>PUT</code> and <code>DELETE</code> HTTP verbs in forms (<a href="http://bradley-holt.com/2009/07/html-5-http-methods-rest/">source</a> - thx jblanche).</p>
-<p>Great, can't wait for <a href="http://www.webmonkey.com/2008/09/html_5_won_t_be_ready_until_2022dot_yes__2022dot/">2022</a>!</p></p>
+<p>Great, can't wait for <a href="http://www.webmonkey.com/2008/09/html_5_won_t_be_ready_until_2022dot_yes__2022dot/">2022</a>!</p>
     </section>
     <aside>
         <p>
-            2010-04-28 — <a href="/code/">Code</a>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span>
+            </span>
+            — <time datetime="2010-04-28" itemprop="datePublished">2010-04-28</time>
+            — <a href="/code/" itemprop="genre">Code</a>
             — <a href="/code/2010/about-rest-frameworks/">Permalink</a>.
         </p>
     </aside>
@@ -111,6 +115,7 @@ homepage        ANY    /
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -126,5 +131,6 @@ homepage        ANY    /
     </div>
     <!-- /container -->
     <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

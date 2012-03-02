@@ -5,8 +5,8 @@
       <link>http://nicolas.perriault.net</link>
       <description>Nicolas Perriault rants about whatever looks like a technology.</description>
       <language>en</language>
-      <pubDate>Wed, 29 Feb 2012 17:43:44 +0000</pubDate>
-      <lastBuildDate>Wed, 29 Feb 2012 17:43:44 +0000</lastBuildDate>
+      <pubDate>Fri, 02 Mar 2012 16:01:39 +0000</pubDate>
+      <lastBuildDate>Fri, 02 Mar 2012 16:01:39 +0000</lastBuildDate>
       
       <item>
           <title>Setup Jenkins for working with a private repository</title>
@@ -345,11 +345,11 @@ class MyUsefulDebugPanel(DebugPanel):
           <title>Enabling tab completion in OS X Python interactive interpreter</title>
           <link>http://nicolas.perriault.net/code/2010/python-tab-completion</link>
           <description>&lt;p&gt;Python is awesome, and so is its native interactive interpreter. I &lt;a href=&#34;http://sontek.net/tips-and-tricks-for-the-python-interpreter&#34;&gt;discovered today&lt;/a&gt; that it can even provide autocompletion using a very simple trick:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# in your ~/.profile
-export PYTHONSTARTUP=$HOME/.pythonrc.py
-
-# in a new ~/.pythonrc.py file
-try:
+&lt;p&gt;Append this to your &lt;code&gt;~/.profile&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export PYTHONSTARTUP=$HOME/.pythonrc.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And in a new &lt;code&gt;~/.pythonrc.py&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;try:
     import readline
 except ImportError:
     print(&#34;Module readline not available.&#34;)
@@ -357,10 +357,10 @@ else:
     import rlcompleter
     readline.parse_and_bind(&#34;tab: complete&#34;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Don&#39;t forget to source your &lt;code&gt;.profile&lt;/code&gt; with &lt;code&gt;$ source ~/.profile&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Magic? Well if like me you&#39;re running Mac OS X, it won&#39;t work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no &lt;code&gt;readline&lt;/code&gt; implementation — which is mandatory to achieve our purpose. I even tried to install &lt;code&gt;readline&lt;/code&gt; by its own, but it won&#39;t solve the problem.&lt;/p&gt;
+&lt;p&gt;Source it:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ source ~/.profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Magic? Well if like me you&#39;re running Mac OS X, it won&#39;t work, no autocompletion, nada. OS X seems to ship with a very poor (and obsolete) python, and no &lt;code&gt;readline&lt;/code&gt; implementation — which is mandatory to achieve our purpose.&lt;/p&gt;
 &lt;p&gt;So while being at tweaking up my python setup, let me get rid of the Apple stuff and install a fresh version of python using &lt;a href=&#34;http://mxcl.github.com/homebrew/&#34;&gt;Homebrew&lt;/a&gt;, a great package manager for OSX:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ brew install readline python
 &lt;/code&gt;&lt;/pre&gt;

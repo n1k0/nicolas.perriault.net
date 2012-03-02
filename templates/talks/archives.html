@@ -1,0 +1,21 @@
+{% extends "talks/base.html" %}
+
+{% block contents %}
+<h2>Talks | {{ year }}</h2>
+{% include "_list.html" %}
+{% if years|length %}
+    <p>
+        &laquo; Back to <a href="{{ url_for("section", section="talks") }}">Talks</a>
+        | Browse the archives
+        {%- with current_year = year -%}
+            {%- for year in years -%}
+            {%- if current_year == year %}
+                | <strong>{{ year }}</strong>
+            {%- else %}
+                | <a href="{{ url_for("section_archives_year", section="talks", year=year) }}">{{ year }}</a>
+            {%- endif -%}
+        {%- endfor -%}
+        {%- endwith -%}
+    </p>
+{% endif %}
+{% endblock contents %}

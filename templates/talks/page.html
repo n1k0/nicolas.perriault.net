@@ -1,0 +1,9 @@
+{% extends "talks/base.html" %}
+
+{% block page_title %}{{ page.title }} | {{ super() }}{% endblock %}
+
+{% block contents %}
+{% with page = page  %}
+    {% include "page.html" %}
+{% endwith %}
+{% endblock contents %}
