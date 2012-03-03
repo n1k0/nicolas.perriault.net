@@ -8,7 +8,12 @@
     {% endif %}
     <section>
         {%- if page.meta.type == "photo" %}
-        <p>
+        <ul class="controls">
+            <li><a class="clearroom" href="" title="View on white">View on white</a></li>
+            <li><a class="greyroom" href="" title="View on grey">View on grey</a></li>
+            <li><a class="darkroom" href="" title="View on black">View on black</a></li>
+        </ul>
+        <p class="photo">
         {%- if page.meta.image_link %}
             <a href="{{ page.meta.image_link }}" title="{{ page.title }}">
                 <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault"/></a></p>
@@ -26,7 +31,8 @@
             </span>
             <time datetime="{{ page.date }}" itemprop="datePublished">{{ page.date }}</time>
             {% if section %}— in <a href="{{ url_for("section", section=section) }}" itemprop="genre">{{ section|capitalize }}</a>{% endif %}
-            — <a href="{{ url_for("page", path=page.path) }}">Permalink</a>.
+            — <a href="{{ url_for("page", path=page.path) }}">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>.
         </p>
     </aside>
 </article>

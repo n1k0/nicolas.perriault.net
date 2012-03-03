@@ -55,7 +55,8 @@ html[xmlns] .clearfix {
 .dingbats-decorated {
     &:after {
         font-size: @baseHeight;
-        content: "✻ ✽ ✻";
+        //content: "✻ ✽ ✻";
+        content: "\273b\00A0\273d\00A0\273b";
     }
 }
 
@@ -105,6 +106,17 @@ code, pre {
     line-height: @baseLineHeight * .75;
 }
 
+figure {
+    margin: 0;
+    padding: 0;
+    figcaption {
+        margin: -10px 0 0 0;
+        font-size: @baseHeight;
+        text-align: right;
+        font-style: italic;
+    }
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     line-height: @baseLineHeight * 1.1;
@@ -120,6 +132,10 @@ hr {
     color: lighten(@textColor, 5%);
     text-align: center;
     margin: (@baseHeight) 0 (@baseHeight * 3) 0;
+}
+
+img {
+    border: none;
 }
 
 p {
@@ -199,6 +215,37 @@ q:before, q:after {
             visibility: hidden;
         }
     }
+    article.photography {
+        .controls {
+            margin: 0;
+            padding: 0 0 10px 0;
+            list-style-type: none;
+            li {
+                float: right;
+                margin-left: @baseHeight / 2;
+                a {
+                    display: block;
+                    width: @baseHeight;
+                    height: @baseHeight;
+                    border: 1px solid #333;
+                    text-indent: -9999px;
+                    &.darkroom {
+                        background: #000;
+                    }
+                    &.greyroom {
+                        background: #777;
+                    }
+                    &.clearroom {
+                        background: #fff;
+                    }
+                }
+            }
+        }
+        .photo {
+            clear: both;
+            margin-top: 10px;
+        }
+    }
     ul.gallery {
         padding: 0;
         margin: 0;
@@ -254,14 +301,14 @@ q:before, q:after {
                 color: @lightGrey;
                 font-weight: bold;
                 text-decoration: none;
-                sup {
+                span {
                     &:before {
-                        content: "\00A0(";
+                        content: "(";
                     }
                     &:after {
                         content: ")";
                     }
-                    font-size: 14px;
+                    font-size: 18px;
                 }
             }
             a:focus, a:hover {
@@ -340,6 +387,20 @@ body.darkroom {
     }
 }
 
+body.greyroom {
+    background: #777;
+    color: #eee;
+    a {
+        color: #eee;
+    }
+    .sidebar li a:hover {
+        color: #fff;
+    }
+    .sidebar li.photography a {
+        color: #fff;
+    }
+}
+
 // Responsive
 
 // UP TO LANDSCAPE PHONE
@@ -375,11 +436,17 @@ body.darkroom {
             text-align: center;
         }
     }
+    figure {
+        figcaption {
+            padding-top: 5px;
+        }
+    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
     body {
         font-size: 17px;
+        line-height: 22px;
     }
 }
 

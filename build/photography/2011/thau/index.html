@@ -6,7 +6,7 @@
     <title>Thau | Photography | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330708192">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330770431">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -35,7 +35,12 @@
     </header>
     
     <section>
-        <p>
+        <ul class="controls">
+            <li><a class="clearroom" href="" title="View on white">View on white</a></li>
+            <li><a class="greyroom" href="" title="View on grey">View on grey</a></li>
+            <li><a class="darkroom" href="" title="View on black">View on black</a></li>
+        </ul>
+        <p class="photo">
             <a href="http://500px.com/photo/3702733" title="Thau">
                 <img src="/static/photography/2011/thau/main.jpg" alt="Thau by Nicolas Perriault"/></a></p>
         </p>
@@ -48,7 +53,8 @@
             </span>
             <time datetime="2011-12-12" itemprop="datePublished">2011-12-12</time>
             — in <a href="/photography/" itemprop="genre">Photography</a>
-            — <a href="/photography/2011/thau/">Permalink</a>.
+            — <a href="/photography/2011/thau/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>.
         </p>
     </aside>
 </article>
@@ -61,7 +67,7 @@
                 <li class="code"><a href="/code/" hreflang="en">Code</a></li>
                 <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
                 <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
-                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet<sup>fr</sup></a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
                 <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
             </ul>
         </nav>
@@ -76,7 +82,9 @@
         </footer>
     </div>
     <!-- /container -->
-    <script type="text/javascript" src="/static/packed.js?1330360123"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/packed.js?1330770431"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

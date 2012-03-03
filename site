@@ -197,6 +197,9 @@ def build():
     app.debug = False
     asset_manager.config['ASSETS_DEBUG'] = False
     freezer.freeze()
+    local("cp ./static/*.ico ./build/")
+    local("cp ./static/*.txt ./build/")
+    local("cp ./static/*.xml ./build/")
     print("Done.")
 
 
