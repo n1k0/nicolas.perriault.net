@@ -55,7 +55,8 @@ html[xmlns] .clearfix {
 .dingbats-decorated {
     &:after {
         font-size: @baseHeight;
-        //content: "✻ ✽ ✻";
+        height: @baseHeight;
+        line-height: 0;
         content: "\273b\00A0\273d\00A0\273b";
     }
 }
@@ -110,6 +111,7 @@ figure {
     margin: 0;
     padding: 0;
     figcaption {
+        max-width: 660px;
         margin: -10px 0 0 0;
         font-size: @baseHeight;
         text-align: right;
@@ -131,7 +133,8 @@ hr {
     border: none;
     color: lighten(@textColor, 5%);
     text-align: center;
-    margin: (@baseHeight) 0 (@baseHeight * 3) 0;
+    margin: (@baseHeight) 0 (@baseHeight * 2.5) 0;
+    height: @baseHeight;
 }
 
 img {
@@ -167,7 +170,7 @@ q:before, q:after {
     padding-bottom: @baseHeight;
     h1 {
         font-size: @baseHeight * 4;
-        line-height: @baseHeight;
+        line-height: 40px;
         a {
             text-decoration: none;
         }
@@ -212,7 +215,7 @@ q:before, q:after {
             overflow: hidden;
         }
         .article-author {
-            visibility: hidden;
+            display: none;
         }
     }
     article.photography {
@@ -403,22 +406,128 @@ body.greyroom {
 
 // Responsive
 
+// PORTRAIT TABLET TO DEFAULT DESKTOP
+// ----------------------------------
+
+@media (min-width: 769px) and (max-width: 960px) {
+    body {
+        width: auto;
+        .contents {
+            margin-left: 200px;
+        }
+        .main-title {
+            margin-left: 200px;
+            h2 {
+                font-size: 20px;
+            }
+        }
+        .contents {
+            margin-left: 200px;
+        }
+        .sidebar {
+            width: 150px;
+            ul {
+                padding: 0;
+                li {
+                    font-size: 22px;
+                }
+            }
+        }
+        .site-footer {
+            text-align: center;
+            margin-left: 200px;
+        }
+    }
+}
+
+// LANDSCAPE PHONE TO SMALL DESKTOP & PORTRAIT TABLET
+// --------------------------------------------------
+
+@media (max-width: 768px) {
+    body {
+        width: auto;
+        .contents {
+            margin-left: 0;
+        }
+        .main-title {
+            margin-left: 0;
+            h1 {
+                margin: 20px 0;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+        .sidebar {
+            position: inherit;
+            top: inherit;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            li {
+                display: inline;
+                padding-right: 16px;
+            }
+        }
+        .site-footer {
+            margin-left: 0;
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        font-size: 17px;
+        line-height: 22px;
+        .main-title {
+            margin: 0;
+            h1 {
+                margin: 0;
+                font-size: 40px;
+                line-height: 40px;
+            }
+        }
+        p {
+            line-height: 24px;
+        }
+        .contents {
+            li {
+                line-height: 24px;
+            }
+        }
+    }
+}
+
 // UP TO LANDSCAPE PHONE
 // ---------------------
 
 @media (max-width: 480px) {
     body {
         font-size: 16px;
-        line-height: 20px;
+        line-height: 16px;
         padding: 10px;
         width: auto;
         .main-title {
             margin: 0;
             h1 {
                 font-size: 40px;
+                margin: 0;
             }
             small {
                 font-size: 20px;
+            }
+        }
+        ul.gallery {
+            img {
+                width: auto;
+            }
+        }
+        p {
+            line-height: 24px;
+        }
+        .contents {
+            li {
+                line-height: 24px;
             }
         }
         .sidebar {
@@ -441,93 +550,4 @@ body.greyroom {
             padding-top: 5px;
         }
     }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    body {
-        font-size: 17px;
-        line-height: 22px;
-    }
-}
-
-// LANDSCAPE PHONE TO SMALL DESKTOP & PORTRAIT TABLET
-// --------------------------------------------------
-
-@media (max-width: 768px) {
-    body {
-        width: auto;
-        .contents {
-            margin-left: 0;
-        }
-        .main-title {
-            margin-left: 0;
-            h2 {
-                font-size: 20px;
-            }
-        }
-        .sidebar {
-            position: inherit;
-            top: inherit;
-            margin: 0;
-            width: 100%;
-            text-align: center;
-            li {
-                display: inline;
-                padding-right: 16px;
-            }
-        }
-        .site-footer {
-            margin-left: 0;
-        }
-    }
-}
-
-// PORTRAIT TABLET TO DEFAULT DESKTOP
-// ----------------------------------
-
-@media (min-width: 768px) and (max-width: 960px) {
-    body {
-        width: 768px;
-        .contents {
-            margin-left: 200px;
-        }
-        .main-title {
-            margin-left: 200px;
-            h2 {
-                font-size: 20px;
-            }
-        }
-        .contents {
-            margin-left: 200px;
-        }
-        .sidebar {
-            width: 150px;
-            ul {
-                padding: 0;
-            }
-        }
-        .site-footer {
-            text-align: center;
-            margin-left: 200px;
-        }
-    }
-}
-
-// TABLETS AND BELOW
-// -----------------
-@media (max-width: 960px) {
-
-}
-
-// DEFAULT DESKTOP
-// ---------------
-
-@media (min-width: 960px) and (max-width: 1200px) {
-
-}
-
-// LARGE DESKTOP & UP
-// ------------------
-
-@media (min-width: 1200px) {
 }

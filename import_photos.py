@@ -1,7 +1,7 @@
 import codecs
 import os
 import re
-import feedparser
+
 from time import mktime
 from datetime import datetime
 from unicodedata import normalize
@@ -18,8 +18,6 @@ def slugify(text, delim=u'-'):
             result.append(word)
     return unicode(delim.join(result))
 
-
-d = feedparser.parse("http://500px.com/n1k0/rss")
 
 paths = []
 for entry in d.entries:

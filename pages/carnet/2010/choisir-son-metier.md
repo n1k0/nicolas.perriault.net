@@ -147,4 +147,4 @@ Oui, je suis un peu décontenancé à la lecture de ces quelques commentaires. O
 
 **Je pense au contraire qu'une part importante de notre métier, j'irai même jusqu'à parler de notre devoir déontologique, est de les accompagner dans la compréhension de leur rôle dans les processus collaboratifs projet afin de maximiser le potentiel de réussite de ces derniers coûte que coûte.** Et d'[apprendre à dire non](http://www.alistapart.com/articles/no-one-nos-learning-to-say-no-to-bad-ideas/) lorsque cela s'avère nécessaire, plutôt que de s'engluer dans cette vision fataliste, nivelant par le bas la qualité globale d'une partie grandissante des réalisations auquel le Web est confronté (france.fr anyone?).
 
-Vous pouvez maintenant basher en commentaire, c'est fait pour ça ;)
+Vous pouvez maintenant basher <del>en commentaire</del> [par email](/contact), c'est fait pour ça ;)

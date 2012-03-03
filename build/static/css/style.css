@@ -24,6 +24,8 @@ html[xmlns] .clearfix {
 }
 .dingbats-decorated:after {
   font-size: 14px;
+  height: 14px;
+  line-height: 0;
   content: "\273b\00A0\273d\00A0\273b";
 }
 .more {
@@ -58,6 +60,7 @@ figure {
   padding: 0;
 }
 figure figcaption {
+  max-width: 660px;
   margin: -10px 0 0 0;
   font-size: 14px;
   text-align: right;
@@ -85,10 +88,13 @@ hr {
   border: none;
   color: #404041;
   text-align: center;
-  margin: 14px 0 42px 0;
+  margin: 14px 0 35px 0;
+  height: 14px;
 }
 hr:after {
   font-size: 14px;
+  height: 14px;
+  line-height: 0;
   content: "\273b\00A0\273d\00A0\273b";
 }
 img {
@@ -121,7 +127,7 @@ q:before, q:after {
 }
 .main-title h1 {
   font-size: 56px;
-  line-height: 14px;
+  line-height: 40px;
 }
 .main-title h1 a {
   text-decoration: none;
@@ -161,7 +167,7 @@ q:before, q:after {
   overflow: hidden;
 }
 .contents article .article-author {
-  visibility: hidden;
+  display: none;
 }
 .contents article.photography .controls {
   margin: 0;
@@ -346,75 +352,9 @@ body.greyroom .sidebar li a:hover {
 body.greyroom .sidebar li.photography a {
   color: #fff;
 }
-@media (max-width: 480px) {
-  body {
-    font-size: 16px;
-    line-height: 20px;
-    padding: 10px;
-    width: auto;
-  }
-  body .main-title {
-    margin: 0;
-  }
-  body .main-title h1 {
-    font-size: 40px;
-  }
-  body .main-title small {
-    font-size: 20px;
-  }
-  body .sidebar ul {
-    margin: 0;
-    padding: 0;
-  }
-  body .sidebar ul li {
-    display: inline;
-    padding-right: 16px;
-  }
-  body .site-footer {
-    margin-left: 0;
-    text-align: center;
-  }
-  figure figcaption {
-    padding-top: 5px;
-  }
-}
-@media (min-width: 481px) and (max-width: 768px) {
-  body {
-    font-size: 17px;
-    line-height: 22px;
-  }
-}
-@media (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 960px) {
   body {
     width: auto;
-  }
-  body .contents {
-    margin-left: 0;
-  }
-  body .main-title {
-    margin-left: 0;
-  }
-  body .main-title h2 {
-    font-size: 20px;
-  }
-  body .sidebar {
-    position: inherit;
-    top: inherit;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-  }
-  body .sidebar li {
-    display: inline;
-    padding-right: 16px;
-  }
-  body .site-footer {
-    margin-left: 0;
-  }
-}
-@media (min-width: 768px) and (max-width: 960px) {
-  body {
-    width: 768px;
   }
   body .contents {
     margin-left: 200px;
@@ -434,17 +374,104 @@ body.greyroom .sidebar li.photography a {
   body .sidebar ul {
     padding: 0;
   }
+  body .sidebar ul li {
+    font-size: 22px;
+  }
   body .site-footer {
     text-align: center;
     margin-left: 200px;
   }
 }
-@media (max-width: 960px) {
-  
+@media (max-width: 768px) {
+  body {
+    width: auto;
+  }
+  body .contents {
+    margin-left: 0;
+  }
+  body .main-title {
+    margin-left: 0;
+  }
+  body .main-title h1 {
+    margin: 20px 0;
+  }
+  body .main-title h2 {
+    font-size: 20px;
+  }
+  body .sidebar {
+    position: inherit;
+    top: inherit;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+  body .sidebar li {
+    display: inline;
+    padding-right: 16px;
+  }
+  body .site-footer {
+    margin-left: 0;
+  }
 }
-@media (min-width: 960px) and (max-width: 1200px) {
-  
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 17px;
+    line-height: 22px;
+  }
+  body .main-title {
+    margin: 0;
+  }
+  body .main-title h1 {
+    margin: 0;
+    font-size: 40px;
+    line-height: 40px;
+  }
+  body p {
+    line-height: 24px;
+  }
+  body .contents li {
+    line-height: 24px;
+  }
 }
-@media (min-width: 1200px) {
-  
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 10px;
+    width: auto;
+  }
+  body .main-title {
+    margin: 0;
+  }
+  body .main-title h1 {
+    font-size: 40px;
+    margin: 0;
+  }
+  body .main-title small {
+    font-size: 20px;
+  }
+  body ul.gallery img {
+    width: auto;
+  }
+  body p {
+    line-height: 24px;
+  }
+  body .contents li {
+    line-height: 24px;
+  }
+  body .sidebar ul {
+    margin: 0;
+    padding: 0;
+  }
+  body .sidebar ul li {
+    display: inline;
+    padding-right: 16px;
+  }
+  body .site-footer {
+    margin-left: 0;
+    text-align: center;
+  }
+  figure figcaption {
+    padding-top: 5px;
+  }
 }

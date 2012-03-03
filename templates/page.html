@@ -1,26 +1,32 @@
-<article lang="{{ page.meta.lang or "en" }}" class="{{ page.meta.section }}" itemscope itemtype="http://schema.org/{{ item_type or "BlogPosting" }}">
+<article lang="{{ page.lang or "en" }}" class="{{ page.section }}" itemscope itemtype="http://schema.org/{{ item_type or "BlogPosting" }}">
     <link itemprop="url" href="{{ url_for("page", path=page.path) }}">
     <header>
         <h2><a itemprop="name" href="{{ url_for("page", path=page.path) }}">{{ page.title }}</a></h2>
+    {%- if page.subtitle -%}
+        <h3>{{ page.subtitle }}</h3>
+    {%- endif -%}
     </header>
     {% if not page.published %}
         <div style="background:orange;color:#fff;padding:5px 10px">⚠ This content is not published</div>
     {% endif %}
     <section>
-        {%- if page.meta.type == "photo" %}
+        {%- if page.type == "photo" %}
         <ul class="controls">
             <li><a class="clearroom" href="" title="View on white">View on white</a></li>
             <li><a class="greyroom" href="" title="View on grey">View on grey</a></li>
             <li><a class="darkroom" href="" title="View on black">View on black</a></li>
         </ul>
-        <p class="photo">
-        {%- if page.meta.image_link %}
-            <a href="{{ page.meta.image_link }}" title="{{ page.title }}">
-                <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault"/></a></p>
+        <figure class="photo">
+        {%- if page.image_link %}
+            <a href="{{ page.image_link }}" title="{{ page.title }}">
+                <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault"/></a>
         {%- else %}
             <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault">
         {%- endif %}
-        </p>
+        {%- if page.summary|trim %}
+            <figcaption>{{ page.summary|trim }}</figcaption>
+        {% endif %}
+        </figure>
         {%- endif %}
         {{ page.html|safe }}
     </section>
