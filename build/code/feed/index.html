@@ -1,17 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
-   <channel>
-      <title>Code</title>
-      <link>http://nicolas.perriault.net</link>
-      <description>Nicolas Perriault rants about whatever looks like a technology.</description>
-      <language>en</language>
-      <pubDate>Sat, 03 Mar 2012 21:11:10 +0000</pubDate>
-      <lastBuildDate>Sat, 03 Mar 2012 21:11:10 +0000</lastBuildDate>
-      
-      <item>
-          <title>Gandi Standard SSL Certificate &amp; Nginx</title>
-          <link>http://nicolas.perriault.net/code/2012/gandi-standard-ssl-certificate-nginx</link>
-          <description>&lt;p&gt;&lt;a href=&#34;http://gandi.net/&#34;&gt;Gandi&lt;/a&gt; offers a &lt;a href=&#34;http://wiki.gandi.net/en/ssl/free&#34;&gt;free SSL certificate&lt;/a&gt; during one year for any domain you buy there, nice. But the setup is a bit tedious and the documentation a bit disparate, so here&#39;s an attempt for a comprehensive howto for configuring a secured &lt;a href=&#34;http://nginx.org/&#34;&gt;nginx&lt;/a&gt; vhost using your &lt;em&gt;free&lt;/em&gt; certificate.&lt;/p&gt;
+    <channel>
+        <title>Code</title>
+        <link>http://nicolas.perriault.net</link>
+        <description>Nicolas Perriault rants about whatever looks like a technology.</description>
+        <language>en</language>
+        <pubDate>Sun, 04 Mar 2012 17:55:38 +0000</pubDate>
+        <lastBuildDate>Sun, 04 Mar 2012 17:55:38 +0000</lastBuildDate>
+        
+        <item>
+            <title>Dead easy yet powerful static website generator with Flask</title>
+            <link>http://nicolas.perriault.net/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask</link>
+            <description>&lt;p&gt;It&#39;s been a long time I wanted to federate my online identities in a single, managed place — hence the website you&#39;re currently browsing. I&#39;ve also been looking for a static website builder for some times, trying many and retaining zero. It was a bit depressing, frustrating to say the least.&lt;/p&gt;
+&lt;p&gt;Then I encountered &lt;a href=&#34;https://twitter.com/#!/mitsuhiko/statuses/166570613295689728&#34;&gt;this tweet by Armin Ronacher&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote class=&#34;twitter-tweet tw-align-center&#34;&gt;
+    &lt;p&gt;Frozen-Flask is really, really useful. Should have used that earlier.&lt;/p&gt;&amp;mdash; Armin Ronacher (@mitsuhiko) &lt;a href=&#34;https://twitter.com/mitsuhiko/status/166570613295689728&#34; data-datetime=&#34;2012-02-06T17:15:03+00:00&#34;&gt;February 6, 2012&lt;/a&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://lucumr.pocoo.org/&#34;&gt;Armin&lt;/a&gt; is the author of &lt;a href=&#34;http://flask.pocoo.org/&#34;&gt;Flask&lt;/a&gt;, a Python microframework I much appreciate for its simplicity, so this tweet immediately rang a bell and I started exploring the possibilities offered by &lt;a href=&#34;http://packages.python.org/Frozen-Flask/&#34;&gt;Frozen-Flask&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Frozen-Flask basically &lt;em&gt;freezes&lt;/em&gt; a Flask application into a set of static files, so you can host it without pain, but with speed. Combined with &lt;a href=&#34;http://packages.python.org/Flask-FlatPages/&#34;&gt;Flask-FlatPages&lt;/a&gt;, you got the perfect set for generating your static website with everyting you could expect by using a framework:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cool uris &amp;amp; easy routing management&lt;/li&gt;
+&lt;li&gt;powerful templating&lt;/li&gt;
+&lt;li&gt;local, dynamic serving&lt;/li&gt;
+&lt;li&gt;static version generation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;First iteration: project setup&lt;/h2&gt;
+&lt;p&gt;Create a brand new &lt;a href=&#34;http://pypi.python.org/pypi/virtualenv&#34;&gt;virtualenv&lt;/a&gt; in a new directory and install the necessary packages using &lt;a href=&#34;http://pypi.python.org/pypi/pip&#34;&gt;pip&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mkdir sample_project &amp;amp;&amp;amp; cd !$
+$ mkvirtualenv --no-site-packages `pwd`/env
+$ source env/bin/activate
+$ pip install Flask Frozen-Flask Flask-FlatPages
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Write a very first version of our app in a &lt;code&gt;sitebuilder.py&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask
+app = Flask(__name__)
+
+@app.route(&#34;/&#34;)
+def index():
+    return &#34;Hello World!&#34;
+
+if __name__ == &#34;__main__&#34;:
+    app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Run it; you should see someting like:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ python sitebuilder.py
+ * Running on http://127.0.0.1:8000/
+ * Restarting with reloader
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ensure with your browser that everyting is going fine by heading at &lt;code&gt;http://127.0.0.1:8000/&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;New iteration: adding &lt;em&gt;flat pages&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://packages.python.org/Flask-FlatPages/&#34;&gt;Flask-FlatPages&lt;/a&gt; provides a collection of pages to your Flask application. Pages are built from &lt;em&gt;flat&lt;/em&gt; text files as opposed to a relational database.&lt;/p&gt;
+&lt;p&gt;Create a &lt;code&gt;pages/&lt;/code&gt; directory at the root of your project folder, and put a &lt;code&gt;hello-world.md&lt;/code&gt; file in there:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mkdir pages
+$ vi pages/hello-world.md
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;pages/hello-world.md&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;unpretty&#34;&gt;&lt;code&gt;title: Hello World
+date: 2012-03-04
+
+**Hello World**, from a *page*!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, we can write plain &lt;a href=&#34;daringfireball.net/projects/markdown/&#34;&gt;Mardown&lt;/a&gt; for our page contents. So let&#39;s rewrite our app to serve any flatpage by its filename:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask
+from flaskext.flatpages import FlatPages
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = &#39;.md&#39;
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+
+@app.route(&#39;/&#39;)
+def index():
+    return &#34;Hello World&#34;
+
+@app.route(&#39;/&amp;lt;path:path&amp;gt;/&#39;)
+def page(path):
+    return pages.get_or_404(path).html
+
+if __name__ == &#39;__main__&#39;:
+    app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now requesting &lt;code&gt;http://127.0.0.1:8000/hello-world/&lt;/code&gt; will display our flatpage. Note that the markdown source is converted to html by getting the &lt;code&gt;html&lt;/code&gt; property of our page object.&lt;/p&gt;
+&lt;h2&gt;New iteration: adding templates&lt;/h2&gt;
+&lt;p&gt;Flask uses the &lt;a href=&#34;http://jinja.pocoo.org/docs/&#34;&gt;Jinja2&lt;/a&gt; template engine, so let&#39;s create some templates to decorate our pages. First create a &lt;code&gt;templates&lt;/code&gt; directory at the root of the project:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mkdir templates
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a base layout in &lt;code&gt;templates/base.html&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!doctype html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&#34;utf-8&#34;&amp;gt;
+    &amp;lt;title&amp;gt;My site&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;h1&amp;gt;&amp;lt;a href=&#34;{{ url_for(&#34;index&#34;) }}&#34;&amp;gt;My site&amp;lt;/a&amp;gt;&amp;lt;/h1&amp;gt;
+{% block content %}
+    &amp;lt;p&amp;gt;Default content to be displayed&amp;lt;/p&amp;gt;
+{% endblock content %}
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note the use of the &lt;code&gt;url_for()&lt;/code&gt; template helper, that&#39;s the way we generate urls using Flask and Jinja2.&lt;/p&gt;
+&lt;p&gt;Now the &lt;code&gt;page.html&lt;/code&gt; template to fill this layout with page contents:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
+
+{% block content %}
+    &amp;lt;h2&amp;gt;{{ page.title }}&amp;lt;/h2&amp;gt;
+    {{ page.html|safe }}
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our app is now:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask, render_template
+from flaskext.flatpages import FlatPages
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = &#39;.md&#39;
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+
+@app.route(&#39;/&#39;)
+def index():
+    return &#34;Hello World&#34;
+
+@app.route(&#39;/&amp;lt;path:path&amp;gt;/&#39;)
+def page(path):
+    page = pages.get_or_404(path)
+    return render_template(&#39;page.html&#39;, page=page)
+
+if __name__ == &#39;__main__&#39;:
+    app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hell, what did we just do?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;we created templates for our app; a common layout (&lt;code&gt;base.html&lt;/code&gt;) and a page template (&lt;code&gt;page.html&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;we used the &lt;code&gt;render_template&lt;/code&gt; function to use the page template for decorating our pages&lt;/li&gt;
+&lt;li&gt;the page template extends the base one to avoid copying and pasting stuff for every page on Earth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New iteration: display the list of available pages on the homepage&lt;/h2&gt;
+&lt;p&gt;For now our homepage has been a bit sick, to say the least. Let&#39;s make it an index of all available pages.&lt;/p&gt;
+&lt;p&gt;Create a &lt;code&gt;templates/index.html&lt;/code&gt; with the following contents:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
+
+{% block content %}
+    &amp;lt;h2&amp;gt;List of stuff&amp;lt;/h2&amp;gt;
+    &amp;lt;ul&amp;gt;
+    {% for page in pages %}
+        &amp;lt;li&amp;gt;
+            &amp;lt;a href=&#34;{{ url_for(&#34;page&#34;, path=page.path) }}&#34;&amp;gt;{{ page.title }}&amp;lt;/a&amp;gt;
+        &amp;lt;/li&amp;gt;
+    {% else %}
+        &amp;lt;li&amp;gt;No stuff.&amp;lt;/li&amp;gt;
+    {% endfor %}
+    &amp;lt;/ul&amp;gt;
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Feel free to create more flat pages, the same way we did with &lt;code&gt;hello-world.md&lt;/code&gt;, storing the file into the &lt;code&gt;pages/&lt;/code&gt; directory using the &lt;code&gt;.md&lt;/code&gt; extension.&lt;/p&gt;
+&lt;p&gt;So the &lt;code&gt;index()&lt;/code&gt; route of our app is now:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@app.route(&#39;/&#39;)
+def index():
+    return render_template(&#39;index.html&#39;, pages=pages)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you reload the homepage, a list of all available flatpages is displayed with a link for each. Damn, that was pretty easy.&lt;/p&gt;
+&lt;h2&gt;New iteration: adding metadata to pages&lt;/h2&gt;
+&lt;p&gt;Flask-FlatPages allows to enter metadata for pages the same way we did for the title and the creation date with our &lt;code&gt;hello-world.md&lt;/code&gt;, and access them using the &lt;code&gt;page.meta&lt;/code&gt; property, which contains a plain silly python dict. That&#39;s pretty awesome when you think about it, heh?&lt;/p&gt;
+&lt;p&gt;So let&#39;s imagine you want tags for your pages, our &lt;code&gt;hello-world.md&lt;/code&gt; becomes:&lt;/p&gt;
+&lt;pre class=&#34;unpretty&#34;&gt;&lt;code&gt;title: Hello World
+date: 2012-03-04
+tags: [general, awesome, stuff]
+
+**Hello World**, from a *page*!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For the records, metadata are described in &lt;a href=&#34;http://yaml.org/&#34;&gt;YAML&lt;/a&gt;, so you can use strings, booleans, integers, floats, lists and even dicts which will be converted to their respective native Python equivalent.&lt;/p&gt;
+&lt;p&gt;We&#39;re going to use two different templates for listing general pages and tagged ones, using a shared template partial. Our &lt;code&gt;index.html&lt;/code&gt; is now:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
+
+{% block content %}
+    &amp;lt;h2&amp;gt;List of stuff&amp;lt;/h2&amp;gt;
+    {% with pages=pages  %}
+        {% include &#34;_list.html&#34; %}
+    {% endwith %}
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a new &lt;code&gt;tag.html&lt;/code&gt; template, which will display the list of tagged pages:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
+
+{% block content %}
+    &amp;lt;h2&amp;gt;List of stuff tagged &amp;lt;em&amp;gt;{{ tag }}&amp;lt;/em&amp;gt;&amp;lt;/h2&amp;gt;
+    {% with pages=pages  %}
+        {% include &#34;_list.html&#34; %}
+    {% endwith %}
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The new &lt;code&gt;_list.html&lt;/code&gt; template we need for inclusion contains:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul&amp;gt;
+{% for page in pages %}
+    &amp;lt;li&amp;gt;
+        &amp;lt;a href=&#34;{{ url_for(&#34;page&#34;, path=page.path) }}&#34;&amp;gt;{{ page.title }}&amp;lt;/a&amp;gt;
+    {% if page.meta.tags|length %}
+        | Tagged:
+        {% for page_tag in page.meta.tags %}
+            &amp;lt;a href=&#34;{{ url_for(&#34;tag&#34;, tag=page_tag) }}&#34;&amp;gt;{{ page_tag }}&amp;lt;/a&amp;gt;
+        {% endfor %}
+    {% endif %}
+    &amp;lt;/li&amp;gt;
+{% else %}
+    &amp;lt;li&amp;gt;No page.&amp;lt;/li&amp;gt;
+{% endfor %}
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let&#39;s add a new &lt;code&gt;tag&lt;/code&gt; route to our app, to use our new &lt;code&gt;tag.html&lt;/code&gt; template:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@app.route(&#39;/tag/&amp;lt;string:tag&amp;gt;/&#39;)
+def tag(tag):
+    tagged = [p for p in pages if tag in p.meta.get(&#39;tags&#39;, [])]
+    return render_template(&#39;tag.html&#39;, pages=tagged, tag=tag)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if you didn&#39;t like Python&#39;s &lt;a href=&#34;http://www.network-theory.co.uk/docs/pytut/ListComprehensions.html&#34;&gt;list comprehensions&lt;/a&gt; yet, now you do.&lt;/p&gt;
+&lt;h2&gt;New iteration: generate the static stuff&lt;/h2&gt;
+&lt;p&gt;Well, for now we only have a dynamic website, which uses and serves flatpages stored on the filesystem: CRAP. But the idea&#39;s of course not to host a Flask app but a set of static files and assets to skip the need of any application server.&lt;/p&gt;
+&lt;p&gt;Here enters Frozen-Flask. Its use is damn easy:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import sys
+
+from flask import Flask, render_template
+from flaskext.flatpages import FlatPages
+from flask_frozen import Freezer
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = &#39;.md&#39;
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+freezer = Freezer(app)
+
+@app.route(&#39;/&#39;)
+def index():
+    return render_template(&#39;index.html&#39;, pages=pages)
+
+@app.route(&#39;/tag/&amp;lt;string:tag&amp;gt;/&#39;)
+def tag(tag):
+    tagged = [p for p in pages if tag in p.meta.get(&#39;tags&#39;, [])]
+    return render_template(&#39;tag.html&#39;, pages=tagged, tag=tag)
+
+@app.route(&#39;/&amp;lt;path:path&amp;gt;/&#39;)
+def page(path):
+    page = pages.get_or_404(path)
+    return render_template(&#39;page.html&#39;, page=page)
+
+if __name__ == &#39;__main__&#39;:
+    if len(sys.argv) &amp;gt; 1 and sys.argv[1] == &#34;build&#34;:
+        freezer.freeze()
+    else:
+        app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And run:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ python sitebuilder.py build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Open the &lt;code&gt;build&lt;/code&gt; folder generated by this command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ tree
+.
+├── hello-world
+│   └── index.html
+├── index.html
+└── tag
+    ├── awesome
+    │   └── index.html
+    ├── general
+    │   └── index.html
+    └── stuff
+        └── index.html
+
+5 directories, 5 files
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;MIND: BLOWN.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You can now deploy the contents of this &lt;code&gt;build&lt;/code&gt; directory to any webserver which&#39;s able to serve static files, and you&#39;re done. With just 34 lines of manually written Python code… not bad heh?&lt;/p&gt;
+&lt;p&gt;Of course, our website is pretty crappy right now, but you should be get started to add features on your own, now.&lt;/p&gt;</description>
+            <pubDate>Sun, 04 Mar 2012 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask</guid>
+        </item>
+        <item>
+            <title>Gandi Standard SSL Certificate &amp; Nginx</title>
+            <link>http://nicolas.perriault.net/code/2012/gandi-standard-ssl-certificate-nginx</link>
+            <description>&lt;p&gt;&lt;a href=&#34;http://gandi.net/&#34;&gt;Gandi&lt;/a&gt; offers a &lt;a href=&#34;http://wiki.gandi.net/en/ssl/free&#34;&gt;free SSL certificate&lt;/a&gt; during one year for any domain you buy there, nice. But the setup is a bit tedious and the documentation a bit disparate, so here&#39;s an attempt for a comprehensive howto for configuring a secured &lt;a href=&#34;http://nginx.org/&#34;&gt;nginx&lt;/a&gt; vhost using your &lt;em&gt;free&lt;/em&gt; certificate.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; &lt;em&gt;Gandi&#39;s quite complicated email confirmation and validation worflow won&#39;t be covered in this post. Just ensure you can receive emails at &lt;code&gt;admin@domain.tld&lt;/code&gt; where &lt;code&gt;domain.tld&lt;/code&gt; is your domain.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;Creating your certificate&lt;/h2&gt;
 &lt;p&gt;On your server, ensure you have the &lt;a href=&#34;http://openssl.org/&#34;&gt;&lt;code&gt;openssl&lt;/code&gt;&lt;/a&gt; command available or install it. Then, &lt;a href=&#34;http://wiki.gandi.net/en/ssl/csr&#34;&gt;generate your CSR&lt;/a&gt; (&lt;code&gt;domain.tld&lt;/code&gt; is your actual domain):&lt;/p&gt;
@@ -75,13 +354,13 @@
 &lt;li&gt;&lt;a href=&#34;http://wiki.gandi.net/en/ssl&#34;&gt;Gandi SSL wiki pages&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.informathic.com/post/2010/12/24/installer-ssl-gandi-nginx&#34;&gt;Installer un certificat Gandi SSL Standard sur Nginx&lt;/a&gt; (French)&lt;/li&gt;
 &lt;/ul&gt;</description>
-          <pubDate>Wed, 29 Feb 2012 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2012/gandi-standard-ssl-certificate-nginx</guid>
-      </item>
-      <item>
-          <title>Setup Jenkins for working with a private Github repository</title>
-          <link>http://nicolas.perriault.net/code/2011/setup-jenkins-github-private-repository-ubuntu</link>
-          <description>&lt;p&gt;As I&#39;ve just lost an hour and some hairs dealing with trying to setup a &lt;a href=&#34;http://jenkins-ci.org/&#34;&gt;Jenkins&lt;/a&gt; project connected to a private repository hosted on &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;, I thought it&#39;s worth a quick blog post. I&#39;m using &lt;a href=&#34;http://ubuntu.com/&#34;&gt;Ubuntu&lt;/a&gt;.&lt;/p&gt;
+            <pubDate>Wed, 29 Feb 2012 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2012/gandi-standard-ssl-certificate-nginx</guid>
+        </item>
+        <item>
+            <title>Setup Jenkins for working with a private Github repository</title>
+            <link>http://nicolas.perriault.net/code/2011/setup-jenkins-github-private-repository-ubuntu</link>
+            <description>&lt;p&gt;As I&#39;ve just lost an hour and some hairs dealing with trying to setup a &lt;a href=&#34;http://jenkins-ci.org/&#34;&gt;Jenkins&lt;/a&gt; project connected to a private repository hosted on &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;, I thought it&#39;s worth a quick blog post. I&#39;m using &lt;a href=&#34;http://ubuntu.com/&#34;&gt;Ubuntu&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;So first &lt;code&gt;su&lt;/code&gt; as the &lt;code&gt;jenkins&lt;/code&gt; user to create some SSH keypair:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ ssh-keygen -p
 &lt;/code&gt;&lt;/pre&gt;
@@ -97,13 +376,13 @@ Hi username/reponame! You&#39;ve successfully authenticated, but GitHub does not
 &lt;p&gt;Now, in the Jenkins project configuration interface, set the private repository url using the &lt;code&gt;git&lt;/code&gt; protocol, eg. &lt;code&gt;git@github.com:username/reponame.git&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;That&#39;s it, Jenkins will be able to clone and use your private repo.&lt;/p&gt;
 &lt;p&gt;If you know a better way, &lt;a href=&#34;/contact/&#34;&gt;I&#39;m all ears&lt;/a&gt;.&lt;/p&gt;</description>
-          <pubDate>Wed, 16 Nov 2011 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2011/setup-jenkins-github-private-repository-ubuntu</guid>
-      </item>
-      <item>
-          <title>Scrape and test any webpage using PhantomJS</title>
-          <link>http://nicolas.perriault.net/code/2011/scrape-and-test-any-webpage-using-phantomjs</link>
-          <description>&lt;p&gt;Have you ever tried to scrape or harvest data from an existing website —
+            <pubDate>Wed, 16 Nov 2011 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2011/setup-jenkins-github-private-repository-ubuntu</guid>
+        </item>
+        <item>
+            <title>Scrape and test any webpage using PhantomJS</title>
+            <link>http://nicolas.perriault.net/code/2011/scrape-and-test-any-webpage-using-phantomjs</link>
+            <description>&lt;p&gt;Have you ever tried to scrape or harvest data from an existing website —
 I mean, even ajax-bloated ones? Did you ever attempt to test
 javascript-dependent interactions within a Web application you built?
 Well, if you answered yes to one of the questions above, you might be
@@ -294,13 +573,13 @@ stored in &lt;code&gt;meteo.jpg&lt;/code&gt;:&lt;/p&gt;
 navigation handling, automated logging in, external resources
 retrieving, functional testing, code organization… so I&#39;ll maybe post a
 bit more about it soon, who knows!&lt;/p&gt;</description>
-          <pubDate>Sat, 27 Aug 2011 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2011/scrape-and-test-any-webpage-using-phantomjs</guid>
-      </item>
-      <item>
-          <title>Une autre façon de gérer ses settings d&#39;application Django</title>
-          <link>http://nicolas.perriault.net/code/2011/clever-settings</link>
-          <description>&lt;p&gt;Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème classique de l&#39;exposition de la configuration au développeur via les &lt;em&gt;settings&lt;/em&gt; de son propre projet.&lt;/p&gt;
+            <pubDate>Sat, 27 Aug 2011 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2011/scrape-and-test-any-webpage-using-phantomjs</guid>
+        </item>
+        <item>
+            <title>Une autre façon de gérer ses settings d&#39;application Django</title>
+            <link>http://nicolas.perriault.net/code/2011/clever-settings</link>
+            <description>&lt;p&gt;Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème classique de l&#39;exposition de la configuration au développeur via les &lt;em&gt;settings&lt;/em&gt; de son propre projet.&lt;/p&gt;
 &lt;p&gt;Classiquement, on a tendance à proposer les settings &#34;à plat&#34;, dans le module &lt;code&gt;settings.py&lt;/code&gt; du projet&amp;nbsp;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# settings.py
 MY_APP_NAME_FOO = 42
@@ -346,13 +625,13 @@ from my_app import app_settings
 print app_settings.get(&#39;FOO&#39;) # 42
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Merci de votre attention, et à bientôt pour de nouvelle aventures.&lt;/p&gt;</description>
-          <pubDate>Wed, 13 Apr 2011 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2011/clever-settings</guid>
-      </item>
-      <item>
-          <title>Creating a Custom Panel for the Django Debug Toolbar</title>
-          <link>http://nicolas.perriault.net/code/2011/djt</link>
-          <description>&lt;p&gt;Sometimes you work on stuff you don&#39;t really control, eg. when interacting with some mysterious SOAP server accross the Internets, and you&#39;d appreciate a little help from the Django ecosystem to ease debugging.&lt;/p&gt;
+            <pubDate>Wed, 13 Apr 2011 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2011/clever-settings</guid>
+        </item>
+        <item>
+            <title>Creating a Custom Panel for the Django Debug Toolbar</title>
+            <link>http://nicolas.perriault.net/code/2011/djt</link>
+            <description>&lt;p&gt;Sometimes you work on stuff you don&#39;t really control, eg. when interacting with some mysterious SOAP server accross the Internets, and you&#39;d appreciate a little help from the Django ecosystem to ease debugging.&lt;/p&gt;
 &lt;p&gt;That&#39;s — you guessed it — my case currently, and I really appreciated being able to create my own custom panel for adding specific debugging capabilities to the awesome &lt;a href=&#34;https://github.com/robhudson/django-debug-toolbar&#34;&gt;Django Debug Toolbar&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here&#39;s how I did, learning mainly from the code of the panels shipping with the DJT. I&#39;m supposing you have installed and configured the DJT in your project already.&lt;/p&gt;
 &lt;p&gt;First of all, create a &lt;code&gt;panels.py&lt;/code&gt; module within one of your app (or wherever you want as it&#39;s in your python path) and create a DebugPanel derivated class, like this:&lt;/p&gt;
@@ -408,13 +687,13 @@ class MyUsefulDebugPanel(DebugPanel):
 &lt;p&gt;Of course it&#39;s up to you to put really useful informations there, but here&#39;s the result, tadaa:&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;result screenshot&#34; src=&#34;http://media.tumblr.com/tumblr_lhfpagXiif1qbt2jc.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Thanks for reading, happy ponying.&lt;/p&gt;</description>
-          <pubDate>Fri, 11 Mar 2011 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2011/djt</guid>
-      </item>
-      <item>
-          <title>Enabling tab completion in OS X Python interactive interpreter</title>
-          <link>http://nicolas.perriault.net/code/2010/python-tab-completion</link>
-          <description>&lt;p&gt;Python is awesome, and so is its native interactive interpreter. I &lt;a href=&#34;http://sontek.net/tips-and-tricks-for-the-python-interpreter&#34;&gt;discovered today&lt;/a&gt; that it can even provide autocompletion using a very simple trick:&lt;/p&gt;
+            <pubDate>Fri, 11 Mar 2011 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2011/djt</guid>
+        </item>
+        <item>
+            <title>Enabling tab completion in OS X Python interactive interpreter</title>
+            <link>http://nicolas.perriault.net/code/2010/python-tab-completion</link>
+            <description>&lt;p&gt;Python is awesome, and so is its native interactive interpreter. I &lt;a href=&#34;http://sontek.net/tips-and-tricks-for-the-python-interpreter&#34;&gt;discovered today&lt;/a&gt; that it can even provide autocompletion using a very simple trick:&lt;/p&gt;
 &lt;p&gt;Append this to your &lt;code&gt;~/.profile&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;export PYTHONSTARTUP=$HOME/.pythonrc.py
 &lt;/code&gt;&lt;/pre&gt;
@@ -440,13 +719,13 @@ else:
     --no-site-packages `pwd`/env
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That&#39;s all folks.&lt;/p&gt;</description>
-          <pubDate>Wed, 29 Dec 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/python-tab-completion</guid>
-      </item>
-      <item>
-          <title>Install PIL within a virtualenv on Snow Leopard</title>
-          <link>http://nicolas.perriault.net/code/2010/pil-install</link>
-          <description>&lt;p&gt;As a personal reminder, here&#39;s how to install &lt;a href=&#34;http://www.pythonware.com/products/pil/&#34;&gt;PIL&lt;/a&gt; with jpeg and freetype support in a Python &lt;a href=&#34;/post/573774396/installer-django-dans-un-environnement-python-virtuel&#34;&gt;virtualenv&lt;/a&gt; with a little help from &lt;a href=&#34;https://github.com/mxcl/homebrew&#34;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt;
+            <pubDate>Wed, 29 Dec 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/python-tab-completion</guid>
+        </item>
+        <item>
+            <title>Install PIL within a virtualenv on Snow Leopard</title>
+            <link>http://nicolas.perriault.net/code/2010/pil-install</link>
+            <description>&lt;p&gt;As a personal reminder, here&#39;s how to install &lt;a href=&#34;http://www.pythonware.com/products/pil/&#34;&gt;PIL&lt;/a&gt; with jpeg and freetype support in a Python &lt;a href=&#34;/post/573774396/installer-django-dans-un-environnement-python-virtuel&#34;&gt;virtualenv&lt;/a&gt; with a little help from &lt;a href=&#34;https://github.com/mxcl/homebrew&#34;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ brew install jpeg
 $ wget http://mirrors.fe.up.pt/pub/nongnu/freetype/freetype-2.4.4.tar.gz
 $ tar xvzf freetype-2.4.4.tar.gz &amp;amp;&amp;amp; cd freetype-2.4.4
@@ -475,13 +754,13 @@ platform      darwin 2.6.1 (r261:67515, Jun 24 2010, 21:47:49)
 &lt;pre&gt;&lt;code&gt;$ brew install little-cms
 (fubar)$ pip install PIL
 &lt;/code&gt;&lt;/pre&gt;</description>
-          <pubDate>Fri, 03 Dec 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/pil-install</guid>
-      </item>
-      <item>
-          <title>Hosting a Symfony app on NginX using PHP-FPM</title>
-          <link>http://nicolas.perriault.net/code/2010/symfony-nginx-php-fpm</link>
-          <description>&lt;p&gt;I recently had to make a capacity planning study for a client of mine for which I&#39;ve been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on &lt;a href=&#34;http://php-fpm.org/&#34;&gt;PHP-FPM&lt;/a&gt;, a PHP &lt;a href=&#34;http://www.fastcgi.com/&#34;&gt;FastCGI&lt;/a&gt; implementation and the &lt;a href=&#34;http://nginx.org/&#34;&gt;NginX&lt;/a&gt; web server.&lt;/p&gt;
+            <pubDate>Fri, 03 Dec 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/pil-install</guid>
+        </item>
+        <item>
+            <title>Hosting a Symfony app on NginX using PHP-FPM</title>
+            <link>http://nicolas.perriault.net/code/2010/symfony-nginx-php-fpm</link>
+            <description>&lt;p&gt;I recently had to make a capacity planning study for a client of mine for which I&#39;ve been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on &lt;a href=&#34;http://php-fpm.org/&#34;&gt;PHP-FPM&lt;/a&gt;, a PHP &lt;a href=&#34;http://www.fastcgi.com/&#34;&gt;FastCGI&lt;/a&gt; implementation and the &lt;a href=&#34;http://nginx.org/&#34;&gt;NginX&lt;/a&gt; web server.&lt;/p&gt;
 &lt;p&gt;While PHP-FPM has just &lt;a href=&#34;http://www.php.net/manual/fr/install.fpm.php&#34;&gt;made it to PHP core&lt;/a&gt; in version 5.3.3, the OS version of the linux server we are using, Ubuntu 10.04 LTS, only ships with 5.3.2. Fortunately, &lt;a href=&#34;https://launchpad.net/~brianmercer/+archive/php&#34;&gt;Brian Mercer released a PHP-FPM sapi&lt;/a&gt; for these particular OS and PHP versions.&lt;/p&gt;
 &lt;p&gt;So installing PHP and PHP-FPM on Ubuntu Lucid Lynx is as easy as:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ sudo apt-get install install python-software-properties
@@ -577,13 +856,13 @@ $ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
 &lt;li&gt;&lt;a href=&#34;http://constantshift.com/install-php-fpm-5-3-2-on-ubuntu-10-04-lucid-lynx/&#34;&gt;Install PHP-FPM 5.3.2 on Ubuntu 10.04 (Lucid Lynx) | Constant Shift&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://symfonynotes.com/2009/12/04/hosting-symfony-based-website-with-nginx/&#34;&gt;Hosting symfony based website with nginx&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
-          <pubDate>Mon, 27 Sep 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/symfony-nginx-php-fpm</guid>
-      </item>
-      <item>
-          <title>A First Look at node.js and Express</title>
-          <link>http://nicolas.perriault.net/code/2010/express</link>
-          <description>&lt;p&gt;With all the hype coming to server-side Javascript lately, especially around &lt;a href=&#34;http://nodejs.org/&#34;&gt;Node&lt;/a&gt;, I was feeling the need to give it a try to see how it goes. Also, getting back to work after three full weeks of unwired holidays was hard enough to worth deserving some playtime with cool and fun technologies.&lt;/p&gt;
+            <pubDate>Mon, 27 Sep 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/symfony-nginx-php-fpm</guid>
+        </item>
+        <item>
+            <title>A First Look at node.js and Express</title>
+            <link>http://nicolas.perriault.net/code/2010/express</link>
+            <description>&lt;p&gt;With all the hype coming to server-side Javascript lately, especially around &lt;a href=&#34;http://nodejs.org/&#34;&gt;Node&lt;/a&gt;, I was feeling the need to give it a try to see how it goes. Also, getting back to work after three full weeks of unwired holidays was hard enough to worth deserving some playtime with cool and fun technologies.&lt;/p&gt;
 &lt;p&gt;Node is described as an &lt;em&gt;Evented I/O Framework for Google&#39;s V8 JavaScript Engine&lt;/em&gt;. Think of it as a toolkit to produce high-performance distributed, event-driven and scalable non-blocking network servers. Okay, whatever the way I want to describe the project, it&#39;s buzzword-bingo™. Let&#39;s say it&#39;s mainly about catching events and react accordingly, to make load distribution and parallel processing easier and more effective.&lt;/p&gt;
 &lt;h3&gt;Installing Node&lt;/h3&gt;
 &lt;p&gt;Installation on my Mac went smoothly and took nearly two minutes by compiling it from the sources; here&#39;s how I did (there might be easier or better ways, I don&#39;t really care):&lt;/p&gt;
@@ -663,13 +942,13 @@ Express server listening on port 3000
 &lt;p&gt;As you can see, installing and using Node and Express is quite straightforward, even if you have to dig into the deeper Web to find docs, when they exist. Javascript is a great, agile and well-known language, and taking part of it server-side definitely makes sense if you want my opinion.&lt;/p&gt;
 &lt;p&gt;Let&#39;s see how this will evolve in the future, as there are not as many backend-oriented libs in JavaScript as there are in other languages like python, ruby or php yet. But &lt;a href=&#34;http://github.com/ry/node/wiki/modules&#34;&gt;more and more node modules&lt;/a&gt; are appearing day after day, such as &lt;a href=&#34;http://www.learnboost.com/mongoose/&#34;&gt;Mongoose&lt;/a&gt; or &lt;a href=&#34;http://socket.io/&#34;&gt;Socket.IO&lt;/a&gt;, which I&#39;ll definitely be playing with as soon as possible.&lt;/p&gt;
 &lt;p&gt;Thanks for your attention, have fun, take care and don&#39;t break the Web.&lt;/p&gt;</description>
-          <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/express</guid>
-      </item>
-      <item>
-          <title>Tâches de déploiement spécifiques avec Symfony</title>
-          <link>http://nicolas.perriault.net/code/2010/custom-deployment-tasks</link>
-          <description>&lt;p&gt;&lt;a href=&#34;http://www.symfony-project.org/&#34;&gt;Symfony&lt;/a&gt; propose une tâche de déploiement distant utilisant &lt;a href=&#34;http://fr.wikipedia.org/wiki/Rsync&#34;&gt;&lt;code&gt;rsync&lt;/code&gt;&lt;/a&gt; fort pratique&amp;nbsp;: une fois configurés les &lt;a href=&#34;http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying&#34;&gt;paramètres du serveur distant&lt;/a&gt; dans le fichier &lt;code&gt;config/properties.ini&lt;/code&gt; de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l&#39;hôte distant. Et si vous utilisez une &lt;a href=&#34;http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant&#34;&gt;clé SSH&lt;/a&gt;, l&#39;opération ne vous demandera même pas de saisir votre mot de passe&amp;nbsp;!&lt;/p&gt;
+            <pubDate>Wed, 01 Sep 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/express</guid>
+        </item>
+        <item>
+            <title>Tâches de déploiement spécifiques avec Symfony</title>
+            <link>http://nicolas.perriault.net/code/2010/custom-deployment-tasks</link>
+            <description>&lt;p&gt;&lt;a href=&#34;http://www.symfony-project.org/&#34;&gt;Symfony&lt;/a&gt; propose une tâche de déploiement distant utilisant &lt;a href=&#34;http://fr.wikipedia.org/wiki/Rsync&#34;&gt;&lt;code&gt;rsync&lt;/code&gt;&lt;/a&gt; fort pratique&amp;nbsp;: une fois configurés les &lt;a href=&#34;http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying&#34;&gt;paramètres du serveur distant&lt;/a&gt; dans le fichier &lt;code&gt;config/properties.ini&lt;/code&gt; de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l&#39;hôte distant. Et si vous utilisez une &lt;a href=&#34;http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant&#34;&gt;clé SSH&lt;/a&gt;, l&#39;opération ne vous demandera même pas de saisir votre mot de passe&amp;nbsp;!&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ ./symfony project:deploy monserveur --go
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Mais bien souvent, nous avons besoin de plus&amp;nbsp;: préparer un certain nombre de fichiers statiques comme les assets CSS, JavaScript ou les images, ou vider le cache sur la ou les machines distantes pour prendre en compte d&#39;éventuelles modifications de la configuration ou du templating sur la plateforme de production (qui exploite l&#39;environnement du même nom, nous sommes bien d&#39;accord).&lt;/p&gt;
@@ -733,13 +1012,13 @@ class AkeiDeployTask extends sfProjectDeployTask
 &lt;p&gt;Notez d&#39;ailleurs l&#39;emploi du très pratique appel à &lt;code&gt;$this-&amp;gt;getFilesystem()-&amp;gt;execute()&lt;/code&gt;, qui permet d&#39;executer des appels à la ligne de commande locale depuis la classe de tâche elle-même&amp;nbsp;; ici, une execution distante à travers SSH.&lt;/p&gt;
 &lt;p&gt;Bien entendu, cet exemple est très spécifique aux besoins du site Akei, mais vous pourriez en quelques minutes gérer plus finement une tâche de déploiement plus générique et configurable. Pensez-y pour vos projets ;)&lt;/p&gt;
 &lt;p&gt;PS&amp;nbsp;: Ce billet a été écrit en 14 minutes. Merci de votre compréhension.&lt;/p&gt;</description>
-          <pubDate>Tue, 25 May 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/custom-deployment-tasks</guid>
-      </item>
-      <item>
-          <title>Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper</title>
-          <link>http://nicolas.perriault.net/code/2010/django-with-pip-virtualenv</link>
-          <description>&lt;p&gt;&lt;strong&gt;Ce billet résume les étapes nécessaires pour installer un ou plusieurs environnements de développement &lt;a href=&#34;http://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt; fonctionnels, portables et faciles à maintenir sous Mac OS X.&lt;/strong&gt;&lt;/p&gt;
+            <pubDate>Tue, 25 May 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/custom-deployment-tasks</guid>
+        </item>
+        <item>
+            <title>Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper</title>
+            <link>http://nicolas.perriault.net/code/2010/django-with-pip-virtualenv</link>
+            <description>&lt;p&gt;&lt;strong&gt;Ce billet résume les étapes nécessaires pour installer un ou plusieurs environnements de développement &lt;a href=&#34;http://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt; fonctionnels, portables et faciles à maintenir sous Mac OS X.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Même si Django est un framework relativement simple à installer, lorsqu&#39;il s&#39;agit de développer plusieurs projets mettant en œuvre différentes versions de ce dernier ou de librairies tierces nécessaires pour assurer son bon fonctionnement, le casse-tête peut rapidement devenir ingérable si l&#39;on ne prend pas garde à bien isoler le contexte applicatif dans un environnement dédié, isolé du reste du système.&lt;/p&gt;
 &lt;p&gt;Concrètement, imaginons que j&#39;ai deux projets Django&amp;nbsp;:&lt;/p&gt;
 &lt;ul&gt;
@@ -866,13 +1145,13 @@ wsgiref==0.1.2
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;En espérant vous avoir été utile avec ce billet, je m&#39;en retourne vaquer à mes occupations, et vous rappelle à toutes fins utiles qu&#39;&lt;a href=&#34;http://www.akei.com/&#34;&gt;Akei&lt;/a&gt; serait quand même super contente d&#39;avoir &lt;a href=&#34;http://www.akei.com/fr/contact&#34;&gt;un coup de fil de votre part&lt;/a&gt; pour travailler sur vos chouettes projets en devenir, pourquoi pas en créant plein de &lt;code&gt;virtualenv&lt;/code&gt; Python sympas comme tout ;)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Edit&amp;nbsp;:&lt;/strong&gt; Prise en compte de la variable d&#39;environnement &lt;code&gt;PIP_RESPECT_VIRTUALENV&lt;/code&gt; pour que &lt;code&gt;pip&lt;/code&gt; detecte automatiquement la présence d&#39;un environnement virtuel lors de son utilisation (merci Mathieu !)&lt;/p&gt;</description>
-          <pubDate>Wed, 05 May 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/django-with-pip-virtualenv</guid>
-      </item>
-      <item>
-          <title>About RESTful features of modern Web frameworks</title>
-          <link>http://nicolas.perriault.net/code/2010/about-rest-frameworks</link>
-          <description>&lt;p&gt;Frameworks like &lt;a href=&#34;http://www.symfony-project.org/&#34;&gt;Symfony&lt;/a&gt; or &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;rails&lt;/a&gt; (and probably many others) provide a very convenient feature named &lt;em&gt;RESTful&lt;/em&gt; routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entites and several available actions on them over HTTP.&lt;/p&gt;
+            <pubDate>Wed, 05 May 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/django-with-pip-virtualenv</guid>
+        </item>
+        <item>
+            <title>About RESTful features of modern Web frameworks</title>
+            <link>http://nicolas.perriault.net/code/2010/about-rest-frameworks</link>
+            <description>&lt;p&gt;Frameworks like &lt;a href=&#34;http://www.symfony-project.org/&#34;&gt;Symfony&lt;/a&gt; or &lt;a href=&#34;http://rubyonrails.org/&#34;&gt;rails&lt;/a&gt; (and probably many others) provide a very convenient feature named &lt;em&gt;RESTful&lt;/em&gt; routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entites and several available actions on them over HTTP.&lt;/p&gt;
 &lt;p&gt;This is really useful, especially when you deal with WebServices on a daily basis, or if you want to reuse your controllers in both &lt;em&gt;standard html&lt;/em&gt; or &lt;em&gt;service oriented architecture&lt;/em&gt; (SOA) contexts.&lt;/p&gt;
 &lt;p&gt;For example, with Symfony, you can declare an HTTP routes collection this way (all examples are taken from the &lt;a href=&#34;http://github.com/n1k0/sftunes&#34;&gt;Sftunes Symfony application&lt;/a&gt; I recently released on &lt;em&gt;github&lt;/em&gt;):&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# routing.yml
@@ -932,9 +1211,9 @@ homepage        ANY    /
 &lt;p&gt;Feel free to provide hints on this topic in the comments.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Edit:&lt;/strong&gt; Just learnt via the comments that HTML5 draft spec includes support of &lt;code&gt;PUT&lt;/code&gt; and &lt;code&gt;DELETE&lt;/code&gt; HTTP verbs in forms (&lt;a href=&#34;http://bradley-holt.com/2009/07/html-5-http-methods-rest/&#34;&gt;source&lt;/a&gt; - thx jblanche).&lt;/p&gt;
 &lt;p&gt;Great, can&#39;t wait for &lt;a href=&#34;http://www.webmonkey.com/2008/09/html_5_won_t_be_ready_until_2022dot_yes__2022dot/&#34;&gt;2022&lt;/a&gt;!&lt;/p&gt;</description>
-          <pubDate>Wed, 28 Apr 2010 00:00:00 +0000</pubDate>
-          <guid>http://nicolas.perriault.net/code/2010/about-rest-frameworks</guid>
-      </item>
-      
-   </channel>
+            <pubDate>Wed, 28 Apr 2010 00:00:00 +0000</pubDate>
+            <guid>http://nicolas.perriault.net/code/2010/about-rest-frameworks</guid>
+        </item>
+        
+    </channel>
 </rss>

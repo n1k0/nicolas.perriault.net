@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
     // code pretty printing
     $('pre').each(function() {
-        if ($(this).text().trim().indexOf('$') !== 0) {
+        if ($(this).text().trim().indexOf('$') !== 0 && !$(this).hasClass('unpretty')) {
             $(this).addClass('prettyprint');
         }
     });
