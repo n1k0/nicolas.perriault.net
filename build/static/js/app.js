@@ -8,10 +8,9 @@ $(document).ready(function() {
         event.preventDefault();
     });
     // code pretty printing
-    $('pre').each(function() {
+    $('pre').each(function(i, e) {
         if ($(this).text().trim().indexOf('$') !== 0 && !$(this).hasClass('unpretty')) {
-            $(this).addClass('prettyprint');
+            hljs.highlightBlock(e, '    ');
         }
     });
-    prettyPrint();
 });

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width">
 {%- assets filter="cssmin", output="packed.css",
     "css/style.css",
-    "css/prettify.css"
+    "css/code.css"
 %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
 {%- endassets %}
@@ -59,7 +59,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 {%- assets filter="uglifyjs", output="packed.js",
-    "js/libs/prettify.js",
+    "js/libs/highlight/highlight.pack.js",
     "js/app.js"
 %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
