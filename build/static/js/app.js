@@ -13,4 +13,19 @@ $(document).ready(function() {
             hljs.highlightBlock(e, '    ');
         }
     });
+    // image viewer
+    $('figure.photo a.view').live('click', function(event) {
+        var viewer = $('<div class="viewer"></div>')
+        .appendTo('body')
+        .html($(this).html())
+        .click(function(event) {
+            $(this).remove();
+            event.preventDefault();
+        });
+        var img = viewer.find('img');
+        setTimeout(function() {
+            $(img).css('margin-top', -$(img).height()/2).css('margin-left', -$(img).width()/2);
+        }, 10);
+        event.preventDefault();
+    });
 });

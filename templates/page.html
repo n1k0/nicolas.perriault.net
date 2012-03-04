@@ -17,15 +17,16 @@
             <li><a class="darkroom" href="" title="View on black">View on black</a></li>
         </ul>
         <figure class="photo">
-        {%- if page.image_link %}
-            <a href="{{ page.image_link }}" title="{{ page.title }}">
+            <a href="{{ page }}" title="{{ page.title }}" class="view">
                 <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault"/></a>
-        {%- else %}
-            <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault">
-        {%- endif %}
-        {%- if page.summary|trim %}
-            <figcaption>{{ page.summary|trim }}</figcaption>
-        {% endif %}
+            <figcaption>
+            {%- if page.summary|trim %}
+                {{- page.summary|trim }} —
+            {% endif %}
+            {%- if page.image_link %}
+                <a href="{{ page.image_link }}">View it on 500px</a>
+            {%- endif %}
+            </figcaption>
         </figure>
         {%- endif %}
         {{ page.html|safe }}
