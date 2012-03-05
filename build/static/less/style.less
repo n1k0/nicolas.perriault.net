@@ -41,6 +41,12 @@ html[xmlns] .clearfix {
     text-decoration: none;
 }
 
+.arrow-prefixed {
+    &:before {
+        content: "\00AB\00A0";
+    }
+}
+
 .arrow-suffixed {
     &:after {
         content: "\00A0\00BB";
@@ -207,6 +213,15 @@ q:before, q:after {
             text-align: right;
             font-style: italic;
         }
+        nav {
+            text-align: center;
+            .prev {
+                .arrow-prefixed;
+            }
+            .next {
+                .arrow-suffixed;
+            }
+        }
         .slideshare {
             width: 100%;
             height: 530px;
@@ -336,7 +351,8 @@ q:before, q:after {
 }
 
 .viewer {
-    display: table-cell;
+    display: block;
+    visibility: hidden;
     position: fixed;
     background: #333;
     top: 0;

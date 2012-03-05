@@ -54,6 +54,19 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
     for article in articles:
         if not article.meta.get('section'):
             article.meta['section'] = article.path.split('/')[0]
+    # assign prev/next page in serie
+    for i, article in enumerate(articles):
+        if i != 0:
+            try:
+                article.prev = articles[i - 1]
+            except IndexError:
+                pass
+        if i != len(articles) - 1:
+            try:
+                article.next = articles[i + 1]
+            except IndexError:
+                pass
+    # offset and limit
     if offset and limit:
         return articles[offset:limit]
     elif limit:

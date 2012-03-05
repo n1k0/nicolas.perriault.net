@@ -42,4 +42,14 @@
             — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>.
         </p>
     </aside>
+    <hr>
+    <nav>
+        {% if page.prev -%}
+            <a class="prev" href="{{ url_for("page", path=page.prev.path) }}">{{ page.prev.title }}</a>
+        {%- endif %}
+        {% if page.prev and page.next %}|{% endif %}
+        {% if page.next -%}
+            <a class="next" href="{{ url_for("page", path=page.next.path) }}">{{ page.next.title }}</a>
+        {%- endif %}
+    </nav>
 </article>
