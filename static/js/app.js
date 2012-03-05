@@ -32,8 +32,12 @@ $(document).ready(function() {
         $(document).keypress(function(event) {
             if (event.keyCode === 27 && lightboxed) {
                 hideview.call($('.viewer'));
-            } else if (event.charCode === 118 && !lightboxed) {
-                showview($('figure.photo a.view'));
+            } else if (event.charCode === 118) {
+                if (lightboxed) {
+                    hideview.call($('.viewer'));
+                } else {
+                    showview.call($('figure.photo a.view'));
+                }
             }
         });
         // url hash detector
