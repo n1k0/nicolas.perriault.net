@@ -171,7 +171,7 @@ q:before, q:after {
   display: none;
 }
 .contents article.photography .controls {
-  margin: 0;
+  margin: -14px 0 0 0;
   padding: 0 0 10px 0;
   list-style-type: none;
 }
@@ -198,6 +198,9 @@ q:before, q:after {
 .contents article.photography .photo {
   clear: both;
   margin-top: 10px;
+}
+.contents article.photography .photo img {
+  width: 100%;
 }
 .contents ul.gallery {
   padding: 0;
@@ -279,7 +282,8 @@ q:before, q:after {
   border-top: 1px solid #ddd;
 }
 .viewer {
-  display: table-cell;
+  display: block;
+  visibility: hidden;
   position: fixed;
   background: #333;
   top: 0;

@@ -221,7 +221,7 @@ q:before, q:after {
     }
     article.photography {
         .controls {
-            margin: 0;
+            margin: -@baseHeight 0 0 0;
             padding: 0 0 10px 0;
             list-style-type: none;
             li {
@@ -248,6 +248,9 @@ q:before, q:after {
         .photo {
             clear: both;
             margin-top: 10px;
+            img {
+                width: 100%;
+            }
         }
     }
     ul.gallery {

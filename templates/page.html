@@ -17,7 +17,7 @@
             <li><a class="darkroom" href="" title="View on black">View on black</a></li>
         </ul>
         <figure class="photo">
-            <a href="{{ page }}" title="{{ page.title }}" class="view">
+            <a href="/static/{{ page.path }}/main.jpg" title="{{ page.title }} — Click the picture to view it large" class="view">
                 <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault"/></a>
             <figcaption>
             {%- if page.summary|trim %}

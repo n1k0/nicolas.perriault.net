@@ -15,17 +15,25 @@ $(document).ready(function() {
     });
     // image viewer
     $('figure.photo a.view').live('click', function(event) {
-        var viewer = $('<div class="viewer"></div>')
+        showview.call(this);
+        event.preventDefault();
+        window.location.hash = "lightbox";
+    });
+    if (window.location.hash === "#lightbox" && $('figure.photo a.view').length) {
+        showview.call($('figure.photo a.view'));
+    }
+    function showview() {
+        var viewer = $('<div class="viewer"/>')
         .appendTo('body')
         .html($(this).html())
         .click(function(event) {
             $(this).remove();
             event.preventDefault();
+            window.location.hash = "";
         });
         var img = viewer.find('img');
         setTimeout(function() {
             $(img).css('margin-top', -$(img).height()/2).css('margin-left', -$(img).width()/2);
-        }, 10);
-        event.preventDefault();
-    });
+        }, 50);
+    }
 });
