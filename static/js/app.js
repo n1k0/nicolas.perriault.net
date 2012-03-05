@@ -28,11 +28,12 @@ $(document).ready(function() {
             event.preventDefault();
             window.location.hash = "lightbox";
         });
-        // keypress listener
-        $(document).keypress(function(event) {
-            if (event.keyCode === 27 && lightboxed) {
+        // keydown listener
+        $(document).keydown(function(event) {
+            console.log(event)
+            if (event.which === 27 && lightboxed) {
                 hideview.call($('.viewer'));
-            } else if (event.charCode === 118) {
+            } else if (event.which === 86) { // v
                 if (lightboxed) {
                     hideview.call($('.viewer'));
                 } else {
@@ -70,5 +71,24 @@ $(document).ready(function() {
                 lightboxed = true;
             }, 50);
         }
+    })();
+    // keyboard navigation listeners
+    (function() {
+        $(document).keydown(function(event) {
+            switch (event.which) {
+                case 74: // j
+                    if ($('nav a.prev').length === 1) {
+                        // click() won't work
+                        document.location = $('nav a.prev').attr('href');
+                    }
+                break;
+                case 75: // k
+                    if ($('nav a.next').length === 1) {
+                        // click() won't work
+                        document.location = $('nav a.next').attr('href');
+                    }
+                break;
+            }
+        });
     })();
 });

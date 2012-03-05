@@ -421,6 +421,8 @@ body.greyroom .sidebar li.photography a {
 }
 @media (max-width: 768px) {
   body {
+    font-size: 18px;
+    line-height: 24px;
     width: auto;
   }
   body .contents {
@@ -430,9 +432,9 @@ body.greyroom .sidebar li.photography a {
     margin-left: 0;
   }
   body .main-title h1 {
-    margin: 20px 0;
+    margin: 20px 0 15px;
   }
-  body .main-title h2 {
+  body .main-title small {
     font-size: 20px;
   }
   body .sidebar {
@@ -452,8 +454,8 @@ body.greyroom .sidebar li.photography a {
 }
 @media (min-width: 481px) and (max-width: 768px) {
   body {
-    font-size: 17px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 26px;
   }
   body .main-title {
     margin: 0;
@@ -464,16 +466,16 @@ body.greyroom .sidebar li.photography a {
     line-height: 40px;
   }
   body p {
-    line-height: 24px;
+    line-height: 26px;
   }
   body .contents li {
-    line-height: 24px;
+    line-height: 26px;
   }
 }
 @media (max-width: 480px) {
   body {
     font-size: 16px;
-    line-height: 16px;
+    line-height: 20px;
     padding: 10px;
     width: auto;
   }
@@ -482,7 +484,7 @@ body.greyroom .sidebar li.photography a {
   }
   body .main-title h1 {
     font-size: 40px;
-    margin: 0;
+    margin: 20px 0 8px 0;
   }
   body .main-title small {
     font-size: 20px;
