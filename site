@@ -42,30 +42,30 @@ def get_pages(pages, offset=None, limit=None, section=None, year=None):
     """ Retrieves pages matching passec criterias.
     """
     articles = list(pages)
-    if not app.debug:
-        articles = [p for p in articles if p.meta.get('published') is True]
-    if section:
-        articles = [p for p in articles if p.path.startswith(section)]
-    if year:
-        articles = [p for p in articles if p.meta.get('date').year == year]
-    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date',
-        date.today()))
     # assign section value if none was provided in the metas
     for article in articles:
         if not article.meta.get('section'):
             article.meta['section'] = article.path.split('/')[0]
+    # filter unpublished article
+    if not app.debug:
+        articles = [p for p in articles if p.meta.get('published') is True]
+    # filter section
+    if section:
+        articles = [p for p in articles if p.meta.get('section') == section]
+    # filter year
+    if year:
+        articles = [p for p in articles if p.meta.get('date').year == year]
+    # sort by date
+    articles = sorted(articles, reverse=True, key=lambda p: p.meta.get('date',
+        date.today()))
     # assign prev/next page in serie
     for i, article in enumerate(articles):
         if i != 0:
-            try:
+            if section and articles[i - 1].meta.get('section') == section:
                 article.prev = articles[i - 1]
-            except IndexError:
-                pass
         if i != len(articles) - 1:
-            try:
+            if section and articles[i + 1].meta.get('section') == section:
                 article.next = articles[i + 1]
-            except IndexError:
-                pass
     # offset and limit
     if offset and limit:
         return articles[offset:limit]
@@ -130,8 +130,9 @@ def contact():
 
 @app.route('/feed/')
 def feed():
-    return render_template('base.rss', pages=get_pages(pages,
-        limit=FEED_MAX_LINKS), build_date=datetime.now())
+    articles = get_pages(pages, limit=FEED_MAX_LINKS)
+    now = datetime.now()
+    return render_template('base.rss', pages=articles, build_date=now)
 
 
 @app.route('/<string:section>/feed/')
@@ -180,8 +181,8 @@ def section_archives_year(section, year):
         abort(404)
     template = '%s/archives.html' % section
     years = get_years(get_pages(pages, section=section))
-    return render_template(template, pages=get_pages(pages, section=section,
-        year=year), years=years, year=year)
+    articles = get_pages(pages, section=section, year=year)
+    return render_template(template, pages=articles, years=years, year=year)
 
 
 @app.route('/404.html')

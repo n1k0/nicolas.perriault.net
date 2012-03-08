@@ -235,9 +235,23 @@ q:before, q:after {
         }
     }
     article.photography {
+        aside {
+            text-align: left;
+            line-height: @baseHeight;
+            margin-bottom: -17px;
+            &.help {
+                font-size: @baseHeight;
+                color: #777;
+                kbd {
+                    padding: 0 4px;
+                    .rounded(2px);
+                    background: #ddd;
+                }
+            }
+        }
         .controls {
-            margin: -@baseHeight 0 0 0;
-            padding: 0 0 10px 0;
+            margin: -@baseHeight 0 5px 0;
+            padding: 0 0 (@baseHeight + 2px) 0;
             list-style-type: none;
             li {
                 float: right;
@@ -262,7 +276,6 @@ q:before, q:after {
         }
         .photo {
             clear: both;
-            margin-top: 10px;
             img {
                 width: 100%;
             }

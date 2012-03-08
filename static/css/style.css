@@ -182,9 +182,25 @@ q:before, q:after {
 .contents article .article-author {
   display: none;
 }
+.contents article.photography aside {
+  text-align: left;
+  line-height: 14px;
+  margin-bottom: -17px;
+}
+.contents article.photography aside.help {
+  font-size: 14px;
+  color: #777;
+}
+.contents article.photography aside.help kbd {
+  padding: 0 4px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  background: #ddd;
+}
 .contents article.photography .controls {
-  margin: -14px 0 0 0;
-  padding: 0 0 10px 0;
+  margin: -14px 0 5px 0;
+  padding: 0 0 16px 0;
   list-style-type: none;
 }
 .contents article.photography .controls li {
@@ -209,7 +225,6 @@ q:before, q:after {
 }
 .contents article.photography .photo {
   clear: both;
-  margin-top: 10px;
 }
 .contents article.photography .photo img {
   width: 100%;

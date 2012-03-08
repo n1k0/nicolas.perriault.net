@@ -26,13 +26,12 @@ $(document).ready(function() {
         $('figure.photo a.view').live('click', function(event) {
             showview.call(this);
             event.preventDefault();
-            window.location.hash = "lightbox";
         });
         // keydown listener
         $(document).keydown(function(event) {
-            if (event.keyCode === 27 && lightboxed) {
+            if (event.which === 27 && lightboxed) {
                 hideview.call($('.viewer'));
-            } else if (event.charCode === 118) {
+            } else if (event.which === 86) { // v
                 if (lightboxed) {
                     hideview.call($('.viewer'));
                 } else {
@@ -61,32 +60,38 @@ $(document).ready(function() {
                 hideview.call(this);
                 event.preventDefault();
             });
-            var img = viewer.find('img');
-            setTimeout(function() {
-                $(img).css('margin-top', -$(img).height()/2).css('margin-left', -$(img).width()/2);
+            $(viewer.find('img')).load(function() {
+                $(this).css('margin-top', -$(this).height()/2).css('margin-left', -$(this).width()/2);
                 viewer.hide();
                 viewer.css('visibility', 'visible');
                 viewer.fadeIn('fast');
+                window.location.hash = "#lightbox";
                 lightboxed = true;
-            }, 50);
+            });
         }
     })();
+
     // keyboard navigation listeners
     (function() {
         $(document).keydown(function(event) {
-            switch (event.charCode) {
-                case 106: // j
+            var url;
+            function buildUrl(url) {
+                return url + window.location.hash;
+            }
+            switch (event.which) {
+                case 74: // j
                     if ($('nav a.prev').length === 1) {
-                        // click() won't work
-                        document.location = $('nav a.prev').attr('href');
+                        url = buildUrl($('nav a.prev').attr('href'));
                     }
                 break;
-                case 107: // k
+                case 75: // k
                     if ($('nav a.next').length === 1) {
-                        // click() won't work
-                        document.location = $('nav a.next').attr('href');
+                        url = buildUrl($('nav a.next').attr('href'));
                     }
                 break;
+            }
+            if (url) {
+                document.location = url;
             }
         });
     })();
