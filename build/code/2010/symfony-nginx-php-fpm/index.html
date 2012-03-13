@@ -2,11 +2,12 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Hosting a Symfony app on NginX using PHP-FPM | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330958175">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331656984">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -37,93 +38,105 @@
         <p>I recently had to make a capacity planning study for a client of mine for which I've been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on <a href="http://php-fpm.org/">PHP-FPM</a>, a PHP <a href="http://www.fastcgi.com/">FastCGI</a> implementation and the <a href="http://nginx.org/">NginX</a> web server.</p>
 <p>While PHP-FPM has just <a href="http://www.php.net/manual/fr/install.fpm.php">made it to PHP core</a> in version 5.3.3, the OS version of the linux server we are using, Ubuntu 10.04 LTS, only ships with 5.3.2. Fortunately, <a href="https://launchpad.net/~brianmercer/+archive/php">Brian Mercer released a PHP-FPM sapi</a> for these particular OS and PHP versions.</p>
 <p>So installing PHP and PHP-FPM on Ubuntu Lucid Lynx is as easy as:</p>
-<pre><code>$ sudo apt-get install install python-software-properties
-$ sudo add-apt-repository ppa:brianmercer/php
-$ sudo apt-get update
-$ sudo apt-get install php5-cli php5-common php5-mysql php5-suhosin \
-    php5-gd php5-fpm php5-cgi php-pear php5-memcache php-apc
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">software</span><span class="o">-</span><span class="k">properties</span>
+$ <span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="p">:</span><span class="n">brianmercer</span><span class="o">/</span><span class="n">php</span>
+$ <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+$ <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">php5</span><span class="o">-</span><span class="n">cli</span> <span class="n">php5</span><span class="o">-</span><span class="n">common</span> <span class="n">php5</span><span class="o">-</span><span class="n">mysql</span> <span class="n">php5</span><span class="o">-</span><span class="n">suhosin</span> <span class="o">\</span>
+    <span class="n">php5</span><span class="o">-</span><span class="n">gd</span> <span class="n">php5</span><span class="o">-</span><span class="n">fpm</span> <span class="n">php5</span><span class="o">-</span><span class="n">cgi</span> <span class="n">php</span><span class="o">-</span><span class="n">pear</span> <span class="n">php5</span><span class="o">-</span><span class="n">memcache</span> <span class="n">php</span><span class="o">-</span><span class="n">apc</span>
+</pre></div>
+
+
 <p>Of course, feel free to add any supplementary packages you need. To start up the PHP-FPM service, run:</p>
-<pre><code>$ sudo service php5-fpm start
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">service</span> <span class="n">php5</span><span class="o">-</span><span class="n">fpm</span> <span class="n">start</span>
+</pre></div>
+
+
 <p>As a side note, the service will run on port 9000 by default, but you can tweak this up by editing its configuration file located at <code>/etc/php5/fpm/php-fpm.conf</code>.</p>
 <p>Now, let's install the NginX web server:</p>
-<pre><code>$ sudo apt-get install nginx
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">nginx</span>
+</pre></div>
+
+
 <p>That's it. Let's create a new site configuration for our Symfony application in a new <code>/etc/nginx/sites-available/mywonderfulwebsite.org</code> file:</p>
-<pre><code>server {
-    set $website_host "mywonderfulwebsite.org";
-    set $website_root "/var/www/mywonderfulwebsite/web";
-    set $default_controller "index.php";
-    set $symfony_root "/var/www/mywonderfulwebsite/lib/vendor/symfony";
+<div class="codehilite"><pre><span class="n">server</span> <span class="p">{</span>
+    <span class="n">set</span> $<span class="n">website_host</span> &quot;<span class="n">mywonderfulwebsite</span><span class="p">.</span><span class="n">org</span>&quot;<span class="p">;</span>
+    <span class="n">set</span> $<span class="n">website_root</span> &quot;<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">mywonderfulwebsite</span><span class="o">/</span><span class="n">web</span>&quot;<span class="p">;</span>
+    <span class="n">set</span> $<span class="n">default_controller</span> &quot;<span class="n">index</span><span class="p">.</span><span class="n">php</span>&quot;<span class="p">;</span>
+    <span class="n">set</span> $<span class="n">symfony_root</span> &quot;<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">mywonderfulwebsite</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">vendor</span><span class="o">/</span><span class="n">symfony</span>&quot;<span class="p">;</span>
 
-    listen 80;
-    server_name $website_host;
+    <span class="n">listen</span> 80<span class="p">;</span>
+    <span class="n">server_name</span> $<span class="n">website_host</span><span class="p">;</span>
 
-    # Gzip
-    gzip on;
-    gzip_min_length 1000;
-    gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
-    gzip_disable "MSIE [1-6]\.";
+    # <span class="n">Gzip</span>
+    <span class="n">gzip</span> <span class="n">on</span><span class="p">;</span>
+    <span class="n">gzip_min_length</span> 1000<span class="p">;</span>
+    <span class="n">gzip_types</span> <span class="n">text</span><span class="o">/</span><span class="n">plain</span> <span class="n">text</span><span class="o">/</span><span class="n">css</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">javascript</span> <span class="n">text</span><span class="o">/</span><span class="n">xml</span> <span class="n">application</span><span class="o">/</span><span class="n">xml</span> <span class="n">application</span><span class="o">/</span><span class="n">xml</span><span class="o">+</span><span class="n">rss</span> <span class="n">text</span><span class="o">/</span><span class="n">javascript</span><span class="p">;</span>
+    <span class="n">gzip_disable</span> &quot;<span class="n">MSIE</span> <span class="p">[</span>1<span class="o">-</span>6<span class="p">]</span><span class="o">\</span><span class="p">.</span>&quot;<span class="p">;</span>
 
-    access_log /var/log/nginx/$website_host.access.log;
+    <span class="n">access_log</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span>$<span class="n">website_host</span><span class="p">.</span><span class="n">access</span><span class="p">.</span><span class="nb">log</span><span class="p">;</span>
 
-    root $website_root;
+    <span class="n">root</span> $<span class="n">website_root</span><span class="p">;</span>
 
-    index $default_controller;
+    <span class="n">index</span> $<span class="n">default_controller</span><span class="p">;</span>
 
-    charset utf-8;
+    <span class="n">charset</span> <span class="n">utf</span><span class="o">-</span>8<span class="p">;</span>
 
-    location /sf {
-        # path to folder where all symfony assets are located
-        alias $symfony_root/data/web/sf;
-        expires max;
-    }
+    <span class="n">location</span> <span class="o">/</span><span class="n">sf</span> <span class="p">{</span>
+        # <span class="n">path</span> <span class="n">to</span> <span class="n">folder</span> <span class="n">where</span> <span class="n">all</span> <span class="n">symfony</span> <span class="n">assets</span> <span class="n">are</span> <span class="n">located</span>
+        <span class="n">alias</span> $<span class="n">symfony_root</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">web</span><span class="o">/</span><span class="n">sf</span><span class="p">;</span>
+        <span class="n">expires</span> <span class="n">max</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    location / {
-        # If the file exists as a static file serve it directly without
-        # running all the other rewite tests on it
-        if (-f $request_filename) {
-            expires max;
-            break;
-        }
+    <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+        # <span class="n">If</span> <span class="n">the</span> <span class="n">file</span> <span class="n">exists</span> <span class="n">as</span> <span class="n">a</span> <span class="n">static</span> <span class="n">file</span> <span class="n">serve</span> <span class="n">it</span> <span class="n">directly</span> <span class="n">without</span>
+        # <span class="n">running</span> <span class="n">all</span> <span class="n">the</span> <span class="n">other</span> <span class="n">rewite</span> <span class="n">tests</span> <span class="n">on</span> <span class="n">it</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="n">f</span> $<span class="n">request_filename</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">expires</span> <span class="n">max</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        if ($request_filename !~ "\.(js|htc|ico|gif|jpg|png|css)$") {
-            rewrite ^(.*) /$default_controller$1 last;
-        }
-    }
+        <span class="k">if</span> <span class="p">(</span>$<span class="n">request_filename</span> !<span class="o">~</span> &quot;<span class="o">\</span><span class="p">.(</span><span class="n">js</span><span class="o">|</span><span class="n">htc</span><span class="o">|</span><span class="n">ico</span><span class="o">|</span><span class="n">gif</span><span class="o">|</span><span class="n">jpg</span><span class="o">|</span><span class="n">png</span><span class="o">|</span><span class="n">css</span><span class="p">)</span>$&quot;<span class="p">)</span> <span class="p">{</span>
+            <span class="n">rewrite</span> ^<span class="p">(</span><span class="o">.*</span><span class="p">)</span> <span class="o">/</span>$<span class="n">default_controller</span>$1 <span class="n">last</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    location ~ "^(.+\.php)($|/)" {
+    <span class="n">location</span> <span class="o">~</span> &quot;^<span class="p">(.</span><span class="o">+\</span><span class="p">.</span><span class="n">php</span><span class="p">)(</span>$<span class="o">|/</span><span class="p">)</span>&quot; <span class="p">{</span>
 
-        set $script $uri;
-        set $path_info "/";
+        <span class="n">set</span> $<span class="n">script</span> $<span class="n">uri</span><span class="p">;</span>
+        <span class="n">set</span> $<span class="n">path_info</span> &quot;<span class="o">/</span>&quot;<span class="p">;</span>
 
-        if ($uri ~ "^(.+\.php)($|/)") {
-            set $script $1;
-        }
+        <span class="k">if</span> <span class="p">(</span>$<span class="n">uri</span> <span class="o">~</span> &quot;^<span class="p">(.</span><span class="o">+\</span><span class="p">.</span><span class="n">php</span><span class="p">)(</span>$<span class="o">|/</span><span class="p">)</span>&quot;<span class="p">)</span> <span class="p">{</span>
+            <span class="n">set</span> $<span class="n">script</span> $1<span class="p">;</span>
+        <span class="p">}</span>
 
-        if ($uri ~ "^(.+\.php)(/.+)") {
-            set $script $1;
-            set $path_info $2;
-        }
+        <span class="k">if</span> <span class="p">(</span>$<span class="n">uri</span> <span class="o">~</span> &quot;^<span class="p">(.</span><span class="o">+\</span><span class="p">.</span><span class="n">php</span><span class="p">)(</span><span class="o">/</span><span class="p">.</span><span class="o">+</span><span class="p">)</span>&quot;<span class="p">)</span> <span class="p">{</span>
+            <span class="n">set</span> $<span class="n">script</span> $1<span class="p">;</span>
+            <span class="n">set</span> $<span class="n">path_info</span> $2<span class="p">;</span>
+        <span class="p">}</span>
 
-        include /etc/nginx/fastcgi_params;
-        fastcgi_pass 127.0.0.1:9000;
+        <span class="n">include</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">fastcgi_params</span><span class="p">;</span>
+        <span class="n">fastcgi_pass</span> 127<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>1<span class="p">:</span>9000<span class="p">;</span>
 
-        fastcgi_param SCRIPT_FILENAME $website_root$script;
-        fastcgi_param SCRIPT_NAME $script;
-        fastcgi_param PATH_INFO $path_info;
-    }
-}
-</code></pre>
+        <span class="n">fastcgi_param</span> <span class="n">SCRIPT_FILENAME</span> $<span class="n">website_root</span>$<span class="n">script</span><span class="p">;</span>
+        <span class="n">fastcgi_param</span> <span class="n">SCRIPT_NAME</span> $<span class="n">script</span><span class="p">;</span>
+        <span class="n">fastcgi_param</span> <span class="n">PATH_INFO</span> $<span class="n">path_info</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>As you may have noticed, I'm taking part of the convenient custom variable system of the NginX configuration syntax, so you'll probably just have to adapt the <code>$website_host</code>, <code>$website_root</code>, <code>$default_controller</code> and <code>$symfony_root</code> variables to your project needs.</p>
 <p>Enabling the website is achieved with a symbolic link, like this:</p>
-<pre><code>$ sudo ln -sf /etc/nginx/sites-available/mywonderfulwebsite.org \
-              /etc/nginx/sites-enabled/mywonderfulwebsite.org
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">sf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">mywonderfulwebsite</span><span class="p">.</span><span class="n">org</span> <span class="o">\</span>
+              <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">mywonderfulwebsite</span><span class="p">.</span><span class="n">org</span>
+</pre></div>
+
+
 <p>Last but not least, don't forget to launch the webserver:</p>
-<pre><code>$ sudo /etc/init.d/nginx start
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">nginx</span> <span class="n">start</span>
+</pre></div>
+
+
 <p>I did some benchmarks but unfortunately the hardware configuration being quite different between the old and the new platform, the statistics generated did not make much sense. But the reactivity of the application, and memory footprint is much much better with the new setup (I know, this is not a very scientific statement).</p>
 <h3>Sources</h3>
 <ul>

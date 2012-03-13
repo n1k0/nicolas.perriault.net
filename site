@@ -13,11 +13,13 @@ from flask_frozen import Freezer
 from flaskext.flatpages import FlatPages
 from flaskext.markdown import Markdown
 from flaskext.assets import Environment as AssetManager
+from PIL import Image, ImageOps
+from shutil import copyfile
 from unicodedata import normalize
 
 # Configuration
 DEBUG = False
-BASE_URL = 'http://nicolas.perriault.net'
+BASE_URL = 'https://nicolas.perriault.net'
 ASSETS_DEBUG = DEBUG
 FLATPAGES_AUTO_RELOAD = True
 FLATPAGES_EXTENSION = '.md'
@@ -83,6 +85,25 @@ def get_years(pages):
     return years
 
 
+def resize_image(path, box, out=None, fit=True, quality=75):
+    """ Downsample an image.
+
+        @param path:    string - path to the original image
+        @param box:     tuple(x, y) - the bounding box of the result image
+        @param out:     file-like-object - save the image into the output stream
+        @param fit:     boolean - crop the image to fill the box
+        @param quality: int - JPEG quality
+    """
+    img = Image.open(path)
+    if fit:
+        img = ImageOps.fit(img, box, Image.ANTIALIAS)
+    else:
+        img.thumbnail(box, Image.ANTIALIAS)
+    if not out:
+        out = os.path.splitext(path)[0] + ".tn.jpg"
+    img.save(out, "JPEG", quality=quality)
+
+
 def section_exists(section):
     return not len(get_pages(pages, section=section)) == 0
 
@@ -135,6 +156,14 @@ def feed():
     return render_template('base.rss', pages=articles, build_date=now)
 
 
+@app.route('/sitemap.xml')
+def sitemap():
+    today = date.today()
+    recently = date(year=today.year, month=today.month, day=1)
+    return render_template('sitemap.xml', pages=get_pages(pages),
+        today=today, recently=recently)
+
+
 @app.route('/<string:section>/feed/')
 def feed_section(section):
     articles = get_pages(pages, limit=FEED_MAX_LINKS, section=section)
@@ -183,6 +212,11 @@ def section_archives_year(section, year):
     years = get_years(get_pages(pages, section=section))
     articles = get_pages(pages, section=section, year=year)
     return render_template(template, pages=articles, years=years, year=year)
+
+
+@app.route('/403.html')
+def error403():
+    return render_template('403.html')
 
 
 @app.route('/404.html')
@@ -253,6 +287,58 @@ def post(section, title=None, filename=None):
 
 
 @command
+def photo(path, slug):
+    """ Adds a new photo.
+    """
+    photo_date = datetime.today()
+    # check slug
+    slug = slugify(unicode(slug))
+    if not isinstance(slug, basestring) or not slug.strip():
+        raise CommandError("Invalid slug: " + slug)
+    # check that the path is valid, is an image
+    if not os.path.exists(path) or not os.path.isfile(path):
+        raise CommandError("Invalid path: " + path)
+    # create directory for images: %year/%slug
+    photo_dir = os.path.join("static", "photography", str(photo_date.year),
+        slug)
+    if os.path.exists(photo_dir):
+        raise CommandError("path %s already exists" % photo_dir)
+    os.mkdir(photo_dir, 0755)
+    print(u'Created %s' % photo_dir)
+    # copy original image to original.jpg
+    original_path = os.path.join(photo_dir, "original.jpg")
+    copyfile(path, original_path)
+    print(u'Copied original to %s' % original_path)
+    # resize the image: main.jpg and thumb.jpg
+    thumb_path = os.path.join(photo_dir, "thumb.jpg")
+    resize_image(original_path, (280, 280), fit=True, out=thumb_path)
+    print(u'Created %s' % thumb_path)
+    main_path = os.path.join(photo_dir, "main.jpg")
+    resize_image(original_path, (900, 900), fit=False, out=main_path)
+    print(u'Created %s' % main_path)
+    # post file
+    filename = slug + FLATPAGES_EXTENSION
+    pathargs = ["photography", str(photo_date.year), filename, ]
+    filepath = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+        FLATPAGES_ROOT, '/'.join(pathargs))
+    if os.path.exists(filepath):
+        raise CommandError("File %s exists" % filepath)
+    content = '\n'.join([
+        u"title: ",
+        u"date: %s" % photo_date.strftime("%Y-%m-%d"),
+        u"type: photo",
+        u"image_link: http://500px.com/photo/XXX",
+        u"published: false\n\n\n",
+    ])
+    try:
+        codecs.open(filepath, 'w', encoding='utf8').write(content)
+        print(u'Created %s' % filepath)
+    except Exception, error:
+        raise CommandError(error)
+    print('All done.')
+
+
+@command
 def serve(server='127.0.0.1', port=5000, debug=DEBUG):
     """ Serves this site.
     """
@@ -264,5 +350,5 @@ def serve(server='127.0.0.1', port=5000, debug=DEBUG):
 
 if __name__ == '__main__':
     parser = ArghParser()
-    parser.add_commands([build, deploy, post, serve, ])
+    parser.add_commands([build, deploy, photo, post, serve, ])
     parser.dispatch()

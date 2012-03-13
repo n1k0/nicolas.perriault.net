@@ -86,7 +86,7 @@ html[xmlns] .clearfix {
 
 body {
 //    background: url(http://taat.pl/grid/24x12_lightgrey.gif) fixed;
-    background-color: #fafafa;
+    background-color: #fff;
     width: 960px;
     margin: 0 auto;
     padding: 40px 20px 0;
@@ -236,10 +236,13 @@ q:before, q:after {
     }
     article.photography {
         aside {
-            text-align: left;
+            text-align: right;
             line-height: @baseHeight;
             margin-bottom: -17px;
             &.help {
+                display: block;
+                margin-right: @baseHeight * 5;
+                text-align: left;
                 font-size: @baseHeight;
                 color: #777;
                 kbd {
@@ -456,6 +459,16 @@ body.greyroom {
     .sidebar li.photography a {
         color: #fff;
     }
+    article.photography {
+        aside {
+            &.help {
+                color: #eee;
+                kbd {
+                    color: #555;
+                }
+            }
+        }
+    }
 }
 
 // Responsive
@@ -584,6 +597,13 @@ body.greyroom {
         .contents {
             li {
                 line-height: 24px;
+            }
+            article.photography {
+                aside {
+                    &.help {
+                        display: none;
+                    }
+                }
             }
         }
         .sidebar {

@@ -35,7 +35,7 @@ html[xmlns] .clearfix {
   text-align: right;
 }
 body {
-  background-color: #fafafa;
+  background-color: #fff;
   width: 960px;
   margin: 0 auto;
   padding: 40px 20px 0;
@@ -183,11 +183,14 @@ q:before, q:after {
   display: none;
 }
 .contents article.photography aside {
-  text-align: left;
+  text-align: right;
   line-height: 14px;
   margin-bottom: -17px;
 }
 .contents article.photography aside.help {
+  display: block;
+  margin-right: 70px;
+  text-align: left;
   font-size: 14px;
   color: #777;
 }
@@ -404,6 +407,12 @@ body.greyroom .sidebar li a:hover {
 body.greyroom .sidebar li.photography a {
   color: #fff;
 }
+body.greyroom article.photography aside.help {
+  color: #eee;
+}
+body.greyroom article.photography aside.help kbd {
+  color: #555;
+}
 @media (min-width: 769px) and (max-width: 960px) {
   body {
     width: auto;
@@ -512,6 +521,9 @@ body.greyroom .sidebar li.photography a {
   }
   body .contents li {
     line-height: 24px;
+  }
+  body .contents article.photography aside.help {
+    display: none;
   }
   body .sidebar ul {
     margin: 0;

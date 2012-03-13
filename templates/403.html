@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block extra_head -%}
+    <meta name="robots" content="noindex, nofollow">
+{%- endblock extra_head %}
+
+{% block contents %}
+{% filter markdown %}
+## Can't touch this
+
+<iframe width="640" height="480" src="https://www.youtube-nocookie.com/embed/NyEE0qpfeig" frameborder="0" allowfullscreen></iframe>
+
+{% endfilter %}
+{% endblock contents %}

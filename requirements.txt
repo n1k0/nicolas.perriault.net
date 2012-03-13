@@ -6,11 +6,13 @@ Flask-Markdown==0.3
 Frozen-Flask==0.9
 Jinja2==2.6
 Markdown==2.1.1
+PIL==1.1.7
 PyYAML==3.10
 Werkzeug==0.8.3
 argh==0.15.0
 cssmin==0.1.4
 distribute==0.6.19
+feedparser==5.1
 jsmin==2.0.2
 pycrypto==2.5
 ssh==1.7.13

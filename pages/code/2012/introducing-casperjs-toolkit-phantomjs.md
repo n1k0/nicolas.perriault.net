@@ -63,7 +63,7 @@ Well, CasperJS solves this kind of problem using a convenient API for dealing wi
 
 Want to simulate the user navigation as if he were clicking through links? No problem:
 
-    casper = require("capsper").create()
+    var casper = require("capsper").create()
     casper.start('http://my.blog.tld/');
     casper.thenClick('nav#menu a.blog');
     casper.thenClick('.posts li a');
@@ -76,7 +76,7 @@ Want to simulate the user navigation as if he were clicking through links? No pr
 
 Note that you can alternatively use [coffeescript](http://coffeescript.org/) to write your scripts:
 
-    casper = require("capsper").create()
+    var casper = require("capsper").create()
     casper.start "http://my.blog.tld/"
     casper.thenClick "nav#menu a.blog"
     casper.thenClick ".posts li a"
@@ -88,8 +88,6 @@ Note that you can alternatively use [coffeescript](http://coffeescript.org/) to 
 ## Filling and handling forms
 
 Filling and submitting a form is not much harder:
-
-    var casper = require('capsper').create();
 
     casper.start('http://admin.domain.tld/login/', function() {
         this.fill('form[id="login-form"]', {
@@ -109,7 +107,7 @@ Filling and submitting a form is not much harder:
 Capturing a screenshot of a given area is as easy as this:
 
     casper.start('http://domain.tld/page.html', function() {
-        this.captureSelector('.article-content', 'capture.png');
+        this.captureSelector('capture.png', '.article-content');
     });
 
     casper.run();
@@ -118,7 +116,7 @@ Capturing a screenshot of a given area is as easy as this:
 
 Sometimes (ok, often), lots of stuff is loaded asynchronously through Ajax or any other fancy invention of the Devil. You can just wait for it to happen:
 
-    casper.start('https://twitter.com/#!/casperjs_org', function() {
+    casper.start('https://twitter.com/casperjs_org', function() {
         this.waitForSelector('.tweet-row', function() {
             this.captureSelector('twitter.png', 'html');
         }, function() {
@@ -130,12 +128,10 @@ Sometimes (ok, often), lots of stuff is loaded asynchronously through Ajax or an
 
 Now all of this is fancy, but the true powers of CasperJS come from its functional testing capabilities. For example, testing google search can be done that way:
 
-    var casper = require('casper').create();
-
     casper.start('http://www.google.fr/', function() {
         this.test.assertTitle('Google', 'google homepage title is the one expected');
-        this.test.assertExists('form[name=f]', 'main form is found');
-        this.fill('form[name=f]', {
+        this.test.assertExists('form[action="/search"]', 'main form is found');
+        this.fill('form[action="/search"]', {
             q: 'foo'
         }, true);
     });
@@ -163,3 +159,5 @@ For the records, the whole CasperJS test suite is written using its own API, and
 ## Now, what?
 
 Nothing, really. If you think it's useful, I'm glad enough.
+
+[CasperJS website](http://casperjs.org/).

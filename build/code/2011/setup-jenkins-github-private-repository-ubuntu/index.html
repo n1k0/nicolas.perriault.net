@@ -2,11 +2,12 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Setup Jenkins for working with a private Github repository | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330958175">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331656984">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -36,16 +37,20 @@
     <section>
         <p>As I've just lost an hour and some hairs dealing with trying to setup a <a href="http://jenkins-ci.org/">Jenkins</a> project connected to a private repository hosted on <a href="https://github.com/">Github</a>, I thought it's worth a quick blog post. I'm using <a href="http://ubuntu.com/">Ubuntu</a>.</p>
 <p>So first <code>su</code> as the <code>jenkins</code> user to create some SSH keypair:</p>
-<pre><code>$ ssh-keygen -p
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">p</span>
+</pre></div>
+
+
 <p>Notice the <code>-p</code> option; this will allow to avoid asking for a passphrase (which Jenkins cannot so running as a daemon).</p>
 <p>Try to ssh on github:</p>
-<pre><code>$ ssh -T git@github.com
-The authenticity of host 'github.com (207.97.227.239)' can't be established.
-RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-Are you sure you want to continue connecting (yes/no)? yes
-Hi username/reponame! You've successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">ssh</span> <span class="o">-</span><span class="n">T</span> <span class="n">git</span><span class="p">@</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+<span class="n">The</span> <span class="n">authenticity</span> <span class="n">of</span> <span class="n">host</span> <span class="s">&#39;github.com (207.97.227.239)&#39;</span> <span class="n">can</span><span class="o">&#39;</span><span class="n">t</span> <span class="n">be</span> <span class="n">established</span><span class="p">.</span>
+<span class="n">RSA</span> <span class="n">key</span> <span class="n">fingerprint</span> <span class="n">is</span> 16<span class="p">:</span>27<span class="p">:</span><span class="n">ac</span><span class="p">:</span><span class="n">a5</span><span class="p">:</span>76<span class="p">:</span>28<span class="p">:</span>2<span class="n">d</span><span class="p">:</span>36<span class="p">:</span>63<span class="p">:</span>1<span class="n">b</span><span class="p">:</span>56<span class="p">:</span>4<span class="n">d</span><span class="p">:</span><span class="n">eb</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="n">a6</span><span class="p">:</span>48<span class="p">.</span>
+<span class="n">Are</span> <span class="n">you</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="k">continue</span> <span class="n">connecting</span> <span class="p">(</span><span class="n">yes</span><span class="o">/</span><span class="n">no</span><span class="p">)</span>? <span class="n">yes</span>
+<span class="n">Hi</span> <span class="n">username</span><span class="o">/</span><span class="n">reponame</span>! <span class="n">You</span><span class="o">&#39;</span><span class="n">ve</span> <span class="n">successfully</span> <span class="n">authenticated</span><span class="p">,</span> <span class="n">but</span> <span class="n">GitHub</span> <span class="n">does</span> <span class="n">not</span> <span class="n">provide</span> <span class="n">shell</span> <span class="n">access</span><span class="p">.</span>
+</pre></div>
+
+
 <p>Notice that you're asked to allow github's hostname to be added to your <code>known_hosts</code> file: without completing this step, you're doomed.</p>
 <p>Now, in the Jenkins project configuration interface, set the private repository url using the <code>git</code> protocol, eg. <code>git@github.com:username/reponame.git</code>.</p>
 <p>That's it, Jenkins will be able to clone and use your private repo.</p>

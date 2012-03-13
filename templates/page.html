@@ -25,7 +25,10 @@
                 <img src="/static/{{ page.path }}/main.jpg" alt="{{ page.title }} by Nicolas Perriault"/></a>
             <figcaption>
             {%- if page.summary|trim %}
-                {{- page.summary|trim }} —
+                {{- page.summary|trim }}
+            {% endif %}
+            {% if page.summary|trim and page.image_link %}
+                —
             {% endif %}
             {%- if page.image_link %}
                 <a href="{{ page.image_link }}">View it on 500px</a>

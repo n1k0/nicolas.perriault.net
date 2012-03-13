@@ -2,11 +2,12 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Dead easy yet powerful static website generator with Flask | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330958175">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331656984">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -50,34 +51,42 @@
 </ul>
 <h2>First iteration: project setup</h2>
 <p>Create a brand new <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> in a new directory and install the necessary packages using <a href="http://pypi.python.org/pypi/pip">pip</a>:</p>
-<pre><code>$ mkdir sample_project &amp;&amp; cd !$
-$ mkvirtualenv --no-site-packages `pwd`/env
-$ source env/bin/activate
-$ pip install Flask Frozen-Flask Flask-FlatPages
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">mkdir</span> <span class="n">sample_project</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> !$
+$ <span class="n">mkvirtualenv</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span> `<span class="n">pwd</span>`<span class="o">/</span><span class="n">env</span>
+$ <span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">activate</span>
+$ <span class="n">pip</span> <span class="n">install</span> <span class="n">Flask</span> <span class="n">Frozen</span><span class="o">-</span><span class="n">Flask</span> <span class="n">Flask</span><span class="o">-</span><span class="n">FlatPages</span>
+</pre></div>
+
+
 <p>Write a very first version of our app in a <code>sitebuilder.py</code> file:</p>
-<pre><code>from flask import Flask
-app = Flask(__name__)
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">flask</span> <span class="n">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="p">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-@app.route("/")
-def index():
-    return "Hello World!"
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span>&quot;<span class="o">/</span>&quot;<span class="p">)</span>
+<span class="n">def</span> <span class="n">index</span><span class="p">():</span>
+    <span class="k">return</span> &quot;<span class="n">Hello</span> <span class="n">World</span>!&quot;
 
-if __name__ == "__main__":
-    app.run(port=8000)
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> &quot;<span class="n">__main__</span>&quot;<span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="p">=</span>8000<span class="p">)</span>
+</pre></div>
+
+
 <p>Run it; you should see someting like:</p>
-<pre><code>$ python sitebuilder.py
- * Running on http://127.0.0.1:8000/
- * Restarting with reloader
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">python</span> <span class="n">sitebuilder</span><span class="p">.</span><span class="n">py</span>
+ <span class="o">*</span> <span class="n">Running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span>127<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>1<span class="p">:</span>8000<span class="o">/</span>
+ <span class="o">*</span> <span class="n">Restarting</span> <span class="n">with</span> <span class="n">reloader</span>
+</pre></div>
+
+
 <p>Ensure with your browser that everyting is going fine by heading at <code>http://127.0.0.1:8000/</code>.</p>
 <h2>New iteration: adding <em>flat pages</em></h2>
 <p><a href="http://packages.python.org/Flask-FlatPages/">Flask-FlatPages</a> provides a collection of pages to your Flask application. Pages are built from <em>flat</em> text files as opposed to a relational database.</p>
 <p>Create a <code>pages/</code> directory at the root of your project folder, and put a <code>hello-world.md</code> file in there:</p>
-<pre><code>$ mkdir pages
-$ vi pages/hello-world.md
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">mkdir</span> <span class="n">pages</span>
+$ <span class="n">vi</span> <span class="n">pages</span><span class="o">/</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="p">.</span><span class="n">md</span>
+</pre></div>
+
+
 <p>The <code>pages/hello-world.md</code>:</p>
 <pre class="unpretty"><code>title: Hello World
 date: 2012-03-04
@@ -86,81 +95,91 @@ date: 2012-03-04
 </code></pre>
 
 <p>As you can see, we can write plain <a href="daringfireball.net/projects/markdown/">Mardown</a> for our page contents. So let's rewrite our app to serve any flatpage by its filename:</p>
-<pre><code>from flask import Flask
-from flaskext.flatpages import FlatPages
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">flask</span> <span class="n">import</span> <span class="n">Flask</span>
+<span class="n">from</span> <span class="n">flaskext</span><span class="p">.</span><span class="n">flatpages</span> <span class="n">import</span> <span class="n">FlatPages</span>
 
-DEBUG = True
-FLATPAGES_AUTO_RELOAD = DEBUG
-FLATPAGES_EXTENSION = '.md'
+<span class="n">DEBUG</span> <span class="p">=</span> <span class="n">True</span>
+<span class="n">FLATPAGES_AUTO_RELOAD</span> <span class="p">=</span> <span class="n">DEBUG</span>
+<span class="n">FLATPAGES_EXTENSION</span> <span class="p">=</span> <span class="s">&#39;.md&#39;</span>
 
-app = Flask(__name__)
-app.config.from_object(__name__)
-pages = FlatPages(app)
+<span class="n">app</span> <span class="p">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">pages</span> <span class="p">=</span> <span class="n">FlatPages</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
-@app.route('/')
-def index():
-    return "Hello World"
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">index</span><span class="p">():</span>
+    <span class="k">return</span> &quot;<span class="n">Hello</span> <span class="n">World</span>&quot;
 
-@app.route('/&lt;path:path&gt;/')
-def page(path):
-    return pages.get_or_404(path).html
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&lt;path:path&gt;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">page</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pages</span><span class="p">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="n">path</span><span class="p">).</span><span class="n">html</span>
 
-if __name__ == '__main__':
-    app.run(port=8000)
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="p">=</span>8000<span class="p">)</span>
+</pre></div>
+
+
 <p>Now requesting <code>http://127.0.0.1:8000/hello-world/</code> will display our flatpage. Note that the markdown source is converted to html by getting the <code>html</code> property of our page object.</p>
 <h2>New iteration: adding templates</h2>
 <p>Flask uses the <a href="http://jinja.pocoo.org/docs/">Jinja2</a> template engine, so let's create some templates to decorate our pages. First create a <code>templates</code> directory at the root of the project:</p>
-<pre><code>$ mkdir templates
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">mkdir</span> <span class="n">templates</span>
+</pre></div>
+
+
 <p>Create a base layout in <code>templates/base.html</code>:</p>
-<pre><code>&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;title&gt;My site&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;&lt;a href="{{ url_for("index") }}"&gt;My site&lt;/a&gt;&lt;/h1&gt;
-{% block content %}
-    &lt;p&gt;Default content to be displayed&lt;/p&gt;
-{% endblock content %}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<div class="codehilite"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>My site<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s2">&quot;index&quot;</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;</span>My site<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+    <span class="nt">&lt;p&gt;</span>Default content to be displayed<span class="nt">&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
 <p>Note the use of the <code>url_for()</code> template helper, that's the way we generate urls using Flask and Jinja2.</p>
 <p>Now the <code>page.html</code> template to fill this layout with page contents:</p>
-<pre><code>{% extends "base.html" %}
+<div class="codehilite"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;base.html&quot;</span> <span class="cp">%}</span>
 
-{% block content %}
-    &lt;h2&gt;{{ page.title }}&lt;/h2&gt;
-    {{ page.html|safe }}
-{% endblock content %}
-</code></pre>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+    <span class="nt">&lt;h2&gt;</span><span class="cp">{{</span> <span class="nv">page.title</span> <span class="cp">}}</span><span class="nt">&lt;/h2&gt;</span>
+    <span class="cp">{{</span> <span class="nv">page.html</span><span class="o">|</span><span class="nf">safe</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span>
+</pre></div>
+
+
 <p>Our app is now:</p>
-<pre><code>from flask import Flask, render_template
-from flaskext.flatpages import FlatPages
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">flask</span> <span class="n">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="n">from</span> <span class="n">flaskext</span><span class="p">.</span><span class="n">flatpages</span> <span class="n">import</span> <span class="n">FlatPages</span>
 
-DEBUG = True
-FLATPAGES_AUTO_RELOAD = DEBUG
-FLATPAGES_EXTENSION = '.md'
+<span class="n">DEBUG</span> <span class="p">=</span> <span class="n">True</span>
+<span class="n">FLATPAGES_AUTO_RELOAD</span> <span class="p">=</span> <span class="n">DEBUG</span>
+<span class="n">FLATPAGES_EXTENSION</span> <span class="p">=</span> <span class="s">&#39;.md&#39;</span>
 
-app = Flask(__name__)
-app.config.from_object(__name__)
-pages = FlatPages(app)
+<span class="n">app</span> <span class="p">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">pages</span> <span class="p">=</span> <span class="n">FlatPages</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
-@app.route('/')
-def index():
-    return "Hello World"
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">index</span><span class="p">():</span>
+    <span class="k">return</span> &quot;<span class="n">Hello</span> <span class="n">World</span>&quot;
 
-@app.route('/&lt;path:path&gt;/')
-def page(path):
-    page = pages.get_or_404(path)
-    return render_template('page.html', page=page)
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&lt;path:path&gt;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">page</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">page</span> <span class="p">=</span> <span class="n">pages</span><span class="p">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;page.html&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">=</span><span class="n">page</span><span class="p">)</span>
 
-if __name__ == '__main__':
-    app.run(port=8000)
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="p">=</span>8000<span class="p">)</span>
+</pre></div>
+
+
 <p>Hell, what did we just do?</p>
 <ul>
 <li>we created templates for our app; a common layout (<code>base.html</code>) and a page template (<code>page.html</code>)</li>
@@ -170,27 +189,31 @@ if __name__ == '__main__':
 <h2>New iteration: display the list of available pages on the homepage</h2>
 <p>For now our homepage has been a bit sick, to say the least. Let's make it an index of all available pages.</p>
 <p>Create a <code>templates/index.html</code> with the following contents:</p>
-<pre><code>{% extends "base.html" %}
+<div class="codehilite"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;base.html&quot;</span> <span class="cp">%}</span>
 
-{% block content %}
-    &lt;h2&gt;List of stuff&lt;/h2&gt;
-    &lt;ul&gt;
-    {% for page in pages %}
-        &lt;li&gt;
-            &lt;a href="{{ url_for("page", path=page.path) }}"&gt;{{ page.title }}&lt;/a&gt;
-        &lt;/li&gt;
-    {% else %}
-        &lt;li&gt;No stuff.&lt;/li&gt;
-    {% endfor %}
-    &lt;/ul&gt;
-{% endblock content %}
-</code></pre>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+    <span class="nt">&lt;h2&gt;</span>List of stuff<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">page</span> <span class="k">in</span> <span class="nv">pages</span> <span class="cp">%}</span>
+        <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s2">&quot;page&quot;</span><span class="o">,</span> <span class="nv">path</span><span class="o">=</span><span class="nv">page.path</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">page.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+    <span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
+        <span class="nt">&lt;li&gt;</span>No stuff.<span class="nt">&lt;/li&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span>
+</pre></div>
+
+
 <p>Feel free to create more flat pages, the same way we did with <code>hello-world.md</code>, storing the file into the <code>pages/</code> directory using the <code>.md</code> extension.</p>
 <p>So the <code>index()</code> route of our app is now:</p>
-<pre><code>@app.route('/')
-def index():
-    return render_template('index.html', pages=pages)
-</code></pre>
+<div class="codehilite"><pre><span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="p">=</span><span class="n">pages</span><span class="p">)</span>
+</pre></div>
+
+
 <p>If you reload the homepage, a list of all available flatpages is displayed with a link for each. Damn, that was pretty easy.</p>
 <h2>New iteration: adding metadata to pages</h2>
 <p>Flask-FlatPages allows to enter metadata for pages the same way we did for the title and the creation date with our <code>hello-world.md</code>, and access them using the <code>page.meta</code> property, which contains a plain silly python dict. That's pretty awesome when you think about it, heh?</p>
@@ -204,106 +227,120 @@ tags: [general, awesome, stuff]
 
 <p>For the records, metadata are described in <a href="http://yaml.org/">YAML</a>, so you can use strings, booleans, integers, floats, lists and even dicts which will be converted to their respective native Python equivalent.</p>
 <p>We're going to use two different templates for listing general pages and tagged ones, using a shared template partial. Our <code>index.html</code> is now:</p>
-<pre><code>{% extends "base.html" %}
+<div class="codehilite"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;base.html&quot;</span> <span class="cp">%}</span>
 
-{% block content %}
-    &lt;h2&gt;List of stuff&lt;/h2&gt;
-    {% with pages=pages  %}
-        {% include "_list.html" %}
-    {% endwith %}
-{% endblock content %}
-</code></pre>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+    <span class="nt">&lt;h2&gt;</span>List of stuff<span class="nt">&lt;/h2&gt;</span>
+    <span class="cp">{%</span> <span class="k">with</span> <span class="nv">pages</span><span class="o">=</span><span class="nv">pages</span>  <span class="cp">%}</span>
+        <span class="cp">{%</span> <span class="k">include</span> <span class="s2">&quot;_list.html&quot;</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">endwith</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span>
+</pre></div>
+
+
 <p>Create a new <code>tag.html</code> template, which will display the list of tagged pages:</p>
-<pre><code>{% extends "base.html" %}
+<div class="codehilite"><pre><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;base.html&quot;</span> <span class="cp">%}</span>
 
-{% block content %}
-    &lt;h2&gt;List of stuff tagged &lt;em&gt;{{ tag }}&lt;/em&gt;&lt;/h2&gt;
-    {% with pages=pages  %}
-        {% include "_list.html" %}
-    {% endwith %}
-{% endblock content %}
-</code></pre>
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">content</span> <span class="cp">%}</span>
+    <span class="nt">&lt;h2&gt;</span>List of stuff tagged <span class="nt">&lt;em&gt;</span><span class="cp">{{</span> <span class="nv">tag</span> <span class="cp">}}</span><span class="nt">&lt;/em&gt;&lt;/h2&gt;</span>
+    <span class="cp">{%</span> <span class="k">with</span> <span class="nv">pages</span><span class="o">=</span><span class="nv">pages</span>  <span class="cp">%}</span>
+        <span class="cp">{%</span> <span class="k">include</span> <span class="s2">&quot;_list.html&quot;</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">endwith</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="nv">content</span> <span class="cp">%}</span>
+</pre></div>
+
+
 <p>The new <code>_list.html</code> template we need for inclusion contains:</p>
-<pre><code>&lt;ul&gt;
-{% for page in pages %}
-    &lt;li&gt;
-        &lt;a href="{{ url_for("page", path=page.path) }}"&gt;{{ page.title }}&lt;/a&gt;
-    {% if page.meta.tags|length %}
+<div class="codehilite"><pre><span class="nt">&lt;ul&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">page</span> <span class="k">in</span> <span class="nv">pages</span> <span class="cp">%}</span>
+    <span class="nt">&lt;li&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s2">&quot;page&quot;</span><span class="o">,</span> <span class="nv">path</span><span class="o">=</span><span class="nv">page.path</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">page.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">page.meta.tags</span><span class="o">|</span><span class="nf">length</span> <span class="cp">%}</span>
         | Tagged:
-        {% for page_tag in page.meta.tags %}
-            &lt;a href="{{ url_for("tag", tag=page_tag) }}"&gt;{{ page_tag }}&lt;/a&gt;
-        {% endfor %}
-    {% endif %}
-    &lt;/li&gt;
-{% else %}
-    &lt;li&gt;No page.&lt;/li&gt;
-{% endfor %}
-&lt;/ul&gt;
-</code></pre>
+        <span class="cp">{%</span> <span class="k">for</span> <span class="nv">page_tag</span> <span class="k">in</span> <span class="nv">page.meta.tags</span> <span class="cp">%}</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">url_for</span><span class="o">(</span><span class="s2">&quot;tag&quot;</span><span class="o">,</span> <span class="nv">tag</span><span class="o">=</span><span class="nv">page_tag</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">page_tag</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;</span>
+        <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="nt">&lt;/li&gt;</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
+    <span class="nt">&lt;li&gt;</span>No page.<span class="nt">&lt;/li&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="nt">&lt;/ul&gt;</span>
+</pre></div>
+
+
 <p>Let's add a new <code>tag</code> route to our app, to use our new <code>tag.html</code> template:</p>
-<pre><code>@app.route('/tag/&lt;string:tag&gt;/')
-def tag(tag):
-    tagged = [p for p in pages if tag in p.meta.get('tags', [])]
-    return render_template('tag.html', pages=tagged, tag=tag)
-</code></pre>
+<div class="codehilite"><pre><span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/tag/&lt;string:tag&gt;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">tag</span><span class="p">(</span><span class="n">tag</span><span class="p">):</span>
+    <span class="n">tagged</span> <span class="p">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="n">in</span> <span class="n">pages</span> <span class="k">if</span> <span class="n">tag</span> <span class="n">in</span> <span class="n">p</span><span class="p">.</span><span class="n">meta</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;tags&#39;</span><span class="p">,</span> <span class="p">[])]</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;tag.html&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="p">=</span><span class="n">tagged</span><span class="p">,</span> <span class="n">tag</span><span class="p">=</span><span class="n">tag</span><span class="p">)</span>
+</pre></div>
+
+
 <p><strong>Note:</strong> if you didn't like Python's <a href="http://www.network-theory.co.uk/docs/pytut/ListComprehensions.html">list comprehensions</a> yet, now you do.</p>
 <h2>New iteration: generate the static stuff</h2>
 <p>Well, for now we only have a dynamic website, which uses and serves flatpages stored on the filesystem: CRAP. But the idea's of course not to host a Flask app but a set of static files and assets to skip the need of any application server.</p>
 <p>Here enters Frozen-Flask. Its use is damn easy:</p>
-<pre><code>import sys
+<div class="codehilite"><pre><span class="n">import</span> <span class="n">sys</span>
 
-from flask import Flask, render_template
-from flaskext.flatpages import FlatPages
-from flask_frozen import Freezer
+<span class="n">from</span> <span class="n">flask</span> <span class="n">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="n">from</span> <span class="n">flaskext</span><span class="p">.</span><span class="n">flatpages</span> <span class="n">import</span> <span class="n">FlatPages</span>
+<span class="n">from</span> <span class="n">flask_frozen</span> <span class="n">import</span> <span class="n">Freezer</span>
 
-DEBUG = True
-FLATPAGES_AUTO_RELOAD = DEBUG
-FLATPAGES_EXTENSION = '.md'
+<span class="n">DEBUG</span> <span class="p">=</span> <span class="n">True</span>
+<span class="n">FLATPAGES_AUTO_RELOAD</span> <span class="p">=</span> <span class="n">DEBUG</span>
+<span class="n">FLATPAGES_EXTENSION</span> <span class="p">=</span> <span class="s">&#39;.md&#39;</span>
 
-app = Flask(__name__)
-app.config.from_object(__name__)
-pages = FlatPages(app)
-freezer = Freezer(app)
+<span class="n">app</span> <span class="p">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">pages</span> <span class="p">=</span> <span class="n">FlatPages</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">freezer</span> <span class="p">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
-@app.route('/')
-def index():
-    return render_template('index.html', pages=pages)
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="p">=</span><span class="n">pages</span><span class="p">)</span>
 
-@app.route('/tag/&lt;string:tag&gt;/')
-def tag(tag):
-    tagged = [p for p in pages if tag in p.meta.get('tags', [])]
-    return render_template('tag.html', pages=tagged, tag=tag)
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/tag/&lt;string:tag&gt;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">tag</span><span class="p">(</span><span class="n">tag</span><span class="p">):</span>
+    <span class="n">tagged</span> <span class="p">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="n">in</span> <span class="n">pages</span> <span class="k">if</span> <span class="n">tag</span> <span class="n">in</span> <span class="n">p</span><span class="p">.</span><span class="n">meta</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;tags&#39;</span><span class="p">,</span> <span class="p">[])]</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;tag.html&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="p">=</span><span class="n">tagged</span><span class="p">,</span> <span class="n">tag</span><span class="p">=</span><span class="n">tag</span><span class="p">)</span>
 
-@app.route('/&lt;path:path&gt;/')
-def page(path):
-    page = pages.get_or_404(path)
-    return render_template('page.html', page=page)
+<span class="p">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">&#39;/&lt;path:path&gt;/&#39;</span><span class="p">)</span>
+<span class="n">def</span> <span class="n">page</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">page</span> <span class="p">=</span> <span class="n">pages</span><span class="p">.</span><span class="n">get_or_404</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;page.html&#39;</span><span class="p">,</span> <span class="n">page</span><span class="p">=</span><span class="n">page</span><span class="p">)</span>
 
-if __name__ == '__main__':
-    if len(sys.argv) &gt; 1 and sys.argv[1] == "build":
-        freezer.freeze()
-    else:
-        app.run(port=8000)
-</code></pre>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> 1 <span class="n">and</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span>1<span class="p">]</span> <span class="o">==</span> &quot;<span class="n">build</span>&quot;<span class="p">:</span>
+        <span class="n">freezer</span><span class="p">.</span><span class="n">freeze</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="p">=</span>8000<span class="p">)</span>
+</pre></div>
+
+
 <p>And run:</p>
-<pre><code>$ python sitebuilder.py build
-</code></pre>
-<p>Open the <code>build</code> folder generated by this command:</p>
-<pre><code>$ tree
-.
-├── hello-world
-│   └── index.html
-├── index.html
-└── tag
-    ├── awesome
-    │   └── index.html
-    ├── general
-    │   └── index.html
-    └── stuff
-        └── index.html
+<div class="codehilite"><pre>$ <span class="n">python</span> <span class="n">sitebuilder</span><span class="p">.</span><span class="n">py</span> <span class="n">build</span>
+</pre></div>
 
-5 directories, 5 files
-</code></pre>
+
+<p>Open the <code>build</code> folder generated by this command:</p>
+<div class="codehilite"><pre>$ <span class="n">tree</span>
+<span class="p">.</span>
+├── <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
+│   └── <span class="n">index</span><span class="p">.</span><span class="n">html</span>
+├── <span class="n">index</span><span class="p">.</span><span class="n">html</span>
+└── <span class="n">tag</span>
+    ├── <span class="n">awesome</span>
+    │   └── <span class="n">index</span><span class="p">.</span><span class="n">html</span>
+    ├── <span class="n">general</span>
+    │   └── <span class="n">index</span><span class="p">.</span><span class="n">html</span>
+    └── <span class="n">stuff</span>
+        └── <span class="n">index</span><span class="p">.</span><span class="n">html</span>
+
+5 <span class="n">directories</span><span class="p">,</span> 5 <span class="n">files</span>
+</pre></div>
+
+
 <p><strong>MIND: BLOWN.</strong></p>
 <p>You can now deploy the contents of this <code>build</code> directory to any webserver which's able to serve static files, and you're done. With just 34 lines of manually written Python code… not bad heh?</p>
 <p>Of course, our website is pretty crappy right now, but you should be get started to add features on your own, now.</p>
@@ -321,8 +358,8 @@ if __name__ == '__main__':
     </aside>
     <hr>
     <nav>
-        
-        
+        <a class="prev" href="/code/2012/introducing-casperjs-toolkit-phantomjs/">CasperJS, a toolkit on top of PhantomJS</a>
+        |
         <a class="next" href="/code/2012/gandi-standard-ssl-certificate-nginx/">Gandi Standard SSL Certificate &amp; Nginx</a>
     </nav>
 </article>

@@ -2,11 +2,12 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Gandi Standard SSL Certificate &amp; Nginx | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1330958175">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331656984">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -38,12 +39,16 @@
 <p><strong>Disclaimer:</strong> <em>Gandi's quite complicated email confirmation and validation worflow won't be covered in this post. Just ensure you can receive emails at <code>admin@domain.tld</code> where <code>domain.tld</code> is your domain.</em></p>
 <h2>Creating your certificate</h2>
 <p>On your server, ensure you have the <a href="http://openssl.org/"><code>openssl</code></a> command available or install it. Then, <a href="http://wiki.gandi.net/en/ssl/csr">generate your CSR</a> (<code>domain.tld</code> is your actual domain):</p>
-<pre><code>$ openssl req -nodes -newkey rsa:2048 -keyout domain.tld.key \
-    -out domain.tld.csr
-</code></pre>
+<div class="codehilite"><pre>$ <span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span>2048 <span class="o">-</span><span class="n">keyout</span> <span class="n">domain</span><span class="p">.</span><span class="n">tld</span><span class="p">.</span><span class="n">key</span> <span class="o">\</span>
+    <span class="o">-</span><span class="n">out</span> <span class="n">domain</span><span class="p">.</span><span class="n">tld</span><span class="p">.</span><span class="n">csr</span>
+</pre></div>
+
+
 <p>Answer a few questions from the program, but here's the most important bit: <strong>enter your domain or subdomain when prompted to provide a <em>Common Name</em></strong>:</p>
-<pre><code>Common Name (eg, YOUR name) []: domain.tld
-</code></pre>
+<div class="codehilite"><pre><span class="n">Common</span> <span class="n">Name</span> <span class="p">(</span><span class="n">eg</span><span class="p">,</span> <span class="n">YOUR</span> <span class="n">name</span><span class="p">)</span> <span class="p">[]:</span> <span class="n">domain</span><span class="p">.</span><span class="n">tld</span>
+</pre></div>
+
+
 <p>As they say:</p>
 <blockquote>
 <p>The process will create 2 files: a public <code>.csr</code> file, and a private <code>.key</code> file which you must absolutely keep private.</p>
@@ -60,30 +65,36 @@
 </ul>
 <p>Upload them both to your server, store them in eg. <code>/etc/nginx/certificates/</code> (nope, this directory is unlikely to exist by default; do as you like).</p>
 <p>Last, you have to append the Gandi CA to your domain certificate:</p>
-<pre><code>$ cat GandiStandardSSLCA.pem &gt;&gt; cert-domain.tld.crt
-</code></pre>
+<div class="codehilite"><pre>$ <span class="nb">cat</span> <span class="n">GandiStandardSSLCA</span><span class="p">.</span><span class="n">pem</span> <span class="o">&gt;&gt;</span> <span class="n">cert</span><span class="o">-</span><span class="n">domain</span><span class="p">.</span><span class="n">tld</span><span class="p">.</span><span class="n">crt</span>
+</pre></div>
+
+
 <p>Have a capuccino.</p>
 <hr />
 <h2>Configuring the nginx vhost</h2>
 <p>Here's a sample vhost server configuration for nginx, kept as concise as possible for the sake of brevity and clarity:</p>
-<pre><code>server {
-    listen 443;
-    server_name "domain.tld";
-    root /var/www/your_website_root;
+<div class="codehilite"><pre><span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> 443<span class="p">;</span>
+    <span class="n">server_name</span> &quot;<span class="n">domain</span><span class="p">.</span><span class="n">tld</span>&quot;<span class="p">;</span>
+    <span class="n">root</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">your_website_root</span><span class="p">;</span>
 
-    ssl on;
-    ssl_certificate     /etc/nginx/certificates/cert-domain.tld.crt;
-    ssl_certificate_key /etc/nginx/certificates/domain.tld.key;
-}
-</code></pre>
+    <span class="n">ssl</span> <span class="n">on</span><span class="p">;</span>
+    <span class="n">ssl_certificate</span>     <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">certificates</span><span class="o">/</span><span class="n">cert</span><span class="o">-</span><span class="n">domain</span><span class="p">.</span><span class="n">tld</span><span class="p">.</span><span class="n">crt</span><span class="p">;</span>
+    <span class="n">ssl_certificate_key</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">certificates</span><span class="o">/</span><span class="n">domain</span><span class="p">.</span><span class="n">tld</span><span class="p">.</span><span class="n">key</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>Restart nginx and you should be able to access your website using <code>https://domain.tld/</code>.</p>
 <p>To redirect all HTTP trafic to HTTPS for this server, add this:</p>
-<pre><code>server {
-    listen 80;
-    server_name "domain.tld";
-    rewrite ^(.*) https://$host$1 permanent;
-}
-</code></pre>
+<div class="codehilite"><pre><span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> 80<span class="p">;</span>
+    <span class="n">server_name</span> &quot;<span class="n">domain</span><span class="p">.</span><span class="n">tld</span>&quot;<span class="p">;</span>
+    <span class="n">rewrite</span> ^<span class="p">(</span><span class="o">.*</span><span class="p">)</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span>$<span class="n">host</span>$1 <span class="n">permanent</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>Have a latte.</p>
 <h2>Conclusion</h2>
 <p>At this point, you should be seriously considering quitting caffeine. As a positive note, it looks like the whole process will be revamped in <em>some weeks</em>:</p>
