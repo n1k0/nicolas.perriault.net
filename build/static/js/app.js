@@ -95,4 +95,21 @@ $(document).ready(function() {
             }
         });
     })();
+
+    // konami
+    (function() {
+        //           ^  ^  v  v  <  >  <  >  b  a
+        var code = "38,38,40,40,37,39,37,39,66,65".split(',');
+        var kkeys = [];
+        $(window).keydown(function(e) {
+            kkeys.push(e.which);
+            while (kkeys.length > code.length) {
+                kkeys.shift();
+            }
+            if (kkeys.toString() === code.toString()) {
+                kkeys = [];
+                document.location = 'http://zombo.com/';
+            }
+        });
+    })();
 });

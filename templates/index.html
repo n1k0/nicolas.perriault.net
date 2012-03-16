@@ -29,13 +29,7 @@ and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">
     {% endwith %}
     <p class="more">&raquo; <a href="{{ url_for("section", section="code") }}">See more Code stuff</a></p>
 </section>
-<section class="photography">
-    <h2>Photography</h2>
-    {% with pages = photos %}
-        {% include "photography/gallery.html" %}
-    {% endwith %}
-    <p class="more">&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
-</section>
+
 <section class="carnet" lang="fr">
     <h2>Carnet <small>(en français)</small></h2>
     {% with pages = posts %}
@@ -43,6 +37,15 @@ and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">
     {% endwith %}
     <p class="more">&raquo; <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">Accéder au carnet</a></p>
 </section>
+
+<section class="photography clearfix">
+    <h2>Photography</h2>
+    {% with pages = photos %}
+        {% include "photography/gallery.html" %}
+    {% endwith %}
+    <p class="more">&raquo; <a href="{{ url_for("section", section="photography") }}">See more Photography stuff</a></p>
+</section>
+
 <section class="talks">
     <h2>Talks</h2>
     {% with pages = talks %}

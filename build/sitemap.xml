@@ -3,7 +3,7 @@
     <!-- homepage -->
     <url>
         <loc>https://nicolas.perriault.net/</loc>
-        <lastmod>2012-03-13</lastmod>
+        <lastmod>2012-03-16</lastmod>
         <changefreq>hourly</changefreq>
         <priority>1</priority>
     </url>
@@ -316,6 +316,12 @@
     <url>
         <loc>https://nicolas.perriault.net/photography/2010/timing-is-everything/</loc>
         <lastmod>2010-03-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://nicolas.perriault.net/photography/2010/kitesurfer/</loc>
+        <lastmod>2010-02-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1</priority>
     </url>

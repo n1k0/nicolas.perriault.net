@@ -1,3 +1,6 @@
+.clearfix {
+  display: inline-block;
+}
 .clearfix:after {
   content: ".";
   display: block;
@@ -5,9 +8,6 @@
   visibility: hidden;
   line-height: 0;
   height: 0;
-}
-.clearfix {
-  display: inline-block;
 }
 html[xmlns] .clearfix {
   display: block;
@@ -270,6 +270,19 @@ q:before, q:after {
 .contents ul.item-list li.unpublished {
   background: #ddd;
   padding: 5px 10px;
+}
+.contents section.code, .contents section.carnet {
+  float: left;
+}
+.contents section.code p, .contents section.carnet p {
+  font-size: 92%;
+}
+.contents section.code {
+  width: 48%;
+  margin-right: 4%;
+}
+.contents section.carnet {
+  width: 48%;
 }
 .sidebar {
   position: fixed;

@@ -13,17 +13,16 @@
 
 // quirks
 
-.clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-
 .clearfix {
     display: inline-block;
+    &:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
 }
 
 html[xmlns] .clearfix {
@@ -322,6 +321,19 @@ q:before, q:after {
                 padding: 5px 10px;
             }
         }
+    }
+    section.code, section.carnet {
+        float: left;
+        p {
+            font-size: 92%;
+        }
+    }
+    section.code {
+        width: 48%;
+        margin-right: 4%;
+    }
+    section.carnet {
+        width: 48%;
     }
 }
 
