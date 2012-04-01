@@ -7,7 +7,7 @@
     <title>Install PIL within a virtualenv on Snow Leopard | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331882038">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -36,38 +36,34 @@
     
     <section>
         <p>As a personal reminder, here's how to install <a href="http://www.pythonware.com/products/pil/">PIL</a> with jpeg and freetype support in a Python <a href="/post/573774396/installer-django-dans-un-environnement-python-virtuel">virtualenv</a> with a little help from <a href="https://github.com/mxcl/homebrew">Homebrew</a>:</p>
-<div class="codehilite"><pre>$ <span class="n">brew</span> <span class="n">install</span> <span class="n">jpeg</span>
-$ <span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="p">.</span><span class="n">fe</span><span class="p">.</span><span class="n">up</span><span class="p">.</span><span class="n">pt</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">nongnu</span><span class="o">/</span><span class="n">freetype</span><span class="o">/</span><span class="n">freetype</span><span class="o">-</span>2<span class="p">.</span>4<span class="p">.</span>4<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span>
-$ <span class="n">tar</span> <span class="n">xvzf</span> <span class="n">freetype</span><span class="o">-</span>2<span class="p">.</span>4<span class="p">.</span>4<span class="p">.</span><span class="n">tar</span><span class="p">.</span><span class="n">gz</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">freetype</span><span class="o">-</span>2<span class="p">.</span>4<span class="p">.</span>4
-$ <span class="o">./</span><span class="n">configure</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
-$ <span class="n">cd</span> <span class="p">..</span> <span class="o">&amp;&amp;</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">freetype</span><span class="o">-</span>2<span class="p">.</span>4<span class="p">.</span>4<span class="o">*</span>
-$ <span class="n">mkvirtualenv</span> <span class="n">fubar</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span>
-<span class="p">(</span><span class="n">fubar</span><span class="p">)</span>$ <span class="n">pip</span> <span class="n">install</span> <span class="n">PIL</span>
-</pre></div>
-
-
+<pre><code>$ brew install jpeg
+$ wget http://mirrors.fe.up.pt/pub/nongnu/freetype/freetype-2.4.4.tar.gz
+$ tar xvzf freetype-2.4.4.tar.gz &amp;&amp; cd freetype-2.4.4
+$ ./configure &amp;&amp; make &amp;&amp; sudo make install
+$ cd .. &amp;&amp; rm -rf freetype-2.4.4*
+$ mkvirtualenv fubar --no-site-packages
+(fubar)$ pip install PIL
+</code></pre>
 <p>You should obtain something like this at the end of the installation process:</p>
-<div class="codehilite"><pre><span class="o">--------------------------------------------------------------------</span>
-<span class="n">PIL</span> 1<span class="p">.</span>1<span class="p">.</span>7 <span class="n">SETUP</span> <span class="n">SUMMARY</span>
-<span class="o">--------------------------------------------------------------------</span>
-<span class="n">version</span>       1<span class="p">.</span>1<span class="p">.</span>7
-<span class="n">platform</span>      <span class="n">darwin</span> 2<span class="p">.</span>6<span class="p">.</span>1 <span class="p">(</span><span class="n">r261</span><span class="p">:</span>67515<span class="p">,</span> <span class="n">Jun</span> 24 2010<span class="p">,</span> 21<span class="p">:</span>47<span class="p">:</span>49<span class="p">)</span>
-              <span class="p">[</span><span class="n">GCC</span> 4<span class="p">.</span>2<span class="p">.</span>1 <span class="p">(</span><span class="n">Apple</span> <span class="n">Inc</span><span class="p">.</span> <span class="n">build</span> 5646<span class="p">)]</span>
-<span class="o">--------------------------------------------------------------------</span>
-<span class="o">---</span> <span class="n">TKINTER</span> <span class="n">support</span> <span class="n">available</span>
-<span class="o">---</span> <span class="n">JPEG</span> <span class="n">support</span> <span class="n">available</span>
-<span class="o">---</span> <span class="n">ZLIB</span> <span class="p">(</span><span class="n">PNG</span><span class="o">/</span><span class="n">ZIP</span><span class="p">)</span> <span class="n">support</span> <span class="n">available</span>
-<span class="o">---</span> <span class="n">FREETYPE2</span> <span class="n">support</span> <span class="n">available</span>
-<span class="o">***</span> <span class="n">LITTLECMS</span> <span class="n">support</span> <span class="n">not</span> <span class="n">available</span>
-<span class="o">--------------------------------------------------------------------</span>
-</pre></div>
-
-
+<pre><code>--------------------------------------------------------------------
+PIL 1.1.7 SETUP SUMMARY
+--------------------------------------------------------------------
+version       1.1.7
+platform      darwin 2.6.1 (r261:67515, Jun 24 2010, 21:47:49)
+              [GCC 4.2.1 (Apple Inc. build 5646)]
+--------------------------------------------------------------------
+--- TKINTER support available
+--- JPEG support available
+--- ZLIB (PNG/ZIP) support available
+--- FREETYPE2 support available
+*** LITTLECMS support not available
+--------------------------------------------------------------------
+</code></pre>
 <p>That's all for today folks, thanks for your attention.</p>
 <p><strong>EDIT:</strong> If you want <a href="http://www.littlecms.com/">little-cms</a> support, just run:</p>
-<div class="codehilite"><pre>$ <span class="n">brew</span> <span class="n">install</span> <span class="n">little</span><span class="o">-</span><span class="n">cms</span>
-<span class="p">(</span><span class="n">fubar</span><span class="p">)</span>$ <span class="n">pip</span> <span class="n">install</span> <span class="n">PIL</span>
-</pre></div>
+<pre><code>$ brew install little-cms
+(fubar)$ pip install PIL
+</code></pre>
     </section>
     <aside>
         <p>
@@ -113,7 +109,7 @@ $ <span class="n">mkvirtualenv</span> <span class="n">fubar</span> <span class="
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1331882039"></script>
+    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

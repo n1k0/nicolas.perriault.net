@@ -7,7 +7,7 @@
     <title>A First Look at node.js and Express | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331882038">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -39,91 +39,75 @@
 <p>Node is described as an <em>Evented I/O Framework for Google's V8 JavaScript Engine</em>. Think of it as a toolkit to produce high-performance distributed, event-driven and scalable non-blocking network servers. Okay, whatever the way I want to describe the project, it's buzzword-bingo™. Let's say it's mainly about catching events and react accordingly, to make load distribution and parallel processing easier and more effective.</p>
 <h3>Installing Node</h3>
 <p>Installation on my Mac went smoothly and took nearly two minutes by compiling it from the sources; here's how I did (there might be easier or better ways, I don't really care):</p>
-<div class="codehilite"><pre>$ <span class="n">mkdir</span> <span class="n">tmp</span>
-$ <span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ry</span><span class="o">/</span><span class="n">node</span><span class="p">.</span><span class="n">git</span>
-$ <span class="n">cd</span> <span class="n">node</span>
-$ <span class="o">./</span><span class="n">configure</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
-</pre></div>
-
-
+<pre><code>$ mkdir tmp
+$ git clone http://github.com/ry/node.git
+$ cd node
+$ ./configure &amp;&amp; make &amp;&amp; sudo make install
+</code></pre>
 <p>You now have access to the <code>node</code> executable available on your system.</p>
 <p>A simple example of a Node HTTP server (put the code below in a <code>test.js</code> file):</p>
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">http</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s">&#39;http&#39;</span><span class="p">);</span>
+<pre><code>var http = require('http');
 
-<span class="n">var</span> <span class="n">server</span> <span class="p">=</span> <span class="n">http</span><span class="p">.</span><span class="n">createServer</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">res</span><span class="p">.</span><span class="n">writeHead</span><span class="p">(</span>200<span class="p">,</span> <span class="p">{</span><span class="s">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s">&#39;text/plain&#39;</span><span class="p">});</span>
-  <span class="n">res</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Hello World&#39;</span><span class="p">);</span>
-  <span class="n">res</span><span class="p">.</span><span class="k">end</span><span class="p">();</span>
-<span class="p">});</span>
+var server = http.createServer(function(req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.write('Hello World');
+  res.end();
+});
 
-<span class="n">server</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span>3000<span class="p">,</span> &quot;127<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>1&quot;<span class="p">);</span>
-</pre></div>
-
-
+server.listen(3000, "127.0.0.1");
+</code></pre>
 <p>Then launch the created webserver using the command line:</p>
-<div class="codehilite"><pre>$ <span class="n">node</span> <span class="n">test</span><span class="p">.</span><span class="n">js</span>
-</pre></div>
-
-
+<pre><code>$ node test.js
+</code></pre>
 <p>And point your browser at <code>http://127.0.0.1:3000</code> to get printed <code>Hello World</code>. Neat, huh?</p>
 <h3>Introducing Express, a Web Framework on top of Node</h3>
 <p><a href="http://expressjs.com/">Express</a> is a Web framework built on top of Node, HTTP and <a href="http://github.com/senchalabs/connect">Connect</a>, allowing easy creation of full-fledged Web applications. It has <a href="http://expressjs.com/guide.html#Routing">routing</a>, handles <a href="http://expressjs.com/guide.html#Configuration">environments</a> as well as several <a href="http://expressjs.com/guide.html#Template-Engines">template engines</a> and <a href="http://expressjs.com/guide.html">much more</a>.</p>
 <p>Installation is as easy as Node's one, so here we go:</p>
-<div class="codehilite"><pre>$ <span class="n">git</span> <span class="n">clone</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">visionmedia</span><span class="o">/</span><span class="n">express</span><span class="p">.</span><span class="n">git</span>
-$ <span class="n">cd</span> <span class="n">express</span>
-$ <span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span>
-$ <span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span><span class="o">-</span><span class="n">support</span>
-</pre></div>
-
-
+<pre><code>$ git clone http://github.com/visionmedia/express.git
+$ cd express
+$ git submodule update --init
+$ sudo make install &amp;&amp; sudo make install-support
+</code></pre>
 <p>That's it. You can now write your own test application, eg. in a new <code>hello.js</code> file:</p>
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">app</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s">&#39;express&#39;</span><span class="p">).</span><span class="n">createServer</span><span class="p">();</span>
+<pre><code>var app = require('express').createServer();
 
-<span class="n">app</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">){</span>
-    <span class="n">res</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="s">&#39;Hello World&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+app.get('/', function(req, res){
+    res.send('Hello World');
+});
 
-<span class="n">app</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/hello/:name&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">){</span>
-    <span class="n">res</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="s">&#39;Hello &#39;</span> <span class="o">+</span> <span class="n">req</span><span class="p">.</span><span class="n">param</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;!&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+app.get('/hello/:name', function(req, res){
+    res.send('Hello ' + req.param('name') + '!');
+});
 
-<span class="n">app</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span>3000<span class="p">,</span> &quot;127<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>1&quot;<span class="p">);</span>
+app.listen(3000, "127.0.0.1");
 
-<span class="n">console</span><span class="p">.</span><span class="nb">log</span><span class="p">(</span><span class="s">&#39;Server running at http://127.0.0.1:3000/&#39;</span><span class="p">);</span>
-</pre></div>
-
-
+console.log('Server running at http://127.0.0.1:3000/');
+</code></pre>
 <p>Launch your webapp server by the command line:</p>
-<div class="codehilite"><pre>$ <span class="n">node</span> <span class="n">hello</span><span class="p">.</span><span class="n">js</span>
-</pre></div>
-
-
+<pre><code>$ node hello.js
+</code></pre>
 <p>Express and will create a Node server listening to the local port 3000, so head your favorite browser to <code>http://127.0.0.1:3000/</code> then <code>http://127.0.0.1:3000/hello/niko</code> to get the picture of what the above code does. Those familiar with Web framework such as rails, django or symfony won't be much disturbed.</p>
 <p>Express also ships with an <code>express</code> executable which provides useful commands. To create a new <code>hello</code> application skeleton, just run:</p>
-<div class="codehilite"><pre> $ <span class="n">express</span> <span class="n">hello</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">app</span><span class="p">.</span><span class="n">js</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">logs</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">javascripts</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">pids</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">stylesheets</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">stylesheets</span><span class="o">/</span><span class="n">style</span><span class="p">.</span><span class="n">less</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">images</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">partials</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">layout</span><span class="p">.</span><span class="n">jade</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">views</span><span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">jade</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">test</span>
-   <span class="n">create</span> <span class="p">:</span> <span class="n">hello</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">app</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">js</span>
-</pre></div>
-
-
+<pre><code> $ express hello
+   create : hello
+   create : hello/app.js
+   create : hello/logs
+   create : hello/public/javascripts
+   create : hello/pids
+   create : hello/public/stylesheets
+   create : hello/public/stylesheets/style.less
+   create : hello/public/images
+   create : hello/views/partials
+   create : hello/views/layout.jade
+   create : hello/views/index.jade
+   create : hello/test
+   create : hello/test/app.test.js
+</code></pre>
 <p>Above command just created an <code>hello</code> project directory where you can cd into and launch the server by its default front controller <code>app.js</code>:</p>
-<div class="codehilite"><pre>$ <span class="n">cd</span> <span class="n">hello</span>
-$ <span class="n">node</span> <span class="n">app</span><span class="p">.</span><span class="n">js</span>
-<span class="n">Express</span> <span class="n">server</span> <span class="n">listening</span> <span class="n">on</span> <span class="n">port</span> 3000
-</pre></div>
-
-
+<pre><code>$ cd hello
+$ node app.js
+Express server listening on port 3000
+</code></pre>
 <p>Note that the generated project skeleton implies using <a href="jade-lang.com/">Jade</a> as a tremplate engine and the <a href="http://lesscss.org/">Less CSS syntax</a>, while one might want to use something else, which is perfectly possible by <a href="http://expressjs.com/guide.html#Configuration">configuring</a> the project differently.</p>
 <p>Next steps documentation will be provided by <a href="http://expressjs.com/guide.html">official Express documentation</a>.</p>
 <p>Of course, Express might not be as full-featured as older well-established Web frameworks, but for simple needs it can be pretty easy to setup and deploy, and — probably equally importantly — fun to play with and learn.</p>
@@ -176,7 +160,7 @@ $ <span class="n">node</span> <span class="n">app</span><span class="p">.</span>
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1331882039"></script>
+    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

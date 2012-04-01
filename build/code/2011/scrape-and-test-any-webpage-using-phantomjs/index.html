@@ -7,7 +7,7 @@
     <title>Scrape and test any webpage using PhantomJS | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331882038">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -48,24 +48,20 @@ with no need for a full graphical interface installed.</p>
 <a href="https://github.com/mxcl/homebrew">homebrew</a> (note that
 <a href="static/itunes.apple.com/fr/app/xcode/id448457090?mt=12">XCode</a> must be
 installed on your machine):</p>
-<div class="codehilite"><pre>$ <span class="n">brew</span> <span class="n">install</span> <span class="n">phantomjs</span>
-</pre></div>
-
-
+<pre><code>$ brew install phantomjs
+</code></pre>
 <p>It can take a bit of time for the binaries to be built, especially
 because of their dependency to <a href="static/qt.nokia.com/products">Qt4</a>. When
 it's done, you can test it this way:</p>
-<div class="codehilite"><pre>$ <span class="n">phantomjs</span>
-<span class="n">Usage</span><span class="p">:</span> <span class="n">phantomjs</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="n">script</span><span class="p">.[</span><span class="n">js</span><span class="o">|</span><span class="n">coffee</span><span class="p">]</span> <span class="p">[</span><span class="n">script</span> <span class="n">argument</span> <span class="p">[</span><span class="n">script</span> <span class="n">argument</span> <span class="p">...]]</span>
-<span class="n">Options</span><span class="p">:</span>
-    <span class="o">--</span><span class="n">load</span><span class="o">-</span><span class="n">images</span><span class="p">=[</span><span class="n">yes</span><span class="o">|</span><span class="n">no</span><span class="p">]</span>             <span class="n">Load</span> <span class="n">all</span> <span class="n">inlined</span> <span class="n">images</span> <span class="p">(</span><span class="n">default</span> <span class="n">is</span> <span class="s">&#39;yes&#39;</span><span class="p">).</span>
-    <span class="o">--</span><span class="n">load</span><span class="o">-</span><span class="n">plugins</span><span class="p">=[</span><span class="n">yes</span><span class="o">|</span><span class="n">no</span><span class="p">]</span>            <span class="n">Load</span> <span class="n">all</span> <span class="n">plugins</span> <span class="p">(</span><span class="nb">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="s">&#39;Flash&#39;</span><span class="p">,</span> <span class="s">&#39;Silverlight&#39;</span><span class="p">,</span> <span class="p">...)</span> <span class="p">(</span><span class="n">default</span> <span class="n">is</span> <span class="s">&#39;no&#39;</span><span class="p">).</span>
-    <span class="o">--</span><span class="n">proxy</span><span class="p">=</span><span class="n">address</span><span class="p">:</span><span class="n">port</span>               <span class="n">Set</span> <span class="n">the</span> <span class="n">network</span> <span class="n">proxy</span><span class="p">.</span>
-    <span class="o">--</span><span class="n">disk</span><span class="o">-</span><span class="n">cache</span><span class="p">=[</span><span class="n">yes</span><span class="o">|</span><span class="n">no</span><span class="p">]</span>              <span class="n">Enable</span> <span class="n">disk</span> <span class="n">cache</span> <span class="p">(</span><span class="n">at</span> <span class="n">desktop</span> <span class="n">services</span> <span class="n">cache</span> <span class="n">storage</span> <span class="n">location</span><span class="p">,</span> <span class="n">default</span> <span class="n">is</span> <span class="s">&#39;no&#39;</span><span class="p">).</span>
-    <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">ssl</span><span class="o">-</span><span class="n">errors</span><span class="p">=[</span><span class="n">yes</span><span class="o">|</span><span class="n">no</span><span class="p">]</span>       <span class="n">Ignore</span> <span class="n">SSL</span> <span class="n">errors</span> <span class="p">(</span><span class="nb">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="n">expired</span> <span class="n">or</span> <span class="n">self</span><span class="o">-</span><span class="n">signed</span> <span class="n">certificate</span> <span class="n">errors</span><span class="p">).</span>
-</pre></div>
-
-
+<pre><code>$ phantomjs
+Usage: phantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Options:
+    --load-images=[yes|no]             Load all inlined images (default is 'yes').
+    --load-plugins=[yes|no]            Load all plugins (i.e. 'Flash', 'Silverlight', ...) (default is 'no').
+    --proxy=address:port               Set the network proxy.
+    --disk-cache=[yes|no]              Enable disk cache (at desktop services cache storage location, default is 'no').
+    --ignore-ssl-errors=[yes|no]       Ignore SSL errors (i.e. expired or self-signed certificate errors).
+</code></pre>
 <p>Installation instructions for other platforms and alternative methods
 can be found on <a href="http://code.google.com/p/phantomjs/wiki/Installation">the PhantomJS project
 wiki</a>.</p>
@@ -77,32 +73,28 @@ version while the standard one is a bit more unstable on my box (no
 troll please).</p>
 <p>To install PyPhantomJS, let's use
 <a href="http://www.pip-installer.org/"><code>pip</code></a>:</p>
-<div class="codehilite"><pre>$ <span class="n">pip</span> <span class="n">install</span> <span class="n">PyPhantomJS</span>
-</pre></div>
-
-
+<pre><code>$ pip install PyPhantomJS
+</code></pre>
 <p>The PyPhantomJS executable is named — <em>surprise</em> — <code>pyphantomjs</code>:</p>
-<div class="codehilite"><pre>$ <span class="n">pyphantomjs</span>
-<span class="n">usage</span><span class="p">:</span> <span class="n">pyphantomjs</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="n">script</span><span class="p">.[</span><span class="n">js</span><span class="o">|</span><span class="n">coffee</span><span class="p">]</span> <span class="p">[</span><span class="n">script</span> <span class="n">argument</span> <span class="p">[</span><span class="n">script</span> <span class="n">argument</span> <span class="p">...]]</span>
-<span class="n">Minimalistic</span> <span class="n">headless</span> <span class="n">WebKit</span><span class="o">-</span><span class="n">based</span> <span class="n">JavaScript</span><span class="o">-</span><span class="n">driven</span> <span class="n">tool</span>
-<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="n">script</span><span class="p">.[</span><span class="n">js</span><span class="o">|</span><span class="n">coffee</span><span class="p">]</span>    <span class="n">The</span> <span class="n">script</span> <span class="n">to</span> <span class="n">execute</span><span class="p">,</span> <span class="n">and</span> <span class="n">any</span> <span class="n">args</span> <span class="n">to</span> <span class="n">pass</span> <span class="n">to</span> <span class="n">it</span>
-<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
-  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">disk</span><span class="o">-</span><span class="n">cache</span> <span class="p">{</span><span class="n">yes</span><span class="p">,</span><span class="n">no</span><span class="p">}</span>
-                        <span class="n">Enable</span> <span class="n">disk</span> <span class="n">cache</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">no</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">ssl</span><span class="o">-</span><span class="n">errors</span> <span class="p">{</span><span class="n">yes</span><span class="p">,</span><span class="n">no</span><span class="p">}</span>
-                        <span class="n">Ignore</span> <span class="n">SSL</span> <span class="n">errors</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">no</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">load</span><span class="o">-</span><span class="n">images</span> <span class="p">{</span><span class="n">yes</span><span class="p">,</span><span class="n">no</span><span class="p">}</span>
-                        <span class="n">Load</span> <span class="n">all</span> <span class="n">inlined</span> <span class="n">images</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">yes</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">load</span><span class="o">-</span><span class="n">plugins</span> <span class="p">{</span><span class="n">yes</span><span class="p">,</span><span class="n">no</span><span class="p">}</span>
-                        <span class="n">Load</span> <span class="n">all</span> <span class="n">plugins</span> <span class="p">(</span><span class="nb">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="n">Flash</span><span class="p">,</span> <span class="n">Silverlight</span><span class="p">,</span> <span class="p">...)</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">no</span><span class="p">)</span>
-  <span class="o">--</span><span class="n">proxy</span> <span class="n">address</span><span class="p">:</span><span class="n">port</span>  <span class="n">Set</span> <span class="n">the</span> <span class="n">network</span> <span class="n">proxy</span>
-  <span class="o">-</span><span class="n">v</span><span class="p">,</span> <span class="o">--</span><span class="n">verbose</span>         <span class="n">Show</span> <span class="n">verbose</span> <span class="n">debug</span> <span class="n">messages</span>
-  <span class="o">--</span><span class="n">version</span>             <span class="n">show</span> <span class="n">this</span> <span class="n">program</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">version</span> <span class="n">and</span> <span class="n">license</span>
-</pre></div>
-
-
+<pre><code>$ pyphantomjs
+usage: pyphantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Minimalistic headless WebKit-based JavaScript-driven tool
+positional arguments:
+  script.[js|coffee]    The script to execute, and any args to pass to it
+optional arguments:
+  -h, --help            show this help message and exit
+  --disk-cache {yes,no}
+                        Enable disk cache (default: no)
+  --ignore-ssl-errors {yes,no}
+                        Ignore SSL errors (default: no)
+  --load-images {yes,no}
+                        Load all inlined images (default: yes)
+  --load-plugins {yes,no}
+                        Load all plugins (i.e. Flash, Silverlight, ...) (default: no)
+  --proxy address:port  Set the network proxy
+  -v, --verbose         Show verbose debug messages
+  --version             show this program's version and license
+</code></pre>
 <p>Usage of the two versions is exactly the same.</p>
 <h3>Basic usage</h3>
 <p>PhantomJS scripts can be written in standard JavaScript or in
@@ -111,49 +103,47 @@ matter of taste here, but CoffeeScript syntax <a href="http://robots.thoughtbot.
 interesting</a>.</p>
 <p>So let's write our first script, we want to retrieve the weather
 forecast for a given city using Google:</p>
-<div class="codehilite"><pre><span class="c1">// script: meteo.js</span>
-<span class="k">var</span> <span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebPage</span><span class="p">()</span>
-<span class="p">,</span> <span class="k">output</span> <span class="o">=</span> <span class="p">{</span> <span class="nl">errors:</span> <span class="p">[],</span> <span class="nl">results:</span> <span class="k">null</span> <span class="p">};</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">phantom</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mh">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(&#39;</span><span class="n">You</span> <span class="n">must</span> <span class="k">specify</span> <span class="n">a</span> <span class="n">city</span><span class="p">,</span> <span class="n">eg</span><span class="p">.</span> <span class="s">&quot;Paris, France&quot;</span><span class="p">&#39;);</span>
-    <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mh">1</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">page</span><span class="p">.</span><span class="n">open</span><span class="p">(&#39;</span><span class="nl">http:</span><span class="c1">//www.google.fr/search?q=meteo+&#39; + phantom.args[0], function (status) {</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!==</span> <span class="p">&#39;</span><span class="n">success</span><span class="p">&#39;)</span> <span class="p">{</span>
-        <span class="k">output</span><span class="p">.</span><span class="n">errors</span><span class="p">.</span><span class="n">push</span><span class="p">(&#39;</span><span class="n">Unable</span> <span class="n">to</span> <span class="n">access</span> <span class="n">network</span><span class="p">&#39;);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">var</span> <span class="n">cells</span> <span class="o">=</span> <span class="n">page</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="k">function</span><span class="p">(){</span>
-            <span class="n">try</span> <span class="p">{</span>
-                <span class="k">var</span> <span class="n">cells</span> <span class="o">=</span> <span class="n">document</span><span class="p">.</span><span class="n">querySelectorAll</span><span class="p">(&#39;.</span><span class="n">tpo</span> <span class="n">tr</span> <span class="n">tr</span><span class="p">&#39;)[</span><span class="mh">4</span><span class="p">].</span><span class="n">querySelectorAll</span><span class="p">(&#39;</span><span class="n">td</span><span class="p">&#39;);</span>
-                <span class="k">return</span> <span class="n">Array</span><span class="p">.</span><span class="n">prototype</span><span class="p">.</span><span class="n">map</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="k">cell</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="k">cell</span><span class="p">.</span><span class="n">innerText</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="o">/</span><span class="p">[</span><span class="o">^</span><span class="mh">0</span><span class="o">-</span><span class="mh">9</span><span class="p">]</span><span class="o">/</span><span class="n">g</span><span class="p">,</span> <span class="p">&#39;&#39;);</span>
-                <span class="p">});</span>
-            <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="p">[];</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">cells</span> <span class="o">||</span> <span class="o">!</span><span class="n">cells</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mh">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">output</span><span class="p">.</span><span class="n">errors</span><span class="p">.</span><span class="n">push</span><span class="p">(&#39;</span><span class="n">No</span> <span class="n">valid</span> <span class="n">meteo</span> <span class="n">data</span> <span class="n">found</span><span class="p">&#39;);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">output</span><span class="p">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="nl">city:</span> <span class="n">phantom</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mh">0</span><span class="p">],</span>
-                <span class="nl">today:</span> <span class="p">{</span>
-                    <span class="nl">afternoon:</span> <span class="n">cells</span><span class="p">[</span><span class="mh">1</span><span class="p">],</span>
-                    <span class="nl">morning:</span>   <span class="n">cells</span><span class="p">[</span><span class="mh">2</span><span class="p">],</span>
-                <span class="p">},</span>
-                <span class="nl">tomorrow:</span> <span class="p">{</span>
-                    <span class="nl">afternoon:</span> <span class="n">cells</span><span class="p">[</span><span class="mh">3</span><span class="p">],</span>
-                    <span class="nl">morning:</span>   <span class="n">cells</span><span class="p">[</span><span class="mh">4</span><span class="p">],</span>
-                <span class="p">}</span>
-            <span class="p">};</span>
-        <span class="p">}</span>
-        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="no">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="k">output</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="p">&#39;</span>    <span class="p">&#39;));</span>
-    <span class="p">}</span>
-    <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">();</span>
-<span class="p">});</span>
-</pre></div>
-
-
+<pre><code>// script: meteo.js
+var page = new WebPage()
+, output = { errors: [], results: null };
+if (phantom.args.length == 0) {
+    console.log('You must specify a city, eg. "Paris, France"');
+    phantom.exit(1);
+}
+page.open('http://www.google.fr/search?q=meteo+' + phantom.args[0], function (status) {
+    if (status !== 'success') {
+        output.errors.push('Unable to access network');
+    } else {
+        var cells = page.evaluate(function(){
+            try {
+                var cells = document.querySelectorAll('.tpo tr tr')[4].querySelectorAll('td');
+                return Array.prototype.map.call(cells, function(cell) {
+                    return cell.innerText.replace(/[^0-9]/g, '');
+                });
+            } catch (e) {
+                return [];
+            }
+        });
+        if (!cells || !cells.length &gt; 0) {
+            output.errors.push('No valid meteo data found');
+        } else {
+            output.results = {
+                city: phantom.args[0],
+                today: {
+                    afternoon: cells[1],
+                    morning:   cells[2],
+                },
+                tomorrow: {
+                    afternoon: cells[3],
+                    morning:   cells[4],
+                }
+            };
+        }
+        console.log(JSON.stringify(output, null, '    '));
+    }
+    phantom.exit();
+});
+</code></pre>
 <p>Notice we use the <code>phantom.args</code> Array which contains the parameters
 passed to the script.</p>
 <p>The main magic happens in the <code>page.evaluate()</code> method, we pass it a
@@ -161,54 +151,48 @@ JavaScript function which will be evaluated <strong>within the retrieved page
 document environment</strong>. It's a kind of <em>non-persistent XSS injection</em>
 just to help you to operate on the page contents =)</p>
 <p>Now it's time to launch the script to see how it goes:</p>
-<div class="codehilite"><pre>$ <span class="n">phantomjs</span> <span class="n">meteo</span><span class="p">.</span><span class="n">js</span> &quot;<span class="n">Montpellier</span><span class="p">,</span> <span class="n">France</span>&quot;
-<span class="p">{</span>
-    &quot;<span class="n">errors</span>&quot;<span class="p">:</span> <span class="p">[],</span>
-    &quot;<span class="n">results</span>&quot;<span class="p">:</span> <span class="p">{</span>
-        &quot;<span class="n">city</span>&quot;<span class="p">:</span> &quot;<span class="n">Montpellier</span><span class="p">,</span> <span class="n">France</span>&quot;<span class="p">,</span>
-        &quot;<span class="n">today</span>&quot;<span class="p">:</span> <span class="p">{</span>
-            &quot;<span class="n">afternoon</span>&quot;<span class="p">:</span> &quot;29&quot;<span class="p">,</span>
-            &quot;<span class="n">morning</span>&quot;<span class="p">:</span> &quot;17&quot;
-        <span class="p">},</span>
-        &quot;<span class="n">tomorrow</span>&quot;<span class="p">:</span> <span class="p">{</span>
-            &quot;<span class="n">afternoon</span>&quot;<span class="p">:</span> &quot;28&quot;<span class="p">,</span>
-            &quot;<span class="n">morning</span>&quot;<span class="p">:</span> &quot;17&quot;
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code>$ phantomjs meteo.js "Montpellier, France"
+{
+    "errors": [],
+    "results": {
+        "city": "Montpellier, France",
+        "today": {
+            "afternoon": "29",
+            "morning": "17"
+        },
+        "tomorrow": {
+            "afternoon": "28",
+            "morning": "17"
+        }
+    }
+}
+</code></pre>
 <p>Now with an invalid city name:</p>
-<div class="codehilite"><pre>$ <span class="n">phantomjs</span> <span class="n">meteo</span><span class="p">.</span><span class="n">js</span> &quot;<span class="n">Unexistent</span> <span class="n">City</span>&quot;
-<span class="p">{</span>
-    &quot;<span class="n">errors</span>&quot;<span class="p">:</span> <span class="p">[</span>
-        &quot;<span class="n">No</span> <span class="n">valid</span> <span class="n">meteo</span> <span class="n">data</span> <span class="n">found</span>&quot;
-    <span class="p">],</span>
-    &quot;<span class="n">results</span>&quot;<span class="p">:</span> <span class="n">null</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code>$ phantomjs meteo.js "Unexistent City"
+{
+    "errors": [
+        "No valid meteo data found"
+    ],
+    "results": null
+}
+</code></pre>
 <p>Let's try with another city, an existing one this time:</p>
-<div class="codehilite"><pre>$ <span class="n">phantomjs</span> <span class="n">meteo</span><span class="p">.</span><span class="n">js</span> &quot;<span class="n">Paris</span><span class="p">,</span> <span class="n">France</span>&quot;
-<span class="p">{</span>
-    &quot;<span class="n">errors</span>&quot;<span class="p">:</span> <span class="p">[],</span>
-    &quot;<span class="n">results</span>&quot;<span class="p">:</span> <span class="p">{</span>
-        &quot;<span class="n">city</span>&quot;<span class="p">:</span> &quot;<span class="n">Paris</span><span class="p">,</span> <span class="n">France</span>&quot;<span class="p">,</span>
-        &quot;<span class="n">today</span>&quot;<span class="p">:</span> <span class="p">{</span>
-            &quot;<span class="n">afternoon</span>&quot;<span class="p">:</span> &quot;21&quot;<span class="p">,</span>
-            &quot;<span class="n">morning</span>&quot;<span class="p">:</span> &quot;11&quot;
-        <span class="p">},</span>
-        &quot;<span class="n">tomorrow</span>&quot;<span class="p">:</span> <span class="p">{</span>
-            &quot;<span class="n">afternoon</span>&quot;<span class="p">:</span> &quot;21&quot;<span class="p">,</span>
-            &quot;<span class="n">morning</span>&quot;<span class="p">:</span> &quot;11&quot;
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<pre><code>$ phantomjs meteo.js "Paris, France"
+{
+    "errors": [],
+    "results": {
+        "city": "Paris, France",
+        "today": {
+            "afternoon": "21",
+            "morning": "11"
+        },
+        "tomorrow": {
+            "afternoon": "21",
+            "morning": "11"
+        }
+    }
+}
+</code></pre>
 <p>As a side note and in case you were wondering, you now understand a bit
 more why I moved to Montpellier ;)</p>
 <h3>I CAN HAZ SCREENSHOTS</h3>
@@ -217,26 +201,24 @@ remote page, very useful when a remote website doesn't ship with your
 favorite framework (eg. <a href="http://jquery.com/">jQuery</a>)… or can render a
 PNG image of a captured area of the webpage. The example below saves a
 capture of the weather forecast area:</p>
-<div class="codehilite"><pre><span class="c1">// script: meteoclip.js</span>
-<span class="k">var</span> <span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebPage</span><span class="p">();</span>
-<span class="n">page</span><span class="p">.</span><span class="n">open</span><span class="p">(&#39;</span><span class="nl">http:</span><span class="c1">//www.google.fr/search?q=meteo+montpellier,+France&#39;, function (status) {</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!==</span> <span class="p">&#39;</span><span class="n">success</span><span class="p">&#39;)</span> <span class="p">{</span>
-        <span class="k">output</span><span class="p">.</span><span class="n">error</span> <span class="o">=</span> <span class="p">&#39;</span><span class="n">Unable</span> <span class="n">to</span> <span class="n">access</span> <span class="n">network</span><span class="p">&#39;;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">page</span><span class="p">.</span><span class="n">clipRect</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="nl">top:</span> <span class="mh">127</span><span class="p">,</span>
-            <span class="nl">left:</span> <span class="mh">170</span><span class="p">,</span>
-            <span class="nl">width:</span> <span class="mh">400</span><span class="p">,</span>
-            <span class="nl">height:</span> <span class="mh">114</span>
-        <span class="p">}</span>
-        <span class="n">page</span><span class="p">.</span><span class="n">render</span><span class="p">(&#39;</span><span class="n">meteo</span><span class="p">.</span><span class="n">png</span><span class="p">&#39;);</span>
-        <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(&#39;</span><span class="n">Capture</span> <span class="n">saved</span><span class="p">&#39;);</span>
-    <span class="p">}</span>
-    <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">();</span>
-<span class="p">});</span>
-</pre></div>
-
-
+<pre><code>// script: meteoclip.js
+var page = new WebPage();
+page.open('http://www.google.fr/search?q=meteo+montpellier,+France', function (status) {
+    if (status !== 'success') {
+        output.error = 'Unable to access network';
+    } else {
+        page.clipRect = {
+            top: 127,
+            left: 170,
+            width: 400,
+            height: 114
+        }
+        page.render('meteo.png');
+        console.log('Capture saved');
+    }
+    phantom.exit();
+});
+</code></pre>
 <p>Running the <code>meteoclip.js</code> script will get yourself this fancy image
 stored in <code>meteo.jpg</code>:</p>
 <p><img alt="image" src="http://cl.ly/0w2a050b3x2g170u053A/meteo.png" /></p>
@@ -289,7 +271,7 @@ bit more about it soon, who knows!</p>
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1331882039"></script>
+    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

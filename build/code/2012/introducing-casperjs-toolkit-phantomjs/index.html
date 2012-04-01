@@ -7,7 +7,7 @@
     <title>CasperJS, a toolkit on top of PhantomJS | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331882038">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -61,125 +61,109 @@
 <p>Hell, looks like some new coffee-machine… Let's quickly review some of these features though.</p>
 <h2>Creating navigation scenarios</h2>
 <p>Scripting a browsing workflow using Javascript is painfully hard if you intend to use chained callbacks. This kind of code is a nightmare to write, to read, to understand and to maintain:</p>
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">page</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s">&#39;webpage&#39;</span><span class="p">).</span><span class="n">create</span><span class="p">();</span>
+<pre><code>var page = require('webpage').create();
 
-<span class="n">page</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">url1</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> &quot;<span class="n">fail</span>&quot;<span class="p">)</span> <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">();</span>
-    <span class="n">page</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">url2</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> &quot;<span class="n">fail</span>&quot;<span class="p">)</span> <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">();</span>
-        <span class="n">page</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">url3</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> &quot;<span class="n">fail</span>&quot;<span class="p">)</span> <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">();</span>
-            <span class="n">page</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">url4</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> &quot;<span class="n">fail</span>&quot;<span class="p">)</span> <span class="n">phantom</span><span class="p">.</span><span class="n">exit</span><span class="p">();</span>
-                <span class="o">//</span> <span class="n">Can</span> <span class="n">I</span> <span class="n">stop</span><span class="p">,</span> <span class="n">now</span>?
-            <span class="p">});</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-<span class="p">});</span>
-</pre></div>
-
-
+page.open(url1, function(status) {
+    if (status == "fail") phantom.exit();
+    page.open(url2, function(status) {
+        if (status == "fail") phantom.exit();
+        page.open(url3, function(status) {
+            if (status == "fail") phantom.exit();
+            page.open(url4, function(status) {
+                if (status == "fail") phantom.exit();
+                // Can I stop, now?
+            });
+        });
+    });
+});
+</code></pre>
 <p>Well, CasperJS solves this kind of problem using a convenient API for dealing with asynchronous stuff:</p>
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">casper</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s">&#39;casper&#39;</span><span class="p">).</span><span class="n">create</span><span class="p">();</span>
+<pre><code>var casper = require('casper').create();
 
-<span class="n">casper</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="n">url1</span><span class="p">);</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">thenOpen</span><span class="p">(</span><span class="n">url2</span><span class="p">);</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">thenOpen</span><span class="p">(</span><span class="n">url3</span><span class="p">);</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">thenOpen</span><span class="p">(</span><span class="n">url4</span><span class="p">);</span>
+casper.start(url1);
+casper.thenOpen(url2);
+casper.thenOpen(url3);
+casper.thenOpen(url4);
 
-<span class="n">casper</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-</pre></div>
-
-
+casper.run();
+</code></pre>
 <p>Want to simulate the user navigation as if he were clicking through links? No problem:</p>
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">casper</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span>&quot;<span class="n">capsper</span>&quot;<span class="p">).</span><span class="n">create</span><span class="p">()</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s">&#39;http://my.blog.tld/&#39;</span><span class="p">);</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">thenClick</span><span class="p">(</span><span class="s">&#39;nav#menu a.blog&#39;</span><span class="p">);</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">thenClick</span><span class="p">(</span><span class="s">&#39;.posts li a&#39;</span><span class="p">);</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">then</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">echo</span><span class="p">(</span><span class="s">&#39;Page url is &#39;</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">getCurrentUrl</span><span class="p">());</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">echo</span><span class="p">(</span><span class="s">&#39;Page title is &#39;</span> <span class="o">+</span> <span class="n">this</span><span class="p">.</span><span class="n">getTitle</span><span class="p">());</span>
-<span class="p">});</span>
+<pre><code>var casper = require("capsper").create()
+casper.start('http://my.blog.tld/');
+casper.thenClick('nav#menu a.blog');
+casper.thenClick('.posts li a');
+casper.then(function() {
+    this.echo('Page url is ' + this.getCurrentUrl());
+    this.echo('Page title is ' + this.getTitle());
+});
 
-<span class="n">casper</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-</pre></div>
-
-
+casper.run();
+</code></pre>
 <p>Note that you can alternatively use <a href="http://coffeescript.org/">coffeescript</a> to write your scripts:</p>
-<div class="codehilite"><pre><span class="n">var</span> <span class="n">casper</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span>&quot;<span class="n">capsper</span>&quot;<span class="p">).</span><span class="n">create</span><span class="p">()</span>
-<span class="n">casper</span><span class="p">.</span><span class="n">start</span> &quot;<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="p">.</span><span class="n">blog</span><span class="p">.</span><span class="n">tld</span><span class="o">/</span>&quot;
-<span class="n">casper</span><span class="p">.</span><span class="n">thenClick</span> &quot;<span class="n">nav</span>#<span class="n">menu</span> <span class="n">a</span><span class="p">.</span><span class="n">blog</span>&quot;
-<span class="n">casper</span><span class="p">.</span><span class="n">thenClick</span> &quot;<span class="p">.</span><span class="n">posts</span> <span class="n">li</span> <span class="n">a</span>&quot;
-<span class="n">casper</span><span class="p">.</span><span class="n">then</span> <span class="o">-&gt;</span>
-    <span class="p">@</span><span class="n">echo</span> &quot;<span class="n">Page</span> <span class="n">url</span> <span class="n">is</span> #<span class="p">{@</span><span class="n">getCurrentUrl</span><span class="p">()}</span>&quot;
-    <span class="p">@</span><span class="n">echo</span> &quot;<span class="n">Page</span> <span class="n">title</span> <span class="n">is</span> #<span class="p">{@</span><span class="n">getTitle</span><span class="p">()}</span>&quot;
-<span class="n">casper</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
-
-
+<pre><code>var casper = require("capsper").create()
+casper.start "http://my.blog.tld/"
+casper.thenClick "nav#menu a.blog"
+casper.thenClick ".posts li a"
+casper.then -&gt;
+    @echo "Page url is #{@getCurrentUrl()}"
+    @echo "Page title is #{@getTitle()}"
+casper.run()
+</code></pre>
 <h2>Filling and handling forms</h2>
 <p>Filling and submitting a form is not much harder:</p>
-<div class="codehilite"><pre><span class="n">casper</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s">&#39;http://admin.domain.tld/login/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="s">&#39;form[id=&quot;login-form&quot;]&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="s">&#39;username&#39;</span><span class="p">:</span> <span class="s">&#39;chuck&#39;</span><span class="p">,</span>
-        <span class="s">&#39;password&#39;</span><span class="p">:</span> <span class="s">&#39;n0rr1s&#39;</span>
-    <span class="p">},</span> <span class="n">true</span><span class="p">);</span>
-<span class="p">});</span>
+<pre><code>casper.start('http://admin.domain.tld/login/', function() {
+    this.fill('form[id="login-form"]', {
+        'username': 'chuck',
+        'password': 'n0rr1s'
+    }, true);
+});
 
-<span class="n">casper</span><span class="p">.</span><span class="n">then</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">echo</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">getTitle</span><span class="p">());</span>
-<span class="p">});</span>
+casper.then(function() {
+    this.echo(this.getTitle());
+});
 
-<span class="n">casper</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-</pre></div>
-
-
+casper.run();
+</code></pre>
 <h2>Capturing screenshots</h2>
 <p>Capturing a screenshot of a given area is as easy as this:</p>
-<div class="codehilite"><pre><span class="n">casper</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s">&#39;http://domain.tld/page.html&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">captureSelector</span><span class="p">(</span><span class="s">&#39;capture.png&#39;</span><span class="p">,</span> <span class="s">&#39;.article-content&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+<pre><code>casper.start('http://domain.tld/page.html', function() {
+    this.captureSelector('capture.png', '.article-content');
+});
 
-<span class="n">casper</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
-</pre></div>
-
-
+casper.run();
+</code></pre>
 <h2>Asynchronous rendering of page</h2>
 <p>Sometimes (ok, often), lots of stuff is loaded asynchronously through Ajax or any other fancy invention of the Devil. You can just wait for it to happen:</p>
-<div class="codehilite"><pre><span class="n">casper</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s">&#39;https://twitter.com/casperjs_org&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">waitForSelector</span><span class="p">(</span><span class="s">&#39;.tweet-row&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">this</span><span class="p">.</span><span class="n">captureSelector</span><span class="p">(</span><span class="s">&#39;twitter.png&#39;</span><span class="p">,</span> <span class="s">&#39;html&#39;</span><span class="p">);</span>
-    <span class="p">},</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">this</span><span class="p">.</span><span class="n">die</span><span class="p">(</span><span class="s">&#39;Timeout reached. Fail whale?&#39;</span><span class="p">).</span><span class="n">exit</span><span class="p">();</span>
-    <span class="p">},</span> 2000<span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
-
-
+<pre><code>casper.start('https://twitter.com/casperjs_org', function() {
+    this.waitForSelector('.tweet-row', function() {
+        this.captureSelector('twitter.png', 'html');
+    }, function() {
+        this.die('Timeout reached. Fail whale?').exit();
+    }, 2000);
+});
+</code></pre>
 <h2>Testing</h2>
 <p>Now all of this is fancy, but the true powers of CasperJS come from its functional testing capabilities. For example, testing google search can be done that way:</p>
-<div class="codehilite"><pre><span class="n">casper</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s">&#39;http://www.google.fr/&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">assertTitle</span><span class="p">(</span><span class="s">&#39;Google&#39;</span><span class="p">,</span> <span class="s">&#39;google homepage title is the one expected&#39;</span><span class="p">);</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">assertExists</span><span class="p">(</span><span class="s">&#39;form[action=&quot;/search&quot;]&#39;</span><span class="p">,</span> <span class="s">&#39;main form is found&#39;</span><span class="p">);</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="s">&#39;form[action=&quot;/search&quot;]&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="n">q</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span>
-    <span class="p">},</span> <span class="n">true</span><span class="p">);</span>
-<span class="p">});</span>
+<pre><code>casper.start('http://www.google.fr/', function() {
+    this.test.assertTitle('Google', 'google homepage title is the one expected');
+    this.test.assertExists('form[action="/search"]', 'main form is found');
+    this.fill('form[action="/search"]', {
+        q: 'foo'
+    }, true);
+});
 
-<span class="n">casper</span><span class="p">.</span><span class="n">then</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">assertTitle</span><span class="p">(</span><span class="s">&#39;foo - Recherche Google&#39;</span><span class="p">,</span> <span class="s">&#39;google title is ok&#39;</span><span class="p">);</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">assertUrlMatch</span><span class="p">(</span><span class="o">/</span><span class="n">q</span><span class="p">=</span><span class="n">foo</span><span class="o">/</span><span class="p">,</span> <span class="s">&#39;search term has been submitted&#39;</span><span class="p">);</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">assertEval</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">__utils__</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;h3.r&#39;</span><span class="p">).</span><span class="nb">length</span> <span class="o">&gt;</span><span class="p">=</span> 10<span class="p">;</span>
-    <span class="p">},</span> <span class="s">&#39;google search for &quot;foo&quot; retrieves 10 or more results&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+casper.then(function() {
+    this.test.assertTitle('foo - Recherche Google', 'google title is ok');
+    this.test.assertUrlMatch(/q=foo/, 'search term has been submitted');
+    this.test.assertEval(function() {
+        return __utils__.findAll('h3.r').length &gt;= 10;
+    }, 'google search for "foo" retrieves 10 or more results');
+});
 
-<span class="n">casper</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="p">.</span><span class="n">test</span><span class="p">.</span><span class="n">renderResults</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
-
-
+casper.run(function() {
+    this.test.renderResults(true);
+});
+</code></pre>
 <p>Running the suite would produce this shiny colored output:</p>
 <p><img alt="" src="/static/code/2012/testsuiteok.png" /></p>
 <p>As a bonus, these results can be exported as XUnit XML, eg. for being consumed by a continuous integration server like <a href="http://jenkins-ci.org/">Jenkins</a>.</p>
@@ -232,7 +216,7 @@
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1331882039"></script>
+    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <title>Creating a Custom Panel for the Django Debug Toolbar | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331882038">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -39,61 +39,55 @@
 <p>That's — you guessed it — my case currently, and I really appreciated being able to create my own custom panel for adding specific debugging capabilities to the awesome <a href="https://github.com/robhudson/django-debug-toolbar">Django Debug Toolbar</a>.</p>
 <p>Here's how I did, learning mainly from the code of the panels shipping with the DJT. I'm supposing you have installed and configured the DJT in your project already.</p>
 <p>First of all, create a <code>panels.py</code> module within one of your app (or wherever you want as it's in your python path) and create a DebugPanel derivated class, like this:</p>
-<div class="codehilite"><pre><span class="n">from</span> <span class="n">debug_toolbar</span><span class="p">.</span><span class="n">panels</span> <span class="n">import</span> <span class="n">DebugPanel</span>
-<span class="n">from</span> <span class="n">django</span><span class="p">.</span><span class="n">template</span><span class="p">.</span><span class="n">loader</span> <span class="n">import</span> <span class="n">render_to_string</span>
-<span class="n">from</span> <span class="n">django</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">translation</span> <span class="n">import</span> <span class="n">ugettext_lazy</span> <span class="n">as</span> <span class="n">_</span>
+<pre><code>from debug_toolbar.panels import DebugPanel
+from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
-<span class="n">class</span> <span class="n">MyUsefulDebugPanel</span><span class="p">(</span><span class="n">DebugPanel</span><span class="p">):</span>
-    <span class="n">name</span> <span class="p">=</span> <span class="s">&#39;MyUseful&#39;</span>
-    <span class="n">has_content</span> <span class="p">=</span> <span class="n">True</span>
+class MyUsefulDebugPanel(DebugPanel):
+    name = 'MyUseful'
+    has_content = True
 
-    <span class="n">def</span> <span class="n">nav_title</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_</span><span class="p">(</span><span class="s">&#39;Useful Infos&#39;</span><span class="p">)</span>
+    def nav_title(self):
+        return _('Useful Infos')
 
-    <span class="n">def</span> <span class="n">title</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_</span><span class="p">(</span><span class="s">&#39;My Useful Debug Panel&#39;</span><span class="p">)</span>
+    def title(self):
+        return _('My Useful Debug Panel')
 
-    <span class="n">def</span> <span class="n">url</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&#39;&#39;</span>
+    def url(self):
+        return ''
 
-    <span class="n">def</span> <span class="n">content</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="n">context</span> <span class="p">=</span> <span class="n">self</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">context</span><span class="p">.</span><span class="n">update</span><span class="p">({</span>
-            <span class="s">&#39;infos&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s">&#39;plop&#39;</span><span class="p">:</span> <span class="s">&#39;plip&#39;</span><span class="p">},</span>
-                <span class="p">{</span><span class="s">&#39;plop&#39;</span><span class="p">:</span> <span class="s">&#39;plup&#39;</span><span class="p">},</span>
-            <span class="p">],</span>
-        <span class="p">})</span>
-        <span class="k">return</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">&#39;panels/my_useful_panel.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</pre></div>
-
-
+    def content(self):
+        context = self.context.copy()
+        context.update({
+            'infos': [
+                {'plop': 'plip'},
+                {'plop': 'plup'},
+            ],
+        })
+        return render_to_string('panels/my_useful_panel.html', context)
+</code></pre>
 <p>The debug panel class methods and code should be self-explanatory enough. Just note you have to create a template, here <code>panels/my_useful_panel.html</code> to be stored in your project <code>templates</code> directory, with this kind of contents:</p>
-<div class="codehilite"><pre><span class="nt">&lt;p&gt;</span>Hey, these are useful informations, I swear:<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;ul&gt;</span>
+<pre><code>&lt;p&gt;Hey, these are useful informations, I swear:&lt;/p&gt;
+&lt;ul&gt;
 {% for info in infos %}
-    <span class="nt">&lt;li&gt;</span>Plop is {{ info.plop}}<span class="nt">&lt;/li&gt;</span>
+    &lt;li&gt;Plop is {{ info.plop}}&lt;/li&gt;
 {% endfor %}
-<span class="nt">&lt;/ul&gt;</span>
-</pre></div>
-
-
+&lt;/ul&gt;
+</code></pre>
 <p>Now you have to register the new panel by adding its path to the <code>DEBUG_TOOLBAR_PANELS</code> tuple, in your <code>settings.py</code> (create it if it's not there):</p>
-<div class="codehilite"><pre><span class="n">DEBUG_TOOLBAR_PANELS</span> <span class="p">=</span> <span class="p">(</span>
-    <span class="s">&#39;debug_toolbar.panels.version.VersionDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.timer.TimerDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.headers.HeaderDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.request_vars.RequestVarsDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.template.TemplateDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.sql.SQLDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.signals.SignalDebugPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;debug_toolbar.panels.logger.LoggingPanel&#39;</span><span class="p">,</span>
-    <span class="s">&#39;my_app_name.panels.MyUsefulDebugPanel&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-
-
+<pre><code>DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+    'my_app_name.panels.MyUsefulDebugPanel',
+)
+</code></pre>
 <p>Of course it's up to you to put really useful informations there, but here's the result, tadaa:</p>
 <p><img alt="result screenshot" src="http://media.tumblr.com/tumblr_lhfpagXiif1qbt2jc.png" /></p>
 <p>Thanks for reading, happy ponying.</p>
@@ -142,7 +136,7 @@
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1331882039"></script>
+    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

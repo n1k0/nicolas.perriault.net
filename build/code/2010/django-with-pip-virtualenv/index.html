@@ -7,7 +7,7 @@
     <title>Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1331882038">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -47,61 +47,45 @@
 <h3><code>pip</code>, un installeur de paquet simple et efficace</h3>
 <p>D'aucuns de ceux qui utilisent une distribution Linux connaissent le bonheur d'utiliser un gestionnaire de paquets. L'installation de programmes et de librairies s'effectuent la plupart du temps en ligne de commande, et la résolution des dépendances est totalement prise en charge de façon transparente.</p>
 <p><a href="http://pypi.python.org/pypi/pip">pip</a> est un gestionnaire de paquets Python, écrit lui-même en Python, qui tient ce rôle à merveille. L'installation de <code>pip</code> est fort simple, pour peu de disposer de <a href="http://pypi.python.org/pypi/setuptools">setup_tools</a>&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">easy_install</span> <span class="n">pip</span>
-</pre></div>
-
-
+<pre><code>$ sudo easy_install pip
+</code></pre>
 <p>Pour installer un paquet, par exemple la dernière version stable de Django (la 1.1.1), il vous suffit de taper en ligne de commande&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">Django</span>
-</pre></div>
-
-
+<pre><code>$ sudo pip install Django
+</code></pre>
 <p>Pour chercher un paquet, c'est aussi simple que&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">pip</span> <span class="n">search</span> <span class="n">django</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">toolbar</span>
-</pre></div>
-
-
+<pre><code>$ pip search django-debug-toolbar
+</code></pre>
 <h3><code>virtualenv</code>, un environnement Python virtuel étanche et cloisonné</h3>
 <p><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> vous propose ni plus ni moins de créer à la demande des environnements de travail virtuels pour tout ce qui touche à Python&nbsp;: chaque environnement possède ses propres paquets et librairies, voire dispose de sa propre version de l'interpréteur !</p>
 <p><a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>, quand à lui, est un jeu de scripts utilitaires permettant de créer, modifier, supprimer et - d'une façon plus générale - de travailler efficacement avec <code>virtualenv</code>.</p>
 <p>L'installation de <code>virtualenv</code> et de <code>virtualenvwrapper</code>, ça tombe bien, peuvent se faire directement via <code>pip</code>&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span> <span class="n">virtualenvwrapper</span>
-</pre></div>
-
-
+<pre><code>$ sudo pip install virtualenv virtualenvwrapper
+</code></pre>
 <p>Pour finir de configurer l'installation de <code>virtualenv</code>, il nous reste cependant quelques étapes supplémentaires.</p>
 <p>Tout d'abord, il nous faut créer le répertoire qui contiendra nos environnements virtuels sur notre machine [^envpath]&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">mkdir</span> <span class="o">~/</span><span class="p">.</span><span class="n">virtualenvs</span>
-</pre></div>
-
-
+<pre><code>$ mkdir ~/.virtualenvs
+</code></pre>
 <p>[^envpath]: Vous pouvez bien entendu créer ce répertoire où bon vous semble sur votre système, à partir du moment où votre utilisateur a les droits de lecture et d'écriture dessus.</p>
 <p>Il faut également renseigner ce chemin dans la variable d'environnement <code>$WORKON_HOME</code> et instancier la gestion des environnements virtuels, le plus simple étant alors de placer les déclarations ad-hoc dans le fichier <code>~/.profile</code> de votre compte utilisateur [^prf]&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">echo</span> &quot;<span class="n">export</span> <span class="n">WORKON_HOME</span><span class="p">=</span>$<span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">virtualenvs</span>&quot; <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">profile</span>
-$ <span class="n">echo</span> &quot;<span class="n">export</span> <span class="n">PIP_VIRTUALENV_BASE</span><span class="p">=</span>$<span class="n">WORKON_HOME</span>&quot; <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">profile</span>
-$ <span class="n">echo</span> &quot;<span class="n">export</span> <span class="n">PIP_RESPECT_VIRTUALENV</span><span class="p">=</span><span class="n">true</span>&quot; <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">profile</span>
-$ <span class="n">echo</span> &quot;<span class="n">source</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">virtualenvwrapper</span><span class="p">.</span><span class="n">sh</span>&quot; <span class="o">&gt;&gt;</span> <span class="o">~/</span><span class="p">.</span><span class="n">profile</span>
-</pre></div>
-
-
+<pre><code>$ echo "export WORKON_HOME=$HOME/.virtualenvs" &gt;&gt; ~/.profile
+$ echo "export PIP_VIRTUALENV_BASE=$WORKON_HOME" &gt;&gt; ~/.profile
+$ echo "export PIP_RESPECT_VIRTUALENV=true" &gt;&gt; ~/.profile
+$ echo "source /usr/local/bin/virtualenvwrapper.sh" &gt;&gt; ~/.profile
+</code></pre>
 <p>[^prf]: le fichier <code>~/.profile</code> est chargé à chaque démarrage de session Max OS X. Utilisateurs de GNU/Linux, l'équivalent est le fichier <code>~/.bashrc</code>.</p>
 <blockquote>
 <p><strong>Note&nbsp;:</strong> il se peut que selon le mode d'installation utilisé, le chemin vers le fichier <code>/usr/local/bin/virtualenvwrapper.sh</code> soit à adapter spécifiquement.</p>
 </blockquote>
 <p>Comme nous venons d'ajouter des directives à notre fichier <code>~/.profile</code>, il faut le recharger&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">source</span> <span class="o">~/</span><span class="p">.</span><span class="n">profile</span>
-</pre></div>
-
-
+<pre><code>$ source ~/.profile
+</code></pre>
 <h3>Créer son premier environnement virtuel</h3>
 <p>Reprenons le cas de nos deux projets <code>A</code> et <code>B</code> ; nous avons besoin de créer deux environnements virtuels distincts pour travailler sereinement avec les paquets adéquats pour chacun d'eux&nbsp;:</p>
 <p>Nous allons nous concentrer sur la création du premier environnement, pour l'occasion destiné à travailler sur le projet <code>A</code>&nbsp;:</p>
-<div class="codehilite"><pre>$ <span class="n">mkvirtualenv</span> <span class="n">DjangoEnvX</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span>
-<span class="n">New</span> <span class="n">python</span> <span class="n">executable</span> <span class="n">in</span> <span class="n">DjangoEnvX</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span>
-<span class="n">Installing</span> <span class="n">setuptools</span><span class="p">............</span><span class="n">done</span><span class="p">.</span>
-</pre></div>
-
-
+<pre><code>$ mkvirtualenv DjangoEnvX --no-site-packages
+New python executable in DjangoEnvX/bin/python
+Installing setuptools............done.
+</code></pre>
 <p>L'environnement a été créé. Notez trois choses importantes&nbsp;:</p>
 <ul>
 <li>Les <em>setuptools</em> ont été installés dans l'environnement, ainsi que <code>pip</code> même s'il n'en est pas fait mention ; cela nous permettra de disposer de moyens d'installation depuis l'environnement en question&nbsp;;</li>
@@ -109,19 +93,17 @@ $ <span class="n">echo</span> &quot;<span class="n">source</span> <span class="o
 <li>Je ne nomme pas l'environnement de travail du nom du «&nbsp;Projet&nbsp;A&nbsp;», dans la mesure où cet environnement pourrait éventuellement être réutilisé pour d'autres projets ayant des besoins et contraintes similaires.</li>
 </ul>
 <p>Mais examinons de plus près ce que la commande <code>mkvirtualenv</code> a créé pour nous&nbsp;:</p>
-<div class="codehilite"><pre><span class="o">~</span>$ <span class="n">workon</span> <span class="n">DjangoEnvX</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~</span> $ <span class="n">cdvirtualenv</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="p">.</span><span class="n">virtualenvs</span><span class="o">/</span><span class="n">DjangoEnvX</span> $ <span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
-<span class="n">total</span> 8
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   6 <span class="n">niko</span>  <span class="n">staff</span>  204 <span class="n">May</span>  5 16<span class="p">:</span>08 <span class="p">.</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  14 <span class="n">niko</span>  <span class="n">staff</span>  476 <span class="n">May</span>  5 16<span class="p">:</span>08 <span class="p">..</span>
-<span class="n">lrwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   1 <span class="n">niko</span>  <span class="n">staff</span>   63 <span class="n">May</span>  5 16<span class="p">:</span>08 <span class="p">.</span><span class="n">Python</span> <span class="o">-&gt;</span> <span class="o">/</span><span class="n">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span>2<span class="p">.</span>6<span class="o">/</span><span class="n">Python</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   9 <span class="n">niko</span>  <span class="n">staff</span>  306 <span class="n">May</span>  5 16<span class="p">:</span>08 <span class="n">bin</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   3 <span class="n">niko</span>  <span class="n">staff</span>  102 <span class="n">May</span>  5 16<span class="p">:</span>08 <span class="n">include</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   3 <span class="n">niko</span>  <span class="n">staff</span>  102 <span class="n">May</span>  5 16<span class="p">:</span>08 <span class="n">lib</span>
-</pre></div>
-
-
+<pre><code>~$ workon DjangoEnvX
+(DjangoEnvX)~ $ cdvirtualenv
+(DjangoEnvX)~/.virtualenvs/DjangoEnvX $ ls -l
+total 8
+drwxr-xr-x   6 niko  staff  204 May  5 16:08 .
+drwxr-xr-x  14 niko  staff  476 May  5 16:08 ..
+lrwxr-xr-x   1 niko  staff   63 May  5 16:08 .Python -&gt; /System/Library/Frameworks/Python.framework/Versions/2.6/Python
+drwxr-xr-x   9 niko  staff  306 May  5 16:08 bin
+drwxr-xr-x   3 niko  staff  102 May  5 16:08 include
+drwxr-xr-x   3 niko  staff  102 May  5 16:08 lib
+</code></pre>
 <p>Notez les éléments suivants&nbsp;:</p>
 <ul>
 <li>L'utilisation de la commande <code>workon</code>, fournie par <code>virtualenvwrapper</code>, qui permet d'activer un environnement virtuel de travail ; l'autocomplétion du nom de l'environnement virtuel est d'ailleurs disponible&nbsp;!</li>
@@ -130,68 +112,54 @@ $ <span class="n">echo</span> &quot;<span class="n">source</span> <span class="o
 <li>Un préfixe (ici <code>(DjangoEnvX)</code>) est ajouté devant le prompt lorqu'on travaille dans un environnement spécifique&nbsp;: cela permet de toujours savoir dans quel environnement on travaille, afin d'éviter les mauvaises surprises ;)</li>
 </ul>
 <p>Je peux maintenant installer sereinement les paquets dont j'ai besoin dans le cadre de mon projet <code>A</code>, où que je sois sur le système de fichiers. Par exemple, pour installer la version de dev de Django 1.2 depuis son mirroir git&nbsp;:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~</span> $ <span class="n">cd</span> <span class="o">~</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~</span> $ <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="n">git</span><span class="o">+</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="n">django</span><span class="p">.</span><span class="n">git</span>#<span class="n">egg</span><span class="p">=</span><span class="n">django</span>
-</pre></div>
-
-
+<pre><code>(DjangoEnvX)~ $ cd ~
+(DjangoEnvX)~ $ pip install -e git+http://github.com/django/django.git#egg=django
+</code></pre>
 <p>Vérifions que la version de développement de Django a bien été installée dans notre environnement <code>DjangoEnvX</code>&nbsp;:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~</span> $ <span class="n">cdvirtualenv</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="p">.</span><span class="n">virtualenvs</span><span class="o">/</span><span class="n">DjangoEnvX</span> $ <span class="n">ll</span> <span class="n">src</span>
-<span class="n">total</span> 0
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   3 <span class="n">niko</span>  <span class="n">staff</span>  102 <span class="n">May</span>  5 17<span class="p">:</span>07 <span class="p">.</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   7 <span class="n">niko</span>  <span class="n">staff</span>  238 <span class="n">May</span>  5 17<span class="p">:</span>08 <span class="p">..</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  16 <span class="n">niko</span>  <span class="n">staff</span>  544 <span class="n">May</span>  5 17<span class="p">:</span>08 <span class="n">django</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="p">.</span><span class="n">virtualenvs</span><span class="o">/</span><span class="n">DjangoEnvX</span> $ <span class="n">echo</span> <span class="o">-</span><span class="n">e</span> &quot;<span class="n">import</span> <span class="n">django</span><span class="o">\</span><span class="n">nprint</span> <span class="n">django</span><span class="p">.</span><span class="n">get_version</span><span class="p">()</span>&quot;<span class="o">|</span><span class="n">python</span>
-1<span class="p">.</span>2 <span class="nb">beta</span> 1
-</pre></div>
-
-
+<pre><code>(DjangoEnvX)~ $ cdvirtualenv
+(DjangoEnvX)~/.virtualenvs/DjangoEnvX $ ll src
+total 0
+drwxr-xr-x   3 niko  staff  102 May  5 17:07 .
+drwxr-xr-x   7 niko  staff  238 May  5 17:08 ..
+drwxr-xr-x  16 niko  staff  544 May  5 17:08 django
+(DjangoEnvX)~/.virtualenvs/DjangoEnvX $ echo -e "import django\nprint django.get_version()"|python
+1.2 beta 1
+</code></pre>
 <p>Installons maintenant de la même façon le paquet <code>django-debug-toolbar</code> en version 0.8.3&nbsp;:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~</span> $ <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">robhudson</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">toolbar</span><span class="p">@</span>0<span class="p">.</span>8<span class="p">.</span>3#<span class="n">egg</span><span class="p">=</span><span class="n">django</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">toolbar</span>
-</pre></div>
-
-
+<pre><code>(DjangoEnvX)~ $ pip install -e git+git://github.com/robhudson/django-debug-toolbar@0.8.3#egg=django-debug-toolbar
+</code></pre>
 <p>Nous avons maintenant nos paquets installés, créons un nouveau projet Django. On peut créer un répertoire n'importe où sur le système de fichiers, cela n'a aucune importance&nbsp;: les environnements virtuels et les projets ne sont pas directement liés.</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~</span> $ <span class="n">cd</span> <span class="o">~/</span><span class="n">Sites</span><span class="o">/</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="n">Sites</span> $ <span class="n">django</span><span class="o">-</span><span class="n">admin</span><span class="p">.</span><span class="n">py</span> <span class="n">startproject</span> <span class="n">my_django_project</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="n">Sites</span> $ <span class="n">cd</span> <span class="n">my_django_project</span><span class="o">/</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="n">Sites</span><span class="o">/</span><span class="n">my_django_project</span> $ <span class="n">ll</span>
-<span class="n">total</span> 24
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   6 <span class="n">niko</span>  <span class="n">staff</span>   204 <span class="n">May</span>  5 17<span class="p">:</span>36 <span class="p">.</span>
-<span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>  94 <span class="n">niko</span>  <span class="n">staff</span>  3196 <span class="n">May</span>  5 17<span class="p">:</span>36 <span class="p">..</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>   1 <span class="n">niko</span>  <span class="n">staff</span>     0 <span class="n">May</span>  5 17<span class="p">:</span>36 <span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
-<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span>   1 <span class="n">niko</span>  <span class="n">staff</span>   546 <span class="n">May</span>  5 17<span class="p">:</span>36 <span class="n">manage</span><span class="p">.</span><span class="n">py</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>   1 <span class="n">niko</span>  <span class="n">staff</span>  3313 <span class="n">May</span>  5 17<span class="p">:</span>36 <span class="n">settings</span><span class="p">.</span><span class="n">py</span>
-<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--</span>   1 <span class="n">niko</span>  <span class="n">staff</span>   564 <span class="n">May</span>  5 17<span class="p">:</span>36 <span class="n">urls</span><span class="p">.</span><span class="n">py</span>
-<span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="n">Sites</span><span class="o">/</span><span class="n">my_django_project</span> $ <span class="o">./</span><span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">runserver</span>
-<span class="n">Validating</span> <span class="n">models</span><span class="p">...</span>
-0 <span class="n">errors</span> <span class="n">found</span>
+<pre><code>(DjangoEnvX)~ $ cd ~/Sites/
+(DjangoEnvX)~/Sites $ django-admin.py startproject my_django_project
+(DjangoEnvX)~/Sites $ cd my_django_project/
+(DjangoEnvX)~/Sites/my_django_project $ ll
+total 24
+drwxr-xr-x   6 niko  staff   204 May  5 17:36 .
+drwxr-xr-x  94 niko  staff  3196 May  5 17:36 ..
+-rw-r--r--   1 niko  staff     0 May  5 17:36 __init__.py
+-rwxr-xr-x   1 niko  staff   546 May  5 17:36 manage.py
+-rw-r--r--   1 niko  staff  3313 May  5 17:36 settings.py
+-rw-r--r--   1 niko  staff   564 May  5 17:36 urls.py
+(DjangoEnvX)~/Sites/my_django_project $ ./manage.py runserver
+Validating models...
+0 errors found
 
-<span class="n">Django</span> <span class="n">version</span> 1<span class="p">.</span>2 <span class="nb">beta</span> 1<span class="p">,</span> <span class="n">using</span> <span class="n">settings</span> <span class="s">&#39;my_django_project.settings&#39;</span>
-<span class="n">Development</span> <span class="n">server</span> <span class="n">is</span> <span class="n">running</span> <span class="n">at</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span>127<span class="p">.</span>0<span class="p">.</span>0<span class="p">.</span>1<span class="p">:</span>8000<span class="o">/</span>
-<span class="n">Quit</span> <span class="n">the</span> <span class="n">server</span> <span class="n">with</span> <span class="n">CONTROL</span><span class="o">-</span><span class="n">C</span><span class="p">.</span>
-</pre></div>
-
-
+Django version 1.2 beta 1, using settings 'my_django_project.settings'
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+</code></pre>
 <p>Voila, nous pouvons travailler sur notre projet dans l'environnement <code>DjangoEnvX</code> l'esprit serein. On pourra éventuellement ajouter d'autre paquets, ceux-ci ne seront toujours installés que pour cet environnement. Si d'aventure nous voulions versionner la liste des dépendances installées va <code>pip</code>, c'est aussi simple que&nbsp;:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="n">Sites</span><span class="o">/</span><span class="n">my_django_project</span> $ <span class="n">pip</span> <span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
-</pre></div>
-
-
+<pre><code>(DjangoEnvX)~/Sites/my_django_project $ pip freeze &gt; requirements.txt
+</code></pre>
 <p>Le fichier <code>requirements.txt</code> ainsi créé contiendra la liste de tous les paquets installés dans l'environnement <code>DjangoEnvX</code>&nbsp;:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">DjangoEnvX</span><span class="p">)</span><span class="o">~/</span><span class="n">Sites</span><span class="o">/</span><span class="n">my_django_project</span> $ <span class="nb">cat</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
-<span class="o">-</span><span class="n">e</span> <span class="n">git</span><span class="o">+</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="n">django</span><span class="p">.</span><span class="n">git</span><span class="p">@</span>25<span class="n">a45619fe5d7ff3d4f2dbf8f8879a3a00c3625d</span>#<span class="n">egg</span><span class="p">=</span><span class="n">Django</span><span class="o">-</span>1<span class="p">.</span>2<span class="n">_beta_1</span><span class="o">-</span><span class="n">py2</span><span class="p">.</span>6<span class="o">-</span><span class="n">dev</span>
-<span class="o">-</span><span class="n">e</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">robhudson</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">toolbar</span><span class="p">@</span><span class="n">ee1811238e91ae0ad33413b0d40d2f8482101951</span>#<span class="n">egg</span><span class="p">=</span><span class="n">django_debug_toolbar</span><span class="o">-</span>0<span class="p">.</span>8<span class="p">.</span>3<span class="o">-</span><span class="n">py2</span><span class="p">.</span>6<span class="o">-</span><span class="n">dev</span>
-<span class="n">wsgiref</span><span class="o">==</span>0<span class="p">.</span>1<span class="p">.</span>2
-</pre></div>
-
-
+<pre><code>(DjangoEnvX)~/Sites/my_django_project $ cat requirements.txt
+-e git+http://github.com/django/django.git@25a45619fe5d7ff3d4f2dbf8f8879a3a00c3625d#egg=Django-1.2_beta_1-py2.6-dev
+-e git://github.com/robhudson/django-debug-toolbar@ee1811238e91ae0ad33413b0d40d2f8482101951#egg=django_debug_toolbar-0.8.3-py2.6-dev
+wsgiref==0.1.2
+</code></pre>
 <p>Libre à vous alors de versionner ce fichier, ce qui permettra à vos collaborateurs d'instancier un nouvel envronnement de travail et d'installer les dépendances requises d'une simple ligne de commande sur son poste de travail&nbsp;:</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">WtfDevEnv</span><span class="p">)</span>$ <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
-</pre></div>
-
-
+<pre><code>(WtfDevEnv)$ pip install -r /path/to/requirements.txt
+</code></pre>
 <p>En espérant vous avoir été utile avec ce billet, je m'en retourne vaquer à mes occupations, et vous rappelle à toutes fins utiles qu'<a href="http://www.akei.com/">Akei</a> serait quand même super contente d'avoir <a href="http://www.akei.com/fr/contact">un coup de fil de votre part</a> pour travailler sur vos chouettes projets en devenir, pourquoi pas en créant plein de <code>virtualenv</code> Python sympas comme tout ;)</p>
 <p><strong>Edit&nbsp;:</strong> Prise en compte de la variable d'environnement <code>PIP_RESPECT_VIRTUALENV</code> pour que <code>pip</code> detecte automatiquement la présence d'un environnement virtuel lors de son utilisation (merci Mathieu !)</p>
     </section>
@@ -239,7 +207,7 @@ $ <span class="n">echo</span> &quot;<span class="n">source</span> <span class="o
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1331882039"></script>
+    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

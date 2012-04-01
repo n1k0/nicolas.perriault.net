@@ -3,46 +3,52 @@
     <!-- homepage -->
     <url>
         <loc>https://nicolas.perriault.net/</loc>
-        <lastmod>2012-03-16</lastmod>
+        <lastmod>2012-04-01</lastmod>
         <changefreq>hourly</changefreq>
         <priority>1</priority>
     </url>
     <!-- carnet -->
     <url>
         <loc>https://nicolas.perriault.net/carnet/</loc>
-        <lastmod>2012-03-01</lastmod>
+        <lastmod>2012-04-01</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- photography -->
     <url>
         <loc>https://nicolas.perriault.net/photography/</loc>
-        <lastmod>2012-03-01</lastmod>
+        <lastmod>2012-04-01</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- code -->
     <url>
         <loc>https://nicolas.perriault.net/code/</loc>
-        <lastmod>2012-03-01</lastmod>
+        <lastmod>2012-04-01</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- talks -->
     <url>
         <loc>https://nicolas.perriault.net/talks/</loc>
-        <lastmod>2012-03-01</lastmod>
+        <lastmod>2012-04-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <!-- contact -->
     <url>
         <loc>https://nicolas.perriault.net/contact/</loc>
-        <lastmod>2012-03-01</lastmod>
+        <lastmod>2012-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
     <!-- all pages -->
+    <url>
+        <loc>https://nicolas.perriault.net/carnet/2012/nouvelles-aventures/</loc>
+        <lastmod>2012-04-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+    </url>
     <url>
         <loc>https://nicolas.perriault.net/photography/2012/cadaques/</loc>
         <lastmod>2012-03-12</lastmod>

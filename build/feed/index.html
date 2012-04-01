@@ -5,9 +5,21 @@
         <link>https://nicolas.perriault.net</link>
         <description>Nicolas Perriault's personal website.</description>
         <language>en-us</language>
-        <pubDate>Fri, 16 Mar 2012 08:14:08 +0000</pubDate>
-        <lastBuildDate>Fri, 16 Mar 2012 08:14:08 +0000</lastBuildDate>
+        <pubDate>Sun, 01 Apr 2012 14:44:51 +0000</pubDate>
+        <lastBuildDate>Sun, 01 Apr 2012 14:44:51 +0000</lastBuildDate>
         
+        <item>
+            <title>Nouvelles aventures</title>
+            <link>https://nicolas.perriault.net/carnet/2012/nouvelles-aventures/</link>
+            <description>&lt;p&gt;Cela fait quelques mois que je m&#39;interroge sur la pérennité de mon activité en temps qu&#39;indépendant, car force est de constater que la conjoncture ne facilite pas mon approche initiale plutôt artisanale du développement Web.&lt;/p&gt;
+&lt;p&gt;C&#39;est pour cela que lorsque j&#39;ai été contacté par &lt;a href=&#34;http://oracle.com/&#34;&gt;Oracle&lt;/a&gt; pour un éventuel rachat d&#39;&lt;a href=&#34;http://akei.com/&#34;&gt;Akei&lt;/a&gt;, ma société, afin d&#39;intégrer l&#39;expertise autour de &lt;a href=&#34;http://casperjs.org/&#34;&gt;CasperJS&lt;/a&gt;, je n&#39;ai pu m&#39;empêcher d&#39;y voir un signe du destin m&#39;invitant à remettre en questions un certain nombre de principes que je croyais miens jusqu&#39;alors.&lt;/p&gt;
+&lt;p&gt;En effet, j&#39;ai toujours — de façon un peu naïvement idéologique il est vrai — voulu privilégier une approche humaniste du développement logiciel, favorisant les interractions humaines avant tout dans la perspective de faciliter la production de valeur ajoutée. À l&#39;épreuve des faits, force a été de constater que sans une approche épaulée commercialement de l&#39;industrialisation de la production logicielle, tout ceci est condamné à rester lettre morte dans nos sociétés toujours plus assujestties aux vigoureuses et motivantes pressions économiques de toutes parts, particulièrement des pays émergeants, offrant toujours plus pour de moins en moins cher…&lt;/p&gt;
+&lt;p&gt;Aussi, j&#39;integrerai dès lundi &lt;a href=&#34;http://www.oracle.com/fr/index.html&#34;&gt;Oracle France&lt;/a&gt; en tant que Responsable du Pôle Régional de Dévelopement Stratégique et d&#39;Innovation Web au sein des locaux parisiens de la société. J&#39;en profiterai par conséquence pour quitter Montpellier et retrouver la dynamique capitale française, que je suis bien obligé de légitimer comme le seul véritable endroit où &lt;em&gt;les choses se font&lt;/em&gt;, comme on dit.&lt;/p&gt;
+&lt;p&gt;En ce qui concerne &lt;a href=&#34;http://casperjs.org/&#34;&gt;CasperJS&lt;/a&gt;, le processus de réécriture en Java a été secrètement entamé depuis quelques semaines, et je pense pouvoir fournir dans les jours qui viennent une première version alpha exploitant l&#39;incroyable puissance de l&#39;&lt;a href=&#34;http://www.oracle.com/technetwork/developer-tools/adf/overview/index.html&#34;&gt;Oracle Development Framework&lt;/a&gt;…&lt;/p&gt;
+&lt;p&gt;… et de tout l&#39;&lt;a href=&#34;http://www.marseille-sympa.com/merou.jpg&#34;&gt;ecosystème J2EE plus généralement&lt;/a&gt;.&lt;/p&gt;</description>
+            <pubDate>Sun, 01 Apr 2012 00:00:00 +0000</pubDate>
+            <guid>https://nicolas.perriault.net/carnet/2012/nouvelles-aventures/</guid>
+        </item>
         <item>
             <title>Cadaqués at Night</title>
             <link>https://nicolas.perriault.net/photography/2012/cadaques/</link>
@@ -51,125 +63,109 @@
 &lt;p&gt;Hell, looks like some new coffee-machine… Let&#39;s quickly review some of these features though.&lt;/p&gt;
 &lt;h2&gt;Creating navigation scenarios&lt;/h2&gt;
 &lt;p&gt;Scripting a browsing workflow using Javascript is painfully hard if you intend to use chained callbacks. This kind of code is a nightmare to write, to read, to understand and to maintain:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;webpage&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;var page = require(&#39;webpage&#39;).create();
 
-&lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;fail&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;fail&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;fail&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;fail&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-                &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Can&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;I&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;stop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;now&lt;/span&gt;?
-            &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+page.open(url1, function(status) {
+    if (status == &#34;fail&#34;) phantom.exit();
+    page.open(url2, function(status) {
+        if (status == &#34;fail&#34;) phantom.exit();
+        page.open(url3, function(status) {
+            if (status == &#34;fail&#34;) phantom.exit();
+            page.open(url4, function(status) {
+                if (status == &#34;fail&#34;) phantom.exit();
+                // Can I stop, now?
+            });
+        });
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Well, CasperJS solves this kind of problem using a convenient API for dealing with asynchronous stuff:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;casper&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;var casper = require(&#39;casper&#39;).create();
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenOpen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenOpen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenOpen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;url4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+casper.start(url1);
+casper.thenOpen(url2);
+casper.thenOpen(url3);
+casper.thenOpen(url4);
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+casper.run();
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Want to simulate the user navigation as if he were clicking through links? No problem:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&amp;quot;&lt;span class=&#34;n&#34;&gt;capsper&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;http://my.blog.tld/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenClick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;nav#menu a.blog&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenClick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;.posts li a&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;echo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Page url is &amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getCurrentUrl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;echo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Page title is &amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getTitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;var casper = require(&#34;capsper&#34;).create()
+casper.start(&#39;http://my.blog.tld/&#39;);
+casper.thenClick(&#39;nav#menu a.blog&#39;);
+casper.thenClick(&#39;.posts li a&#39;);
+casper.then(function() {
+    this.echo(&#39;Page url is &#39; + this.getCurrentUrl());
+    this.echo(&#39;Page title is &#39; + this.getTitle());
+});
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+casper.run();
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that you can alternatively use &lt;a href=&#34;http://coffeescript.org/&#34;&gt;coffeescript&lt;/a&gt; to write your scripts:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&amp;quot;&lt;span class=&#34;n&#34;&gt;capsper&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenClick&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;nav&lt;/span&gt;#&lt;span class=&#34;n&#34;&gt;menu&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;blog&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thenClick&lt;/span&gt; &amp;quot;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;posts&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;li&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;then&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;echo&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Page&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is&lt;/span&gt; #&lt;span class=&#34;p&#34;&gt;{@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getCurrentUrl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()}&lt;/span&gt;&amp;quot;
-    &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;echo&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Page&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is&lt;/span&gt; #&lt;span class=&#34;p&#34;&gt;{@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getTitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()}&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;var casper = require(&#34;capsper&#34;).create()
+casper.start &#34;http://my.blog.tld/&#34;
+casper.thenClick &#34;nav#menu a.blog&#34;
+casper.thenClick &#34;.posts li a&#34;
+casper.then -&amp;gt;
+    @echo &#34;Page url is #{@getCurrentUrl()}&#34;
+    @echo &#34;Page title is #{@getTitle()}&#34;
+casper.run()
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Filling and handling forms&lt;/h2&gt;
 &lt;p&gt;Filling and submitting a form is not much harder:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;http://admin.domain.tld/login/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fill&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;form[id=&amp;quot;login-form&amp;quot;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;s&#34;&gt;&amp;#39;username&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;chuck&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &lt;span class=&#34;s&#34;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;n0rr1s&amp;#39;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;casper.start(&#39;http://admin.domain.tld/login/&#39;, function() {
+    this.fill(&#39;form[id=&#34;login-form&#34;]&#39;, {
+        &#39;username&#39;: &#39;chuck&#39;,
+        &#39;password&#39;: &#39;n0rr1s&#39;
+    }, true);
+});
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;echo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getTitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+casper.then(function() {
+    this.echo(this.getTitle());
+});
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+casper.run();
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Capturing screenshots&lt;/h2&gt;
 &lt;p&gt;Capturing a screenshot of a given area is as easy as this:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;http://domain.tld/page.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;captureSelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;capture.png&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;.article-content&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;casper.start(&#39;http://domain.tld/page.html&#39;, function() {
+    this.captureSelector(&#39;capture.png&#39;, &#39;.article-content&#39;);
+});
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+casper.run();
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Asynchronous rendering of page&lt;/h2&gt;
 &lt;p&gt;Sometimes (ok, often), lots of stuff is loaded asynchronously through Ajax or any other fancy invention of the Devil. You can just wait for it to happen:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;https://twitter.com/casperjs_org&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;waitForSelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;.tweet-row&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;captureSelector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;twitter.png&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;die&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Timeout reached. Fail whale?&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; 2000&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;casper.start(&#39;https://twitter.com/casperjs_org&#39;, function() {
+    this.waitForSelector(&#39;.tweet-row&#39;, function() {
+        this.captureSelector(&#39;twitter.png&#39;, &#39;html&#39;);
+    }, function() {
+        this.die(&#39;Timeout reached. Fail whale?&#39;).exit();
+    }, 2000);
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Testing&lt;/h2&gt;
 &lt;p&gt;Now all of this is fancy, but the true powers of CasperJS come from its functional testing capabilities. For example, testing google search can be done that way:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;http://www.google.fr/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertTitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Google&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;google homepage title is the one expected&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertExists&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;form[action=&amp;quot;/search&amp;quot;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;main form is found&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fill&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;form[action=&amp;quot;/search&amp;quot;]&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;casper.start(&#39;http://www.google.fr/&#39;, function() {
+    this.test.assertTitle(&#39;Google&#39;, &#39;google homepage title is the one expected&#39;);
+    this.test.assertExists(&#39;form[action=&#34;/search&#34;]&#39;, &#39;main form is found&#39;);
+    this.fill(&#39;form[action=&#34;/search&#34;]&#39;, {
+        q: &#39;foo&#39;
+    }, true);
+});
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertTitle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;foo - Recherche Google&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;google title is ok&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertUrlMatch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;search term has been submitted&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertEval&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__utils__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findAll&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;h3.r&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; 10&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;google search for &amp;quot;foo&amp;quot; retrieves 10 or more results&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+casper.then(function() {
+    this.test.assertTitle(&#39;foo - Recherche Google&#39;, &#39;google title is ok&#39;);
+    this.test.assertUrlMatch(/q=foo/, &#39;search term has been submitted&#39;);
+    this.test.assertEval(function() {
+        return __utils__.findAll(&#39;h3.r&#39;).length &amp;gt;= 10;
+    }, &#39;google search for &#34;foo&#34; retrieves 10 or more results&#39;);
+});
 
-&lt;span class=&#34;n&#34;&gt;casper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;renderResults&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+casper.run(function() {
+    this.test.renderResults(true);
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Running the suite would produce this shiny colored output:&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;&#34; src=&#34;/static/code/2012/testsuiteok.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As a bonus, these results can be exported as XUnit XML, eg. for being consumed by a continuous integration server like &lt;a href=&#34;http://jenkins-ci.org/&#34;&gt;Jenkins&lt;/a&gt;.&lt;/p&gt;
@@ -199,42 +195,34 @@
 &lt;/ul&gt;
 &lt;h2&gt;First iteration: project setup&lt;/h2&gt;
 &lt;p&gt;Create a brand new &lt;a href=&#34;http://pypi.python.org/pypi/virtualenv&#34;&gt;virtualenv&lt;/a&gt; in a new directory and install the necessary packages using &lt;a href=&#34;http://pypi.python.org/pypi/pip&#34;&gt;pip&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sample_project&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cd&lt;/span&gt; !$
-$ &lt;span class=&#34;n&#34;&gt;mkvirtualenv&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;site&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;packages&lt;/span&gt; `&lt;span class=&#34;n&#34;&gt;pwd&lt;/span&gt;`&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;
-$ &lt;span class=&#34;n&#34;&gt;source&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;env&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;activate&lt;/span&gt;
-$ &lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Frozen&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ mkdir sample_project &amp;amp;&amp;amp; cd !$
+$ mkvirtualenv --no-site-packages `pwd`/env
+$ source env/bin/activate
+$ pip install Flask Frozen-Flask Flask-FlatPages
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Write a very first version of our app in a &lt;code&gt;sitebuilder.py&lt;/code&gt; file:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flask&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask
+app = Flask(__name__)
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&amp;quot;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;World&lt;/span&gt;!&amp;quot;
+@app.route(&#34;/&#34;)
+def index():
+    return &#34;Hello World!&#34;
 
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;__main__&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;8000&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+if __name__ == &#34;__main__&#34;:
+    app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Run it; you should see someting like:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;python&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sitebuilder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;py&lt;/span&gt;
- &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Running&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;on&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;127&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;0&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;0&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;1&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;8000&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;
- &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Restarting&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;reloader&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ python sitebuilder.py
+ * Running on http://127.0.0.1:8000/
+ * Restarting with reloader
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Ensure with your browser that everyting is going fine by heading at &lt;code&gt;http://127.0.0.1:8000/&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;New iteration: adding &lt;em&gt;flat pages&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;http://packages.python.org/Flask-FlatPages/&#34;&gt;Flask-FlatPages&lt;/a&gt; provides a collection of pages to your Flask application. Pages are built from &lt;em&gt;flat&lt;/em&gt; text files as opposed to a relational database.&lt;/p&gt;
 &lt;p&gt;Create a &lt;code&gt;pages/&lt;/code&gt; directory at the root of your project folder, and put a &lt;code&gt;hello-world.md&lt;/code&gt; file in there:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;
-$ &lt;span class=&#34;n&#34;&gt;vi&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;world&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;md&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ mkdir pages
+$ vi pages/hello-world.md
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;pages/hello-world.md&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&#34;unpretty&#34;&gt;&lt;code&gt;title: Hello World
 date: 2012-03-04
@@ -243,91 +231,81 @@ date: 2012-03-04
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As you can see, we can write plain &lt;a href=&#34;daringfireball.net/projects/markdown/&#34;&gt;Mardown&lt;/a&gt; for our page contents. So let&#39;s rewrite our app to serve any flatpage by its filename:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flask&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flaskext&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flatpages&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask
+from flaskext.flatpages import FlatPages
 
-&lt;span class=&#34;n&#34;&gt;DEBUG&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;True&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;FLATPAGES_AUTO_RELOAD&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DEBUG&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;FLATPAGES_EXTENSION&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;.md&amp;#39;&lt;/span&gt;
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = &#39;.md&#39;
 
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;from_object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;World&lt;/span&gt;&amp;quot;
+@app.route(&#39;/&#39;)
+def index():
+    return &#34;Hello World&#34;
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;lt;path:path&amp;gt;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get_or_404&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;
+@app.route(&#39;/&amp;lt;path:path&amp;gt;/&#39;)
+def page(path):
+    return pages.get_or_404(path).html
 
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;8000&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+if __name__ == &#39;__main__&#39;:
+    app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now requesting &lt;code&gt;http://127.0.0.1:8000/hello-world/&lt;/code&gt; will display our flatpage. Note that the markdown source is converted to html by getting the &lt;code&gt;html&lt;/code&gt; property of our page object.&lt;/p&gt;
 &lt;h2&gt;New iteration: adding templates&lt;/h2&gt;
 &lt;p&gt;Flask uses the &lt;a href=&#34;http://jinja.pocoo.org/docs/&#34;&gt;Jinja2&lt;/a&gt; template engine, so let&#39;s create some templates to decorate our pages. First create a &lt;code&gt;templates&lt;/code&gt; directory at the root of the project:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;mkdir&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;templates&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ mkdir templates
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Create a base layout in &lt;code&gt;templates/base.html&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;charset=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;My site&lt;span class=&#34;nt&#34;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;h1&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;url_for&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;index&amp;quot;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;My site&lt;span class=&#34;nt&#34;&gt;&amp;lt;/a&amp;gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;block&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Default content to be displayed&lt;span class=&#34;nt&#34;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endblock&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;&amp;lt;!doctype html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&#34;utf-8&#34;&amp;gt;
+    &amp;lt;title&amp;gt;My site&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;h1&amp;gt;&amp;lt;a href=&#34;{{ url_for(&#34;index&#34;) }}&#34;&amp;gt;My site&amp;lt;/a&amp;gt;&amp;lt;/h1&amp;gt;
+{% block content %}
+    &amp;lt;p&amp;gt;Default content to be displayed&amp;lt;/p&amp;gt;
+{% endblock content %}
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note the use of the &lt;code&gt;url_for()&lt;/code&gt; template helper, that&#39;s the way we generate urls using Flask and Jinja2.&lt;/p&gt;
 &lt;p&gt;Now the &lt;code&gt;page.html&lt;/code&gt; template to fill this layout with page contents:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;base.html&amp;quot;&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
 
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;block&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page.title&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page.html&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;safe&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endblock&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+{% block content %}
+    &amp;lt;h2&amp;gt;{{ page.title }}&amp;lt;/h2&amp;gt;
+    {{ page.html|safe }}
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Our app is now:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flask&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flaskext&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flatpages&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask, render_template
+from flaskext.flatpages import FlatPages
 
-&lt;span class=&#34;n&#34;&gt;DEBUG&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;True&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;FLATPAGES_AUTO_RELOAD&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DEBUG&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;FLATPAGES_EXTENSION&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;.md&amp;#39;&lt;/span&gt;
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = &#39;.md&#39;
 
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;from_object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Hello&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;World&lt;/span&gt;&amp;quot;
+@app.route(&#39;/&#39;)
+def index():
+    return &#34;Hello World&#34;
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;lt;path:path&amp;gt;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get_or_404&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;page.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+@app.route(&#39;/&amp;lt;path:path&amp;gt;/&#39;)
+def page(path):
+    page = pages.get_or_404(path)
+    return render_template(&#39;page.html&#39;, page=page)
 
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;8000&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+if __name__ == &#39;__main__&#39;:
+    app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hell, what did we just do?&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;we created templates for our app; a common layout (&lt;code&gt;base.html&lt;/code&gt;) and a page template (&lt;code&gt;page.html&lt;/code&gt;)&lt;/li&gt;
@@ -337,31 +315,27 @@ date: 2012-03-04
 &lt;h2&gt;New iteration: display the list of available pages on the homepage&lt;/h2&gt;
 &lt;p&gt;For now our homepage has been a bit sick, to say the least. Let&#39;s make it an index of all available pages.&lt;/p&gt;
 &lt;p&gt;Create a &lt;code&gt;templates/index.html&lt;/code&gt; with the following contents:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;base.html&amp;quot;&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
 
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;block&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;List of stuff&lt;span class=&#34;nt&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;url_for&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;page&amp;quot;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;page.path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page.title&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;No stuff.&lt;span class=&#34;nt&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endfor&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endblock&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+{% block content %}
+    &amp;lt;h2&amp;gt;List of stuff&amp;lt;/h2&amp;gt;
+    &amp;lt;ul&amp;gt;
+    {% for page in pages %}
+        &amp;lt;li&amp;gt;
+            &amp;lt;a href=&#34;{{ url_for(&#34;page&#34;, path=page.path) }}&#34;&amp;gt;{{ page.title }}&amp;lt;/a&amp;gt;
+        &amp;lt;/li&amp;gt;
+    {% else %}
+        &amp;lt;li&amp;gt;No stuff.&amp;lt;/li&amp;gt;
+    {% endfor %}
+    &amp;lt;/ul&amp;gt;
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Feel free to create more flat pages, the same way we did with &lt;code&gt;hello-world.md&lt;/code&gt;, storing the file into the &lt;code&gt;pages/&lt;/code&gt; directory using the &lt;code&gt;.md&lt;/code&gt; extension.&lt;/p&gt;
 &lt;p&gt;So the &lt;code&gt;index()&lt;/code&gt; route of our app is now:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;@app.route(&#39;/&#39;)
+def index():
+    return render_template(&#39;index.html&#39;, pages=pages)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If you reload the homepage, a list of all available flatpages is displayed with a link for each. Damn, that was pretty easy.&lt;/p&gt;
 &lt;h2&gt;New iteration: adding metadata to pages&lt;/h2&gt;
 &lt;p&gt;Flask-FlatPages allows to enter metadata for pages the same way we did for the title and the creation date with our &lt;code&gt;hello-world.md&lt;/code&gt;, and access them using the &lt;code&gt;page.meta&lt;/code&gt; property, which contains a plain silly python dict. That&#39;s pretty awesome when you think about it, heh?&lt;/p&gt;
@@ -375,120 +349,106 @@ tags: [general, awesome, stuff]
 
 &lt;p&gt;For the records, metadata are described in &lt;a href=&#34;http://yaml.org/&#34;&gt;YAML&lt;/a&gt;, so you can use strings, booleans, integers, floats, lists and even dicts which will be converted to their respective native Python equivalent.&lt;/p&gt;
 &lt;p&gt;We&#39;re going to use two different templates for listing general pages and tagged ones, using a shared template partial. Our &lt;code&gt;index.html&lt;/code&gt; is now:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;base.html&amp;quot;&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
 
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;block&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;List of stuff&lt;span class=&#34;nt&#34;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;pages&lt;/span&gt;  &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-        &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;_list.html&amp;quot;&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endwith&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endblock&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+{% block content %}
+    &amp;lt;h2&amp;gt;List of stuff&amp;lt;/h2&amp;gt;
+    {% with pages=pages  %}
+        {% include &#34;_list.html&#34; %}
+    {% endwith %}
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Create a new &lt;code&gt;tag.html&lt;/code&gt; template, which will display the list of tagged pages:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;base.html&amp;quot;&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;{% extends &#34;base.html&#34; %}
 
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;block&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;List of stuff tagged &lt;span class=&#34;nt&#34;&gt;&amp;lt;em&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;tag&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/em&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;pages&lt;/span&gt;  &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-        &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;_list.html&amp;quot;&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endwith&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endblock&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;content&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+{% block content %}
+    &amp;lt;h2&amp;gt;List of stuff tagged &amp;lt;em&amp;gt;{{ tag }}&amp;lt;/em&amp;gt;&amp;lt;/h2&amp;gt;
+    {% with pages=pages  %}
+        {% include &#34;_list.html&#34; %}
+    {% endwith %}
+{% endblock content %}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The new &lt;code&gt;_list.html&lt;/code&gt; template we need for inclusion contains:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;url_for&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;page&amp;quot;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;page.path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page.title&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page.meta.tags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul&amp;gt;
+{% for page in pages %}
+    &amp;lt;li&amp;gt;
+        &amp;lt;a href=&#34;{{ url_for(&#34;page&#34;, path=page.path) }}&#34;&amp;gt;{{ page.title }}&amp;lt;/a&amp;gt;
+    {% if page.meta.tags|length %}
         | Tagged:
-        &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page_tag&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page.meta.tags&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;url_for&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;tag&amp;quot;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;page_tag&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;{{&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;page_tag&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;}}&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endfor&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endif&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;No page.&lt;span class=&#34;nt&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;cp&#34;&gt;{%&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;endfor&lt;/span&gt; &lt;span class=&#34;cp&#34;&gt;%}&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+        {% for page_tag in page.meta.tags %}
+            &amp;lt;a href=&#34;{{ url_for(&#34;tag&#34;, tag=page_tag) }}&#34;&amp;gt;{{ page_tag }}&amp;lt;/a&amp;gt;
+        {% endfor %}
+    {% endif %}
+    &amp;lt;/li&amp;gt;
+{% else %}
+    &amp;lt;li&amp;gt;No page.&amp;lt;/li&amp;gt;
+{% endfor %}
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let&#39;s add a new &lt;code&gt;tag&lt;/code&gt; route to our app, to use our new &lt;code&gt;tag.html&lt;/code&gt; template:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/tag/&amp;lt;string:tag&amp;gt;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;tagged&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;meta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[])]&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;tag.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tagged&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;@app.route(&#39;/tag/&amp;lt;string:tag&amp;gt;/&#39;)
+def tag(tag):
+    tagged = [p for p in pages if tag in p.meta.get(&#39;tags&#39;, [])]
+    return render_template(&#39;tag.html&#39;, pages=tagged, tag=tag)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if you didn&#39;t like Python&#39;s &lt;a href=&#34;http://www.network-theory.co.uk/docs/pytut/ListComprehensions.html&#34;&gt;list comprehensions&lt;/a&gt; yet, now you do.&lt;/p&gt;
 &lt;h2&gt;New iteration: generate the static stuff&lt;/h2&gt;
 &lt;p&gt;Well, for now we only have a dynamic website, which uses and serves flatpages stored on the filesystem: CRAP. But the idea&#39;s of course not to host a Flask app but a set of static files and assets to skip the need of any application server.&lt;/p&gt;
 &lt;p&gt;Here enters Frozen-Flask. Its use is damn easy:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;import sys
 
-&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flask&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flaskext&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flatpages&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;flask_frozen&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Freezer&lt;/span&gt;
+from flask import Flask, render_template
+from flaskext.flatpages import FlatPages
+from flask_frozen import Freezer
 
-&lt;span class=&#34;n&#34;&gt;DEBUG&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;True&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;FLATPAGES_AUTO_RELOAD&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DEBUG&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;FLATPAGES_EXTENSION&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;.md&amp;#39;&lt;/span&gt;
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = &#39;.md&#39;
 
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;from_object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FlatPages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;freezer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Freezer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+freezer = Freezer(app)
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+@app.route(&#39;/&#39;)
+def index():
+    return render_template(&#39;index.html&#39;, pages=pages)
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/tag/&amp;lt;string:tag&amp;gt;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;tagged&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;meta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[])]&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;tag.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tagged&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+@app.route(&#39;/tag/&amp;lt;string:tag&amp;gt;/&#39;)
+def tag(tag):
+    tagged = [p for p in pages if tag in p.meta.get(&#39;tags&#39;, [])]
+    return render_template(&#39;tag.html&#39;, pages=tagged, tag=tag)
 
-&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;route&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;/&amp;lt;path:path&amp;gt;/&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get_or_404&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;render_template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;page.html&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+@app.route(&#39;/&amp;lt;path:path&amp;gt;/&#39;)
+def page(path):
+    page = pages.get_or_404(path)
+    return render_template(&#39;page.html&#39;, page=page)
 
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;__name__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; 1 &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;1&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;build&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;freezer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;freeze&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;8000&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+if __name__ == &#39;__main__&#39;:
+    if len(sys.argv) &amp;gt; 1 and sys.argv[1] == &#34;build&#34;:
+        freezer.freeze()
+    else:
+        app.run(port=8000)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;And run:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;python&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sitebuilder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;py&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;build&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ python sitebuilder.py build
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Open the &lt;code&gt;build&lt;/code&gt; folder generated by this command:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;tree&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
-├── &lt;span class=&#34;n&#34;&gt;hello&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;world&lt;/span&gt;
-│   └── &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;
-├── &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;
-└── &lt;span class=&#34;n&#34;&gt;tag&lt;/span&gt;
-    ├── &lt;span class=&#34;n&#34;&gt;awesome&lt;/span&gt;
-    │   └── &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;
-    ├── &lt;span class=&#34;n&#34;&gt;general&lt;/span&gt;
-    │   └── &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;
-    └── &lt;span class=&#34;n&#34;&gt;stuff&lt;/span&gt;
-        └── &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;html&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;$ tree
+.
+├── hello-world
+│   └── index.html
+├── index.html
+└── tag
+    ├── awesome
+    │   └── index.html
+    ├── general
+    │   └── index.html
+    └── stuff
+        └── index.html
 
-5 &lt;span class=&#34;n&#34;&gt;directories&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 5 &lt;span class=&#34;n&#34;&gt;files&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+5 directories, 5 files
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;MIND: BLOWN.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;You can now deploy the contents of this &lt;code&gt;build&lt;/code&gt; directory to any webserver which&#39;s able to serve static files, and you&#39;re done. With just 34 lines of manually written Python code… not bad heh?&lt;/p&gt;
 &lt;p&gt;Of course, our website is pretty crappy right now, but you should be get started to add features on your own, now.&lt;/p&gt;</description>
@@ -527,16 +487,12 @@ tags: [general, awesome, stuff]
 &lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; &lt;em&gt;Gandi&#39;s quite complicated email confirmation and validation worflow won&#39;t be covered in this post. Just ensure you can receive emails at &lt;code&gt;admin@domain.tld&lt;/code&gt; where &lt;code&gt;domain.tld&lt;/code&gt; is your domain.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;Creating your certificate&lt;/h2&gt;
 &lt;p&gt;On your server, ensure you have the &lt;a href=&#34;http://openssl.org/&#34;&gt;&lt;code&gt;openssl&lt;/code&gt;&lt;/a&gt; command available or install it. Then, &lt;a href=&#34;http://wiki.gandi.net/en/ssl/csr&#34;&gt;generate your CSR&lt;/a&gt; (&lt;code&gt;domain.tld&lt;/code&gt; is your actual domain):&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;openssl&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;req&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nodes&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;newkey&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rsa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;2048 &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keyout&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;\&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;csr&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ openssl req -nodes -newkey rsa:2048 -keyout domain.tld.key \
+    -out domain.tld.csr
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer a few questions from the program, but here&#39;s the most important bit: &lt;strong&gt;enter your domain or subdomain when prompted to provide a &lt;em&gt;Common Name&lt;/em&gt;&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;Common&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;eg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;YOUR&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;Common Name (eg, YOUR name) []: domain.tld
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As they say:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The process will create 2 files: a public &lt;code&gt;.csr&lt;/code&gt; file, and a private &lt;code&gt;.key&lt;/code&gt; file which you must absolutely keep private.&lt;/p&gt;
@@ -553,36 +509,30 @@ tags: [general, awesome, stuff]
 &lt;/ul&gt;
 &lt;p&gt;Upload them both to your server, store them in eg. &lt;code&gt;/etc/nginx/certificates/&lt;/code&gt; (nope, this directory is unlikely to exist by default; do as you like).&lt;/p&gt;
 &lt;p&gt;Last, you have to append the Gandi CA to your domain certificate:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;nb&#34;&gt;cat&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GandiStandardSSLCA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pem&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cert&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;crt&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ cat GandiStandardSSLCA.pem &amp;gt;&amp;gt; cert-domain.tld.crt
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Have a capuccino.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;Configuring the nginx vhost&lt;/h2&gt;
 &lt;p&gt;Here&#39;s a sample vhost server configuration for nginx, kept as concise as possible for the sake of brevity and clarity:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;listen&lt;/span&gt; 443&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;server_name&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;root&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;your_website_root&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;pre&gt;&lt;code&gt;server {
+    listen 443;
+    server_name &#34;domain.tld&#34;;
+    root /var/www/your_website_root;
 
-    &lt;span class=&#34;n&#34;&gt;ssl&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;ssl_certificate&lt;/span&gt;     &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;etc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nginx&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;certificates&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cert&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;crt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;ssl_certificate_key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;etc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nginx&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;certificates&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+    ssl on;
+    ssl_certificate     /etc/nginx/certificates/cert-domain.tld.crt;
+    ssl_certificate_key /etc/nginx/certificates/domain.tld.key;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Restart nginx and you should be able to access your website using &lt;code&gt;https://domain.tld/&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;To redirect all HTTP trafic to HTTPS for this server, add this:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;n&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;listen&lt;/span&gt; 80&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;server_name&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;domain&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tld&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;rewrite&lt;/span&gt; ^&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;$&lt;span class=&#34;n&#34;&gt;host&lt;/span&gt;$1 &lt;span class=&#34;n&#34;&gt;permanent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;server {
+    listen 80;
+    server_name &#34;domain.tld&#34;;
+    rewrite ^(.*) https://$host$1 permanent;
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Have a latte.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;At this point, you should be seriously considering quitting caffeine. As a positive note, it looks like the whole process will be revamped in &lt;em&gt;some weeks&lt;/em&gt;:&lt;/p&gt;
@@ -696,20 +646,16 @@ tags: [general, awesome, stuff]
             <link>https://nicolas.perriault.net/code/2011/setup-jenkins-github-private-repository-ubuntu/</link>
             <description>&lt;p&gt;As I&#39;ve just lost an hour and some hairs dealing with trying to setup a &lt;a href=&#34;http://jenkins-ci.org/&#34;&gt;Jenkins&lt;/a&gt; project connected to a private repository hosted on &lt;a href=&#34;https://github.com/&#34;&gt;Github&lt;/a&gt;, I thought it&#39;s worth a quick blog post. I&#39;m using &lt;a href=&#34;http://ubuntu.com/&#34;&gt;Ubuntu&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;So first &lt;code&gt;su&lt;/code&gt; as the &lt;code&gt;jenkins&lt;/code&gt; user to create some SSH keypair:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keygen&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ ssh-keygen -p
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice the &lt;code&gt;-p&lt;/code&gt; option; this will allow to avoid asking for a passphrase (which Jenkins cannot so running as a daemon).&lt;/p&gt;
 &lt;p&gt;Try to ssh on github:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;git&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;authenticity&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;host&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;github.com (207.97.227.239)&amp;#39;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;can&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;be&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;established&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;RSA&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fingerprint&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is&lt;/span&gt; 16&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;27&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ac&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;76&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;28&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;2&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;36&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;63&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;1&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;56&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;4&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;eb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;48&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;Are&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;you&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sure&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;you&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;want&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;continue&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;connecting&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;? &lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;Hi&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;reponame&lt;/span&gt;! &lt;span class=&#34;n&#34;&gt;You&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ve&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;successfully&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;authenticated&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;but&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GitHub&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;does&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;provide&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;shell&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;access&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ ssh -T git@github.com
+The authenticity of host &#39;github.com (207.97.227.239)&#39; can&#39;t be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Hi username/reponame! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that you&#39;re asked to allow github&#39;s hostname to be added to your &lt;code&gt;known_hosts&lt;/code&gt; file: without completing this step, you&#39;re doomed.&lt;/p&gt;
 &lt;p&gt;Now, in the Jenkins project configuration interface, set the private repository url using the &lt;code&gt;git&lt;/code&gt; protocol, eg. &lt;code&gt;git@github.com:username/reponame.git&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;That&#39;s it, Jenkins will be able to clone and use your private repo.&lt;/p&gt;
@@ -740,24 +686,20 @@ with no need for a full graphical interface installed.&lt;/p&gt;
 &lt;a href=&#34;https://github.com/mxcl/homebrew&#34;&gt;homebrew&lt;/a&gt; (note that
 &lt;a href=&#34;static/itunes.apple.com/fr/app/xcode/id448457090?mt=12&#34;&gt;XCode&lt;/a&gt; must be
 installed on your machine):&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;brew&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantomjs&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ brew install phantomjs
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It can take a bit of time for the binaries to be built, especially
 because of their dependency to &lt;a href=&#34;static/qt.nokia.com/products&#34;&gt;Qt4&lt;/a&gt;. When
 it&#39;s done, you can test it this way:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;phantomjs&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;Usage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantomjs&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;js&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;coffee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argument&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argument&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...]]&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;Options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;images&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;Load&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inlined&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;images&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;yes&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plugins&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;Load&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plugins&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;Flash&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;Silverlight&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;no&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;proxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;port&lt;/span&gt;               &lt;span class=&#34;n&#34;&gt;Set&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;the&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;network&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;proxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;disk&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cache&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;              &lt;span class=&#34;n&#34;&gt;Enable&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;disk&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cache&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;at&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;desktop&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;services&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cache&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;storage&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;location&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;no&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ignore&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;n&#34;&gt;Ignore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SSL&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;expired&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;or&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;signed&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;certificate&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ phantomjs
+Usage: phantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Options:
+    --load-images=[yes|no]             Load all inlined images (default is &#39;yes&#39;).
+    --load-plugins=[yes|no]            Load all plugins (i.e. &#39;Flash&#39;, &#39;Silverlight&#39;, ...) (default is &#39;no&#39;).
+    --proxy=address:port               Set the network proxy.
+    --disk-cache=[yes|no]              Enable disk cache (at desktop services cache storage location, default is &#39;no&#39;).
+    --ignore-ssl-errors=[yes|no]       Ignore SSL errors (i.e. expired or self-signed certificate errors).
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Installation instructions for other platforms and alternative methods
 can be found on &lt;a href=&#34;http://code.google.com/p/phantomjs/wiki/Installation&#34;&gt;the PhantomJS project
 wiki&lt;/a&gt;.&lt;/p&gt;
@@ -769,32 +711,28 @@ version while the standard one is a bit more unstable on my box (no
 troll please).&lt;/p&gt;
 &lt;p&gt;To install PyPhantomJS, let&#39;s use
 &lt;a href=&#34;http://www.pip-installer.org/&#34;&gt;&lt;code&gt;pip&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;pip&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;PyPhantomJS&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ pip install PyPhantomJS
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The PyPhantomJS executable is named — &lt;em&gt;surprise&lt;/em&gt; — &lt;code&gt;pyphantomjs&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;pyphantomjs&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;usage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pyphantomjs&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;js&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;coffee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argument&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argument&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...]]&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;Minimalistic&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;headless&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;WebKit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;based&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JavaScript&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;driven&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tool&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;positional&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;js&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;coffee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;The&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;execute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;any&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pass&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;it&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;optional&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;help&lt;/span&gt;            &lt;span class=&#34;n&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;help&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;disk&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cache&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                        &lt;span class=&#34;n&#34;&gt;Enable&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;disk&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cache&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ignore&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                        &lt;span class=&#34;n&#34;&gt;Ignore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SSL&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;images&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                        &lt;span class=&#34;n&#34;&gt;Load&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;inlined&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;images&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;load&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;plugins&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;yes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-                        &lt;span class=&#34;n&#34;&gt;Load&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plugins&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Silverlight&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;proxy&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;port&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;Set&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;the&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;network&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;proxy&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;verbose&lt;/span&gt;         &lt;span class=&#34;n&#34;&gt;Show&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;verbose&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;debug&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;messages&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;version&lt;/span&gt;             &lt;span class=&#34;n&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;this&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;program&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;version&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;license&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ pyphantomjs
+usage: pyphantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Minimalistic headless WebKit-based JavaScript-driven tool
+positional arguments:
+  script.[js|coffee]    The script to execute, and any args to pass to it
+optional arguments:
+  -h, --help            show this help message and exit
+  --disk-cache {yes,no}
+                        Enable disk cache (default: no)
+  --ignore-ssl-errors {yes,no}
+                        Ignore SSL errors (default: no)
+  --load-images {yes,no}
+                        Load all inlined images (default: yes)
+  --load-plugins {yes,no}
+                        Load all plugins (i.e. Flash, Silverlight, ...) (default: no)
+  --proxy address:port  Set the network proxy
+  -v, --verbose         Show verbose debug messages
+  --version             show this program&#39;s version and license
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Usage of the two versions is exactly the same.&lt;/p&gt;
 &lt;h3&gt;Basic usage&lt;/h3&gt;
 &lt;p&gt;PhantomJS scripts can be written in standard JavaScript or in
@@ -803,49 +741,47 @@ matter of taste here, but CoffeeScript syntax &lt;a href=&#34;http://robots.thou
 interesting&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;So let&#39;s write our first script, we want to retrieve the weather
 forecast for a given city using Google:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;c1&#34;&gt;// script: meteo.js&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;WebPage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;errors:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;results:&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;null&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;You&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;must&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;specify&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;city&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;eg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;Paris, France&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;);&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;http:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//www.google.fr/search?q=meteo+&amp;#39; + phantom.args[0], function (status) {&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;success&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;push&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Unable&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;access&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;network&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;);&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;evaluate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
-            &lt;span class=&#34;n&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tpo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tr&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;)[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;].&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;td&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;);&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prototype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;call&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;cell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;cell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;innerText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;^&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;#39;&amp;#39;);&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[];&lt;/span&gt;
-            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;length&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;push&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;No&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;valid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;meteo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;found&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;);&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;results&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;nl&#34;&gt;city:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-                &lt;span class=&#34;nl&#34;&gt;today:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                    &lt;span class=&#34;nl&#34;&gt;afternoon:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-                    &lt;span class=&#34;nl&#34;&gt;morning:&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-                &lt;span class=&#34;nl&#34;&gt;tomorrow:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                    &lt;span class=&#34;nl&#34;&gt;afternoon:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-                    &lt;span class=&#34;nl&#34;&gt;morning:&lt;/span&gt;   &lt;span class=&#34;n&#34;&gt;cells&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-                &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-            &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;JSON&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;stringify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;&amp;#39;));&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;// script: meteo.js
+var page = new WebPage()
+, output = { errors: [], results: null };
+if (phantom.args.length == 0) {
+    console.log(&#39;You must specify a city, eg. &#34;Paris, France&#34;&#39;);
+    phantom.exit(1);
+}
+page.open(&#39;http://www.google.fr/search?q=meteo+&#39; + phantom.args[0], function (status) {
+    if (status !== &#39;success&#39;) {
+        output.errors.push(&#39;Unable to access network&#39;);
+    } else {
+        var cells = page.evaluate(function(){
+            try {
+                var cells = document.querySelectorAll(&#39;.tpo tr tr&#39;)[4].querySelectorAll(&#39;td&#39;);
+                return Array.prototype.map.call(cells, function(cell) {
+                    return cell.innerText.replace(/[^0-9]/g, &#39;&#39;);
+                });
+            } catch (e) {
+                return [];
+            }
+        });
+        if (!cells || !cells.length &amp;gt; 0) {
+            output.errors.push(&#39;No valid meteo data found&#39;);
+        } else {
+            output.results = {
+                city: phantom.args[0],
+                today: {
+                    afternoon: cells[1],
+                    morning:   cells[2],
+                },
+                tomorrow: {
+                    afternoon: cells[3],
+                    morning:   cells[4],
+                }
+            };
+        }
+        console.log(JSON.stringify(output, null, &#39;    &#39;));
+    }
+    phantom.exit();
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice we use the &lt;code&gt;phantom.args&lt;/code&gt; Array which contains the parameters
 passed to the script.&lt;/p&gt;
 &lt;p&gt;The main magic happens in the &lt;code&gt;page.evaluate()&lt;/code&gt; method, we pass it a
@@ -853,54 +789,48 @@ JavaScript function which will be evaluated &lt;strong&gt;within the retrieved p
 document environment&lt;/strong&gt;. It&#39;s a kind of &lt;em&gt;non-persistent XSS injection&lt;/em&gt;
 just to help you to operate on the page contents =)&lt;/p&gt;
 &lt;p&gt;Now it&#39;s time to launch the script to see how it goes:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;phantomjs&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;meteo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;js&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Montpellier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;France&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &amp;quot;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt;
-    &amp;quot;&lt;span class=&#34;n&#34;&gt;results&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;city&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Montpellier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;France&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;today&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;afternoon&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;29&amp;quot;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;morning&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;17&amp;quot;
-        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;tomorrow&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;afternoon&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;28&amp;quot;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;morning&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;17&amp;quot;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ phantomjs meteo.js &#34;Montpellier, France&#34;
+{
+    &#34;errors&#34;: [],
+    &#34;results&#34;: {
+        &#34;city&#34;: &#34;Montpellier, France&#34;,
+        &#34;today&#34;: {
+            &#34;afternoon&#34;: &#34;29&#34;,
+            &#34;morning&#34;: &#34;17&#34;
+        },
+        &#34;tomorrow&#34;: {
+            &#34;afternoon&#34;: &#34;28&#34;,
+            &#34;morning&#34;: &#34;17&#34;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now with an invalid city name:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;phantomjs&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;meteo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;js&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Unexistent&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;City&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &amp;quot;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;No&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;valid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;meteo&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;found&lt;/span&gt;&amp;quot;
-    &lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-    &amp;quot;&lt;span class=&#34;n&#34;&gt;results&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;null&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ phantomjs meteo.js &#34;Unexistent City&#34;
+{
+    &#34;errors&#34;: [
+        &#34;No valid meteo data found&#34;
+    ],
+    &#34;results&#34;: null
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Let&#39;s try with another city, an existing one this time:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;$ &lt;span class=&#34;n&#34;&gt;phantomjs&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;meteo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;js&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Paris&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;France&lt;/span&gt;&amp;quot;
-&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &amp;quot;&lt;span class=&#34;n&#34;&gt;errors&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[],&lt;/span&gt;
-    &amp;quot;&lt;span class=&#34;n&#34;&gt;results&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;city&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;&lt;span class=&#34;n&#34;&gt;Paris&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;France&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;today&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;afternoon&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;21&amp;quot;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;morning&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;11&amp;quot;
-        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-        &amp;quot;&lt;span class=&#34;n&#34;&gt;tomorrow&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;afternoon&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;21&amp;quot;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &amp;quot;&lt;span class=&#34;n&#34;&gt;morning&lt;/span&gt;&amp;quot;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &amp;quot;11&amp;quot;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;$ phantomjs meteo.js &#34;Paris, France&#34;
+{
+    &#34;errors&#34;: [],
+    &#34;results&#34;: {
+        &#34;city&#34;: &#34;Paris, France&#34;,
+        &#34;today&#34;: {
+            &#34;afternoon&#34;: &#34;21&#34;,
+            &#34;morning&#34;: &#34;11&#34;
+        },
+        &#34;tomorrow&#34;: {
+            &#34;afternoon&#34;: &#34;21&#34;,
+            &#34;morning&#34;: &#34;11&#34;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As a side note and in case you were wondering, you now understand a bit
 more why I moved to Montpellier ;)&lt;/p&gt;
 &lt;h3&gt;I CAN HAZ SCREENSHOTS&lt;/h3&gt;
@@ -909,26 +839,24 @@ remote page, very useful when a remote website doesn&#39;t ship with your
 favorite framework (eg. &lt;a href=&#34;http://jquery.com/&#34;&gt;jQuery&lt;/a&gt;)… or can render a
 PNG image of a captured area of the webpage. The example below saves a
 capture of the weather forecast area:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre&gt;&lt;span class=&#34;c1&#34;&gt;// script: meteoclip.js&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;WebPage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;http:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//www.google.fr/search?q=meteo+montpellier,+France&amp;#39;, function (status) {&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;success&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;error&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Unable&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;access&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;network&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clipRect&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;nl&#34;&gt;top:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;127&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &lt;span class=&#34;nl&#34;&gt;left:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;170&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &lt;span class=&#34;nl&#34;&gt;width:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;400&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-            &lt;span class=&#34;nl&#34;&gt;height:&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;114&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;page&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;render&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;meteo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;png&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;);&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;#39;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Capture&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;saved&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;#39;);&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;phantom&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;pre&gt;&lt;code&gt;// script: meteoclip.js
+var page = new WebPage();
+page.open(&#39;http://www.google.fr/search?q=meteo+montpellier,+France&#39;, function (status) {
+    if (status !== &#39;success&#39;) {
+        output.error = &#39;Unable to access network&#39;;
+    } else {
+        page.clipRect = {
+            top: 127,
+            left: 170,
+            width: 400,
+            height: 114
+        }
+        page.render(&#39;meteo.png&#39;);
+        console.log(&#39;Capture saved&#39;);
+    }
+    phantom.exit();
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Running the &lt;code&gt;meteoclip.js&lt;/code&gt; script will get yourself this fancy image
 stored in &lt;code&gt;meteo.jpg&lt;/code&gt;:&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;image&#34; src=&#34;http://cl.ly/0w2a050b3x2g170u053A/meteo.png&#34; /&gt;&lt;/p&gt;
@@ -952,13 +880,6 @@ bit more about it soon, who knows!&lt;/p&gt;</description>
             <description>&lt;p&gt;&lt;img src=&quot;/static/photography/2011/cairn/main.jpg&quot; alt=&quote;Cairn by Nicolas Perriault&quot;&gt;&lt;/p&gt;</description>
             <pubDate>Tue, 02 Aug 2011 00:00:00 +0000</pubDate>
             <guid>https://nicolas.perriault.net/photography/2011/cairn/</guid>
-        </item>
-        <item>
-            <title>The Sheriff</title>
-            <link>https://nicolas.perriault.net/photography/2011/the-sheriff/</link>
-            <description>&lt;p&gt;&lt;img src=&quot;/static/photography/2011/the-sheriff/main.jpg&quot; alt=&quote;The Sheriff by Nicolas Perriault&quot;&gt;&lt;/p&gt;</description>
-            <pubDate>Fri, 29 Jul 2011 00:00:00 +0000</pubDate>
-            <guid>https://nicolas.perriault.net/photography/2011/the-sheriff/</guid>
         </item>
         
     </channel>
