@@ -5,8 +5,8 @@
         <link>https://nicolas.perriault.net</link>
         <description>Nicolas Perriault rants about whatever looks like a technology.</description>
         <language>en</language>
-        <pubDate>Mon, 02 Apr 2012 09:14:39 +0000</pubDate>
-        <lastBuildDate>Mon, 02 Apr 2012 09:14:39 +0000</lastBuildDate>
+        <pubDate>Wed, 11 Apr 2012 08:38:25 +0000</pubDate>
+        <lastBuildDate>Wed, 11 Apr 2012 08:38:25 +0000</lastBuildDate>
         
         <item>
             <title>CasperJS, a toolkit on top of PhantomJS</title>
@@ -64,7 +64,7 @@ casper.thenOpen(url4);
 casper.run();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Want to simulate the user navigation as if he were clicking through links? No problem:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var casper = require(&#34;capsper&#34;).create()
+&lt;pre&gt;&lt;code&gt;var casper = require(&#34;casper&#34;).create()
 casper.start(&#39;http://my.blog.tld/&#39;);
 casper.thenClick(&#39;nav#menu a.blog&#39;);
 casper.thenClick(&#39;.posts li a&#39;);
@@ -76,7 +76,7 @@ casper.then(function() {
 casper.run();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that you can alternatively use &lt;a href=&#34;http://coffeescript.org/&#34;&gt;coffeescript&lt;/a&gt; to write your scripts:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var casper = require(&#34;capsper&#34;).create()
+&lt;pre&gt;&lt;code&gt;var casper = require(&#34;casper&#34;).create()
 casper.start &#34;http://my.blog.tld/&#34;
 casper.thenClick &#34;nav#menu a.blog&#34;
 casper.thenClick &#34;.posts li a&#34;

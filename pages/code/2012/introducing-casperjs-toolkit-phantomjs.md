@@ -63,7 +63,7 @@ Well, CasperJS solves this kind of problem using a convenient API for dealing wi
 
 Want to simulate the user navigation as if he were clicking through links? No problem:
 
-    var casper = require("capsper").create()
+    var casper = require("casper").create()
     casper.start('http://my.blog.tld/');
     casper.thenClick('nav#menu a.blog');
     casper.thenClick('.posts li a');
@@ -76,7 +76,7 @@ Want to simulate the user navigation as if he were clicking through links? No pr
 
 Note that you can alternatively use [coffeescript](http://coffeescript.org/) to write your scripts:
 
-    var casper = require("capsper").create()
+    var casper = require("casper").create()
     casper.start "http://my.blog.tld/"
     casper.thenClick "nav#menu a.blog"
     casper.thenClick ".posts li a"

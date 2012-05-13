@@ -7,7 +7,7 @@
     <title>CasperJS, a toolkit on top of PhantomJS | Code | Nicolas Perriault</title>
     <meta name="description" content="Nicolas Perriault's homepage.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="/static/packed.css?1333283939">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1334126305">
     <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
     <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
@@ -88,7 +88,7 @@ casper.thenOpen(url4);
 casper.run();
 </code></pre>
 <p>Want to simulate the user navigation as if he were clicking through links? No problem:</p>
-<pre><code>var casper = require("capsper").create()
+<pre><code>var casper = require("casper").create()
 casper.start('http://my.blog.tld/');
 casper.thenClick('nav#menu a.blog');
 casper.thenClick('.posts li a');
@@ -100,7 +100,7 @@ casper.then(function() {
 casper.run();
 </code></pre>
 <p>Note that you can alternatively use <a href="http://coffeescript.org/">coffeescript</a> to write your scripts:</p>
-<pre><code>var casper = require("capsper").create()
+<pre><code>var casper = require("casper").create()
 casper.start "http://my.blog.tld/"
 casper.thenClick "nav#menu a.blog"
 casper.thenClick ".posts li a"
@@ -216,7 +216,7 @@ casper.run(function() {
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="/static/packed.js?1333283940"></script>
+    <script type="text/javascript" src="/static/packed.js?1334126305"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
