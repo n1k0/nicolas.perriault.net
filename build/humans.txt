@@ -1,9 +1,0 @@
-/* the humans responsible & colophon */
-/* humanstxt.org */
-
-
-/* TEAM */
-  Author: Nicolas Perriault
-  Site: http://nicolas.perriault.net/
-  Twitter: http://twitter.com/n1k0
-  Location: Montpellier, France
