@@ -327,7 +327,6 @@ def photo(path, slug):
         u"title: ",
         u"date: %s" % photo_date.strftime("%Y-%m-%d"),
         u"type: photo",
-        u"image_link: http://500px.com/photo/XXX",
         u"published: false\n\n\n",
     ])
     try:
