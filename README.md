@@ -1,7 +1,7 @@
 My blog
 =======
 
-This is the whole code and contents of my [personal webblog](https://nicolas.perriault.net/), open sourced.
+This is the whole code and contents of my [personal weblog](https://nicolas.perriault.net/), open sourced.
 
 Basically it's a static website builder/generator based on [Python](http://python.org/), [Flask](http://flask.pocoo.org/), [Frozen-Flask](http://packages.python.org/Frozen-Flask/) and cool other bricks.
 
