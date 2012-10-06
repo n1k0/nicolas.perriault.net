@@ -18,6 +18,13 @@ Note: you need a working installation of Python and [pip](http://pypi.python.org
     $ source env/bin/activate
     (env)$ pip install -r requirements.txt
 
+Deploying
+---------
+
+**Don't deploy this as is.** It's my personal weblog, remember? The code has been opensourced for educational purpose only.
+
+Also, see the [License section](#license) of this document for more information about contents copyright.
+
 Usage
 -----
 
@@ -57,7 +64,9 @@ License
 
 Contents in `./pages` and `./static/photography` (blog posts and photos) are licensed under the terms of the [Creative Commons BY-NC-SA license](http://creativecommons.org/licenses/by-nc-sa/3.0/).
 
-All the rest is released under the terms of the [Do What The Fuck You Want To Public License](http://sam.zoy.org/wtfpl/).
+All the rest including Python code, templates, CSS & javascript is released under the terms of the [Do What The Fuck You Want To Public License](http://sam.zoy.org/wtfpl/).
+
+**Important note: You can freely reuse parts of the project code, but you can't republish the blog with its contents as is publicly on the Interwebs.**
 
 Supplementary Caveats
 ---------------------
