@@ -58,7 +58,7 @@ That's it. Let's create a new site configuration for our Symfony application in 
 
         location / {
             # If the file exists as a static file serve it directly without
-            # running all the other rewite tests on it
+            # running all the other rewrite tests on it
             if (-f $request_filename) {
                 expires max;
                 break;

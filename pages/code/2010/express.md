@@ -92,7 +92,7 @@ Above command just created an `hello` project directory where you can cd into an
     $ node app.js
     Express server listening on port 3000
 
-Note that the generated project skeleton implies using [Jade](jade-lang.com/) as a tremplate engine and the [Less CSS syntax](http://lesscss.org/), while one might want to use something else, which is perfectly possible by [configuring](http://expressjs.com/guide.html#Configuration) the project differently.
+Note that the generated project skeleton implies using [Jade](jade-lang.com/) as a template engine and the [Less CSS syntax](http://lesscss.org/), while one might want to use something else, which is perfectly possible by [configuring](http://expressjs.com/guide.html#Configuration) the project differently.
 
 Next steps documentation will be provided by [official Express documentation](http://expressjs.com/guide.html).
 

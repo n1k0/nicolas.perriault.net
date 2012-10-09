@@ -5,4 +5,4 @@ summary: Dalí’s Cadillac, Casa Dalí, Figueres, Spain
 date: 2012-03-11
 published: true
 
-Back from an amazing journey to the crazy world of Savador Dalí.
+Back from an amazing journey to the crazy world of Salvador Dalí.

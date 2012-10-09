@@ -4,7 +4,7 @@ published: true
 
 [Gandi](http://gandi.net/) offers a [free SSL certificate](http://wiki.gandi.net/en/ssl/free) during one year for any domain you buy there, nice. But the setup is a bit tedious and the documentation a bit disparate, so here's an attempt for a comprehensive howto for configuring a secured [nginx](http://nginx.org/) vhost using your *free* certificate.
 
-**Disclaimer:** *Gandi's quite complicated email confirmation and validation worflow won't be covered in this post. Just ensure you can receive emails at `admin@domain.tld` where `domain.tld` is your domain.*
+**Disclaimer:** *Gandi's quite complicated email confirmation and validation workflow won't be covered in this post. Just ensure you can receive emails at `admin@domain.tld` where `domain.tld` is your domain.*
 
 ## Creating your certificate
 
@@ -21,7 +21,7 @@ As they say:
 
 > The process will create 2 files: a public `.csr` file, and a private `.key` file which you must absolutely keep private.
 
-**Note:** *Alas, you won't be able to extend your certicate to all possible subdomains using a wildcard as it is [only supported starting with their *«Pro»* offer](http://wiki.gandi.net/questions/fr/ssl/csr/multi-domaine-non-accepte).*
+**Note:** *Alas, you won't be able to extend your certificate to all possible subdomains using a wildcard as it is [only supported starting with their *«Pro»* offer](http://wiki.gandi.net/questions/fr/ssl/csr/multi-domaine-non-accepte).*
 
 Have a coffee.
 

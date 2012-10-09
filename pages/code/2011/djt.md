@@ -3,7 +3,7 @@ tags: django, djt, debug, python, tips
 date: 2011-03-11
 published: true
 
-Sometimes you work on stuff you don't really control, eg. when interacting with some mysterious SOAP server accross the Internets, and you'd appreciate a little help from the Django ecosystem to ease debugging.
+Sometimes you work on stuff you don't really control, eg. when interacting with some mysterious SOAP server across the Internets, and you'd appreciate a little help from the Django ecosystem to ease debugging.
 
 That's — you guessed it — my case currently, and I really appreciated being able to create my own custom panel for adding specific debugging capabilities to the awesome [Django Debug Toolbar](https://github.com/robhudson/django-debug-toolbar).
 
