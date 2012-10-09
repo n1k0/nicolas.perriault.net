@@ -3,7 +3,7 @@ date: 2010-04-28
 tags: rest, http, symfony
 published: true
 
-Frameworks like [Symfony](http://www.symfony-project.org/) or [rails](http://rubyonrails.org/) (and probably many others) provide a very convenient feature named *RESTful* routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entites and several available actions on them over HTTP.
+Frameworks like [Symfony](http://www.symfony-project.org/) or [rails](http://rubyonrails.org/) (and probably many others) provide a very convenient feature named *RESTful* routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entities and several available actions on them over HTTP.
 
 This is really useful, especially when you deal with WebServices on a daily basis, or if you want to reuse your controllers in both *standard html* or *service oriented architecture* (SOA) contexts.
 
@@ -67,7 +67,7 @@ While this is perfectly possible technically speaking, a quick look at the rende
 
 Yes, calling `link_to()` with the `method` option set to something else than `GET` will generate a form to challenge the url with the correct HTTP verb (through the kinda magic `sf_method` request parameter), dynamically using Javascript. Not really clean, unobstrusive and accessible. **A link should always only handle `GET` verb, because it's just a link to another resource in *view mode*, not a modification of it.** So you should rather use a `<form/>` tag to deal with such kind of operations in your code, always.
 
-But there's more: imagine you want to deal with a `Fortune` modification form, still by using the `PUT` http verb and the `fortune_update` route, in a *standard html* context (not a WebService one); you have a form so it's okay? It's not, a browser, even the most modern one in 2010, will not understand something else than `GET` and `POST`. That's a shame actually. Symfony circumvents the problem by adding a supplementary `sf_method` hidden parameter to the form fields, so the targetted controller will be able to detect an incoming `PUT` request, but **this is clearly a kind of patch applied to HTTP support in Browsers**.
+But there's more: imagine you want to deal with a `Fortune` modification form, still by using the `PUT` http verb and the `fortune_update` route, in a *standard html* context (not a WebService one); you have a form so it's okay? It's not, a browser, even the most modern one in 2010, will not understand something else than `GET` and `POST`. That's a shame actually. Symfony circumvents the problem by adding a supplementary `sf_method` hidden parameter to the form fields, so the targeted controller will be able to detect an incoming `PUT` request, but **this is clearly a kind of patch applied to HTTP support in Browsers**.
 
 I'm searching for a conclusion, but  can't find one except **why on Earth modern browsers don't deal with something else than `GET` and `POST` nowadays?**
 

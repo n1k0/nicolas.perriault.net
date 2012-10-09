@@ -12,7 +12,7 @@ Then I encountered [this tweet by Armin Ronacher](https://twitter.com/#!/mitsuhi
 
 [Armin](http://lucumr.pocoo.org/) is the author of [Flask](http://flask.pocoo.org/), a Python microframework I much appreciate for its simplicity, so this tweet immediately rang a bell and I started exploring the possibilities offered by [Frozen-Flask](http://packages.python.org/Frozen-Flask/).
 
-Frozen-Flask basically *freezes* a Flask application into a set of static files, so you can host it without pain, but with speed. Combined with [Flask-FlatPages](http://packages.python.org/Flask-FlatPages/), you got the perfect set for generating your static website with everyting you could expect by using a framework:
+Frozen-Flask basically *freezes* a Flask application into a set of static files, so you can host it without pain, but with speed. Combined with [Flask-FlatPages](http://packages.python.org/Flask-FlatPages/), you got the perfect set for generating your static website with everything you could expect by using a framework:
 
 * cool uris & easy routing management
 * powerful templating
