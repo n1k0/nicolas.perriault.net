@@ -99,10 +99,10 @@ Notez les éléments suivants&nbsp;:
 
 * L'utilisation de la commande `workon`, fournie par `virtualenvwrapper`, qui permet d'activer un environnement virtuel de travail ; l'autocomplétion du nom de l'environnement virtuel est d'ailleurs disponible&nbsp;!
 * La commande `cdvirtualenv` nous place directement à la racine du répertoire de l'environnement virtuel&nbsp;;
-* Les répertoires `bin`, `include` et `lib` ont été créés, ainsi qu'un lien symbolique vers la version de l'intérpréteur Python du système.
-* Un préfixe (ici `(DjangoEnvX)`) est ajouté devant le prompt lorqu'on travaille dans un environnement spécifique&nbsp;: cela permet de toujours savoir dans quel environnement on travaille, afin d'éviter les mauvaises surprises ;)
+* Les répertoires `bin`, `include` et `lib` ont été créés, ainsi qu'un lien symbolique vers la version de l'interpréteur Python du système.
+* Un préfixe (ici `(DjangoEnvX)`) est ajouté devant le prompt lorsqu'on travaille dans un environnement spécifique&nbsp;: cela permet de toujours savoir dans quel environnement on travaille, afin d'éviter les mauvaises surprises ;)
 
-Je peux maintenant installer sereinement les paquets dont j'ai besoin dans le cadre de mon projet `A`, où que je sois sur le système de fichiers. Par exemple, pour installer la version de dev de Django 1.2 depuis son mirroir git&nbsp;:
+Je peux maintenant installer sereinement les paquets dont j'ai besoin dans le cadre de mon projet `A`, où que je sois sur le système de fichiers. Par exemple, pour installer la version de dev de Django 1.2 depuis son miroir git&nbsp;:
 
     (DjangoEnvX)~ $ cd ~
     (DjangoEnvX)~ $ pip install -e git+http://github.com/django/django.git#egg=django
@@ -154,7 +154,7 @@ Le fichier `requirements.txt` ainsi créé contiendra la liste de tous les paque
     -e git://github.com/robhudson/django-debug-toolbar@ee1811238e91ae0ad33413b0d40d2f8482101951#egg=django_debug_toolbar-0.8.3-py2.6-dev
     wsgiref==0.1.2
 
-Libre à vous alors de versionner ce fichier, ce qui permettra à vos collaborateurs d'instancier un nouvel envronnement de travail et d'installer les dépendances requises d'une simple ligne de commande sur son poste de travail&nbsp;:
+Libre à vous alors de versionner ce fichier, ce qui permettra à vos collaborateurs d'instancier un nouvel environnement de travail et d'installer les dépendances requises d'une simple ligne de commande sur son poste de travail&nbsp;:
 
     (WtfDevEnv)$ pip install -r /path/to/requirements.txt
 
