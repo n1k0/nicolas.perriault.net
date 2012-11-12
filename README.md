@@ -1,11 +1,11 @@
 My blog
 =======
 
-This is the whole code and contents of my [personal weblog](https://nicolas.perriault.net/), open sourced.
+These are the whole code and contents of my [personal weblog](https://nicolas.perriault.net/), open sourced.
 
 Basically it's a static website builder/generator based on [Python](http://python.org/), [Flask](http://flask.pocoo.org/), [Frozen-Flask](http://packages.python.org/Frozen-Flask/) and cool other bricks.
 
-**Read more about the [technical concepts behind the code](https://nicolas.perriault.net/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/).**
+**Read more about the technical concepts behind the code… [on my blog](https://nicolas.perriault.net/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/)** (so if you didn't know about recursivity yet, now you do).
 
 Installation
 ------------
