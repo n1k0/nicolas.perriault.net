@@ -39,7 +39,7 @@ body {
   width: 960px;
   margin: 0 auto;
   padding: 40px 20px 0;
-  font-family: Palatino, "Hoefler Text", Georgia, serif;
+  font-family: "Asap", Palatino, "Hoefler Text", Georgia, serif;
   font-size: 19px;
   line-height: 28px;
   color: #333334;
@@ -52,7 +52,8 @@ blockquote {
   border-left: 7px solid #eeeeee;
   padding-left: 14px;
 }
-code, pre {
+code,
+pre {
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-size: 90%;
   color: #555;
@@ -120,7 +121,8 @@ pre {
 pre code {
   color: #eee;
 }
-q:before, q:after {
+q:before,
+q:after {
   content: "";
 }
 .main-title {
@@ -271,10 +273,12 @@ q:before, q:after {
   background: #ddd;
   padding: 5px 10px;
 }
-.contents section.code, .contents section.carnet {
+.contents section.code,
+.contents section.carnet {
   float: left;
 }
-.contents section.code p, .contents section.carnet p {
+.contents section.code p,
+.contents section.carnet p {
   font-size: 92%;
 }
 .contents section.code {
@@ -311,7 +315,8 @@ q:before, q:after {
 .sidebar ul li a span:after {
   content: ")";
 }
-.sidebar ul li a:focus, .sidebar ul li a:hover {
+.sidebar ul li a:focus,
+.sidebar ul li a:hover {
   color: #333334;
   text-decoration: none;
 }
