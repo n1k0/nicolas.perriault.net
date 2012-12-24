@@ -2,9 +2,11 @@ title: CasperJS hits 1.0 stable
 date: 2012-12-24
 published: true
 
-<img src="/static/code/2012/casperjs-logo-squared-rounded.png" alt="" style="float:right;margin-left:1em;margin-bottom:.5em">**Hey, [long time no see](/code/2012/introducing-casperjs-toolkit-phantomjs), right? Quite a lots of things have happened to my *tiny* [CasperJS](http://casperjs.org/) pet project since then, which has just hit its [1.0 stable milestone](https://github.com/n1k0/casperjs/blob/master/CHANGELOG.md#2012-12-24-v10). Merry Christmas :)**
+<a href="http://casperjs.org/"><img src="/static/code/2012/casperjs-logo-squared-rounded.png" alt="" style="float:right;margin-left:1em;margin-bottom:.5em"></a>**Hey, [long time no see](/code/2012/introducing-casperjs-toolkit-phantomjs), right? Quite a lots of things have happened to my *tiny* [CasperJS](http://casperjs.org/) pet project since then, which has just hit its [1.0 stable milestone](https://github.com/n1k0/casperjs/blob/master/CHANGELOG.md#2012-12-24-v10). Merry Christmas :)**
 
-First, some scary metrics about the project:
+As a reminder, *CasperJS is an open source navigation scripting & testing utility written in Javascript and based on [PhantomJS](http://phantomjs.org/) — the scriptable headless [WebKit](http://webkit.org/) engine*.
+
+Now some scary metrics about the project:
 
 <figure>
     <a href="http://gitego.com/n1k0/casperjs#watchers?interval=by_year"><img src="/static/code/2012/casperjs-github-evolution.png" alt="" style="width:100%;border-radius:5px"></a>
@@ -51,7 +53,7 @@ Lots of stuff, and [I mean it](https://github.com/n1k0/casperjs/issues?direction
 
 - added a [`casperjs test` command](http://casperjs.org/testing.html#casper-test-command) to run test scripts
 - added support for [CSS3 and XPath selectors](http://casperjs.org/selectors.html)
-- added support for [popups](casperjs.org/api.html#casper.waitForPopup) and [(i)frames](http://casperjs.org/api.html#casper.withFrame)
+- added support for [popups](http://casperjs.org/api.html#casper.waitForPopup) and [(i)frames](http://casperjs.org/api.html#casper.withFrame)
 - there's now a way to specify how many tests were planned when `done()` is called
 - easy access of current HTTP response object as the first parameter of step callbacks (thx <a href="https://tiwtter.com/oncletom">oncletom</a>!)
 - many new [assertions methods](http://casperjs.org/api.html#tester) have been added to the `Tester` class
