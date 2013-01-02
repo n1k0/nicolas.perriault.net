@@ -7,6 +7,10 @@
         <language>{% block lang %}en-us{% endblock %}</language>
         <pubDate>{{ build_date|to_rfc2822 }}</pubDate>
         <lastBuildDate>{{ build_date|to_rfc2822 }}</lastBuildDate>
+        <author>
+            <name>Nicolas Perriault</name>
+            <uri>https://nicolas.perriault.net/</uri>
+        </author>
         {% block content %}
         {%- for page in pages %}
         <item>
@@ -14,7 +18,7 @@
             <link>{{ BASE_URL }}/{{ page.path }}/</link>
             <description>
                 {%- if page.type == "photo" -%}
-                    &lt;p&gt;&lt;img src=&quot;/static/{{ page.path }}/main.jpg&quot; alt=&quote;{{ page.title|escape }} by Nicolas Perriault&quot;&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;img src=&quot;/static/{{ page.path }}/main.jpg&quot; alt=&quot;{{ page.title|escape }} by Nicolas Perriault&quot;&gt;&lt;/p&gt;
                     {%- if page.summary|trim -%}
                         &lt;p&gt;{{ page.summary|trim|escape }}&lt;/p&gt;
                     {%- endif -%}
