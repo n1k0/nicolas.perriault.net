@@ -70,6 +70,9 @@ figure figcaption {
   text-align: right;
   font-style: italic;
 }
+.home figure {
+  margin-top: 1.45em;
+}
 h1,
 h2,
 h3,

@@ -65,7 +65,7 @@ date: 2012-03-04
 **Hello World**, from a *page*!
 </code></pre>
 
-As you can see, we can write plain [Mardown](daringfireball.net/projects/markdown/) for our page contents. So let's rewrite our app to serve any flatpage by its filename:
+As you can see, we can write plain [Markdown](http://daringfireball.net/projects/markdown/) for our page contents. So let's rewrite our app to serve any flatpage by its filename:
 
     from flask import Flask
     from flaskext.flatpages import FlatPages

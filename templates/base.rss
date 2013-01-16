@@ -7,10 +7,7 @@
         <language>{% block lang %}en-us{% endblock %}</language>
         <pubDate>{{ build_date|to_rfc2822 }}</pubDate>
         <lastBuildDate>{{ build_date|to_rfc2822 }}</lastBuildDate>
-        <author>
-            <name>Nicolas Perriault</name>
-            <uri>https://nicolas.perriault.net/</uri>
-        </author>
+        <author>Nicolas Perriault</author>
         {% block content %}
         {%- for page in pages %}
         <item>
