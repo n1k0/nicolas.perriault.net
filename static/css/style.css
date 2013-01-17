@@ -35,7 +35,7 @@ html[xmlns] .clearfix {
   text-align: right;
 }
 body {
-  background-color: #fff;
+  background-color: #fefefe;
   width: 960px;
   margin: 0 auto;
   padding: 40px 20px 0;
@@ -70,7 +70,10 @@ figure figcaption {
   text-align: right;
   font-style: italic;
 }
-.home figure {
+.home figure,
+.code figure,
+.talks figure,
+.carnet figure {
   margin-top: 1.45em;
 }
 h1,
@@ -282,7 +285,7 @@ q:after {
 }
 .contents section.code p,
 .contents section.carnet p {
-  font-size: 92%;
+  font-size: 80%;
 }
 .contents section.code {
   width: 48%;

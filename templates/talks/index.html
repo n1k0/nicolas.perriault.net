@@ -1,10 +1,12 @@
 {% extends "talks/base.html" %}
 
 {% block contents %}
+<article>
+    <figure><img src="/static/img/talks.png" alt=""></figure>
 {% filter markdown %}
 Sometimes, I speak at conferences, mostly about code & methodology in French most of the time.
 {% endfilter %}
-
+</article>
 <h2>Latest talks</h2>
 {% include "_list.html" %}
 {% if years|length %}

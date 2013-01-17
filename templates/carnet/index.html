@@ -1,12 +1,15 @@
 {% extends "carnet/base.html" %}
 
 {% block contents %}
-<p>
-    M'adressant la plupart du temps à
-    un auditoire francophone pour tout ce qui n'a pas trait au code ou à la
-    technicité de mon métier, j'ai choisi de tenir ce carnet en français.
-    <em>Mind you.</em>
-</p>
+<article>
+    <figure><img src="/static/img/carnet.png" alt=""></figure>
+    <p>
+        M'adressant la plupart du temps à
+        un auditoire francophone pour tout ce qui n'a pas trait au code ou à la
+        technicité de mon métier, j'ai choisi de tenir ce carnet en français.
+        <em>Mind you.</em>
+    </p>
+</article>
 <h2>Derniers billets</h2>
 {% include "_list.html" %}
 {% if years|length %}
