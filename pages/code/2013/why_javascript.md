@@ -33,7 +33,7 @@ So:
 
 The problem many people have with Javascript is they don't like it but want to join the browser party so badly — especially since even [cool operating systems](https://www.mozilla.org/en-GB/firefoxos/) plan to use it extensively. They would just love having their Python, Ruby, Haskell, Erlang, Java, C#, COBOL, &lt;insert your favorite language here&gt; being the default standardized language to code frontend webapps in a DOM environment. Unfortunately, that's not the case; Javascript is the default language to manipulate the DOM in browsers and make things happen. And it's not likely to change anytime soon imho. But I've got good news for you: [alternatives exist](http://altjs.org/).
 
-As an exciting side note, the next version of Javascript, through [ECMAScript 6](https://brendaneich.com/2012/10/harmony-of-dreams-come-true/) will definitely step up from the previous version.
+As an exciting side note, the next version of Javascript, [ECMAScript 6](https://brendaneich.com/2012/10/harmony-of-dreams-come-true/), will definitely step up from the previous version.
 
 Also, a cool idea I heard would be to have a low-level compilation target platform in browsers in order to code your next website in other languages than Javascript but with great, native performance. Having a bit what the JVM is to Java and other languages running on it. That would be smart and definitely interesting. But one more time, it's not likely to happen soon.
 
