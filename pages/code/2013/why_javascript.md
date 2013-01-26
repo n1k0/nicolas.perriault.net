@@ -18,7 +18,7 @@ Now some facts:
 - Some [very](http://ejohn.org/) [smart](https://github.com/jashkenas) [people](http://worrydream.com/) are doing Javascript
 - Javascript is suited for the rest of us, continuously [learning web hackers](http://worrydream.com/LearnableProgramming/) not having a PhD in CS
 - Javascript has a [rather low entry barrier](http://www.codecademy.com/tracks/javascript); people can start coding and get results quickly
-- Javascript has [first order functions](http://www.webreference.com/programming/javascript/rg25/index.html); that's rather important if you're interested in functional programming
+- Javascript has [higher order functions](http://www.webreference.com/programming/javascript/rg25/index.html); that's rather important if you're interested in functional programming
 - Modern Javascript VMs are [fast](https://v8-io12.appspot.com/)
 
 You're free not to like Javascript or to find it dumb. You're encouraged to let other people take the time to learn it and get shit done with it.
@@ -37,10 +37,13 @@ As an exciting side note, the next version of Javascript, through [ECMAScript 6]
 
 Also, a cool idea I heard would be to have a low-level compilation target platform in browsers in order to code your next website in other languages than Javascript but with great, native performance. Having a bit what the JVM is to Java and other languages running on it. That would be smart and definitely interesting. But one more time, it's not likely to happen soon.
 
-In the meanwhile, Javascript is the language of the Web, and Javascript engines are its running platform. There are better languages, there are worse. One thing is crystal clear: great, innovative stuff can be achieved with it.
+In the meanwhile, Javascript is the language of the Web, and Javascript engines are its running platform. There are better languages, there are worse. One thing is crystal clear: great, innovative & useful stuff can be achieved with it, you may want to be part of the move.
 
 And as always, remember that:
 
 > There are only two kinds of programming languages: those people always bitch about and those nobody uses. — Bjarne Stroustrup
 
-<figure><img src="/static/code/top-languages.png" alt=""></figure>
+<figure>
+    <a href="https://github.com/languages/">
+        <img src="/static/code/top-languages.png" alt=""></a>
+</figure>
