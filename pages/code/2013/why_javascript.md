@@ -37,7 +37,7 @@ As an exciting side note, the next version of Javascript, through [ECMAScript 6]
 
 Also, a cool idea I heard would be to have a low-level compilation target platform in browsers in order to code your next website in other languages than Javascript but with great, native performance. Having a bit what the JVM is to Java and other languages running on it. That would be smart and definitely interesting. But one more time, it's not likely to happen soon.
 
-In the meanwhile, Javascript is the language of the Web, and Javascript engines are its running platform. There are better languages, there are worse.
+In the meanwhile, Javascript is the language of the Web, and Javascript engines are its running platform. There are better languages, there are worse. One thing is crystal clear: great, innovative stuff can be achieved with it.
 
 And as always, remember that:
 
