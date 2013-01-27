@@ -2,15 +2,20 @@
 <rss version="2.0">
     <channel>
         <title>{% block title %}Nicolas Perriault{% endblock %}</title>
-        <link>{{ BASE_URL }}</link>
+        <link>{{ BASE_URL }}/</link>
         <description>{% block description %}Nicolas Perriault's personal website.{% endblock %}</description>
         <language>{% block lang %}en-us{% endblock %}</language>
         <pubDate>{{ build_date|to_rfc2822 }}</pubDate>
         <lastBuildDate>{{ build_date|to_rfc2822 }}</lastBuildDate>
-        <author>Nicolas Perriault</author>
+        <copyright>Copyright 2010-2013 Nicolas Perriault</copyright>
+        <generator>https://github.com/n1k0/nicolas.perriault.net</generator>
+        <webMaster>nicolas+rss@perriault.net (Nicolas Perriault)</webMaster>
+        <managingEditor>nicolas+rss@perriault.net (Nicolas Perriault)</managingEditor>
+        <ttl>3600</ttl>
         {% block content %}
         {%- for page in pages %}
         <item>
+            <author>nicolas+rss@perriault.net (Nicolas Perriault)</author>
             <title>{{ page.title|escape }}</title>
             <link>{{ BASE_URL }}/{{ page.path }}/</link>
             <description>
