@@ -33,7 +33,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 pages = FlatPages(app)
 freezer = Freezer(app)
-markdown_manager = Markdown(app)
+markdown_manager = Markdown(app, extensions=['fenced_code'], output_format='html5',)
 asset_manager = AssetManager(app)
 
 
