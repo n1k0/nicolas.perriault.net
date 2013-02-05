@@ -134,7 +134,7 @@ Indeed, this is definitely not [DRY code]. But one has to be creative to turn a 
         });
     });
 
-[Async.js] is a great package and one of the most popular of the [node ecosystem], but there are [many more others](https://npmjs.org/browse/keyword/async).
+[Async.js] is a great package and one of the most popular of the [node ecosystem], but there are [many others](https://npmjs.org/browse/keyword/async).
 
 Such a library combined with a [functional approach](http://cjohansen.no/talks/2012/sdc-functional/) provides a killer combo to solve your daily problems when programming [Javascript] (<small>with a small *s* because [I'm punk](https://twitter.com/domenic/status/296021285736161280).</small>)
 
