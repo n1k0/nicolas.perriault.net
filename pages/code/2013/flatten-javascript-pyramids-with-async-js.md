@@ -37,7 +37,7 @@ Classic. But what if you want to perform multiple insertions, eg. to load a bunc
           // … we could add many more
         ];
 
-        it ("should do something useful with moods", function(done) {
+        it("should do something useful with moods", function(done) {
             store(moods[0], function(err, mood) {
                 assert.ifError(err);
                 store(moods[1], function(err, mood) {
@@ -71,7 +71,7 @@ Here we go again, [callback hell] and unmanageable pyramids.
           // … we could add many more
         ];
 
-        it ("should do something useful with moods", function(done) {
+        it("should do something useful with moods", function(done) {
             async.parallel([
                 function(cb) {
                     store(mood[0], function(err, mood) {
@@ -125,8 +125,28 @@ Indeed, this is definitely not [DRY code]. But one has to be creative to turn a 
           // … we could add many more
         ];
 
-        it ("should do something useful with moods", function(done) {
+        it("should do something useful with moods", function(done) {
             load(moods, function(err, storedMoods) {
+                assert.ifError(err);
+                // now let's test stuff with stored moods
+                done();
+            });
+        });
+    });
+
+**Edit:** there's even a built-in `async.map()` function, not sure how I missed it; so the code is even shorter:
+
+    describe("moods tests", function() {
+        var moods = [
+            "2013-02-01:n1k0:sunny"
+          , "2013-02-02:n1k0:cloudy"
+          , "2013-02-03:n1k0:stormy"
+          , "2013-02-04:n1k0:rainy"
+          // … we could add many more
+        ];
+
+        it("should do something useful with moods", function(done) {
+            async.map(moods, store, function(err, storedMoods) {
                 assert.ifError(err);
                 // now let's test stuff with stored moods
                 done();
