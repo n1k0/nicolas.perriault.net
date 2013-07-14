@@ -1,5 +1,5 @@
 date: 2013-02-05
-title: Flatten Javascript Pyramids with Async.js
+title: Flatten JavaScript Pyramids with Async.js
 published: true
 
 <figure>
@@ -156,14 +156,14 @@ Indeed, this is definitely not [DRY code]. But one has to be creative to turn a 
 
 [Async.js] is a great package and one of the most popular of the [node ecosystem], but there are [many others](https://npmjs.org/browse/keyword/async).
 
-Such a library combined with a [functional approach](http://cjohansen.no/talks/2012/sdc-functional/) provides a killer combo to solve your daily problems when programming [Javascript] (<small>with a small *s* because [I'm punk](https://twitter.com/domenic/status/296021285736161280).</small>)
+Such a library combined with a [functional approach](http://cjohansen.no/talks/2012/sdc-functional/) provides a killer combo to solve your daily problems when programming [JavaScript].
 
 [Async.js]: https://github.com/caolan/async
 [callback hell]: http://callbackhell.com/
 [DRY code]: https://en.wikipedia.org/wiki/Don't_repeat_yourself
 [hubot]: http://hubot.github.com/
 [hubot-mood]: https://github.com/scopyleft/hubot-mood
-[Javascript]: /code/2013/why_javascript/
+[JavaScript]: /code/2013/why_javascript/
 [mocha]: http://visionmedia.github.com/mocha/
 [node-redis]: https://github.com/mranney/node_redis
 [node]: http://nodejs.org/
