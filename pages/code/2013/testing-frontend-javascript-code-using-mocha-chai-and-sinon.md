@@ -67,7 +67,7 @@ Now let's write a simple test suite for our `Cow` object constructor in `cow_tes
 
     describe("Cow", function() {
       describe("constructor", function() {
-        it("should has a default name", function() {
+        it("should have a default name", function() {
           var cow = new Cow();
           expect(cow.name).to.equal("Anon cow");
         });
@@ -85,7 +85,7 @@ Now let's write a simple test suite for our `Cow` object constructor in `cow_tes
           }).to.throw(Error);
         });
 
-        it("should greets passed target", function() {
+        it("should greet passed target", function() {
           var greetings = (new Cow("Kate")).greets("Baby");
           expect(greetings).to.equal("Kate greets Baby");
         });
@@ -135,14 +135,14 @@ Now imagine we implement a `Cow#lateGreets` method so the greetings come with a 
 We need to test this one as well, and Mocha helps us with its optional `done` callback for tests:
 
       describe("#lateGreets", function() {
-        it("should send an error if no target is passed", function(done) {
+        it("should pass an error if no target is passed", function(done) {
           (new Cow().lateGreets(null, function(err, greetings) {
             expect(err).to.be.an.instanceof(Error);
             done();
           }));
         });
 
-        it("should greets passed target after one second", function(done) {
+        it("should greet passed target after one second", function(done) {
           (new Cow("Kate")).lateGreets("Baby", function(err, greetings) {
             expect(greetings).to.equal("Kate greets Baby");
             done();
