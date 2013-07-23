@@ -1,4 +1,4 @@
-date: 2013-02-05
+date: 2013-07-13
 title: CasperJS 1.1-beta1 released, with Gecko support
 published: true
 
