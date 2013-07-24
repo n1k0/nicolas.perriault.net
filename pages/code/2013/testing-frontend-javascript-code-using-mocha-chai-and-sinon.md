@@ -2,7 +2,7 @@ title: Testing your frontend JavaScript code using mocha, chai, and sinon
 date: 2013-07-23
 published: true
 
-**As rich Web application complixity grows, if you want to keep your sanity, you need to unit test your frontend JavaScript code.**
+**As rich Web application complexity grows, if you want to keep your sanity, you need to unit test your frontend JavaScript code.**
 
 For the 4 past months, I've been working for [Mozilla] on some big project where such testing strategy was involved. While I wish we could use [CasperJS] in this perspective, Firefox wasn't supported at the time and we needed to ensure proper compatibility with its JavaScript engine. So we went with using [Mocha], [Chai] and [Sinon] and they have proven to be a great workflow for us so far.
 
