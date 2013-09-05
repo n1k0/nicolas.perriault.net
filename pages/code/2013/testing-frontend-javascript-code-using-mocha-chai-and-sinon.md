@@ -136,10 +136,10 @@ We need to test this one as well, and Mocha helps us with its optional `done` ca
 
       describe("#lateGreets", function() {
         it("should pass an error if no target is passed", function(done) {
-          (new Cow().lateGreets(null, function(err, greetings) {
+          (new Cow()).lateGreets(null, function(err, greetings) {
             expect(err).to.be.an.instanceof(Error);
             done();
-          }));
+          });
         });
 
         it("should greet passed target after one second", function(done) {
