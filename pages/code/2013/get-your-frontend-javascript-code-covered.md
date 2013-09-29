@@ -7,12 +7,13 @@ write tests, the more confident you are with your code… but how much precisely
 That's where [code coverage](http://en.wikipedia.org/wiki/Code_coverage) might
 help.**
 
-The idea of code coverage is to record which parts of your code (functions,
-statements, conditionals and so on) have been run by your test suite, to compute
-metrics out of this inspection and usually to provide tools for inspecting them.
+The idea behind code coverage is to record which parts of your code (functions,
+statements, conditionals and so on) have been executed by your test suite, to
+compute metrics out of these data and usually to provide tools for navigating
+and inspecting them.
 
-Not a lot of frontend developers I know are testing their frontend JavaScript
-code, and I can barely imagine how many of them have setup code coverage… Mostly
+Not a lot of frontend developers I know actually test their frontend code, and I
+can barely imagine how many of them have ever setup code coverage… Mostly
 because there are not many frontend-oriented tools in this area I guess.
 
 Actually I've only found one which provides an adapter for [Mocha] and actually
@@ -42,7 +43,7 @@ matter of adding this simple line to your HTML test file:
 Source files: [blanket.js](https://raw.github.com/alex-seville/blanket/master/dist/qunit/blanket.min.js),
               [mocha-blanket.js](https://raw.github.com/alex-seville/blanket/master/src/adapters/mocha-blanket.js)
 
-As an example, let's reuse the silly `Cow` example we used [previously]:
+As an example, let's reuse the silly `Cow` example we used [in a previous episode]:
 
     // cow.js
     (function(exports) {
@@ -118,29 +119,28 @@ Mocha:
   source of our library;
 - The HTML test file *must* be served over HTTP for the adapter to be loaded.
 
-Running the tests will give us:
+Running the tests now gives us something like this:
 
 ![screenshot](/static/code/2013/blanket-coverage.png)
 
-As you can see, the report highlights that we haven't actually tested the case
-where an error is raised in case a target name is missing. We've been informed
-of that, nothing more, nothing less. We simply know we're missing a test here.
-Isn't this cool? I think so!
+As you can see, the report at the bottom highlights that we haven't actually
+tested the case where an error is raised in case a target name is missing.
+We've been informed of that, nothing more, nothing less. We simply know we're
+missing a test here. Isn't this cool? I think so!
 
 Just remember that code coverage will only [bring you numbers] and raw
 information, not actual proofs that the whole of your *code logic* has been
 actually covered. If you ask me, the best inputs you can get about your code
-logic and implementation are the ones issued out of [pair programming] sessions
-and [code reviews] — but that's another story.
+logic and implementation ever are the ones issued out of [pair programming]
+sessions and [code reviews] — but that's another story.
 
-**So is code coverage silver bullet? No. Is it useful? Definitely.
-Happy testing!**
+**So is code coverage silver bullet? No. Is it useful? Definitely. Happy testing!**
 
 [Blanket]: http://blanketjs.org/
 [Mocha]: http://visionmedia.github.io/mocha/
 [Chai]: http://chaijs.com/
 [bring you numbers]: http://codebetter.com/karlseguin/2008/12/09/code-coverage-use-it-wisely/
 [testing your frontend JavaScript code]: /code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/
-[previously]: /code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/
+[in a previous episode]: /code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/
 [code reviews]: http://alexgaynor.net/2013/sep/26/effective-code-review/
 [pair programming]: http://www.extremeprogramming.org/rules/pair.html
