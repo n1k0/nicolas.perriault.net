@@ -106,8 +106,8 @@ blockquote {
 }
 
 code, pre {
-    font-family: Consolas, Monaco, "Courier New", monospace;
-    font-size: 85%;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 75%;
     color: #555;
     line-height: @baseLineHeight * .75;
 }
@@ -152,6 +152,12 @@ img {
 p {
     line-height: @baseHeight * 2;
     margin: @baseHeight * 2 0;
+    code {
+        color: #222;
+        background: #eee;
+        padding: 0 .3em;
+        border-radius: .3em;
+    }
 }
 
 pre {
@@ -210,6 +216,15 @@ q:before, q:after {
         }
         img {
             max-width: 100%;
+        }
+        q {
+            font-style: italic;
+        }
+        q:before {
+            content: "« ";
+        }
+        q:after {
+            content: " »";
         }
         aside {
             text-align: right;

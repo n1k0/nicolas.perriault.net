@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Asap&amp;subset=latin" rel="stylesheet" type="text/css">
 {%- assets filter="cssmin", output="packed.css",
     "css/style.css",
-    "css/code.css"
+    "js/libs/prettify/sons-of-obsidians.css"
 %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
 {%- endassets %}
@@ -23,7 +23,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body class="{% block section %}home{% endblock %} {% block body_class %}{% endblock body_class %}">
+<body class="{% block section %}home{% endblock %} {% block body_class %}{% endblock body_class %}" onload="prettyPrint()">
     <!--[if lt IE 7]>
     <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
     <![endif]-->
@@ -60,12 +60,8 @@
     <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-{%- assets filter="uglifyjs", output="packed.js",
-    "js/libs/highlight/highlight.pack.js",
-    "js/app.js"
-%}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{%- endassets %}
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
     <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>

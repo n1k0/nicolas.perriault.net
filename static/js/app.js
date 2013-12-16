@@ -12,9 +12,10 @@ $(document).ready(function() {
 
     // code pretty printing
     (function() {
-        $('pre').each(function(i, e) {
-            if ($(this).text().trim().indexOf('$') !== 0 && !$(this).hasClass('unpretty')) {
-                hljs.highlightBlock(e, '    ');
+        $('article pre').each(function(i, e) {
+            var $pre = $(this);
+            if ($pre.text().trim().indexOf('$') !== 0 && !$pre.hasClass('unpretty')) {
+                $pre.addClass("prettyprint");
             }
         });
     })();

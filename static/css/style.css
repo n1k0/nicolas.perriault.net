@@ -54,8 +54,8 @@ blockquote {
 }
 code,
 pre {
-  font-family: Consolas, Monaco, "Courier New", monospace;
-  font-size: 85%;
+  font-family: Monaco, "Courier New", monospace;
+  font-size: 75%;
   color: #555;
   line-height: 21px;
 }
@@ -114,6 +114,12 @@ p {
   line-height: 28px;
   margin: 28px 0;
 }
+p code {
+  color: #222;
+  background: #eee;
+  padding: 0 .3em;
+  border-radius: .3em;
+}
 pre {
   padding: 14px;
   color: #eee;
@@ -165,6 +171,15 @@ q:after {
 }
 .contents article img {
   max-width: 100%;
+}
+.contents article q {
+  font-style: italic;
+}
+.contents article q:before {
+  content: "« ";
+}
+.contents article q:after {
+  content: " »";
 }
 .contents article aside {
   text-align: right;
