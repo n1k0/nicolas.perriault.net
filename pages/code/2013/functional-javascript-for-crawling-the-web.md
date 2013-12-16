@@ -2,7 +2,7 @@ date: 2013-12-01
 title: Functional JavaScript for crawling the Web
 published: true
 
-I've been giving JavaScript & [CasperJS] training sessions lately, and I've been
+I've been giving JavaScript & [CasperJS] training sessions lately, and was
 amazed how few people are aware of the [Functional Programming] capabilities of
 JavaScript. Many of them couldn't see obvious usage of them for Web development,
 which is a bit of a shame if you ask me.
@@ -41,10 +41,10 @@ eases a lot writing code in the functional style:
 We'll also use other ES6 features as well because, you know, today is our
 future already.
 
-This article contents will also probably hurt some people
-feelings, probably because there's a lot to hate in there. **Please think of
-this article as an exercise of thought instead of yet a new JavaScript
-tutorial™.**
+This article contents will also probably hurt some people feelings, probably
+because there's a lot to hate in there when you come from a pure OOP landscape.
+**Please think of this article as an exercise of thought instead of yet another
+new JavaScript tutorial™.**
 
 ### Crawling the DOM using FP
 
@@ -107,7 +107,7 @@ As a side note, this `map` implementation also works for strings:
     // ["F", "O", "O"]
 
 We can also write a tiny abstraction on top of `querySelectorAll`, again to
-ensure further composability (we'll come to this later):
+ensure further composability:
 
     const nodes = (sel, root) => (root || document).querySelectorAll(sel);
 
@@ -165,7 +165,7 @@ selector? Let's do this:
     findCells(document.querySelector("table")).length
     // 30
 
-One more time, this is how we'd write it using standard function declaration
+Don't panic, again this is how we'd write it using standard function declaration
 syntax:
 
     function finder(selector) {
@@ -201,8 +201,8 @@ Let's create a `sequence` function to help composing functions sequentially:
     };
 
 This one is a bit complicated; it basically takes all functions passed as
-arguments, reverses the order and returns a function capable of processing them
-sequencially, passing to each the result of the previous execution:
+arguments and returns a new function capable of processing them sequencially,
+passing to each the result of the previous execution:
 
     const squarePlus2 = sequence(x => 2 + x, x => x * x);
     squarePlus2(4) // 4 * 4 + 2 => 18 // Aspirine is in the bathroom
@@ -216,7 +216,7 @@ also landed recently in Gecko; let's rewrite `compose` accordingly:
       });
     };
 
-Let's use it in our little DOM crawling example. Oneliner style:
+Let's use it in our little DOM crawling example:
 
     const getText = prop("textContent");
     const findCells = finder("td");
@@ -225,7 +225,7 @@ Let's use it in our little DOM crawling example. Oneliner style:
     // ["Belgium", "France", "Germany", "Greece", "Italy", …]
 
 What I like the most about the FP style is that it actually describes fairly
-well what's gonna happen; you can almost read the code as you'd read plain
+well what's going to happen; you can almost read the code as you'd read plain
 English *(caveat: don't do this at family dinners).*
 
 Also you may want to have the functions passed in the opposite order, ala UNIX
@@ -289,9 +289,9 @@ descending order and export the result as JSON:
     // "[{"name":"Netherlands","perCapita":42.45311104495385}, …
 
 I could probably go on and on, but you get the picture. This post is not to
-claim that the FP approach is the best of all in JavaScript, but it certainly
-has its advantages. Feel free to play with these concepts for a while to make
-your mind eventually :)
+claim that the FP approach is the best of all in JavaScript, but that it
+certainly has its advantages. Feel free to play with these concepts for a while
+to make your mind, eventually :)
 
 If you're interested in Functional JavaScript, I suggest the following
 resources:
@@ -304,7 +304,7 @@ resources:
 - If you're hooked with FP (yay!), have a look at [Clojure] and its port
   targetting the JavaScript platform, [ClojureScript].
 
-If you're interested in ECMAScript 6, here are some good links to read about:
+If you're interested in ECMAScript 6, here are some good links to read about:
 
 - [The state of JavaScript](http://brendaneich.github.io/Strange-Loop-2012/) — Brendan Eich, Strange Loop 2012
 - [ECMAScript 6 support in Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/ECMAScript_6_support_in_Mozilla)
