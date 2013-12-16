@@ -204,7 +204,7 @@ This one is a bit complicated; it basically takes all functions passed as
 arguments, reverses the order and returns a function capable of processing them
 sequencially, passing to each the result of the previous execution:
 
-    var squarePlus2 = compose(x => x * x, x => 2 + x);
+    var squarePlus2 = sequence(x => 2 + x, x => x * x);
     squarePlus2(4) // 4 * 4 + 2 => 18 // Aspirine is in the bathroom
 
 By the way, this one is a very good place to use [ES6 Rest Arguments] which have
