@@ -137,7 +137,7 @@ basically a function returning a function — one more time to create a reusabl
 composable property getter (we'll get back to this, read on):
 
     const prop = name => object => object[name];
-    // var getFoo = prop("foo");
+    // const getFoo = prop("foo");
     // getFoo({foo: "bar"}) => "bar"
 
 If you struggle understanding how this works, this is how we would write `prop`
@@ -161,7 +161,7 @@ selector? Let's do this:
 
     const finder = selector => root => nodes(selector, root);
 
-    var findCells = finder("td");
+    const findCells = finder("td");
     findCells(document.querySelector("table")).length
     // 30
 
@@ -204,7 +204,7 @@ This one is a bit complicated; it basically takes all functions passed as
 arguments, reverses the order and returns a function capable of processing them
 sequencially, passing to each the result of the previous execution:
 
-    var squarePlus2 = sequence(x => 2 + x, x => x * x);
+    const squarePlus2 = sequence(x => 2 + x, x => x * x);
     squarePlus2(4) // 4 * 4 + 2 => 18 // Aspirine is in the bathroom
 
 By the way, this one is a very good place to use [ES6 Rest Arguments] which have
@@ -284,7 +284,7 @@ descending order and export the result as JSON:
     const sortDesc = partial(sort, (a, b) => a.perCapita > b.perCapita ? -1 : 1);
     const healthy = partial(select, c => c.perCapita > 38);
 
-    var healthyCountries = compose(healthy, sortDesc);
+    const healthyCountries = compose(healthy, sortDesc);
     JSON.stringify(healthyCountries(gnpPerCapita));
     // "[{"name":"Netherlands","perCapita":42.45311104495385}, …
 
