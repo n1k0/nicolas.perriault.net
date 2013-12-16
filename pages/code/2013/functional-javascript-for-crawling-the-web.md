@@ -293,8 +293,8 @@ claim that the FP approach is the best of all in JavaScript, but it certainly
 has its advantages. Feel free to play with these concepts for a while to make
 your mind eventually :)
 
-If you're interested in Functional JavaScript in JavaScript, I suggest the
-following resources:
+If you're interested in Functional JavaScript, I suggest the following
+resources:
 
 - [Pure, functional JavaScript], an inspiring talk from Christian Johansen;
 - [JavaScript Allongé], an online book which covers most of its aspects in a
