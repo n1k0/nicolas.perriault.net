@@ -4,8 +4,8 @@ published: true
 
 I've been giving JavaScript & [CasperJS] training sessions lately, and was
 amazed how few people are aware of the [Functional Programming] capabilities of
-JavaScript. Many of them couldn't see obvious usage of them for Web development,
-which is a bit of a shame if you ask me.
+JavaScript. Many couldn't see obvious usage of these in Web development, which
+is a bit of a shame if you ask me.
 
 Let's take things like `map` and `reduce` from the `Array` prototype:
 
@@ -92,8 +92,8 @@ passed args to ease further composability (more on this later):
 
     const map = (fn, iterable) => [].map.call(iterable, fn);
 
-> Note: we declare `map` as a constant to avoid any accidental mess. Also, I
-> don't see obvious reasons for a function to be mutated here.
+>**Note:** we declare `map` as a constant to avoid any accidental mess. Also, I
+>don't see obvious reasons for a function to be mutated here.
 
 So we can write:
 
@@ -113,6 +113,7 @@ ensure further composability:
 
 So now we can write:
 
+    var rows = nodes("tbody tr");
     map(node => nodes("td", node)[0].textContent, rows);
     // ["Belgium", "France", "Germany", "Greece", "Italy", …]
 
@@ -205,10 +206,28 @@ arguments and returns a new function capable of processing them sequencially,
 passing to each the result of the previous execution:
 
     const squarePlus2 = sequence(x => 2 + x, x => x * x);
-    squarePlus2(4) // 4 * 4 + 2 => 18 // Aspirine is in the bathroom
+    squarePlus2(4);
+    // 4 * 4 + 2 => 18 => Aspirine is in the bathroom
 
-By the way, this one is a very good place to use [ES6 Rest Arguments] which have
-also landed recently in Gecko; let's rewrite `compose` accordingly:
+In classic notation without using a sequence, that would be the equivalent of:
+
+    function plus2(x) {
+        return 2 + x;
+    }
+
+    function square(x) {
+        return x * x;
+    }
+
+    function squarePlus2(x) {
+        return plus2(square(x));
+    }
+
+    squarePlus2(4);
+    // 18
+
+By the way, `sequence` is a very good place to use [ES6 Rest Arguments] which
+have also landed recently in Gecko; let's rewrite it accordingly:
 
     const sequence = function(...fns) {
       return fns.reduce(function(comp, fn) {
@@ -237,12 +256,42 @@ programmers; let's create a `compose` function for doing just that:
     map(compose(findCells, first, getText), rows);
     // ["Belgium", "France", "Germany", "Greece", "Italy", …]
 
+### Wiat, is this really better?
+
+As a side note, one may argue that:
+
+    map(sequence(getText, first, findCells), rows);
+
+Is not much really better than:
+
+    map(row => getText(first(findCells(row))), rows);
+
+Though the composed approach is probably more likely to scale when adding many
+more functions to the stack:
+
+    a(b(c(d(e(f(g(h(foo))))))));
+    sequence(a, b, c, d, e, f, g, h)(foo);
+
+Last, a composed function is itself composable by essence, and that's probably a
+killer feature:
+
+    map(sequence(getText, sequence(first, findCells)), rows);
+    // ["Belgium", "France", "Germany", "Greece", "Italy", …]
+
+Which something like this:
+
+    var crawler = new Crawler("table");
+    crawler.findCells("tbody tr").first().getText();
+
+Is hardly likely to offer.
+
 ## A few more examples
 
 To compute the total population of listed countries:
 
     const reduce = (fn, init, iterable) => [].reduce.call(iterable, fn, init);
     const second = (iterable) => iterable[1];
+    const sum = (x, y) => x + y;
 
     var populations = map(rows,
                           compose(findCells, second, getText, parseFloat));
