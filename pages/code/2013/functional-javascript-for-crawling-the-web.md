@@ -293,8 +293,8 @@ To compute the total population of listed countries:
     const second = (iterable) => iterable[1];
     const sum = (x, y) => x + y;
 
-    var populations = map(rows,
-                          compose(findCells, second, getText, parseFloat));
+    var populations = map(compose(findCells, second, getText, parseFloat),
+                          rows);
     reduce(sum, 0, populations);
     // 403.31000000000006
 
