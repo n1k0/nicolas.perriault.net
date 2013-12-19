@@ -256,7 +256,7 @@ programmers; let's create a `compose` function for doing just that:
     map(compose(findCells, first, getText), rows);
     // ["Belgium", "France", "Germany", "Greece", "Italy", …]
 
-### Wiat, is this really better?
+### Wait, is this really better?
 
 As a side note, one may argue that:
 
