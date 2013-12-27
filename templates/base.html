@@ -32,11 +32,11 @@
             <h1><a href="{{ url_for("index") }}">Hi, I'm <strong>Nicolas.</strong></a></h1>
             <small>I code stuff. I take photos. I write rants.</small>
         </header>
-        <div class="contents">
+        <main class="contents" role="main">
             {% block contents %}
             <p>These are the default contents.</p>
             {% endblock contents %}
-        </div>
+        </main>
         <nav class="sidebar">
             <ul>
                 <li class="home"><a href="{{ url_for("index") }}" hreflang="en">Home</a></li>
