@@ -18,7 +18,7 @@ D’aucuns comprendront que la stratégie mise en œuvre ici est de profiter de 
 
 La dernière fois que j’ai eu affaire à ce type de procédé, c’est avec Canal +. Ces gens-là utilisent la même technique en la poussant de façon plus extrême encore : si vous disposez d’une Freebox, vous pouvez activer un abonnement Canal + depuis l’interface de la box, et hop, accès à Canal + directement opérationnel, waouh. Par contre, pour résilier… Lettre recommandé avec A/R a minima deux mois avant la date anniversaire de la souscription (vous avez bien lu). Encore une fois, les procrastinateurs, rétifs au stratif et handicapés du calendrier de tous bords en seront pour leur frais.
 
-Souvent, lorsque j’évoque ces deux exemples, certaines personnes — parmi lequelles des gens bien sous tous rapports — me rétorquent que [#lesgens] n’ont qu’à pas procrastiner, à être organisés, que finalement c’est plutôt *bien fait pour eux*. Que ça *leur apprendra*. Qu’ils avaient qu’à pas être aussi faibles, qu'à pas être aussi cons, quoi. *Darwin the win.*
+Souvent, lorsque j’évoque ces deux exemples, certaines personnes — parmi lequelles des gens bien sous tous rapports — me rétorquent que [#lesgens] n’ont qu’à pas procrastiner, à être organisés, que finalement c’est plutôt *bien fait pour eux*. Que ça *leur apprendra*. Qu’ils avaient qu’à pas être aussi faibles, qu'à pas être aussi cons, quoi. *Darwin for the win.*
 
 D’autres me disent que *tant que c’est légal*, ils n’y voient aucun souci, voire même un business model plutôt [malin](http://scopyleft.fr/honnetete/), Tintin. Les victimes n’avaient qu’à faire attention, à bien lire les CGV de 180 pages, tout ça. La faiblesse comme fond de commerce, c'est pas trop la classe ?
 
