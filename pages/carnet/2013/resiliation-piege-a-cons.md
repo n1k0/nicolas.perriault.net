@@ -42,7 +42,7 @@ Par pitié, si vous gérez un business, quel qu’il soit, essayez de réaliser,
 
 **Ma réaction :**
 
-J'admets bien volontiers ne pas m'être renseigné sur le cadre légal entourant la contractualisation commerciale en droit français ; merci pour ces précisions ! Malgré tout, ces dispositions me surprennent énormément du fait de l’absence de symétrie entre souscription et résiliation, et je ne peux m’empêcher d’y voir une forme de légitimation institutionnelle à faciliter l’acte d’engagement versus la cessation dudit engagement. Car il me semble tout aussi délicat pour un fournisseur d’être attaqué sur un processus de souscription abusif ou frauduleux que celui de la résiliation.
+J'admets bien volontiers ne pas m'être renseigné sur le cadre légal entourant la contractualisation commerciale en droit français ; merci pour ces précisions ! Malgré tout, ces dispositions me surprennent énormément du fait de l’absence de symétrie entre souscription et résiliation, et je ne peux m’empêcher d’y voir une forme de légitimation institutionnelle à faciliter l’acte d’engagement versus la cessation dudit engagement. Car il me semble tout aussi délicat pour un fournisseur d’être attaqué sur un processus de souscription abusif ou frauduleux que sur celui de la résiliation.
 
 Pourrait-on y voir une forme de *facilitation* à la commercialisation, voire d’une “difficultation” du processus inverse ? Je comprends que les chiffres de la croissance tiennent énormément à cœur à nos politiques, mais tout de même !`</complot>`
 
