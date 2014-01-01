@@ -196,7 +196,7 @@ code.
 Let's create a `sequence` function to help composing functions sequentially:
 
     const sequence = function() {
-      return [].slice.call(arguments).reduce(function(comp, fn) {
+      return [].reduce.call(function(comp, fn) {
         return () => comp(fn.apply(null, arguments));
       });
     };
