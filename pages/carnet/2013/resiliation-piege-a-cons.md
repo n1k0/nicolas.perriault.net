@@ -34,7 +34,7 @@ Mais revenons-en à nos moutons ; que se passe t-il dans le cas de Mediapart ou
 
 Par pitié, si vous gérez un business, quel qu’il soit, essayez de réaliser, de comprendre que **prendre les utilisateurs pour des cons n’est pas une stratégie de développement durable sur le long terme.** Respectez-les autant que vous vous respectez. Et si vous ne vous respectez pas, foutez-leur la paix.
 
-**Mise à jour :**
+<p id="maj"><strong>Mise à jour :</strong></p>
 
 [Hadrien de Boisset](http://deboisset.fr/) me signale par email :
 
