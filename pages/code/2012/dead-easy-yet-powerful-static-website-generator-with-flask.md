@@ -68,7 +68,7 @@ date: 2012-03-04
 As you can see, we can write plain [Markdown](http://daringfireball.net/projects/markdown/) for our page contents. So let's rewrite our app to serve any flatpage by its filename:
 
     from flask import Flask
-    from flaskext.flatpages import FlatPages
+    from flask_flatpages import FlatPages
 
     DEBUG = True
     FLATPAGES_AUTO_RELOAD = DEBUG
@@ -259,7 +259,7 @@ Here enters Frozen-Flask. Its use is damn easy:
     import sys
 
     from flask import Flask, render_template
-    from flaskext.flatpages import FlatPages
+    from flask_flatpages import FlatPages
     from flask_frozen import Freezer
 
     DEBUG = True
