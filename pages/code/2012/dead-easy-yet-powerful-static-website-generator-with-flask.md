@@ -259,7 +259,7 @@ Here enters Frozen-Flask. Its use is damn easy:
     import sys
 
     from flask import Flask, render_template
-    from flaskext.flatpages import FlatPages
+    from flask_flatpages import FlatPages
     from flask_frozen import Freezer
 
     DEBUG = True
