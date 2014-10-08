@@ -255,7 +255,7 @@ def build():
 def deploy():
     build()
     local("rsync -avz -e ssh --exclude-from=rsync_exclude.txt "
-          "./build/ akeiaws:/var/www/nperriault")
+          "./build/ awsniko:/var/www/nperriault")
 
 
 @command
@@ -338,7 +338,7 @@ def photo(path, slug):
 
 
 @command
-def serve(server='127.0.0.1', port=5000, debug=DEBUG):
+def serve(server='127.0.0.1', port=8000, debug=DEBUG):
     """ Serves this site.
     """
     asset_manager.config['ASSETS_DEBUG'] = debug
