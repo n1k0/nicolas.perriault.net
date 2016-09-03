@@ -4,19 +4,22 @@
 <article>
     <figure><img src="/static/img/me.png" alt=""></figure>
 {% filter markdown %}
-My name is **Nicolas Perriault**, I'm 35, I live in southern France [near
+My name is **Nicolas Perriault**, I live in southern France [near
 Montpellier](http://g.co/maps/z88bs) and am pretty much **enjoying my life**.
+I work remotely for [Mozilla](https://mozilla.org/) in the
+[Service de Nuages](http://www.servicedenuages.fr/en) team.
 
 I'm mostly a <a href="{{ url_for("section", section="code") }}">Web developer</a>,
 but as you may suppose, I'm *not* a Web designer. I
 <a href="{{ url_for("section", section="talks") }}">speak</a> at conferences,
-sometimes.
+<del>sometimes</del> rarely.
 
 I also practice <a href="{{ url_for("section", section="photography") }}">photography</a>,
-and probably <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">rant
-(in French)</a> a bit too much.
+and <a href="{{ url_for("section", section="carnet") }}" hreflang="fr">rant
+(in French)</a> <del>a bit too much</del> rarely.
 
-Oh, and one more thing: this blog is [entirely open source](https://github.com/n1k0/nicolas.perriault.net).
+If you're interested, the source code of this blog and most of its contents are
+[open source](https://github.com/n1k0/nicolas.perriault.net).
 </article>
 {% endfilter %}
 
