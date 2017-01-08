@@ -32,13 +32,13 @@ Last, a bunch of OSX apps are not available on Linux, so you have to find their 
 
 ## The Web is your App Store
 
-What also changed in last ten years is the explosion of the Web as an application platform. While [LibreOffice] and [The Gimp] are decent alternatives to Photoshop and MS Office, you now have access to many similarly scoped Web apps like Google Docs and [Pixlr]. Just ensure using a modern Web browser like Firefox, which luckly ships by default in Ubuntu.
+What also changed in last ten years is the explosion of the Web as an application platform. While [LibreOffice] and [The Gimp] are decent alternatives to MS Office and Photoshop, you now have access to many similarly scoped Web apps like Google Docs and [Pixlr], provided you're connected to the Internet. Just ensure using a modern Web browser like Firefox, which luckly ships by default in Ubuntu.
 
 For example I use [IRCCloud] for IRC, as Mozilla has a corporate account there. The cool thing is it acts as a bouncer so it keeps track of messages when you go offline, and has a nice [Android app](https://play.google.com/store/apps/details?id=com.irccloud.android.enterprise&hl=en) which syncs.
 
 ## When the Web isn't enough
 
-There is obviously lots of things Web apps can't do (yet?), like searching your local files or updating your system. And let's admit that sometimes native app are still more efficient and well integrated (by definition) then what the Web has to offer.
+There is obviously lots of things Web apps can't do, like searching your local files or updating your system. And let's admit that sometimes for specific tasks native app are still more efficient and well integrated (by definition) than what the Web has to offer.
 
 ### Launcher & file search
 
@@ -58,7 +58,7 @@ If you use the text shortcuts feature of Alfred (or if you use [TextExpander]), 
 
 ### File manager
 
-I couldn't spot any obvious feature difference between [Nautilus] and the [OSX Finder], but I mostly use their basic features anyway.
+I couldn't spot any obvious usability difference between [Nautilus] and the [OSX Finder], but I mostly use their basic features anyway.
 
 ![Nautilus in action](/static/code/2016/nautilus.png)
 
