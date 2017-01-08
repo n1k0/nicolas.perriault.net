@@ -98,7 +98,7 @@ For organizing & managing a gallery, [ShotWell] seems to be what many people use
 
 Ah the good old days when you only had [Gnome Solitaire] to have a little fun on Linux. Nowadays even [Steam] is available for Linux, with more and more titles available. That should get you covered for a little while.
 
-If it doesn't, [PlayOnLinux] allows running Windows game on [Wine]. Most of the time, it works just fine.
+If it doesn't, [PlayOnLinux] allows running Windows games on [Wine]. Most of the time, it works just fine.
 
 ![Battle.net via PlayOnLinux](/static/code/2016/playonlinux-battlenet.jpg)
 
@@ -116,7 +116,7 @@ I'm definitely not an expert in the field but have sometimes needs for quickly c
 
 ### Password manager
 
-While studying password managers for work lately, I've stumbled upon [Enpass], it's a good equivalent of [1Password] which doesn't have a Linux version of their app. Enpass has extensions for the most common browsers, and can syncs to [Dropbox] or [Owncloud] among other cloud services.
+While studying password managers for work lately, I've stumbled upon [Enpass], it's a good equivalent of [1Password] which doesn't have a Linux version of their app. Enpass has extensions for the most common browsers, and can sync to [Dropbox] or [Owncloud] among other cloud services.
 
 ![Enpass in action](/static/code/2016/enpass.png)
 
