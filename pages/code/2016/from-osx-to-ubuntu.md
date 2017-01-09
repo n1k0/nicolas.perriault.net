@@ -86,6 +86,8 @@ Unity provides a classic <code>alt+tab</code> switcher and an Exposé-style over
 
 I've been a super hardcore [Lightroom] user and lover, but eventually found [Darktable] and am perfectly happy with it now. Its ergonomics take a little while to get used to though.
 
+![DarkTable in action](/static/code/2016/darktable.png)
+
 If you want to get an idea of what kind of results it can produce, take a look at my [NYC gallery on 500px], fwiw all the pictures have been processed using DarkTable.
 
 [![Sample picture processed with DarkTable](/static/code/2016/darktable-sample.jpg)]( https://500px.com/n1k0/galleries/nyc)
@@ -112,6 +114,10 @@ I've been a [Spotify] user & customer for years, and am very happy with the Linu
 
 I'm using a [Bose Mini SoundLink] over bluetooth and never had any issues pairing and using it. To be 100% honest, *PulseAudio* crashed a few times but the system has most often been able to recover and enable sound again without any specific intervention from me.
 
+Byt the way, it's not always easy to switch between audio sources; [Sound Switcher Indicator] really helps by adding a dedicated menu in the top bar:
+
+![The Sound Switcher Indicator in action](/static/code/2016/sound-switcher-indicator.png)
+
 ### Video editing
 
 I'm definitely not an expert in the field but have sometimes needs for quickly crafting short movies for friends and family. [kdenlive] has just done its job perfectly so far for me.
@@ -126,6 +132,26 @@ While studying password managers for work lately, I've stumbled upon [Enpass], i
 
 I was using [Dropbox] and [CrashPlan] on OSX, guess what? I'm using them on Linux too.
 
+## A few other niceties
+
+### ScreenCloud
+
+[ScreenCloud] allows making screenshots, annotate them and export them to different targets like the filesystem or online image hosting providers like [imgur] or [DropBox].
+
+![ScreenCloud](/static/code/2016/screencloud-capture.png)
+
+### Clipboard manager
+
+[Diodon] is a simple yet efficient clipboard manager, exposing a convenient menu in the system top bar.
+
+### RedShift
+
+If you know [f.lux], [RedShift] is an alternative to it for Linux. The program will adapt the tint of your displays to the amount of light at this specific time of the day. Recommended.
+
+### Caffeine
+
+[Caffeine] is a status bar application able to temporarily prevent the activation of both the screensaver and the *sleep* powersaving mode. Most useful when watching movies.
+
 ## So, is [Linux ready for the desktop?](http://www.islinuxreadyforthedesktop.com/)
 
 For *me*, the answer is yes.
@@ -136,11 +162,15 @@ For *me*, the answer is yes.
 [Atom]: https://atom.io/
 [AutoKey]: https://github.com/autokey/autokey/wiki
 [Bose Mini SoundLink]: https://www.bose.com/en_us/products/speakers/wireless_speakers/soundlink_mini_ii.html
+[Caffeine]: https://launchpad.net/caffeine
 [CrashPlan]: https://www.crashplan.com/
 [Darktable]: http://www.darktable.org/
+[Diodon]: https://wiki.ubuntu.com/Diodon
 [Dropbox]: https://dropbox.com/
 [Enpass]: https://www.enpass.io/
+[f.lux]: https://justgetflux.com/
 [Gnome Solitaire]: https://wiki.gnome.org/Apps/Aisleriot
+[imgur]: http://imgur.com/
 [IRCCloud]: https://www.irccloud.com/
 [iTerm2]: https://www.iterm2.com/
 [kdenlive]: https://kdenlive.org/features/
@@ -154,7 +184,10 @@ For *me*, the answer is yes.
 [Pixlr]: https://pixlr.com/
 [PlayOnLinux]: https://www.playonlinux.com/
 [QuickLook]: https://en.wikipedia.org/wiki/Quick_Look
+[RedShift]: http://jonls.dk/redshift/
+[ScreenCloud]: https://screencloud.net/
 [ShotWell]: https://wiki.gnome.org/Apps/Shotwell
+[Sound Switcher Indicator]: https://yktoo.com/en/software/indicator-sound-switcher
 [Spotify]: https://www.spotify.com/fr/download/linux/
 [Steam]: http://store.steampowered.com/linux
 [Storage team]: https://servicedenuages.fr/
