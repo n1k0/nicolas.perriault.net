@@ -190,6 +190,9 @@ def page(path):
     # allow preview of unpublished stuff in DEBUG mode
     if not app.debug and not page.meta.get('published', False):
         abort(404)
+    # process photo pages
+    if page.meta.get('section') == "photography":
+        page.meta['image'] = "/static/%s/main.jpg" % (page.path,)
     template = page.meta.get('template', '%s/page.html' % section)
     return render_template(template, page=page, section=section)
 

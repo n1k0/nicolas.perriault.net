@@ -5,7 +5,7 @@
     {% block extra_head %}{% endblock %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block page_title %}Home{% endblock page_title %} | Nicolas Perriault</title>
-    <meta name="description" content="Nicolas Perriault's homepage.">
+    <meta name="description" content="{% block page_summary %}Nicolas Perriault's homepage.{% endblock page_summary %}">
     <meta name="viewport" content="width=device-width">
     <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 {%- assets filter="cssmin", output="packed.css",
@@ -22,6 +22,12 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="{% block card_title %}{% endblock card_title %}">
+    <meta name="twitter:description" content="{% block card_summary %}{% endblock card_summary %}">
+    <meta name="twitter:image" content="{% block card_image %}{% endblock card_image %}">
 </head>
 <body class="{% block section %}home{% endblock %} {% block body_class %}{% endblock body_class %}" onload="prettyPrint()">
     <!--[if lt IE 7]>

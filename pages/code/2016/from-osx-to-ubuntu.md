@@ -1,5 +1,7 @@
 date: 2017-01-08
 title: From OSX to Ubuntu
+summary: A year earlier I decided to switch from OSX to Ubuntu, so now is a good time to make a little retrospective.
+image: /static/code/2016/thou-shall-migrate.jpg
 published: true
 
 **A year earlier I decided to switch from OSX to [Ubuntu], so now is a good time to make a little retrospective. TL;DR: Linux now offers a pleasant desktop user experience and there's no way back for me.**

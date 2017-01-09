@@ -1,6 +1,9 @@
 {% extends "talks/base.html" %}
 
 {% block page_title %}{{ page.title }} | {{ super() }}{% endblock %}
+{% block card_title %}{{ page.title }}{% endblock %}
+{% block card_summary %}{{ page.summary }}{% endblock %}
+{% block card_image %}{{ BASE_URL }}{{ page.image }}{% endblock %}
 
 {% block contents %}
 {% with page = page  %}
