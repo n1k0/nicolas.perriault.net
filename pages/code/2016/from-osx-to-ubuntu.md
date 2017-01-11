@@ -156,6 +156,61 @@ If you know [f.lux], [RedShift] is an alternative to it for Linux. The program w
 
 For *me*, the answer is yes.
 
+## Updates
+
+I've been asked several questions by email, IRC, twitter and in the [HN thread] about this post, here are some answers in a random order.
+
+### What is the exact model of your laptop?
+
+Lenovo X1 Carbon 3rd Gen.
+
+### Do you have issues with acpi/sleep?
+
+No.
+
+### How's battery life?
+
+Obviously worse than a MacBook (where controlled hardware & drivers are heavily optimized for that purpose), but not that bad tbh. I can work for max 5 hours straight, though if I start compiling stuff (hello gecko) it gets *really* bad.
+
+### Does the fingerprint reader work out of the box?
+
+No, I tried to use [Fingerprint-GUI] but it was so unstable that I removed it. I'm easy typing passphrases anyway.
+
+### Did you try Krita? It's a mix between Photoshop and Paint
+
+That sounds rather ambitious, and I didn't feel like installing all these KDE/Qt packages for trying it out. From the captures I could find online, it looks like a great option though.
+
+### There's a Linux version of [f.lux]!
+
+Yeah. Also I've learned that f.lux was inspired by Redshift and not the other way around. Point taken, thanks.
+
+### DarkTable doesn't do X, Y and Z while Lightroom does
+
+DarkTable is free. Also, its keystones-based perspective correction module is much better than anything I could find for LightRoom.
+
+But yeah, overall LightRoom is way ahead, and if Adobe was kind enough to port it to Linux I'd buy and use it in a heartbeat.
+
+### DarkTable can crop and scale images too
+
+Do you often fire DarkTable to edit a screenshot?
+
+### Arch is so much better
+
+Good for you! Diversity is nice.
+
+### You said you contributed to a book on Ubuntu, you're biased towards Apple
+
+Haha, nice try.
+
+### What GTK/unity theme are you using?
+
+I'm using [Vivacious Dark] in its *graphite* variant.
+
+### What side launcher are you using in the screenshots?
+
+It's the standard Unity one with the [icon borders removed](http://askubuntu.com/a/85366/470966).
+
+
 [1Password]: https://1password.com/
 [Albert]: https://github.com/ManuelSchneid3r/albert
 [Alfred.app]: https://www.alfredapp.com/
@@ -169,7 +224,9 @@ For *me*, the answer is yes.
 [Dropbox]: https://dropbox.com/
 [Enpass]: https://www.enpass.io/
 [f.lux]: https://justgetflux.com/
+[Fingerprint-GUI]: https://launchpad.net/~fingerprint/+archive/ubuntu/fingerprint-gui
 [Gnome Solitaire]: https://wiki.gnome.org/Apps/Aisleriot
+[HN thread]: https://news.ycombinator.com/item?id=13361019
 [imgur]: http://imgur.com/
 [IRCCloud]: https://www.irccloud.com/
 [iTerm2]: https://www.iterm2.com/
@@ -200,5 +257,6 @@ For *me*, the answer is yes.
 [Ubuntu]: http://ubuntu.com
 [Unity]: https://unity.ubuntu.com/
 [Unity Dash]: https://help.ubuntu.com/lts/ubuntu-help/unity-dash-intro.html
+[Vivacious Dark]: http://www.ravefinity.com/p/vivacious-colors-gtk-theme.html
 [VSCode]: https://code.visualstudio.com/download
 [Wine]: https://www.winehq.org/
