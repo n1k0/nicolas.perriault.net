@@ -3,6 +3,8 @@ lang: en
 date: 2017-01-25
 published: true
 
+A short presentation about [Elm](http://elm-lang.org/) I gave at [MontpellierJS](https://www.meetup.com/fr-FR/MontpellierJS/).
+
 <figure>
     <img src="/static/talks/2017/elm-presentation.jpg" alt="">
     <figcaption>
