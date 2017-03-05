@@ -47,6 +47,7 @@
             {% if section %}— in <a href="{{ url_for("section", section=section) }}" itemprop="genre">{{ section|capitalize }}</a>{% endif %}
             — <a href="{{ url_for("page", path=page.path) }}">Permalink</a>
             — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
             {% if page.published %}
             — <a href="http://flattr.com/submit/auto?url={{ BASE_URL }}{{ url_for("page", path=page.path) }}&amp;title={{ page.title }}&amp;user_id=n1k0&amp;category=software&amp;language={{ page.lang or "en" }}">flattr this</a>
             {%- endif %}
