@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CasperJS, a toolkit on top of PhantomJS | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="CasperJS, a toolkit on top of PhantomJS">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2012/introducing-casperjs-toolkit-phantomjs/">
+    <header>
+        <h2><a itemprop="name" href="/code/2012/introducing-casperjs-toolkit-phantomjs/">CasperJS, a toolkit on top of PhantomJS</a></h2></header>
+    
+    <section>
+        <p>It's been quite a while since I posted about the <a href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">awesomeness of PhantomJS</a>, the <em>scriptable headless WebKit with JavaScript API</em>.</p>
+<p>In the meanwhile, I started coding a <a href="https://github.com/n1k0/casperjs/commit/133310d814d79db08c3982ee4af31d0a71813b8c">tiny lib</a> to ease the creation of <a href="http://phantomjs.org/">PhantomJS</a> scripts, especially navigation scenarios.</p>
+<p>Six months later, the lib has gained many more features and is now an entire project on its own; <a href="http://casperjs.org/">CasperJS</a> was born and at the time these lines are written, the code repository has more than <a href="https://github.com/n1k0/casperjs">180 watchers and 32 forks on Github</a>.</p>
+<p><a href="http://ariya.ofilabs.com/">Ariya Hidayat</a>&nbsp;— the creator of PhantomJS&nbsp;— even says of it:</p>
+<blockquote>
+<p>In case you haven’t seen CasperJS yet, go and take a look, it’s an <em>extremely</em> useful companion to PhantomJS. (<a href="http://ariya.ofilabs.com/2012/03/phantomjs-and-travis-ci.html">source</a>)</p>
+</blockquote>
+<h2>But what does it do?</h2>
+<p>I'm far too lazy not to quote <a href="http://casperjs.org/">CasperJS' website</a>:</p>
+<blockquote>
+<p>CasperJS is an open source navigation scripting &amp; testing utility written in Javascript and based on PhantomJS — the scriptable headless WebKit engine. It eases the process of defining a full navigation scenario and provides useful high-level functions, methods &amp; syntactic sugar for doing common tasks such as:</p>
+<ul>
+<li>defining &amp; ordering browsing navigation steps</li>
+<li>filling &amp; submitting forms</li>
+<li>clicking &amp; following links</li>
+<li>capturing screenshots of a page (or part of it)</li>
+<li>making assertions on remote DOM</li>
+<li>logging events</li>
+<li>downloading resources, including binary ones</li>
+<li>writing functional test suites, saving results as JUnit XML</li>
+<li>scraping Web contents</li>
+</ul>
+</blockquote>
+<p>Hell, looks like some new coffee-machine… Let's quickly review some of these features though.</p>
+<h2>Creating navigation scenarios</h2>
+<p>Scripting a browsing workflow using Javascript is painfully hard if you intend to use chained callbacks. This kind of code is a nightmare to write, to read, to understand and to maintain:</p>
+<pre><code>var page = require('webpage').create();
+
+page.open(url1, function(status) {
+    if (status == "fail") phantom.exit();
+    page.open(url2, function(status) {
+        if (status == "fail") phantom.exit();
+        page.open(url3, function(status) {
+            if (status == "fail") phantom.exit();
+            page.open(url4, function(status) {
+                if (status == "fail") phantom.exit();
+                // Can I stop, now?
+            });
+        });
+    });
+});
+</code></pre>
+<p>Well, CasperJS solves this kind of problem using a convenient API for dealing with asynchronous stuff:</p>
+<pre><code>var casper = require('casper').create();
+
+casper.start(url1);
+casper.thenOpen(url2);
+casper.thenOpen(url3);
+casper.thenOpen(url4);
+
+casper.run();
+</code></pre>
+<p>Want to simulate the user navigation as if he were clicking through links? No problem:</p>
+<pre><code>var casper = require("casper").create()
+casper.start('http://my.blog.tld/');
+casper.thenClick('nav#menu a.blog');
+casper.thenClick('.posts li a');
+casper.then(function() {
+    this.echo('Page url is ' + this.getCurrentUrl());
+    this.echo('Page title is ' + this.getTitle());
+});
+
+casper.run();
+</code></pre>
+<p>Note that you can alternatively use <a href="http://coffeescript.org/">coffeescript</a> to write your scripts:</p>
+<pre><code>var casper = require("casper").create()
+casper.start "http://my.blog.tld/"
+casper.thenClick "nav#menu a.blog"
+casper.thenClick ".posts li a"
+casper.then -&gt;
+    @echo "Page url is #{@getCurrentUrl()}"
+    @echo "Page title is #{@getTitle()}"
+casper.run()
+</code></pre>
+<h2>Filling and handling forms</h2>
+<p>Filling and submitting a form is not much harder:</p>
+<pre><code>casper.start('http://admin.domain.tld/login/', function() {
+    this.fill('form[id="login-form"]', {
+        'username': 'chuck',
+        'password': 'n0rr1s'
+    }, true);
+});
+
+casper.then(function() {
+    this.echo(this.getTitle());
+});
+
+casper.run();
+</code></pre>
+<h2>Capturing screenshots</h2>
+<p>Capturing a screenshot of a given area is as easy as this:</p>
+<pre><code>casper.start('http://domain.tld/page.html', function() {
+    this.captureSelector('capture.png', '.article-content');
+});
+
+casper.run();
+</code></pre>
+<h2>Asynchronous rendering of page</h2>
+<p>Sometimes (ok, often), lots of stuff is loaded asynchronously through Ajax or any other fancy invention of the Devil. You can just wait for it to happen:</p>
+<pre><code>casper.start('https://twitter.com/casperjs_org', function() {
+    this.waitForSelector('.tweet-row', function() {
+        this.captureSelector('twitter.png', 'html');
+    }, function() {
+        this.die('Timeout reached. Fail whale?').exit();
+    }, 2000);
+});
+</code></pre>
+<h2>Testing</h2>
+<p>Now all of this is fancy, but the true powers of CasperJS come from its functional testing capabilities. For example, testing google search can be done that way:</p>
+<pre><code>casper.start('http://www.google.fr/', function() {
+    this.test.assertTitle('Google', 'google homepage title is the one expected');
+    this.test.assertExists('form[action="/search"]', 'main form is found');
+    this.fill('form[action="/search"]', {
+        q: 'foo'
+    }, true);
+});
+
+casper.then(function() {
+    this.test.assertTitle('foo - Recherche Google', 'google title is ok');
+    this.test.assertUrlMatch(/q=foo/, 'search term has been submitted');
+    this.test.assertEval(function() {
+        return __utils__.findAll('h3.r').length &gt;= 10;
+    }, 'google search for "foo" retrieves 10 or more results');
+});
+
+casper.run(function() {
+    this.test.renderResults(true);
+});
+</code></pre>
+<p>Running the suite would produce this shiny colored output:</p>
+<p><img alt="" src="/static/code/2012/testsuiteok.png" /></p>
+<p>As a bonus, these results can be exported as XUnit XML, eg. for being consumed by a continuous integration server like <a href="http://jenkins-ci.org/">Jenkins</a>.</p>
+<p>For the records, the whole CasperJS test suite is written using its own API, and results are <a href="http://travis-ci.org/#!/n1k0/casperjs">visible on Travis-CI</a>.</p>
+<h2>Now, what?</h2>
+<p>Nothing, really. If you think it's useful, I'm glad enough.</p>
+<p><a href="http://casperjs.org/">CasperJS website</a>.</p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2012-03-08" itemprop="datePublished">2012-03-08</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2012/introducing-casperjs-toolkit-phantomjs/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2012/introducing-casperjs-toolkit-phantomjs/&amp;title=CasperJS, a toolkit on top of PhantomJS&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2012/casperjs-hits-1-0-stable/">CasperJS hits 1.0 stable</a>
+        |
+        <a class="next" href="/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/">Dead easy yet powerful static website generator with Flask</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

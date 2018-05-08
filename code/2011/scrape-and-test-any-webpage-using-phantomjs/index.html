@@ -1,0 +1,289 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Scrape and test any webpage using PhantomJS | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Scrape and test any webpage using PhantomJS">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">
+    <header>
+        <h2><a itemprop="name" href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">Scrape and test any webpage using PhantomJS</a></h2></header>
+    
+    <section>
+        <p>Have you ever tried to scrape or harvest data from an existing website —
+I mean, even ajax-bloated ones? Did you ever attempt to test
+javascript-dependent interactions within a Web application you built?
+Well, if you answered yes to one of the questions above, you might be
+interested in <a href="http://phantomjs.org/">PhantomJS</a>.</p>
+<p>PhantomJS is a <em>headless WebKit with JavaScript API</em>. By headless, they
+mean you can script a real <a href="http://webkit.org/">Webkit</a> based browser
+with no need for a full graphical interface installed.</p>
+<h3>Installation</h3>
+<p>On OSX, installation can be achieved using
+<a href="https://github.com/mxcl/homebrew">homebrew</a> (note that
+<a href="static/itunes.apple.com/fr/app/xcode/id448457090?mt=12">XCode</a> must be
+installed on your machine):</p>
+<pre><code>$ brew install phantomjs
+</code></pre>
+<p>It can take a bit of time for the binaries to be built, especially
+because of their dependency to <a href="static/qt.nokia.com/products">Qt4</a>. When
+it's done, you can test it this way:</p>
+<pre><code>$ phantomjs
+Usage: phantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Options:
+    --load-images=[yes|no]             Load all inlined images (default is 'yes').
+    --load-plugins=[yes|no]            Load all plugins (i.e. 'Flash', 'Silverlight', ...) (default is 'no').
+    --proxy=address:port               Set the network proxy.
+    --disk-cache=[yes|no]              Enable disk cache (at desktop services cache storage location, default is 'no').
+    --ignore-ssl-errors=[yes|no]       Ignore SSL errors (i.e. expired or self-signed certificate errors).
+</code></pre>
+<p>Installation instructions for other platforms and alternative methods
+can be found on <a href="http://code.google.com/p/phantomjs/wiki/Installation">the PhantomJS project
+wiki</a>.</p>
+<p>As a side note, there's also a Python implementation of PhantomJS,
+<a href="http://dev.umaclan.com/projects/pyphantomjs">PyPhantomJS</a>, which adds
+<a href="http://dev.umaclan.com/projects/pyphantomjs/wiki/Plugins">plugins</a>
+support! Also, I've found myself having no segfault using the Python
+version while the standard one is a bit more unstable on my box (no
+troll please).</p>
+<p>To install PyPhantomJS, let's use
+<a href="http://www.pip-installer.org/"><code>pip</code></a>:</p>
+<pre><code>$ pip install PyPhantomJS
+</code></pre>
+<p>The PyPhantomJS executable is named — <em>surprise</em> — <code>pyphantomjs</code>:</p>
+<pre><code>$ pyphantomjs
+usage: pyphantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Minimalistic headless WebKit-based JavaScript-driven tool
+positional arguments:
+  script.[js|coffee]    The script to execute, and any args to pass to it
+optional arguments:
+  -h, --help            show this help message and exit
+  --disk-cache {yes,no}
+                        Enable disk cache (default: no)
+  --ignore-ssl-errors {yes,no}
+                        Ignore SSL errors (default: no)
+  --load-images {yes,no}
+                        Load all inlined images (default: yes)
+  --load-plugins {yes,no}
+                        Load all plugins (i.e. Flash, Silverlight, ...) (default: no)
+  --proxy address:port  Set the network proxy
+  -v, --verbose         Show verbose debug messages
+  --version             show this program's version and license
+</code></pre>
+<p>Usage of the two versions is exactly the same.</p>
+<h3>Basic usage</h3>
+<p>PhantomJS scripts can be written in standard JavaScript or in
+<a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a>. Mainly
+matter of taste here, but CoffeeScript syntax <a href="http://robots.thoughtbot.com/post/9251081564/coffeescript-spartan-javascript">looks really
+interesting</a>.</p>
+<p>So let's write our first script, we want to retrieve the weather
+forecast for a given city using Google:</p>
+<pre><code>// script: meteo.js
+var page = new WebPage()
+, output = { errors: [], results: null };
+if (phantom.args.length == 0) {
+    console.log('You must specify a city, eg. "Paris, France"');
+    phantom.exit(1);
+}
+page.open('http://www.google.fr/search?q=meteo+' + phantom.args[0], function (status) {
+    if (status !== 'success') {
+        output.errors.push('Unable to access network');
+    } else {
+        var cells = page.evaluate(function(){
+            try {
+                var cells = document.querySelectorAll('.tpo tr tr')[4].querySelectorAll('td');
+                return Array.prototype.map.call(cells, function(cell) {
+                    return cell.innerText.replace(/[^0-9]/g, '');
+                });
+            } catch (e) {
+                return [];
+            }
+        });
+        if (!cells || !cells.length &gt; 0) {
+            output.errors.push('No valid meteo data found');
+        } else {
+            output.results = {
+                city: phantom.args[0],
+                today: {
+                    afternoon: cells[1],
+                    morning:   cells[2],
+                },
+                tomorrow: {
+                    afternoon: cells[3],
+                    morning:   cells[4],
+                }
+            };
+        }
+        console.log(JSON.stringify(output, null, '    '));
+    }
+    phantom.exit();
+});
+</code></pre>
+<p>Notice we use the <code>phantom.args</code> Array which contains the parameters
+passed to the script.</p>
+<p>The main magic happens in the <code>page.evaluate()</code> method, we pass it a
+JavaScript function which will be evaluated <strong>within the retrieved page
+document environment</strong>. It's a kind of <em>non-persistent XSS injection</em>
+just to help you to operate on the page contents =)</p>
+<p>Now it's time to launch the script to see how it goes:</p>
+<pre><code>$ phantomjs meteo.js "Montpellier, France"
+{
+    "errors": [],
+    "results": {
+        "city": "Montpellier, France",
+        "today": {
+            "afternoon": "29",
+            "morning": "17"
+        },
+        "tomorrow": {
+            "afternoon": "28",
+            "morning": "17"
+        }
+    }
+}
+</code></pre>
+<p>Now with an invalid city name:</p>
+<pre><code>$ phantomjs meteo.js "Unexistent City"
+{
+    "errors": [
+        "No valid meteo data found"
+    ],
+    "results": null
+}
+</code></pre>
+<p>Let's try with another city, an existing one this time:</p>
+<pre><code>$ phantomjs meteo.js "Paris, France"
+{
+    "errors": [],
+    "results": {
+        "city": "Paris, France",
+        "today": {
+            "afternoon": "21",
+            "morning": "11"
+        },
+        "tomorrow": {
+            "afternoon": "21",
+            "morning": "11"
+        }
+    }
+}
+</code></pre>
+<p>As a side note and in case you were wondering, you now understand a bit
+more why I moved to Montpellier ;)</p>
+<h3>I CAN HAZ SCREENSHOTS</h3>
+<p>PhantomJS also allows some nice tricks like injecting scripts to the
+remote page, very useful when a remote website doesn't ship with your
+favorite framework (eg. <a href="http://jquery.com/">jQuery</a>)… or can render a
+PNG image of a captured area of the webpage. The example below saves a
+capture of the weather forecast area:</p>
+<pre><code>// script: meteoclip.js
+var page = new WebPage();
+page.open('http://www.google.fr/search?q=meteo+montpellier,+France', function (status) {
+    if (status !== 'success') {
+        output.error = 'Unable to access network';
+    } else {
+        page.clipRect = {
+            top: 127,
+            left: 170,
+            width: 400,
+            height: 114
+        }
+        page.render('meteo.png');
+        console.log('Capture saved');
+    }
+    phantom.exit();
+});
+</code></pre>
+<p>Running the <code>meteoclip.js</code> script will get yourself this fancy image
+stored in <code>meteo.jpg</code>:</p>
+<p><img alt="image" src="http://cl.ly/0w2a050b3x2g170u053A/meteo.png" /></p>
+<p>There are tons of other cool topics to cover about PhantomJS, like
+navigation handling, automated logging in, external resources
+retrieving, functional testing, code organization… so I'll maybe post a
+bit more about it soon, who knows!</p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2011-08-27" itemprop="datePublished">2011-08-27</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2011/scrape-and-test-any-webpage-using-phantomjs/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2011/scrape-and-test-any-webpage-using-phantomjs/&amp;title=Scrape and test any webpage using PhantomJS&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2011/setup-jenkins-github-private-repository-ubuntu/">Setup Jenkins for working with a private Github repository</a>
+        |
+        <a class="next" href="/code/2011/clever-settings/">Une autre façon de gérer ses settings d&#39;application Django</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

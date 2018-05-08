@@ -1,0 +1,308 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Testing your frontend JavaScript code using mocha, chai, and sinon | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Testing your frontend JavaScript code using mocha, chai, and sinon">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/">
+    <header>
+        <h2><a itemprop="name" href="/code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/">Testing your frontend JavaScript code using mocha, chai, and sinon</a></h2></header>
+    
+    <section>
+        <p><strong>As rich Web application complexity grows, if you want to keep your sanity, you need to unit test your frontend JavaScript code.</strong></p>
+<p>For the 4 past months, I've been working for <a href="http://mozilla.org/">Mozilla</a> on some big project where such testing strategy was involved. While I wish we could use <a href="http://casperjs.org/">CasperJS</a> in this perspective, Firefox wasn't supported at the time and we needed to ensure proper compatibility with its JavaScript engine. So we went with using <a href="http://visionmedia.github.io/mocha/">Mocha</a>, <a href="http://chaijs.com/">Chai</a> and <a href="http://sinonjs.org/">Sinon</a> and they have proven to be a great workflow for us so far.</p>
+<h3>The mocha testing framework and the chai expectation library</h3>
+<p><a href="http://visionmedia.github.io/mocha/">Mocha</a> is a test framework while <a href="http://chaijs.com/">Chai</a> is an expectation one. Let's say Mocha setups and describes test suites and Chai provides convenient helpers to perform all kinds of assertions against your JavaScript code.</p>
+<p>So let's say we have a <code>Cow</code> object we want to unit test:</p>
+<pre><code>// cow.js
+(function(exports) {
+  "use strict";
+
+  function Cow(name) {
+    this.name = name || "Anon cow";
+  }
+  exports.Cow = Cow;
+
+  Cow.prototype = {
+    greets: function(target) {
+      if (!target)
+        throw new Error("missing target");
+      return this.name + " greets " + target;
+    }
+  };
+})(this);
+</code></pre>
+<p>Nothing fancy, but we want to unit test this one.</p>
+<p>Both Mocha and Chai can be used in a <a href="http://nodejs.org/">Node</a> environment as well as within the browser; in the latter case, you'll have to setup a test HTML page and use special builds of those libraries:</p>
+<ul>
+<li>for Mocha: <a href="http://visionmedia.github.io/mocha/#browser-support">setup instructions</a>, <a href="https://github.com/visionmedia/mocha/raw/master/mocha.css">mocha.css</a>, <a href="https://github.com/visionmedia/mocha/raw/master/mocha.js">mocha.js</a></li>
+<li>for Chai: <a href="http://chaijs.com/guide/installation/">setup instructions</a>, <a href="http://chaijs.com/chai.js">chai.js</a></li>
+</ul>
+<p>My advice is to store these files in a <code>vendor</code> subfolder. Let's create a HTML file to test our lib:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Cow tests&lt;/title&gt;
+  &lt;link rel="stylesheet" media="all" href="vendor/mocha.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="mocha"&gt;&lt;p&gt;&lt;a href="."&gt;Index&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;
+  &lt;div id="messages"&gt;&lt;/div&gt;
+  &lt;div id="fixtures"&gt;&lt;/div&gt;
+  &lt;script src="vendor/mocha.js"&gt;&lt;/script&gt;
+  &lt;script src="vendor/chai.js"&gt;&lt;/script&gt;
+  &lt;script src="cow.js"&gt;&lt;/script&gt;
+  &lt;script&gt;mocha.setup('bdd')&lt;/script&gt;
+  &lt;script src="cow_test.js"&gt;&lt;/script&gt;
+  &lt;script&gt;mocha.run();&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Please note we'll be using <a href="http://chaijs.com/api/bdd/">Chai's <em>BDD</em> Expect API</a>, hence the <code>mocha.setup('bdd')</code> call here.</p>
+<p>Now let's write a simple test suite for our <code>Cow</code> object constructor in <code>cow_test.js</code>:</p>
+<pre><code>var expect = chai.expect;
+
+describe("Cow", function() {
+  describe("constructor", function() {
+    it("should have a default name", function() {
+      var cow = new Cow();
+      expect(cow.name).to.equal("Anon cow");
+    });
+
+    it("should set cow's name if provided", function() {
+      var cow = new Cow("Kate");
+      expect(cow.name).to.equal("Kate");
+    });
+  });
+
+  describe("#greets", function() {
+    it("should throw if no target is passed in", function() {
+      expect(function() {
+        (new Cow()).greets();
+      }).to.throw(Error);
+    });
+
+    it("should greet passed target", function() {
+      var greetings = (new Cow("Kate")).greets("Baby");
+      expect(greetings).to.equal("Kate greets Baby");
+    });
+  });
+});
+</code></pre>
+<p>Tests should be passing, so if you open the HTML document in your browser, you should get something like:</p>
+<p><img alt="sample mocha+chai results screenshot" src="/static/code/2013/cow-tests-ok.png" /></p>
+<p>If any of these expectations fails, you'll be notified in the test results, eg. if we change the implementation of <code>greets</code> as below:</p>
+<pre><code>  Cow.prototype = {
+    greets: function(target) {
+      if (!target)
+        throw new Error("missing target");
+      return this.name + " greets " + target + "!";
+    }
+  };
+</code></pre>
+<p>You'll get this instead:</p>
+<p><img alt="sample mocha+chai results screenshot" src="/static/code/2013/cow-tests-ko.png" /></p>
+<h3>How about testing asynchronous stuff?</h3>
+<p>Now imagine we implement a <code>Cow#lateGreets</code> method so the greetings come with a delay of one second:</p>
+<pre><code>  Cow.prototype = {
+    greets: function(target) {
+      if (!target)
+        throw new Error("missing target");
+      return this.name + " greets " + target + "!";
+    },
+
+    lateGreets: function(target, cb) {
+      setTimeout(function(self) {
+        try {
+          cb(null, self.greets(target));
+        } catch (err) {
+          cb(err);
+        }
+      }, 1000, this);
+    }
+  };
+</code></pre>
+<p>We need to test this one as well, and Mocha helps us with its optional <code>done</code> callback for tests:</p>
+<pre><code>  describe("#lateGreets", function() {
+    it("should pass an error if no target is passed", function(done) {
+      (new Cow()).lateGreets(null, function(err, greetings) {
+        expect(err).to.be.an.instanceof(Error);
+        done();
+      });
+    });
+
+    it("should greet passed target after one second", function(done) {
+      (new Cow("Kate")).lateGreets("Baby", function(err, greetings) {
+        expect(greetings).to.equal("Kate greets Baby");
+        done();
+      });
+    });
+  });
+</code></pre>
+<p>Conveniently, Mocha will highlight any suspiciously long operation with red pills in case it wasn't really expected:</p>
+<p><img alt="sample screenshot" src="/static/code/2013/cow-async-tests-ok.png" /></p>
+<h3>Using Sinon for faking the environment</h3>
+<p>When you do unit testing, you don't want to depend on stuff external to the unit of code under test. And while avoiding your functions to have side effects is usually a good practice, in Web development it's not always easy task (think DOM, Ajax, native browser APIs, etc.)</p>
+<p><a href="http://sinonjs.org/">Sinon</a> is a great JavaScript library for stubbing and mocking such external dependencies and to keep control on side effects against them.</p>
+<p>As an example, let's imagine that our <code>Cow#greets</code> method wouldn't return a string but rather directly log them onto the browser console:</p>
+<pre><code>// cow.js
+(function(exports) {
+  "use strict";
+
+  function Cow(name) {
+    this.name = name || "Anon cow";
+  }
+  exports.Cow = Cow;
+
+  Cow.prototype = {
+    greets: function(target) {
+      if (!target)
+        return console.error("missing target");
+      console.log(this.name + " greets " + target);
+    }
+  };
+})(this);
+</code></pre>
+<p>How to unit test this? Well, Sinon to the rescue! First, let's add the <a href="http://sinonjs.org/releases/sinon-1.7.1.js">Sinon script</a> to our HTML test file:</p>
+<pre><code>&lt;!-- ... --&gt;
+&lt;script src="vendor/mocha.js"&gt;&lt;/script&gt;
+&lt;script src="vendor/chai.js"&gt;&lt;/script&gt;
+&lt;script src="vendor/sinon-1.7.1.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>We'll <em>stub</em> the <code>console</code> object's <code>log</code> and <code>error</code> methods so we can check they're called and what's passed to them:</p>
+<pre><code>var expect = chai.expect;
+
+describe("Cow", function() {
+  var sandbox;
+
+  beforeEach(function() {
+    // create a sandbox
+    sandbox = sinon.sandbox.create();
+
+    // stub some console methods
+    sandbox.stub(window.console, "log");
+    sandbox.stub(window.console, "error");
+  });
+
+  afterEach(function() {
+    // restore the environment as it was before
+    sandbox.restore();
+  });
+
+  // ...
+
+  describe("#greets", function() {
+    it("should log an error if no target is passed in", function() {
+      (new Cow()).greets();
+
+      sinon.assert.notCalled(console.log);
+      sinon.assert.calledOnce(console.error);
+      sinon.assert.calledWithExactly(console.error, "missing target")
+    });
+
+    it("should log greetings", function() {
+      var greetings = (new Cow("Kate")).greets("Baby");
+
+      sinon.assert.notCalled(console.error);
+      sinon.assert.calledOnce(console.log);
+      sinon.assert.calledWithExactly(console.log, "Kate greets Baby")
+    });
+  });
+});
+</code></pre>
+<p>Several things to be noticed here:</p>
+<ul>
+<li><code>beforeEach</code> and <code>afterEach</code> are part of the Mocha API and allow to define setup and tear down operations for each test;</li>
+<li>Sinon provides sandboxing, basically allowing to define and attach a set of stubs to a sandbox object you'll be able to restore at some point;</li>
+<li>When stubbed, <em>real</em> functions are not called at all, so here obviously nothing will be printed onto the browser console;</li>
+<li>Sinon ships with its own assertion library, hence the <code>sinon.assert</code> calls; a <a href="https://github.com/domenic/sinon-chai">sinon-chai</a> plugin exists for Chai, you may want to have a look at it.</li>
+</ul>
+<p><strong>There are many cool other aspects of <a href="http://visionmedia.github.io/mocha/">Mocha</a>, <a href="http://chaijs.com/">Chai</a> and <a href="http://sinonjs.org/">Sinon</a> I couldn't cover in this blog post, but I hope it opened your appetite for investigating more about them. Happy testing!</strong></p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2013-07-23" itemprop="datePublished">2013-07-23</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2013/testing-frontend-javascript-code-using-mocha-chai-and-sinon/&amp;title=Testing your frontend JavaScript code using mocha, chai, and sinon&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2013/get-your-frontend-javascript-code-covered/">Get your Frontend JavaScript Code Covered</a>
+        |
+        <a class="next" href="/code/2013/casperjs-1.1-beta1-released/">CasperJS 1.1-beta1 released, with Gecko support</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

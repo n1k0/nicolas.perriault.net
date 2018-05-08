@@ -1,0 +1,411 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Functional JavaScript for crawling the Web | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Functional JavaScript for crawling the Web">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2013/functional-javascript-for-crawling-the-web/">
+    <header>
+        <h2><a itemprop="name" href="/code/2013/functional-javascript-for-crawling-the-web/">Functional JavaScript for crawling the Web</a></h2></header>
+    
+    <section>
+        <p>I've been giving JavaScript &amp; <a href="http://casperjs.org/">CasperJS</a> training sessions lately, and was
+amazed how few people are aware of the <a href="http://en.wikipedia.org/wiki/Functional_Programming">Functional Programming</a> capabilities of
+JavaScript. Many couldn't see obvious usage of these in Web development, which
+is a bit of a shame if you ask me.</p>
+<p>Let's take things like <code>map</code> and <code>reduce</code> from the <code>Array</code> prototype:</p>
+<pre><code>function square(x) {
+  return x * x;
+}
+
+function sum(x, y) {
+  return x + y;
+}
+
+[1, 2, 3].map(square).reduce(sum)
+// 14
+</code></pre>
+<p>I've been hearing a few times things like:</p>
+<blockquote>
+<p>Well yeah that's cool, but I don't do maths, I'm a Web developer.</p>
+</blockquote>
+<p>And each time it turns me a little sad.</p>
+<h3>Disclaimer</h3>
+<p>As we're programming language hipsters, in this article we'll use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/arrow_functions">ES6 short
+function syntax</a> which has landed a few weeks ago in <a href="http://nightly.mozilla.org/">Firefox Nightlies</a> and
+eases a lot writing code in the functional style:</p>
+<pre><code>var square = x =&gt; x * x;
+var sum = (x, y) =&gt; x + y;
+
+[1, 2, 3].map(square).reduce(sum)
+// 14
+</code></pre>
+<p>We'll also use other ES6 features as well because, you know, today is our
+future already.</p>
+<p>This article contents will also probably hurt some people feelings, probably
+because there's a lot to hate in there when you come from a pure OOP landscape.
+<strong>Please think of this article as an exercise of thought instead of yet another
+new JavaScript tutorial™.</strong></p>
+<h3>Crawling the DOM using FP</h3>
+<p>Take this DOM fragment featuring a good ol' data table as an example:</p>
+<pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Country&lt;/th&gt;
+      &lt;th&gt;Population (M)&lt;/th&gt;
+      &lt;th&gt;GNP (B)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Belgium&lt;/td&gt;&lt;td&gt;11.162&lt;/td&gt;&lt;td&gt;419&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;France&lt;/td&gt;&lt;td&gt;63.820&lt;/td&gt;&lt;td&gt;2246&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Germany&lt;/td&gt;&lt;td&gt;80.640&lt;/td&gt;&lt;td&gt;3139&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Greece&lt;/td&gt;&lt;td&gt;10.758&lt;/td&gt;&lt;td&gt;298&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Italy&lt;/td&gt;&lt;td&gt;59.789&lt;/td&gt;&lt;td&gt;1871&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Netherlands&lt;/td&gt;&lt;td&gt;16.795&lt;/td&gt;&lt;td&gt;713&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Poland&lt;/td&gt;&lt;td&gt;38.548&lt;/td&gt;&lt;td&gt;782&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Portugal&lt;/td&gt;&lt;td&gt;10.609&lt;/td&gt;&lt;td&gt;252&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;United Kingdom&lt;/td&gt;&lt;td&gt;64.231&lt;/td&gt;&lt;td&gt;2290&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Spain&lt;/td&gt;&lt;td&gt;46.958&lt;/td&gt;&lt;td&gt;1432&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<p>To map the country names to a regular array of strings:</p>
+<pre><code>var rows = document.querySelectorAll("tbody tr");
+[].map.call(rows, row =&gt; row.querySelector("td").textContent);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>It worked: our map operation transformed a list of DOM table row elements to the
+text value of their very first cell. Well, it feels like we could probably
+enhance the code ergonomics a bit here.</p>
+<blockquote>
+<p><strong>Note:</strong> <em>If you wonder why do we use <code>[].map.call</code> in lieu of just calling
+<code>map</code> from the element list prototype, that's because <code>NodeList</code> doesn't
+implement the <code>Array</code> interface… <small>Yeah, I know.</small></em></p>
+</blockquote>
+<p>As an illustrative exercise, let's write our own <code>map</code> function to make a passed
+iterable always exposing the <code>Array</code> interface; also, let's invert the order of
+passed args to ease further composability (more on this later):</p>
+<pre><code>const map = (fn, iterable) =&gt; [].map.call(iterable, fn);
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> we declare <code>map</code> as a constant to avoid any accidental mess. Also, I
+don't see obvious reasons for a function to be mutated here.</p>
+</blockquote>
+<p>So we can write:</p>
+<pre><code>var rows = document.querySelectorAll("tbody tr");
+map(row =&gt; row.querySelector("td").textContent, rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>As a side note, this <code>map</code> implementation also works for strings:</p>
+<pre><code>map(x =&gt; x.toUpperCase(), "foo");
+// ["F", "O", "O"]
+</code></pre>
+<p>We can also write a tiny abstraction on top of <code>querySelectorAll</code>, again to
+ensure further composability:</p>
+<pre><code>const nodes = (sel, root) =&gt; (root || document).querySelectorAll(sel);
+</code></pre>
+<p>So now we can write:</p>
+<pre><code>var rows = nodes("tbody tr");
+map(node =&gt; nodes("td", node)[0].textContent, rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>Hmm, the operations being performed within the function passed to <code>map</code> (finding
+a first child node, getting an element property value) sound like things we're
+most likely to do many times while extracting information from the DOM. And then
+we'd probably want better code semantics as well.</p>
+<p>For starters, let's create a <code>first()</code> function for finding the first element
+out of a collection:</p>
+<pre><code>const first = iterable =&gt; iterable[0];
+// first([1, 2, 3]) =&gt; 1
+</code></pre>
+<p>Our example becomes:</p>
+<pre><code>map(node =&gt; first(nodes("td", node)).textContent, rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>In the same vein, we could use a <code>prop()</code> <a href="http://en.wikipedia.org/wiki/Higher-order_function">higher order function</a> —
+basically a function returning a function — one more time to create a reusable &amp;
+composable property getter (we'll get back to this, read on):</p>
+<pre><code>const prop = name =&gt; object =&gt; object[name];
+// const getFoo = prop("foo");
+// getFoo({foo: "bar"}) =&gt; "bar"
+</code></pre>
+<p>If you struggle understanding how this works, this is how we would write <code>prop</code>
+using current function syntax:</p>
+<pre><code>function prop(name) {
+  return function(object) {
+    return object[name];
+  };
+}
+</code></pre>
+<p>Let's use our new property getter generator:</p>
+<pre><code>const getText = prop("textContent");
+
+map(node =&gt; getText(first(nodes("td", node))), rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>Now, how about having a generic for finding a node's child elements from a
+selector? Let's do this:</p>
+<pre><code>const finder = selector =&gt; root =&gt; nodes(selector, root);
+
+const findCells = finder("td");
+findCells(document.querySelector("table")).length
+// 30
+</code></pre>
+<p>Don't panic, again this is how we'd write it using standard function declaration
+syntax:</p>
+<pre><code>function finder(selector) {
+  return function(root) {
+    return nodes(selector, root);
+  }
+}
+</code></pre>
+<p>Let's use it:</p>
+<pre><code>const getText = prop("textContent");
+const findCells = finder("td");
+
+map(node =&gt; getText(first(findCells(node))), rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>At this point, you may be wondering how this is possibly improving code
+readability and maintainability… Now is the perfect time to use <a href="http://en.wikipedia.org/wiki/Function_composition">function
+composition</a> (you waited for it), to aggregate &amp; chain minimal bits of reusable
+code.</p>
+<blockquote>
+<p>Note: If you're familiar with the UNIX philosophy, that's exactly the same
+approach as when using the pipe operator:</p>
+<pre><code> $ ls -la | awk '{print $2}' | grep pattern | wc -l
+</code></pre>
+</blockquote>
+<p>Let's create a <code>sequence</code> function to help composing functions sequentially:</p>
+<pre><code>const sequence = function() {
+  return [].reduce.call(arguments, function(comp, fn) {
+    return () =&gt; comp(fn.apply(null, arguments));
+  });
+};
+</code></pre>
+<p>This one is a bit complicated; it basically takes all functions passed as
+arguments and returns a new function capable of processing them sequencially,
+passing to each the result of the previous execution:</p>
+<pre><code>const squarePlus2 = sequence(x =&gt; 2 + x, x =&gt; x * x);
+squarePlus2(4);
+// 4 * 4 + 2 =&gt; 18 =&gt; Aspirine is in the bathroom
+</code></pre>
+<p>In classic notation without using a sequence, that would be the equivalent of:</p>
+<pre><code>function plus2(x) {
+    return 2 + x;
+}
+
+function square(x) {
+    return x * x;
+}
+
+function squarePlus2(x) {
+    return plus2(square(x));
+}
+
+squarePlus2(4);
+// 18
+</code></pre>
+<p>By the way, <code>sequence</code> is a very good place to use <a href="https://blog.mozilla.org/jorendorff/2012/05/29/rest-arguments-and-default-arguments-in-javascript/">ES6 Rest Arguments</a> which
+have also landed recently in Gecko; let's rewrite it accordingly:</p>
+<pre><code>const sequence = function(...fns) {
+  return fns.reduce(function(comp, fn) {
+    return (...args) =&gt; comp(fn.apply(null, args));
+  });
+};
+</code></pre>
+<p>Let's use it in our little DOM crawling example:</p>
+<pre><code>const getText = prop("textContent");
+const findCells = finder("td");
+
+map(sequence(getText, first, findCells), rows)
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>What I like the most about the FP style is that it actually describes fairly
+well what's going to happen; you can almost read the code as you'd read plain
+English <em>(caveat: don't do this at family dinners).</em></p>
+<p>Also you may want to have the functions passed in the opposite order, ala UNIX
+pipes, which usually enhances legibility a bit for seasonned functional
+programmers; let's create a <code>compose</code> function for doing just that:</p>
+<pre><code>const compose = (...fns) =&gt; sequence.apply(null, fns.reverse());
+
+map(compose(findCells, first, getText), rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<h3>Wait, is this really better?</h3>
+<p>As a side note, one may argue that:</p>
+<pre><code>map(sequence(getText, first, findCells), rows);
+</code></pre>
+<p>Is not much really better than:</p>
+<pre><code>map(row =&gt; getText(first(findCells(row))), rows);
+</code></pre>
+<p>Though the composed approach is probably more likely to scale when adding many
+more functions to the stack:</p>
+<pre><code>a(b(c(d(e(f(g(h(foo))))))));
+sequence(a, b, c, d, e, f, g, h)(foo);
+</code></pre>
+<p>Last, a composed function is itself composable by essence, and that's probably a
+killer feature:</p>
+<pre><code>map(sequence(getText, sequence(first, findCells)), rows);
+// ["Belgium", "France", "Germany", "Greece", "Italy", …]
+</code></pre>
+<p>Which something like this:</p>
+<pre><code>var crawler = new Crawler("table");
+crawler.findCells("tbody tr").first().getText();
+</code></pre>
+<p>Is hardly likely to offer.</p>
+<h2>A few more examples</h2>
+<p>To compute the total population of listed countries:</p>
+<pre><code>const reduce = (fn, init, iterable) =&gt; [].reduce.call(iterable, fn, init);
+const second = (iterable) =&gt; iterable[1];
+const sum = (x, y) =&gt; x + y;
+
+var populations = map(compose(findCells, second, getText, parseFloat),
+                      rows);
+reduce(sum, 0, populations);
+// 403.31000000000006
+</code></pre>
+<p>To generate a JSON export of the whole table data:</p>
+<pre><code>const partial = (fn, ...r) =&gt; (...a) =&gt; fn.apply(null, r.concat(a))
+const nth = n =&gt; (iterable) =&gt; iterable[n - 1];
+const third = nth(3);
+const getTexts = partial(map, getText);
+const asObject = (data) =&gt; ({
+  name:       first(data),
+  population: parseFloat(second(data)),
+  gnp:        parseFloat(third(data))
+});
+
+var countries = map(compose(findCells, getTexts, asObject), rows);
+JSON.stringify(countries);
+// "[{"name":"Belgium","population":11.162,"gnp":419}, …
+</code></pre>
+<p>To compute the global average
+<acronym title="Gross National Product">GNP</acronym> per capita for these
+countries:</p>
+<pre><code>const perCapita = c =&gt; ({name: c.name, perCapita: c.gnp / c.population});
+
+var gnpPerCapita = map(perCapita, countries);
+JSON.stringify(gnpPerCapita);
+// "[{"name":"Belgium","perCapita":37.5380756136893}, …
+</code></pre>
+<p>To filter countries having more than <code>n€</code> of GNP per capita, sort them by
+descending order and export the result as JSON:</p>
+<pre><code>const select = (fn, iterable) =&gt; [].filter.call(iterable, fn)
+const sort = (fn, iterable) =&gt; [].sort.call(iterable, fn);
+
+const sortDesc = partial(sort, (a, b) =&gt; a.perCapita &gt; b.perCapita ? -1 : 1);
+const healthy = partial(select, c =&gt; c.perCapita &gt; 38);
+
+const healthyCountries = compose(healthy, sortDesc);
+JSON.stringify(healthyCountries(gnpPerCapita));
+// "[{"name":"Netherlands","perCapita":42.45311104495385}, …
+</code></pre>
+<p>I could probably go on and on, but you get the picture. This post is not to
+claim that the FP approach is the best of all in JavaScript, but that it
+certainly has its advantages. Feel free to play with these concepts for a while
+to make your mind, eventually :)</p>
+<p>If you're interested in Functional JavaScript, I suggest the following
+resources:</p>
+<ul>
+<li><a href="http://vimeo.com/43382919">Pure, functional JavaScript</a>, an inspiring talk from Christian Johansen;</li>
+<li><a href="https://leanpub.com/javascript-allonge/read">JavaScript Allongé</a>, an online book which covers most of its aspects in a
+  very comprehensive style (you should buy it);</li>
+<li><a href="http://stevelosh.com/blog/2013/03/list-out-of-lambda/">List Out of Lambda</a>, a blog post from Steve Losh where he reinvents lists
+  purely using functions in JavaScript (!);</li>
+<li>If you're hooked with FP (yay!), have a look at <a href="http://clojure.org/">Clojure</a> and its port
+  targetting the JavaScript platform, <a href="https://github.com/clojure/clojurescript">ClojureScript</a>.</li>
+</ul>
+<p>If you're interested in ECMAScript 6, here are some good links to read about:</p>
+<ul>
+<li><a href="http://brendaneich.github.io/Strange-Loop-2012/">The state of JavaScript</a> — Brendan Eich, Strange Loop 2012</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/ECMAScript_6_support_in_Mozilla">ECMAScript 6 support in Mozilla</a></li>
+</ul>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2013-12-01" itemprop="datePublished">2013-12-01</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2013/functional-javascript-for-crawling-the-web/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2013/functional-javascript-for-crawling-the-web/&amp;title=Functional JavaScript for crawling the Web&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2016/from-osx-to-ubuntu/">From OSX to Ubuntu</a>
+        |
+        <a class="next" href="/code/2013/get-your-frontend-javascript-code-covered/">Get your Frontend JavaScript Code Covered</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

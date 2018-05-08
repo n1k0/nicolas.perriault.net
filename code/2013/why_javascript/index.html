@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Why JavaScript? | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Why JavaScript?">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2013/why_javascript/">
+    <header>
+        <h2><a itemprop="name" href="/code/2013/why_javascript/">Why JavaScript?</a></h2></header>
+    
+    <section>
+        <p>I'm mostly a pythonista, though many people keep <del>trolling</del> asking me why I'm doing JavaScript, <em>oh boy, such a language that sucks</em>. I'm putting this blog post here to address this question once for all, let me hope.</p>
+<p>Since 15 years, I've been learning Perl, PHP, JavaScript, Python, JavaScript, Clojure, a tiny bit of Ruby, Haskell &amp; Erlang for educational purpose, and JavaScript.</p>
+<p>— <em>Wait a minute, JavaScript is mentioned THREE times, you mad.</em></p>
+<p>Yep, JavaScript — like many other programming languages probably — is one you have to learn three times to be proficient with it. The first time, to <a href="https://en.wikipedia.org/wiki/Dynamic_HTML">hate it</a>. The second time, to <a href="http://jquery.com/">start appreciating it</a>. The third time, to <a href="http://ejohn.org/apps/learn/">understand it</a> and get shit actually done.</p>
+<p>Now some facts:</p>
+<ul>
+<li>JavaScript surely has <a href="http://wtfjs.com/">its quirks</a> (many)</li>
+<li>JavaScript reminds me the cool epoch of <a href="https://en.wikipedia.org/wiki/Demoscene">demoscene</a>: example <a href="http://www.chromeexperiments.com/">1</a>, <a href="http://js1k.com/">2</a>, <a href="http://www.p01.org/releases/">3</a>, <a href="http://www.wab.com/">4</a></li>
+<li>JavaScript has a <a href="https://github.com/languages/JavaScript">freaking huge ecosystem</a> of tools &amp; libraries</li>
+<li>Some <a href="http://ejohn.org/">very</a> <a href="https://github.com/jashkenas">smart</a> <a href="http://worrydream.com/">people</a> are doing JavaScript</li>
+<li>JavaScript is suited for the rest of us, continuously <a href="http://worrydream.com/LearnableProgramming/">learning web hackers</a> not having a PhD in CS</li>
+<li>JavaScript has a <a href="http://www.codecademy.com/tracks/javascript">rather low entry barrier</a>; people can start coding and get results quickly</li>
+<li>JavaScript has <a href="http://www.webreference.com/programming/javascript/rg25/index.html">higher order functions</a>; that's rather important if you're interested in functional programming</li>
+<li>Modern JavaScript VMs are <a href="https://v8-io12.appspot.com/">fast</a></li>
+</ul>
+<p>You're free not to like JavaScript or to find it dumb. You're encouraged to let other people take the time to learn it and get shit done with it.</p>
+<p>So:</p>
+<ul>
+<li>Is JavaScript a usable language? Yes.</li>
+<li>Is JavaScript suited for all possible usages? Nope.</li>
+<li>Do you have to continuously rant about it? Probably not.</li>
+<li>Do you have to troll &amp; mock people doing JavaScript? Stop doing that now.</li>
+<li>Do you have to <a href="http://ejohn.org/apps/learn/">learn JavaScript</a> before criticizing it? <a href="http://nedbatchelder.com/blog/201301/stupid_languages.html">Definitely</a>.</li>
+</ul>
+<p>The problem many people have with JavaScript is they don't like it but want to join the browser party so badly — especially since even <a href="https://www.mozilla.org/en-GB/firefoxos/">cool operating systems</a> plan to use it extensively. They would just love having their Python, Ruby, Haskell, Erlang, Java, C#, COBOL, &lt;insert your favorite language here&gt; being the default standardized language to code frontend webapps in a DOM environment. Unfortunately, that's not the case; JavaScript is the default language to manipulate the DOM in browsers and make things happen. And it's not likely to change anytime soon imho. But I've got good news for you: <a href="http://altjs.org/">alternatives exist</a>.</p>
+<p>As an exciting side note, the next version of JavaScript, <a href="https://brendaneich.com/2012/10/harmony-of-dreams-come-true/">ECMAScript 6</a>, will definitely step up from the previous version.</p>
+<p>Also, a cool idea I heard would be to have a low-level compilation target platform in browsers in order to code your next website in other languages than JavaScript but with great, native performance. Having a bit what the JVM is to Java and other languages running on it. That would be smart and definitely interesting. But one more time, it's not likely to happen soon.</p>
+<p>In the meanwhile, JavaScript is the language of the Web, and JavaScript engines are its running platform. There are better languages, there are worse. One thing is crystal clear: great, innovative &amp; useful stuff can be achieved with it, you may want to be part of the move.</p>
+<p>And as always, remember that:</p>
+<blockquote>
+<p>There are only two kinds of programming languages: those people always bitch about and those nobody uses. — Bjarne Stroustrup</p>
+</blockquote>
+<figure>
+    <a href="https://github.com/languages/">
+        <img src="/static/code/top-languages.png" alt=""></a>
+</figure>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2013-01-26" itemprop="datePublished">2013-01-26</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2013/why_javascript/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2013/why_javascript/&amp;title=Why JavaScript?&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2013/flatten-javascript-pyramids-with-async-js/">Flatten JavaScript Pyramids with Async.js</a>
+        |
+        <a class="next" href="/code/2012/casperjs-hits-1-0-stable/">CasperJS hits 1.0 stable</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Dead easy yet powerful static website generator with Flask | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Dead easy yet powerful static website generator with Flask">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/">
+    <header>
+        <h2><a itemprop="name" href="/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/">Dead easy yet powerful static website generator with Flask</a></h2></header>
+    
+    <section>
+        <p>It's been a long time I wanted to federate my online identities in a single, managed place — hence the website you're currently browsing. I've also been looking for a static website builder for some times, trying many and retaining zero. It was a bit depressing, frustrating to say the least.</p>
+<p>Then I encountered <a href="https://twitter.com/#!/mitsuhiko/statuses/166570613295689728">this tweet by Armin Ronacher</a>:</p>
+<blockquote class="twitter-tweet tw-align-center">
+    <p>Frozen-Flask is really, really useful. Should have used that earlier.</p>&mdash; Armin Ronacher (@mitsuhiko) <a href="https://twitter.com/mitsuhiko/status/166570613295689728" data-datetime="2012-02-06T17:15:03+00:00">February 6, 2012</a>
+</blockquote>
+
+<p><a href="http://lucumr.pocoo.org/">Armin</a> is the author of <a href="http://flask.pocoo.org/">Flask</a>, a Python microframework I much appreciate for its simplicity, so this tweet immediately rang a bell and I started exploring the possibilities offered by <a href="http://packages.python.org/Frozen-Flask/">Frozen-Flask</a>.</p>
+<p>Frozen-Flask basically <em>freezes</em> a Flask application into a set of static files, so you can host it without pain, but with speed. Combined with <a href="http://packages.python.org/Flask-FlatPages/">Flask-FlatPages</a>, you got the perfect set for generating your static website with everything you could expect by using a framework:</p>
+<ul>
+<li>cool uris &amp; easy routing management</li>
+<li>powerful templating</li>
+<li>local, dynamic serving</li>
+<li>static version generation</li>
+</ul>
+<h2>First iteration: project setup</h2>
+<p>Create a brand new <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> in a new directory and install the necessary packages using <a href="http://pypi.python.org/pypi/pip">pip</a>:</p>
+<pre><code>$ mkdir sample_project &amp;&amp; cd !$
+$ mkvirtualenv --no-site-packages `pwd`/env
+$ source env/bin/activate
+$ pip install Flask Frozen-Flask Flask-FlatPages
+</code></pre>
+<p>Write a very first version of our app in a <code>sitebuilder.py</code> file:</p>
+<pre><code>from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run(port=8000)
+</code></pre>
+<p>Run it; you should see someting like:</p>
+<pre><code>$ python sitebuilder.py
+ * Running on http://127.0.0.1:8000/
+ * Restarting with reloader
+</code></pre>
+<p>Ensure with your browser that everyting is going fine by heading at <code>http://127.0.0.1:8000/</code>.</p>
+<h2>New iteration: adding <em>flat pages</em></h2>
+<p><a href="http://packages.python.org/Flask-FlatPages/">Flask-FlatPages</a> provides a collection of pages to your Flask application. Pages are built from <em>flat</em> text files as opposed to a relational database.</p>
+<p>Create a <code>pages/</code> directory at the root of your project folder, and put a <code>hello-world.md</code> file in there:</p>
+<pre><code>$ mkdir pages
+$ vi pages/hello-world.md
+</code></pre>
+<p>The <code>pages/hello-world.md</code>:</p>
+<pre class="unpretty"><code>title: Hello World
+date: 2012-03-04
+
+**Hello World**, from a *page*!
+</code></pre>
+
+<p>As you can see, we can write plain <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for our page contents. So let's rewrite our app to serve any flatpage by its filename:</p>
+<pre><code>from flask import Flask
+from flask_flatpages import FlatPages
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = '.md'
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+
+@app.route('/')
+def index():
+    return "Hello World"
+
+@app.route('/&lt;path:path&gt;/')
+def page(path):
+    return pages.get_or_404(path).html
+
+if __name__ == '__main__':
+    app.run(port=8000)
+</code></pre>
+<p>Now requesting <code>http://127.0.0.1:8000/hello-world/</code> will display our flatpage. Note that the markdown source is converted to html by getting the <code>html</code> property of our page object.</p>
+<h2>New iteration: adding templates</h2>
+<p>Flask uses the <a href="http://jinja.pocoo.org/docs/">Jinja2</a> template engine, so let's create some templates to decorate our pages. First create a <code>templates</code> directory at the root of the project:</p>
+<pre><code>$ mkdir templates
+</code></pre>
+<p>Create a base layout in <code>templates/base.html</code>:</p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;My site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;a href="{{ url_for("index") }}"&gt;My site&lt;/a&gt;&lt;/h1&gt;
+{% block content %}
+    &lt;p&gt;Default content to be displayed&lt;/p&gt;
+{% endblock content %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Note the use of the <code>url_for()</code> template helper, that's the way we generate urls using Flask and Jinja2.</p>
+<p>Now the <code>page.html</code> template to fill this layout with page contents:</p>
+<pre><code>{% extends "base.html" %}
+
+{% block content %}
+    &lt;h2&gt;{{ page.title }}&lt;/h2&gt;
+    {{ page.html|safe }}
+{% endblock content %}
+</code></pre>
+<p>Our app is now:</p>
+<pre><code>from flask import Flask, render_template
+from flaskext.flatpages import FlatPages
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = '.md'
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+
+@app.route('/')
+def index():
+    return "Hello World"
+
+@app.route('/&lt;path:path&gt;/')
+def page(path):
+    page = pages.get_or_404(path)
+    return render_template('page.html', page=page)
+
+if __name__ == '__main__':
+    app.run(port=8000)
+</code></pre>
+<p>Hell, what did we just do?</p>
+<ul>
+<li>we created templates for our app; a common layout (<code>base.html</code>) and a page template (<code>page.html</code>)</li>
+<li>we used the <code>render_template</code> function to use the page template for decorating our pages</li>
+<li>the page template extends the base one to avoid copying and pasting stuff for every page on Earth</li>
+</ul>
+<h2>New iteration: display the list of available pages on the homepage</h2>
+<p>For now our homepage has been a bit sick, to say the least. Let's make it an index of all available pages.</p>
+<p>Create a <code>templates/index.html</code> with the following contents:</p>
+<pre><code>{% extends "base.html" %}
+
+{% block content %}
+    &lt;h2&gt;List of stuff&lt;/h2&gt;
+    &lt;ul&gt;
+    {% for page in pages %}
+        &lt;li&gt;
+            &lt;a href="{{ url_for("page", path=page.path) }}"&gt;{{ page.title }}&lt;/a&gt;
+        &lt;/li&gt;
+    {% else %}
+        &lt;li&gt;No stuff.&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+{% endblock content %}
+</code></pre>
+<p>Feel free to create more flat pages, the same way we did with <code>hello-world.md</code>, storing the file into the <code>pages/</code> directory using the <code>.md</code> extension.</p>
+<p>So the <code>index()</code> route of our app is now:</p>
+<pre><code>@app.route('/')
+def index():
+    return render_template('index.html', pages=pages)
+</code></pre>
+<p>If you reload the homepage, a list of all available flatpages is displayed with a link for each. Damn, that was pretty easy.</p>
+<h2>New iteration: adding metadata to pages</h2>
+<p>Flask-FlatPages allows to enter metadata for pages the same way we did for the title and the creation date with our <code>hello-world.md</code>, and access them using the <code>page.meta</code> property, which contains a plain silly python dict. That's pretty awesome when you think about it, heh?</p>
+<p>So let's imagine you want tags for your pages, our <code>hello-world.md</code> becomes:</p>
+<pre class="unpretty"><code>title: Hello World
+date: 2012-03-04
+tags: [general, awesome, stuff]
+
+**Hello World**, from a *page*!
+</code></pre>
+
+<p>For the records, metadata are described in <a href="http://yaml.org/">YAML</a>, so you can use strings, booleans, integers, floats, lists and even dicts which will be converted to their respective native Python equivalent.</p>
+<p>We're going to use two different templates for listing general pages and tagged ones, using a shared template partial. Our <code>index.html</code> is now:</p>
+<pre><code>{% extends "base.html" %}
+
+{% block content %}
+    &lt;h2&gt;List of stuff&lt;/h2&gt;
+    {% with pages=pages  %}
+        {% include "_list.html" %}
+    {% endwith %}
+{% endblock content %}
+</code></pre>
+<p>Create a new <code>tag.html</code> template, which will display the list of tagged pages:</p>
+<pre><code>{% extends "base.html" %}
+
+{% block content %}
+    &lt;h2&gt;List of stuff tagged &lt;em&gt;{{ tag }}&lt;/em&gt;&lt;/h2&gt;
+    {% with pages=pages  %}
+        {% include "_list.html" %}
+    {% endwith %}
+{% endblock content %}
+</code></pre>
+<p>The new <code>_list.html</code> template we need for inclusion contains:</p>
+<pre><code>&lt;ul&gt;
+{% for page in pages %}
+    &lt;li&gt;
+        &lt;a href="{{ url_for("page", path=page.path) }}"&gt;{{ page.title }}&lt;/a&gt;
+    {% if page.meta.tags|length %}
+        | Tagged:
+        {% for page_tag in page.meta.tags %}
+            &lt;a href="{{ url_for("tag", tag=page_tag) }}"&gt;{{ page_tag }}&lt;/a&gt;
+        {% endfor %}
+    {% endif %}
+    &lt;/li&gt;
+{% else %}
+    &lt;li&gt;No page.&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre>
+<p>Let's add a new <code>tag</code> route to our app, to use our new <code>tag.html</code> template:</p>
+<pre><code>@app.route('/tag/&lt;string:tag&gt;/')
+def tag(tag):
+    tagged = [p for p in pages if tag in p.meta.get('tags', [])]
+    return render_template('tag.html', pages=tagged, tag=tag)
+</code></pre>
+<p><strong>Note:</strong> if you didn't like Python's <a href="http://www.network-theory.co.uk/docs/pytut/ListComprehensions.html">list comprehensions</a> yet, now you do.</p>
+<h2>New iteration: generate the static stuff</h2>
+<p>Well, for now we only have a dynamic website, which uses and serves flatpages stored on the filesystem: CRAP. But the idea's of course not to host a Flask app but a set of static files and assets to skip the need of any application server.</p>
+<p>Here enters Frozen-Flask. Its use is damn easy:</p>
+<pre><code>import sys
+
+from flask import Flask, render_template
+from flask_flatpages import FlatPages
+from flask_frozen import Freezer
+
+DEBUG = True
+FLATPAGES_AUTO_RELOAD = DEBUG
+FLATPAGES_EXTENSION = '.md'
+
+app = Flask(__name__)
+app.config.from_object(__name__)
+pages = FlatPages(app)
+freezer = Freezer(app)
+
+@app.route('/')
+def index():
+    return render_template('index.html', pages=pages)
+
+@app.route('/tag/&lt;string:tag&gt;/')
+def tag(tag):
+    tagged = [p for p in pages if tag in p.meta.get('tags', [])]
+    return render_template('tag.html', pages=tagged, tag=tag)
+
+@app.route('/&lt;path:path&gt;/')
+def page(path):
+    page = pages.get_or_404(path)
+    return render_template('page.html', page=page)
+
+if __name__ == '__main__':
+    if len(sys.argv) &gt; 1 and sys.argv[1] == "build":
+        freezer.freeze()
+    else:
+        app.run(port=8000)
+</code></pre>
+<p>And run:</p>
+<pre><code>$ python sitebuilder.py build
+</code></pre>
+<p>Open the <code>build</code> folder generated by this command:</p>
+<pre><code>$ tree
+.
+├── hello-world
+│   └── index.html
+├── index.html
+└── tag
+    ├── awesome
+    │   └── index.html
+    ├── general
+    │   └── index.html
+    └── stuff
+        └── index.html
+
+5 directories, 5 files
+</code></pre>
+<p><strong>MIND: BLOWN.</strong></p>
+<p>You can now deploy the contents of this <code>build</code> directory to any webserver which's able to serve static files, and you're done. With just 34 lines of manually written Python code… not bad heh?</p>
+<p>Of course, our website is pretty crappy right now, but you should be get started to add features on your own, now.</p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2012-03-04" itemprop="datePublished">2012-03-04</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2012/dead-easy-yet-powerful-static-website-generator-with-flask/&amp;title=Dead easy yet powerful static website generator with Flask&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2012/introducing-casperjs-toolkit-phantomjs/">CasperJS, a toolkit on top of PhantomJS</a>
+        |
+        <a class="next" href="/code/2012/gandi-standard-ssl-certificate-nginx/">Gandi Standard SSL Certificate &amp; Nginx</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

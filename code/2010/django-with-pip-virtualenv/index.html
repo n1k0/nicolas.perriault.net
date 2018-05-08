@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="fr" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2010/django-with-pip-virtualenv/">
+    <header>
+        <h2><a itemprop="name" href="/code/2010/django-with-pip-virtualenv/">Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper</a></h2></header>
+    
+    <section>
+        <p><strong>Ce billet résume les étapes nécessaires pour installer un ou plusieurs environnements de développement <a href="http://www.djangoproject.com/">Django</a> fonctionnels, portables et faciles à maintenir sous Mac OS X.</strong></p>
+<p>Même si Django est un framework relativement simple à installer, lorsqu'il s'agit de développer plusieurs projets mettant en œuvre différentes versions de ce dernier ou de librairies tierces nécessaires pour assurer son bon fonctionnement, le casse-tête peut rapidement devenir ingérable si l'on ne prend pas garde à bien isoler le contexte applicatif dans un environnement dédié, isolé du reste du système.</p>
+<p>Concrètement, imaginons que j'ai deux projets Django&nbsp;:</p>
+<ul>
+<li>Le <em>projet A</em> utilise Django 1.2-DEV, <a href="http://github.com/robhudson/django-debug-toolbar">django_toolbar</a> en version 0.8.3 et Python 2.6</li>
+<li><em>Le projet B</em> utilise Django 1.1 et <a href="http://pinaxproject.com/">Pinax</a> en version 0.6 tournant avec Python 2.5</li>
+</ul>
+<p>Impossible dans ces conditions d'utiliser une version unique de chacune des librairies installées sur le système (et non, l'utilisation de liens symboliques et de préfixes n'est pas une solution acceptable sur le moyen/long terme).</p>
+<p>Aussi, découvrant progressivement la richesse de l'écosystème <a href="http://python.org/">Python</a>, je n'ai pas manqué de m'extasier devant la puissance et la simplicité d'outils tels que <a href="http://pypi.python.org/pypi/pip">pip</a>, <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> et <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a> pour répondre à ces questions.</p>
+<h3><code>pip</code>, un installeur de paquet simple et efficace</h3>
+<p>D'aucuns de ceux qui utilisent une distribution Linux connaissent le bonheur d'utiliser un gestionnaire de paquets. L'installation de programmes et de librairies s'effectuent la plupart du temps en ligne de commande, et la résolution des dépendances est totalement prise en charge de façon transparente.</p>
+<p><a href="http://pypi.python.org/pypi/pip">pip</a> est un gestionnaire de paquets Python, écrit lui-même en Python, qui tient ce rôle à merveille. L'installation de <code>pip</code> est fort simple, pour peu de disposer de <a href="http://pypi.python.org/pypi/setuptools">setup_tools</a>&nbsp;:</p>
+<pre><code>$ sudo easy_install pip
+</code></pre>
+<p>Pour installer un paquet, par exemple la dernière version stable de Django (la 1.1.1), il vous suffit de taper en ligne de commande&nbsp;:</p>
+<pre><code>$ sudo pip install Django
+</code></pre>
+<p>Pour chercher un paquet, c'est aussi simple que&nbsp;:</p>
+<pre><code>$ pip search django-debug-toolbar
+</code></pre>
+<h3><code>virtualenv</code>, un environnement Python virtuel étanche et cloisonné</h3>
+<p><a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a> vous propose ni plus ni moins de créer à la demande des environnements de travail virtuels pour tout ce qui touche à Python&nbsp;: chaque environnement possède ses propres paquets et librairies, voire dispose de sa propre version de l'interpréteur !</p>
+<p><a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>, quand à lui, est un jeu de scripts utilitaires permettant de créer, modifier, supprimer et - d'une façon plus générale - de travailler efficacement avec <code>virtualenv</code>.</p>
+<p>L'installation de <code>virtualenv</code> et de <code>virtualenvwrapper</code>, ça tombe bien, peuvent se faire directement via <code>pip</code>&nbsp;:</p>
+<pre><code>$ sudo pip install virtualenv virtualenvwrapper
+</code></pre>
+<p>Pour finir de configurer l'installation de <code>virtualenv</code>, il nous reste cependant quelques étapes supplémentaires.</p>
+<p>Tout d'abord, il nous faut créer le répertoire qui contiendra nos environnements virtuels sur notre machine [^envpath]&nbsp;:</p>
+<pre><code>$ mkdir ~/.virtualenvs
+</code></pre>
+<p>[^envpath]: Vous pouvez bien entendu créer ce répertoire où bon vous semble sur votre système, à partir du moment où votre utilisateur a les droits de lecture et d'écriture dessus.</p>
+<p>Il faut également renseigner ce chemin dans la variable d'environnement <code>$WORKON_HOME</code> et instancier la gestion des environnements virtuels, le plus simple étant alors de placer les déclarations ad-hoc dans le fichier <code>~/.profile</code> de votre compte utilisateur [^prf]&nbsp;:</p>
+<pre><code>$ echo "export WORKON_HOME=$HOME/.virtualenvs" &gt;&gt; ~/.profile
+$ echo "export PIP_VIRTUALENV_BASE=$WORKON_HOME" &gt;&gt; ~/.profile
+$ echo "export PIP_RESPECT_VIRTUALENV=true" &gt;&gt; ~/.profile
+$ echo "source /usr/local/bin/virtualenvwrapper.sh" &gt;&gt; ~/.profile
+</code></pre>
+<p>[^prf]: le fichier <code>~/.profile</code> est chargé à chaque démarrage de session Max OS X. Utilisateurs de GNU/Linux, l'équivalent est le fichier <code>~/.bashrc</code>.</p>
+<blockquote>
+<p><strong>Note&nbsp;:</strong> il se peut que selon le mode d'installation utilisé, le chemin vers le fichier <code>/usr/local/bin/virtualenvwrapper.sh</code> soit à adapter spécifiquement.</p>
+</blockquote>
+<p>Comme nous venons d'ajouter des directives à notre fichier <code>~/.profile</code>, il faut le recharger&nbsp;:</p>
+<pre><code>$ source ~/.profile
+</code></pre>
+<h3>Créer son premier environnement virtuel</h3>
+<p>Reprenons le cas de nos deux projets <code>A</code> et <code>B</code> ; nous avons besoin de créer deux environnements virtuels distincts pour travailler sereinement avec les paquets adéquats pour chacun d'eux&nbsp;:</p>
+<p>Nous allons nous concentrer sur la création du premier environnement, pour l'occasion destiné à travailler sur le projet <code>A</code>&nbsp;:</p>
+<pre><code>$ mkvirtualenv DjangoEnvX --no-site-packages
+New python executable in DjangoEnvX/bin/python
+Installing setuptools............done.
+</code></pre>
+<p>L'environnement a été créé. Notez trois choses importantes&nbsp;:</p>
+<ul>
+<li>Les <em>setuptools</em> ont été installés dans l'environnement, ainsi que <code>pip</code> même s'il n'en est pas fait mention ; cela nous permettra de disposer de moyens d'installation depuis l'environnement en question&nbsp;;</li>
+<li>L'option <code>--no-site-packages</code> a été passée, ce qui permet de constituer un environnement intégralement vierge de tout paquet Python. Ne pas passer l'option aurait lié l'ensemble des paquets installés sur le système dans notre environnement de développement, ce que nous ne voulons justement pas&nbsp;!</li>
+<li>Je ne nomme pas l'environnement de travail du nom du «&nbsp;Projet&nbsp;A&nbsp;», dans la mesure où cet environnement pourrait éventuellement être réutilisé pour d'autres projets ayant des besoins et contraintes similaires.</li>
+</ul>
+<p>Mais examinons de plus près ce que la commande <code>mkvirtualenv</code> a créé pour nous&nbsp;:</p>
+<pre><code>~$ workon DjangoEnvX
+(DjangoEnvX)~ $ cdvirtualenv
+(DjangoEnvX)~/.virtualenvs/DjangoEnvX $ ls -l
+total 8
+drwxr-xr-x   6 niko  staff  204 May  5 16:08 .
+drwxr-xr-x  14 niko  staff  476 May  5 16:08 ..
+lrwxr-xr-x   1 niko  staff   63 May  5 16:08 .Python -&gt; /System/Library/Frameworks/Python.framework/Versions/2.6/Python
+drwxr-xr-x   9 niko  staff  306 May  5 16:08 bin
+drwxr-xr-x   3 niko  staff  102 May  5 16:08 include
+drwxr-xr-x   3 niko  staff  102 May  5 16:08 lib
+</code></pre>
+<p>Notez les éléments suivants&nbsp;:</p>
+<ul>
+<li>L'utilisation de la commande <code>workon</code>, fournie par <code>virtualenvwrapper</code>, qui permet d'activer un environnement virtuel de travail ; l'autocomplétion du nom de l'environnement virtuel est d'ailleurs disponible&nbsp;!</li>
+<li>La commande <code>cdvirtualenv</code> nous place directement à la racine du répertoire de l'environnement virtuel&nbsp;;</li>
+<li>Les répertoires <code>bin</code>, <code>include</code> et <code>lib</code> ont été créés, ainsi qu'un lien symbolique vers la version de l'interpréteur Python du système.</li>
+<li>Un préfixe (ici <code>(DjangoEnvX)</code>) est ajouté devant le prompt lorsqu'on travaille dans un environnement spécifique&nbsp;: cela permet de toujours savoir dans quel environnement on travaille, afin d'éviter les mauvaises surprises ;)</li>
+</ul>
+<p>Je peux maintenant installer sereinement les paquets dont j'ai besoin dans le cadre de mon projet <code>A</code>, où que je sois sur le système de fichiers. Par exemple, pour installer la version de dev de Django 1.2 depuis son miroir git&nbsp;:</p>
+<pre><code>(DjangoEnvX)~ $ cd ~
+(DjangoEnvX)~ $ pip install -e git+http://github.com/django/django.git#egg=django
+</code></pre>
+<p>Vérifions que la version de développement de Django a bien été installée dans notre environnement <code>DjangoEnvX</code>&nbsp;:</p>
+<pre><code>(DjangoEnvX)~ $ cdvirtualenv
+(DjangoEnvX)~/.virtualenvs/DjangoEnvX $ ll src
+total 0
+drwxr-xr-x   3 niko  staff  102 May  5 17:07 .
+drwxr-xr-x   7 niko  staff  238 May  5 17:08 ..
+drwxr-xr-x  16 niko  staff  544 May  5 17:08 django
+(DjangoEnvX)~/.virtualenvs/DjangoEnvX $ echo -e "import django\nprint django.get_version()"|python
+1.2 beta 1
+</code></pre>
+<p>Installons maintenant de la même façon le paquet <code>django-debug-toolbar</code> en version 0.8.3&nbsp;:</p>
+<pre><code>(DjangoEnvX)~ $ pip install -e git+git://github.com/robhudson/django-debug-toolbar@0.8.3#egg=django-debug-toolbar
+</code></pre>
+<p>Nous avons maintenant nos paquets installés, créons un nouveau projet Django. On peut créer un répertoire n'importe où sur le système de fichiers, cela n'a aucune importance&nbsp;: les environnements virtuels et les projets ne sont pas directement liés.</p>
+<pre><code>(DjangoEnvX)~ $ cd ~/Sites/
+(DjangoEnvX)~/Sites $ django-admin.py startproject my_django_project
+(DjangoEnvX)~/Sites $ cd my_django_project/
+(DjangoEnvX)~/Sites/my_django_project $ ll
+total 24
+drwxr-xr-x   6 niko  staff   204 May  5 17:36 .
+drwxr-xr-x  94 niko  staff  3196 May  5 17:36 ..
+-rw-r--r--   1 niko  staff     0 May  5 17:36 __init__.py
+-rwxr-xr-x   1 niko  staff   546 May  5 17:36 manage.py
+-rw-r--r--   1 niko  staff  3313 May  5 17:36 settings.py
+-rw-r--r--   1 niko  staff   564 May  5 17:36 urls.py
+(DjangoEnvX)~/Sites/my_django_project $ ./manage.py runserver
+Validating models...
+0 errors found
+
+Django version 1.2 beta 1, using settings 'my_django_project.settings'
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+</code></pre>
+<p>Voila, nous pouvons travailler sur notre projet dans l'environnement <code>DjangoEnvX</code> l'esprit serein. On pourra éventuellement ajouter d'autre paquets, ceux-ci ne seront toujours installés que pour cet environnement. Si d'aventure nous voulions versionner la liste des dépendances installées va <code>pip</code>, c'est aussi simple que&nbsp;:</p>
+<pre><code>(DjangoEnvX)~/Sites/my_django_project $ pip freeze &gt; requirements.txt
+</code></pre>
+<p>Le fichier <code>requirements.txt</code> ainsi créé contiendra la liste de tous les paquets installés dans l'environnement <code>DjangoEnvX</code>&nbsp;:</p>
+<pre><code>(DjangoEnvX)~/Sites/my_django_project $ cat requirements.txt
+-e git+http://github.com/django/django.git@25a45619fe5d7ff3d4f2dbf8f8879a3a00c3625d#egg=Django-1.2_beta_1-py2.6-dev
+-e git://github.com/robhudson/django-debug-toolbar@ee1811238e91ae0ad33413b0d40d2f8482101951#egg=django_debug_toolbar-0.8.3-py2.6-dev
+wsgiref==0.1.2
+</code></pre>
+<p>Libre à vous alors de versionner ce fichier, ce qui permettra à vos collaborateurs d'instancier un nouvel environnement de travail et d'installer les dépendances requises d'une simple ligne de commande sur son poste de travail&nbsp;:</p>
+<pre><code>(WtfDevEnv)$ pip install -r /path/to/requirements.txt
+</code></pre>
+<p>En espérant vous avoir été utile avec ce billet, je m'en retourne vaquer à mes occupations, et vous rappelle à toutes fins utiles qu'<a href="http://www.akei.com/">Akei</a> serait quand même super contente d'avoir <a href="http://www.akei.com/fr/contact">un coup de fil de votre part</a> pour travailler sur vos chouettes projets en devenir, pourquoi pas en créant plein de <code>virtualenv</code> Python sympas comme tout ;)</p>
+<p><strong>Edit&nbsp;:</strong> Prise en compte de la variable d'environnement <code>PIP_RESPECT_VIRTUALENV</code> pour que <code>pip</code> detecte automatiquement la présence d'un environnement virtuel lors de son utilisation (merci Mathieu !)</p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2010-05-05" itemprop="datePublished">2010-05-05</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2010/django-with-pip-virtualenv/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2010/django-with-pip-virtualenv/&amp;title=Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper&amp;user_id=n1k0&amp;category=software&amp;language=fr">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2010/custom-deployment-tasks/">Tâches de déploiement spécifiques avec Symfony</a>
+        |
+        <a class="next" href="/code/2010/about-rest-frameworks/">About RESTful features of modern Web frameworks</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

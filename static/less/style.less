@@ -1,0 +1,659 @@
+// Variables
+
+@baseFontSize:   19px;
+@baseFontFamily: "Asap", Palatino, "Hoefler Text", Georgia, serif;
+@baseHeight:     14px;
+@baseLineHeight: @baseHeight * 2;
+
+@darkGrey:       #333334;
+@grey:           #555556;
+@lightGrey:      #aaaaab;
+@lighterGrey:    #ddddde;
+@textColor:      #333334;
+
+// quirks
+
+.clearfix {
+    display: inline-block;
+    &:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+// helpers
+
+.active {
+    color: @darkGrey;
+    text-decoration: none;
+}
+
+.arrow-prefixed {
+    &:before {
+        content: "\00AB\00A0";
+    }
+}
+
+.arrow-suffixed {
+    &:after {
+        content: "\00A0\00BB";
+    }
+}
+
+.baseFontRatio(@ratio) {
+    font-size: @baseFontSize * @ratio;
+    line-height: @baseLineHeight * @ratio;
+}
+
+.dingbats-decorated {
+    &:after {
+        font-size: @baseHeight;
+        height: @baseHeight;
+        line-height: 0;
+        content: "\273b\00A0\273d\00A0\273b";
+    }
+}
+
+.more {
+    text-align: right;
+}
+
+.rounded(@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+.wrap() {
+  white-space: pre;
+  overflow: auto;
+}
+
+// Tags
+
+body {
+//    background: url(http://taat.pl/grid/24x12_lightgrey.gif) fixed;
+    background-color: #fefefe;
+    width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px 0;
+    font-family: @baseFontFamily;
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    color: @textColor;
+}
+
+a {
+    color: @grey;
+}
+
+blockquote {
+    font-style: italic;
+    border-left: @baseHeight/2 solid #eee;
+    padding-left: @baseHeight;
+}
+
+code, pre {
+    font-family: monospace;
+    font-size: 85%;
+    color: #555;
+    line-height: @baseLineHeight * .75;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+    figcaption {
+        max-width: 660px;
+        margin: -10px 0 0 0;
+        font-size: @baseHeight;
+        text-align: right;
+        font-style: italic;
+    }
+}
+    .home figure, .code figure, .talks figure, .carnet figure {
+        margin-top: 1.45em;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    line-height: @baseLineHeight * 1.1;
+    a {
+        color: @textColor;
+    }
+}
+
+hr {
+    .dingbats-decorated;
+    clear: both;
+    border: none;
+    color: lighten(@textColor, 5%);
+    text-align: center;
+    margin: (@baseHeight) 0 (@baseHeight * 2.5) 0;
+    height: @baseHeight;
+}
+
+img {
+    border: none;
+}
+
+p {
+    line-height: @baseHeight * 2;
+    margin: @baseHeight * 2 0;
+    code {
+        color: #222;
+        background: #eee;
+        padding: 0 .3em;
+        border-radius: .3em;
+    }
+}
+
+pre {
+    padding: @baseHeight;
+    color: #eee;
+    background: #000;
+    .rounded(8px);
+    .wrap();
+    code {
+        color: #eee;
+    }
+}
+
+q:before, q:after {
+    content: "";
+}
+
+// Styles
+
+.main-title {
+    //border-bottom: 1px solid @lighterGrey;
+    margin-left: 300px;
+    margin-top: @baseHeight * 4;
+    padding-bottom: @baseHeight;
+    h1 {
+        font-size: @baseHeight * 4;
+        line-height: 40px;
+        margin: 0 0 (@baseHeight - 2px) 0;
+        a {
+            text-decoration: none;
+        }
+    }
+    small {
+        display: block;
+        font-size: @baseHeight * 2;
+        color: @lightGrey;
+    }
+}
+
+
+.contents {
+    margin-left: 300px;
+    min-height: 300px;
+    margin-bottom: 1em;
+    h1 {
+        font-size: @baseFontSize * 2;
+    }
+    article {
+        h1, h2, h3, h4, h5, h6 {
+        }
+        header h2 {
+            a {
+                text-decoration: none;
+                .arrow-suffixed;
+            }
+        }
+        img {
+            max-width: 100%;
+        }
+        q {
+            font-style: italic;
+        }
+        q:before {
+            content: "« ";
+        }
+        q:after {
+            content: " »";
+        }
+        aside {
+            text-align: right;
+            font-style: italic;
+        }
+        nav {
+            text-align: center;
+            .prev {
+                .arrow-prefixed;
+            }
+            .next {
+                .arrow-suffixed;
+            }
+        }
+        .slideshare {
+            width: 100%;
+            height: 530px;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .article-author {
+            display: none;
+        }
+    }
+    article.photography {
+        aside {
+            text-align: right;
+            line-height: @baseHeight;
+            margin-bottom: -17px;
+            &.help {
+                display: block;
+                margin-right: @baseHeight * 5;
+                text-align: left;
+                font-size: @baseHeight;
+                color: #777;
+                kbd {
+                    padding: 0 4px;
+                    .rounded(2px);
+                    background: #ddd;
+                }
+            }
+        }
+        .controls {
+            margin: -@baseHeight 0 5px 0;
+            padding: 0 0 (@baseHeight + 2px) 0;
+            list-style-type: none;
+            li {
+                float: right;
+                margin-left: @baseHeight / 2;
+                a {
+                    display: block;
+                    width: @baseHeight;
+                    height: @baseHeight;
+                    border: 1px solid #333;
+                    text-indent: -9999px;
+                    &.darkroom {
+                        background: #000;
+                    }
+                    &.greyroom {
+                        background: #777;
+                    }
+                    &.clearroom {
+                        background: #fff;
+                    }
+                }
+            }
+        }
+        .photo {
+            clear: both;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    ul.gallery {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        li {
+            float: left;
+            margin-right: 10px;
+            a {
+                font-weight: bold;
+            }
+            img {
+                width: 155px;
+            }
+        }
+    }
+    ul.item-list {
+        padding: 0;
+        list-style-type: none;
+        li {
+            margin-bottom: @baseHeight * 2;
+            h3 {
+                font-size: @baseFontSize;
+                margin: 0;
+                time {
+                    font-weight: normal;
+                }
+            }
+            img {
+                max-width: 100%;
+            }
+            p {
+                margin: 0;
+            }
+            &.unpublished {
+                background: #ddd;
+                padding: 5px 10px;
+            }
+        }
+    }
+    section.code, section.carnet {
+        float: left;
+        p {
+            font-size: 80%;
+        }
+    }
+    section.code {
+        width: 48%;
+        margin-right: 4%;
+    }
+    section.carnet {
+        width: 48%;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 190px;
+    width: 250px;
+    ul {
+        list-style-type: none;
+        li {
+            font-size: @baseHeight * 2;
+            line-height: @baseHeight * 3 - .5px;
+            text-align: right;
+            a {
+                color: @lightGrey;
+                font-weight: bold;
+                text-decoration: none;
+                span {
+                    &:before {
+                        content: "(";
+                    }
+                    &:after {
+                        content: ")";
+                    }
+                    font-size: 18px;
+                }
+            }
+            a:focus, a:hover {
+                .active;
+            }
+        }
+    }
+}
+
+.site-footer {
+    clear: both;
+    margin-left: 300px;
+    font-size: @baseHeight * 1.1;
+    p {
+        padding-top: @baseHeight;
+        border-top: 1px solid #ddd;
+    }
+}
+
+.viewer {
+    display: block;
+    visibility: hidden;
+    position: fixed;
+    background: #333;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .95);
+    z-index: 1000;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 1001;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+    }
+}
+
+// Section related
+
+.activeSection {
+    .active;
+    .arrow-suffixed;
+}
+
+body.code {
+    .sidebar li.code a {
+        .activeSection;
+    }
+}
+
+body.carnet {
+    .sidebar li.carnet a {
+        .activeSection;
+    }
+}
+
+body.contact {
+    .sidebar li.contact a {
+        .activeSection;
+    }
+}
+
+body.home {
+    .sidebar li.home a {
+        .activeSection;
+    }
+}
+
+body.photography {
+    .sidebar li.photography a {
+        .activeSection;
+    }
+}
+
+body.talks {
+    .sidebar li.talks a {
+        .activeSection;
+    }
+}
+
+// Special themes
+
+body.darkroom {
+    background: #000;
+    color: #eee;
+    a {
+        color: #eee;
+    }
+    .sidebar li a:hover {
+        color: #fff;
+    }
+    .sidebar li.photography a {
+        color: #fff;
+    }
+}
+
+body.greyroom {
+    background: #777;
+    color: #eee;
+    a {
+        color: #eee;
+    }
+    .sidebar li a:hover {
+        color: #fff;
+    }
+    .sidebar li.photography a {
+        color: #fff;
+    }
+    article.photography {
+        aside {
+            &.help {
+                color: #eee;
+                kbd {
+                    color: #555;
+                }
+            }
+        }
+    }
+}
+
+// Responsive
+
+// PORTRAIT TABLET TO DEFAULT DESKTOP
+// ----------------------------------
+
+@media (min-width: 769px) and (max-width: 960px) {
+    body {
+        width: auto;
+        .contents {
+            margin-left: 200px;
+        }
+        .main-title {
+            margin-left: 200px;
+            h2 {
+                font-size: 20px;
+            }
+        }
+        .contents {
+            margin-left: 200px;
+        }
+        .sidebar {
+            width: 150px;
+            ul {
+                padding: 0;
+                li {
+                    font-size: 22px;
+                }
+            }
+        }
+        .site-footer {
+            text-align: center;
+            margin-left: 200px;
+        }
+    }
+}
+
+// LANDSCAPE PHONE TO SMALL DESKTOP & PORTRAIT TABLET
+// --------------------------------------------------
+
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+        line-height: 24px;
+        width: auto;
+        .contents {
+            margin-left: 0;
+        }
+        .main-title {
+            margin-left: 0;
+            h1 {
+                margin: 20px 0 15px;
+            }
+            small {
+                font-size: 20px;
+            }
+        }
+        .sidebar {
+            position: inherit;
+            top: inherit;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            li {
+                display: inline;
+                padding-right: 16px;
+            }
+        }
+        .site-footer {
+            margin-left: 0;
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        font-size: 18px;
+        line-height: 26px;
+        .main-title {
+            margin: 0;
+            h1 {
+                margin: 0;
+                font-size: 40px;
+                line-height: 40px;
+            }
+        }
+        p {
+            line-height: 26px;
+        }
+        .contents {
+            li {
+                line-height: 26px;
+            }
+        }
+    }
+}
+
+// UP TO LANDSCAPE PHONE
+// ---------------------
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 10px;
+        width: auto;
+        .main-title {
+            margin: 0;
+            h1 {
+                font-size: 40px;
+                margin: 20px 0 8px 0;
+            }
+            small {
+                font-size: 20px;
+            }
+        }
+        ul.gallery {
+            img {
+                width: auto;
+            }
+        }
+        p {
+            line-height: 24px;
+        }
+        .contents {
+            li {
+                line-height: 24px;
+            }
+            article.photography {
+                aside {
+                    &.help {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .sidebar {
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    display: inline;
+                    padding-right: 16px;
+                }
+            }
+        }
+        .site-footer {
+            margin-left: 0;
+            text-align: center;
+        }
+    }
+    figure {
+        figcaption {
+            padding-top: 5px;
+        }
+    }
+}

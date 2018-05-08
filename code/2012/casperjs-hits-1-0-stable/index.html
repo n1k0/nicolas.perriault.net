@@ -1,0 +1,172 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CasperJS hits 1.0 stable | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="CasperJS hits 1.0 stable">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2012/casperjs-hits-1-0-stable/">
+    <header>
+        <h2><a itemprop="name" href="/code/2012/casperjs-hits-1-0-stable/">CasperJS hits 1.0 stable</a></h2></header>
+    
+    <section>
+        <p><a href="http://casperjs.org/"><img src="/static/code/2012/casperjs-logo-squared-rounded.png" alt="" style="float:right;margin-left:1em;margin-bottom:.5em"></a><strong>Hey, <a href="/code/2012/introducing-casperjs-toolkit-phantomjs">long time no see</a>, right? Quite a lots of things have happened to my <em>tiny</em> <a href="http://casperjs.org/">CasperJS</a> pet project since then, which has just hit its <a href="https://github.com/n1k0/casperjs/blob/master/CHANGELOG.md#2012-12-24-v10">1.0 stable milestone</a>. Merry Christmas :)</strong></p>
+<p>As a reminder, <em>CasperJS is an open source navigation scripting &amp; testing utility written in Javascript and based on <a href="http://phantomjs.org/">PhantomJS</a> — the scriptable headless <a href="http://webkit.org/">WebKit</a> engine</em>.</p>
+<p>Now some scary metrics about the project:</p>
+<figure>
+    <a href="http://gitego.com/n1k0/casperjs#watchers?interval=by_year"><img src="/static/code/2012/casperjs-github-evolution.png" alt="" style="width:100%;border-radius:5px"></a>
+    <figcaption>Where will all of this end? Capture courtesy of <a href="http://gitego.com/n1k0/casperjs#watchers?interval=by_year">gitego.com</a></figcaption>
+</figure>
+
+<ul>
+<li>the project has now more than <a href="https://github.com/n1k0/casperjs/stargazers"><strong>1000 <em>stargazers</em></strong></a> and <a href="https://github.com/n1k0/casperjs/network"><strong>150 forks</strong></a> on github</li>
+<li>more than <a href="https://github.com/n1k0/casperjs/graphs/commit-activity"><strong>900 commits</strong></a> have been pushed to the master branch (430 just for the <a href="https://github.com/n1k0/casperjs/tree/gh-pages">documentation</a> one)</li>
+<li><a href="https://github.com/n1k0/casperjs/graphs/contributors"><strong>47 people</strong></a> have contributed patches and docs to the project; I hereby want to hug them all!</li>
+<li><a href="https://travis-ci.org/n1k0/casperjs"><strong>683 tests</strong></a> ensure the software is actually stable</li>
+<li><strong>387 members</strong> are subscribed to the <a href="https://groups.google.com/forum/#!forum/casperjs">mailing-list</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/casperjs"><strong>88 questions</strong></a> have been posted on Stack Overflow about CasperJS</li>
+<li><a href="https://twitter.com/casperjs_org/followers"><strong>400 people</strong></a> are following the <a href="https://twitter.com/casperjs_org">@casperjs_org</a> twitter account</li>
+</ul>
+<p>Btw here's a short excerpt of what people are saying on twitter about it:</p>
+<p><center>
+<blockquote class="twitter-tweet"><p>Trying out CasperJS. I am blown away <a href="http://t.co/4sThrr7v" title="http://casperjs.org/">casperjs.org</a></p>&mdash; Beau (@beaumartinez) <a href="https://twitter.com/beaumartinez/status/281467492759646210" data-datetime="2012-12-19T18:34:14+00:00">December 19, 2012</a></blockquote></p>
+<hr />
+<blockquote class="twitter-tweet"><p>Selenium : j'ai jamais pu piffré. Casperjs c'est de la balle ! J'ai installé, et réalisé mes premiers tests en 15 minutes. Merci @<a href="https://twitter.com/n1k0">n1k0</a></p>&mdash; Laurent Jouanneau (@ljouanneau) <a href="https://twitter.com/ljouanneau/status/278278668189593601" data-datetime="2012-12-10T23:22:59+00:00">December 10, 2012</a></blockquote>
+
+<hr />
+<blockquote class="twitter-tweet" lang="en"><p>Turns out that @<a href="https://twitter.com/phantomjs">phantomjs</a> with casperjs for headless, in-browser integration testing is rather awesome. Recommended.</p>&mdash; Boris Terzic (@boristerzic) <a href="https://twitter.com/boristerzic/status/275920317908656129" data-datetime="2012-12-04T11:11:44+00:00">Décembre 4, 2012</a></blockquote>
+
+<hr />
+<blockquote class="twitter-tweet"><p>@<a href="https://twitter.com/n1k0">n1k0</a> Thanks for CasperJS. If we ever meet in person, I owe you a beer.</p>&mdash; Stephen Hay (@stephenhay) <a href="https://twitter.com/stephenhay/status/274435181077753856" data-datetime="2012-11-30T08:50:20+00:00">November 30, 2012</a></blockquote>
+
+<hr />
+<blockquote class="twitter-tweet"><p>sweet goodness -- Phantom.JS + Casper.JS is what we always wanted for testing client-side stuff</p>&mdash; christian verkerk (@chrisverkerk) <a href="https://twitter.com/chrisverkerk/status/273220063761408000" data-datetime="2012-11-27T00:21:54+00:00">November 27, 2012</a></blockquote>
+
+<p></center>
+<p style="text-align:center"><strong><code>&lt;/brag&gt;&lt;realism&gt;</code></strong></p></p>
+<p>That makes a lot of attention — and therefore expectations — for what started as a <em>tiny helper script on top of PhantomJS</em>… and put a bit of pressure on my shoulders :)</p>
+<h2>So what's new in CasperJS 1.0?</h2>
+<p>Lots of stuff, and <a href="https://github.com/n1k0/casperjs/issues?direction=asc&amp;milestone=1&amp;sort=created&amp;state=closed">I mean it</a>. In no particular order:</p>
+<ul>
+<li>added a <a href="http://casperjs.org/testing.html#casper-test-command"><code>casperjs test</code> command</a> to run test scripts</li>
+<li>added support for <a href="http://casperjs.org/selectors.html">CSS3 and XPath selectors</a></li>
+<li>added support for <a href="http://casperjs.org/api.html#casper.waitForPopup">popups</a> and <a href="http://casperjs.org/api.html#casper.withFrame">(i)frames</a></li>
+<li>there's now a way to specify how many tests were planned when <code>done()</code> is called</li>
+<li>easy access of current HTTP response object as the first parameter of step callbacks (thx <a href="https://tiwtter.com/oncletom">oncletom</a>!)</li>
+<li>many new <a href="http://casperjs.org/api.html#tester">assertions methods</a> have been added to the <code>Tester</code> class</li>
+<li>added a convenient <a href="http://en.wikipedia.org/wiki/Batch_file">Batch</a> script for Windows users <small>that's where you gotta love your community</small></li>
+<li>better contextualization of errors, nicer output of them</li>
+<li>XUnit XML test result logs now contain the duration of each test case</li>
+<li>added many new <a href="http://casperjs.org/events-filters.html">events and filters</a> so you can hook quite wherever you want into the casper asynchronous workflow</li>
+<li>better compliance with PhantomJS' native <code>evaluate()</code> argument passing</li>
+<li>plus many bugfixes, refactors and other enhancements</li>
+</ul>
+<p>As a side note:</p>
+<ul>
+<li>PhantomJS 1.6.x support has been dropped</li>
+<li>PhantomJS <a href="http://phantomjs.org/release-1.7.html">1.7</a> &amp; <a href="http://phantomjs.org/release-1.8.html">1.8</a> are supported</li>
+</ul>
+<h2>The CasperJS ecosystem</h2>
+<p>As I realized that opensource projects based on CasperJS were created, I decided to open <a href="https://github.com/casperjs">a dedicated github organization</a>, first for trying to list them in a central place.</p>
+<p>Some interesting CasperJS-based projects:</p>
+<ul>
+<li><strong><a href="https://github.com/WaterfallEngineering/SpookyJS">SpookyJS</a></strong>, which basically allow driving CasperJS from <a href="http://nodejs.org/">Node.js</a></li>
+<li><strong><a href="https://github.com/ebrehault/resurrectio">resurectio</a></strong>, a <a href="http://www.google.com/chrome">Chrome</a> extension for recording your casper tests</li>
+<li><strong><a href="https://github.com/brianmhunt/casper-chai">casper-chai</a></strong> extends <a href="http://chaijs.com/">Chai</a> with assertions for CasperJS</li>
+<li><strong><a href="https://github.com/ronaldlokers/grunt-casperjs">grunt-casperjs</a></strong> and <strong><a href="https://github.com/caiges/grunt-functional">grunt-functional</a></strong>, both based on <a href="http://gruntjs.com/">grunt</a>, allowing to launch your CasperJS tests as well as other javascript build operations in a single command line call</li>
+<li><strong><a href="https://github.com/Huddle/PhantomCSS">PhantomCSS</a></strong>, which provides integration of js-imagediff with PhantomJS (and CasperJS) for automated visual regression testing</li>
+<li><strong><a href="https://github.com/acuminous/yadda">yadda</a></strong>, which has just started but is <a href="https://github.com/acuminous/yadda/blob/master/examples/casper/google-scenario.js">genuinely exciting</a>, intends to bring <a href="http://en.wikipedia.org/wiki/Behavior-driven_development">BDD</a> to CasperJS</li>
+<li>… and many other <a href="https://github.com/casperjs">cool &amp; useful projects</a></li>
+</ul>
+<h2>The future</h2>
+<ul>
+<li><strong>CasperJS 1.1 is on its way starting today</strong>, and will provide new features and bugfixes, trying not to reinvent the capser wheel</li>
+<li>CasperJS 2.0 will probably be a big <del>rewrite</del> refactor of the 1.x codebase, and will try to use more of the existing javascript ecosystem (think <a href="http://visionmedia.github.com/mocha/">mocha</a> for instance)… but let's enjoy the 1.x for a while first! <small>and let me have a bit of sleep too</small></li>
+</ul>
+<p>See ya.</p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2012-12-24" itemprop="datePublished">2012-12-24</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2012/casperjs-hits-1-0-stable/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2012/casperjs-hits-1-0-stable/&amp;title=CasperJS hits 1.0 stable&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2013/why_javascript/">Why JavaScript?</a>
+        |
+        <a class="next" href="/code/2012/introducing-casperjs-toolkit-phantomjs/">CasperJS, a toolkit on top of PhantomJS</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Flatten JavaScript Pyramids with Async.js | Code | Nicolas Perriault</title>
+    <meta name="description" content="Everything code and computers.">
+    <meta name="viewport" content="width=device-width">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/packed.css?1525783405">
+    <link rel="alternate" type="application/rss+xml" href="/code/feed/" title="Code (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/photography/feed/" title="Photography (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/talks/feed/" title="Talks (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/carnet/feed/" title="Carnet (RSS)">
+    <link rel="alternate" type="application/rss+xml" href="/feed/" title="Everything (RSS)">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n1k0">
+    <meta name="twitter:creator" content="@n1k0">
+    <meta name="twitter:title" content="Flatten JavaScript Pyramids with Async.js">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://nicolas.perriault.net">
+</head>
+<body class="code " onload="prettyPrint()">
+    <!--[if lt IE 7]>
+    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="main-title">
+            <h1><a href="/">Hi, I'm <strong>Nicolas.</strong></a></h1>
+            <small>I code stuff. I take photos. I write rants.</small>
+        </header>
+        <main class="contents" role="main">
+            
+
+    <article lang="en" class="code" itemscope itemtype="http://schema.org/BlogPosting">
+    <link itemprop="url" href="/code/2013/flatten-javascript-pyramids-with-async-js/">
+    <header>
+        <h2><a itemprop="name" href="/code/2013/flatten-javascript-pyramids-with-async-js/">Flatten JavaScript Pyramids with Async.js</a></h2></header>
+    
+    <section>
+        <figure>
+    <img src="/static/code/2013/pyramids.png" alt="">
+    <figcaption>
+        <a href="https://secure.flickr.com/photos/dkrape/5154684093/">Pyramid of Menkaure, by Darren Krape</a></figcaption>
+</figure>
+
+<p>I've recently open-sourced <a href="https://github.com/scopyleft/hubot-mood">hubot-mood</a>, a <a href="http://hubot.github.com/">hubot</a> script to store a team's mood and get some metrics about it. We're using it at <a href="http://scopyleft.fr/">Scopyleft</a>.</p>
+<p>Moods are stored in <a href="http://redis.io/">redis</a> through the <a href="https://github.com/mranney/node_redis">node-redis</a> library, which uses asynchronous calls to perform operations on the redis backend.</p>
+<p>So typically, to store an entry, you do something like the following:</p>
+<pre><code>function store(mood, cb) {
+    redis.rpush("moods", mood, function(err) {
+        cb(err, mood);
+    });
+}
+
+store("2013-02-01:n1k0:sunny", function(err, mood) {
+    if (err) throw err;
+    console.log("stored mood entry: " + mood);
+});
+</code></pre>
+<p>Classic. But what if you want to perform multiple insertions, eg. to load a bunch of fixtures for your tests? I'm using <a href="http://visionmedia.github.com/mocha/">mocha</a> here:</p>
+<pre><code>describe("moods test", function() {
+    // fixtures
+    var moods = [
+        "2013-02-01:n1k0:sunny"
+      , "2013-02-02:n1k0:cloudy"
+      , "2013-02-03:n1k0:stormy"
+      , "2013-02-04:n1k0:rainy"
+      // … we could add many more
+    ];
+
+    it("should do something useful with moods", function(done) {
+        store(moods[0], function(err, mood) {
+            assert.ifError(err);
+            store(moods[1], function(err, mood) {
+                assert.ifError(err);
+                store(moods[2], function(err, mood) {
+                    assert.ifError(err);
+                    store(moods[3], function(err, mood) {
+                        assert.ifError(err);
+                        // now let's test stuff with stored moods
+                        done();
+                    });
+                });
+            });
+        });
+    });
+});
+</code></pre>
+<p>Here we go again, <a href="http://callbackhell.com/">callback hell</a> and unmanageable pyramids.</p>
+<h2>Async.js to the rescue</h2>
+<p><a href="https://github.com/caolan/async">Async.js</a> is a node library to help dealing with <em>asynchronicity</em> and flatten pyramids. A <code>npm install async</code> later, we're ready to go:</p>
+<pre><code>describe("moods tests", function() {
+    var moods = [
+        "2013-02-01:n1k0:sunny"
+      , "2013-02-02:n1k0:cloudy"
+      , "2013-02-03:n1k0:stormy"
+      , "2013-02-04:n1k0:rainy"
+      // … we could add many more
+    ];
+
+    it("should do something useful with moods", function(done) {
+        async.parallel([
+            function(cb) {
+                store(mood[0], function(err, mood) {
+                    cb(err, mood);
+                });
+            },
+            function(cb) {
+                store(mood[1], function(err, mood) {
+                    cb(err, mood);
+                });
+            },
+            function(cb) {
+                store(mood[2], function(err, mood) {
+                    cb(err, mood);
+                });
+            },
+            function(cb) {
+                store(mood[3], function(err, mood) {
+                    cb(err, mood);
+                });
+            },
+        ], function(err, moods) {
+            assert.ifError(err);
+            // now let's test stuff with stored moods
+            done();
+        });
+    });
+});
+</code></pre>
+<h2>Wait a minute, it's not "better" at all!</h2>
+<p>Indeed, this is definitely not <a href="https://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY code</a>. But one has to be creative to turn a tool into an efficient solution; let's invoke the powers of <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/map"><code>Array#map</code></a> to build the required callback functions out of our <code>moods</code> array:</p>
+<pre><code>function load(fixtures, onComplete) {
+    async.parallel(fixtures.map(function(fixture) {
+        return function(cb) {
+            store(fixture, function(err, result) {
+                cb(err, result);
+            });
+        };
+    }), onComplete);
+}
+
+describe("moods tests", function() {
+    var moods = [
+        "2013-02-01:n1k0:sunny"
+      , "2013-02-02:n1k0:cloudy"
+      , "2013-02-03:n1k0:stormy"
+      , "2013-02-04:n1k0:rainy"
+      // … we could add many more
+    ];
+
+    it("should do something useful with moods", function(done) {
+        load(moods, function(err, storedMoods) {
+            assert.ifError(err);
+            // now let's test stuff with stored moods
+            done();
+        });
+    });
+});
+</code></pre>
+<p><strong>Edit:</strong> there's even a built-in <code>async.map()</code> function, not sure how I missed it; so the code is even shorter:</p>
+<pre><code>describe("moods tests", function() {
+    var moods = [
+        "2013-02-01:n1k0:sunny"
+      , "2013-02-02:n1k0:cloudy"
+      , "2013-02-03:n1k0:stormy"
+      , "2013-02-04:n1k0:rainy"
+      // … we could add many more
+    ];
+
+    it("should do something useful with moods", function(done) {
+        async.map(moods, store, function(err, storedMoods) {
+            assert.ifError(err);
+            // now let's test stuff with stored moods
+            done();
+        });
+    });
+});
+</code></pre>
+<p><a href="https://github.com/caolan/async">Async.js</a> is a great package and one of the most popular of the <a href="http://npmjs.org/">node ecosystem</a>, but there are <a href="https://npmjs.org/browse/keyword/async">many others</a>.</p>
+<p>Such a library combined with a <a href="http://cjohansen.no/talks/2012/sdc-functional/">functional approach</a> provides a killer combo to solve your daily problems when programming <a href="/code/2013/why_javascript/">JavaScript</a>.</p>
+    </section>
+    <aside>
+        <p>
+            <span class="article-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">Nicolas Perriault</span> —
+            </span>
+            <time datetime="2013-02-05" itemprop="datePublished">2013-02-05</time>
+            — in <a href="/code/" itemprop="genre">Code</a>
+            — <a href="/code/2013/flatten-javascript-pyramids-with-async-js/">Permalink</a>
+            — <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">License</a>
+            — <a href="https://saythanks.io/to/n1k0">Say Thanks!</a>
+            
+            — <a href="http://flattr.com/submit/auto?url=https://nicolas.perriault.net/code/2013/flatten-javascript-pyramids-with-async-js/&amp;title=Flatten JavaScript Pyramids with Async.js&amp;user_id=n1k0&amp;category=software&amp;language=en">flattr this</a>
+        </p>
+    </aside>
+    <hr>
+    <nav>
+        <a class="prev" href="/code/2013/casperjs-1.1-beta1-released/">CasperJS 1.1-beta1 released, with Gecko support</a>
+        |
+        <a class="next" href="/code/2013/why_javascript/">Why JavaScript?</a>
+    </nav>
+</article>
+
+
+        </main>
+        <nav class="sidebar">
+            <ul>
+                <li class="home"><a href="/" hreflang="en">Home</a></li>
+                <li class="code"><a href="/code/" hreflang="en">Code</a></li>
+                <li class="photography"><a href="/photography/" hreflang="en">Photography</a></li>
+                <li class="talks"><a href="/talks/" hreflang="en">Talks</a></li>
+                <li class="carnet"><a href="/carnet/" hreflang="fr">Carnet <span>fr</span></a></li>
+                <li class="contact"><a href="/contact/" hreflang="en">Contact</a></li>
+            </ul>
+        </nav>
+        <footer class="site-footer">
+            <p>
+                &copy; 2017 Nicolas Perriault
+                — <a href="https://twitter.com/n1k0">@n1k0</a>
+                — <a href="https://github.com/n1k0">code</a>
+                — <a href="http://500px.com/n1k0">photos</a>
+                — <a href="https://saythanks.io/to/n1k0">say thanks</a>
+                — <a href="/contact/">contact</a>
+            </p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="/static/js/libs/prettify/prettify.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
