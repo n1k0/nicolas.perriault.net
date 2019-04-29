@@ -257,8 +257,7 @@ def build():
 @command
 def deploy():
     build()
-    local("rsync -avz -e ssh --exclude-from=rsync_exclude.txt "
-          "./build/ awsniko:/var/www/nperriault")
+    local("gh-pages --dist build/")
 
 
 @command

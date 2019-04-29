@@ -46,6 +46,7 @@ Generated HTML files and assets will go to the `./build/` directory.
 
 To deploy the website (caveat: my server address is harcoded ^^):
 
+    $ npm i -g gh-pages
     $ ./site deploy
 
 There's also two commands for creating new posts and add new photos:
