@@ -10,8 +10,8 @@ pillow==3.3.1
 PyYAML==3.10
 Werkzeug==0.8.3
 argh==0.15.1
-cssmin==0.1.4
-distribute==0.6.19
+cssmin==0.2.0
+distribute==0.7.3
 feedparser==5.1
 jsmin==2.0.2
 pycrypto==2.5
