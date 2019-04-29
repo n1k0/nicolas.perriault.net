@@ -19,9 +19,6 @@
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="talks") }}" title="Talks (RSS)">
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed_section", section="carnet") }}" title="Carnet (RSS)">
     <link rel="alternate" type="application/rss+xml" href="{{ url_for("feed") }}" title="Everything (RSS)">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@n1k0">
     <meta name="twitter:creator" content="@n1k0">
@@ -30,9 +27,6 @@
     <meta name="twitter:image" content="{% block card_image %}{% endblock card_image %}">
 </head>
 <body class="{% block section %}home{% endblock %} {% block body_class %}{% endblock body_class %}" onload="prettyPrint()">
-    <!--[if lt IE 7]>
-    <p class="chromeframe">Your browser is <em>ancient!</em> Please <a href="http://www.quirksmode.org/upgrade.html">upgrade</a>.</p>
-    <![endif]-->
     <div class="container">
         <header class="main-title">
             <h1><a href="{{ url_for("index") }}">Hi, I'm <strong>Nicolas.</strong></a></h1>
