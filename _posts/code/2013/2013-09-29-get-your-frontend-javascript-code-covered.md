@@ -40,81 +40,89 @@ with nodejs.*
 Its use is dead easy, adding Blanket support to your Mocha test suite is just
 matter of adding this simple line to your HTML test file:
 
-    <script src="vendor/blanket.js"
-            data-cover-adapter="vendor/mocha-blanket.js"></script>
+```html
+<script src="vendor/blanket.js"
+        data-cover-adapter="vendor/mocha-blanket.js"></script>
+```
 
 Source files: [blanket.js](https://raw.github.com/alex-seville/blanket/master/dist/qunit/blanket.min.js),
               [mocha-blanket.js](https://raw.github.com/alex-seville/blanket/master/src/adapters/mocha-blanket.js)
 
 As an example, let's reuse the silly `Cow` example we used [in a previous episode]:
 
-    // cow.js
-    (function(exports) {
-      "use strict";
+```js
+// cow.js
+(function(exports) {
+  "use strict";
 
-      function Cow(name) {
-        this.name = name || "Anon cow";
-      }
-      exports.Cow = Cow;
+  function Cow(name) {
+    this.name = name || "Anon cow";
+  }
+  exports.Cow = Cow;
 
-      Cow.prototype = {
-        greets: function(target) {
-          if (!target)
-            throw new Error("missing target");
-          return this.name + " greets " + target;
-        }
-      };
-    })(this);
+  Cow.prototype = {
+    greets: function(target) {
+      if (!target)
+        throw new Error("missing target");
+      return this.name + " greets " + target;
+    }
+  };
+})(this);
+```
 
 And its test suite, powered by Mocha and [Chai]:
 
-    var expect = chai.expect;
+```js
+var expect = chai.expect;
 
-    describe("Cow", function() {
-      describe("constructor", function() {
-        it("should have a default name", function() {
-          var cow = new Cow();
-          expect(cow.name).to.equal("Anon cow");
-        });
-
-        it("should set cow's name if provided", function() {
-          var cow = new Cow("Kate");
-          expect(cow.name).to.equal("Kate");
-        });
-      });
-
-      describe("#greets", function() {
-        it("should greet passed target", function() {
-          var greetings = (new Cow("Kate")).greets("Baby");
-          expect(greetings).to.equal("Kate greets Baby");
-        });
-      });
+describe("Cow", function() {
+  describe("constructor", function() {
+    it("should have a default name", function() {
+      var cow = new Cow();
+      expect(cow.name).to.equal("Anon cow");
     });
+
+    it("should set cow's name if provided", function() {
+      var cow = new Cow("Kate");
+      expect(cow.name).to.equal("Kate");
+    });
+  });
+
+  describe("#greets", function() {
+    it("should greet passed target", function() {
+      var greetings = (new Cow("Kate")).greets("Baby");
+      expect(greetings).to.equal("Kate greets Baby");
+    });
+  });
+});
+```
 
 Let's create the HTML test file for it, featuring Blanket and its adapter for
 Mocha:
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <title>Test</title>
-      <link rel="stylesheet" media="all" href="vendor/mocha.css">
-    </head>
-    <body>
-      <div id="mocha"></div>
-      <div id="messages"></div>
-      <div id="fixtures"></div>
-      <script src="vendor/mocha.js"></script>
-      <script src="vendor/chai.js"></script>
-      <script src="vendor/blanket.js"
-              data-cover-adapter="vendor/mocha-blanket.js"></script>
-      <script>mocha.setup('bdd');</script>
-      <script src="cow.js" data-cover></script>
-      <script src="cow_test.js"></script>
-      <script>mocha.run();</script>
-    </body>
-    </html>
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <link rel="stylesheet" media="all" href="vendor/mocha.css">
+</head>
+<body>
+  <div id="mocha"></div>
+  <div id="messages"></div>
+  <div id="fixtures"></div>
+  <script src="vendor/mocha.js"></script>
+  <script src="vendor/chai.js"></script>
+  <script src="vendor/blanket.js"
+          data-cover-adapter="vendor/mocha-blanket.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <script src="cow.js" data-cover></script>
+  <script src="cow_test.js"></script>
+  <script>mocha.run();</script>
+</body>
+</html>
+```
 
 **Notes**:
 

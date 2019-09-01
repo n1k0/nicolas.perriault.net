@@ -2,12 +2,18 @@
 # Jekyll needs front matter for SCSS files
 ---
 
-// $sidebar-bg-color: #ac4142;
-// $link-color: #ac4142;
-// $sidebar-sticky: false;
 @import "hydeout";
 
 .post-body {
+  .slideshare {
+    width: 100%;
+    height: 530px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
   figure {
     margin: 0;
 

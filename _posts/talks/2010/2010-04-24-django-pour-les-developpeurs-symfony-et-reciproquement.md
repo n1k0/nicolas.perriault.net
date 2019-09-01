@@ -12,6 +12,6 @@ Conférence donnée lors des [rencontres Django francophones 2010](http://rencon
 >
 > Python, et plus particulièrement Django, ont en effet de plus en plus de crédit auprès des grands acteurs du Web et se posent, en 2010, en alternatives de choix à des solutions PHP5 pourtant largement éprouvées. Cette conférence tâchera de proposer une revue des grandes différences existantes entre Python et PHP5, et mettra en regard leur philosophie, leurs fonctionnalités, leur communauté et l'outillage disponible mis en avant par les deux plateformes.
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/3841024" style="width:660px;height:535px;border:1px solid #333">
+<iframe src="//www.slideshare.net/slideshow/embed_code/3841024" class="slideshare">
     <p><a href="http://www.slideshare.net/nperriault/symfony-pour-les-dveloppeurs-django-et-rciproquement">Django pour les développeurs Symfony (et réciproquement)</a></p>
 </iframe>

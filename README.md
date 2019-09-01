@@ -6,13 +6,6 @@ It's a static website built using [Jekyll](https://jekyllrb.com) and the
 [Hydeout theme](https://github.com/fongandrew/hydeout). It's hosted on
 [Github Pages](https://pages.github.com).
 
-TODO
-----
-
-- article lang
-- syntax highlighting
-- deploy to gh pages (check native integ)
-
 License
 -------
 

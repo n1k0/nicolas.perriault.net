@@ -18,6 +18,7 @@ email: nicolas@perriault.net
 markdown: kramdown
 theme: jekyll-theme-hydeout
 remote_theme: fongandrew/hydeout
+highlighter: rouge
 paginate: 1000
 plugins:
   - jekyll-feed
