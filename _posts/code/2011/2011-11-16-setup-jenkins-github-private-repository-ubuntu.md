@@ -9,17 +9,21 @@ As I've just lost an hour and some hairs dealing with trying to setup a [Jenkins
 
 So first `su` as the `jenkins` user to create some SSH keypair:
 
-    $ ssh-keygen -p
+```terminal
+$ ssh-keygen -p
+```
 
 Notice the `-p` option; this will allow to avoid asking for a passphrase (which Jenkins cannot so running as a daemon).
 
 Try to ssh on github:
 
-    $ ssh -T git@github.com
-    The authenticity of host 'github.com (207.97.227.239)' can't be established.
-    RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-    Are you sure you want to continue connecting (yes/no)? yes
-    Hi username/reponame! You've successfully authenticated, but GitHub does not provide shell access.
+```terminal
+$ ssh -T git@github.com
+The authenticity of host 'github.com (207.97.227.239)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Hi username/reponame! You've successfully authenticated, but GitHub does not provide shell access.
+```
 
 Notice that you're asked to allow github's hostname to be added to your `known_hosts` file: without completing this step, you're doomed.
 

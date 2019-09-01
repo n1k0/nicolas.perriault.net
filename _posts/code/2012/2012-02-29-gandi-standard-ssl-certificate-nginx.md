@@ -13,8 +13,10 @@ tags: gandi ssl
 
 On your server, ensure you have the [`openssl`](http://openssl.org/) command available or install it. Then, [generate your CSR](http://wiki.gandi.net/en/ssl/csr) (`domain.tld` is your actual domain):
 
-    $ openssl req -nodes -newkey rsa:2048 -keyout domain.tld.key \
-        -out domain.tld.csr
+```terminal
+$ openssl req -nodes -newkey rsa:2048 -keyout domain.tld.key \
+    -out domain.tld.csr
+```
 
 Answer a few questions from the program, but here's the most important bit: **enter your domain or subdomain when prompted to provide a _Common Name_**:
 
@@ -43,7 +45,9 @@ Upload them both to your server, store them in eg. `/etc/nginx/certificates/` (n
 
 Last, you have to append the Gandi CA to your domain certificate:
 
-    $ cat GandiStandardSSLCA.pem >> cert-domain.tld.crt
+```terminal
+$ cat GandiStandardSSLCA.pem >> cert-domain.tld.crt
+```
 
 Have a capuccino.
 
@@ -53,25 +57,29 @@ Have a capuccino.
 
 Here's a sample vhost server configuration for nginx, kept as concise as possible for the sake of brevity and clarity:
 
-    server {
-        listen 443;
-        server_name "domain.tld";
-        root /var/www/your_website_root;
+```nginx
+server {
+    listen 443;
+    server_name "domain.tld";
+    root /var/www/your_website_root;
 
-        ssl on;
-        ssl_certificate     /etc/nginx/certificates/cert-domain.tld.crt;
-        ssl_certificate_key /etc/nginx/certificates/domain.tld.key;
-    }
+    ssl on;
+    ssl_certificate     /etc/nginx/certificates/cert-domain.tld.crt;
+    ssl_certificate_key /etc/nginx/certificates/domain.tld.key;
+}
+```
 
 Restart nginx and you should be able to access your website using `https://domain.tld/`.
 
 To redirect all HTTP trafic to HTTPS for this server, add this:
 
-    server {
-        listen 80;
-        server_name "domain.tld";
-        rewrite ^(.*) https://$host$1 permanent;
-    }
+```nginx
+server {
+    listen 80;
+    server_name "domain.tld";
+    rewrite ^(.*) https://$host$1 permanent;
+}
+```
 
 Have a latte.
 

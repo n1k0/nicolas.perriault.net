@@ -5,10 +5,10 @@ categories: code
 tags: frontend programming testing javascript
 ---
 
-**So finally you're [testing your frontend JavaScript code]? Great! The more you
+So finally you're [testing your frontend JavaScript code]? Great! The more you
 write tests, the more confident you are with your code… but how much precisely?
 That's where [code coverage](http://en.wikipedia.org/wiki/Code_coverage) might
-help.**
+help.
 
 The idea behind code coverage is to record which parts of your code (functions,
 statements, conditionals and so on) have been executed by your test suite, to

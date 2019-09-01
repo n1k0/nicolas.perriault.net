@@ -8,7 +8,9 @@ tags: symfony deploy hosting
 
 [Symfony](http://www.symfony-project.org/) propose une tâche de déploiement distant utilisant [`rsync`](http://fr.wikipedia.org/wiki/Rsync) fort pratique&nbsp;: une fois configurés les [paramètres du serveur distant](http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying) dans le fichier `config/properties.ini` de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l'hôte distant. Et si vous utilisez une [clé SSH](http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant), l'opération ne vous demandera même pas de saisir votre mot de passe&nbsp;!
 
-    $ ./symfony project:deploy monserveur --go
+```terminal
+$ ./symfony project:deploy monserveur --go
+```
 
 Mais bien souvent, nous avons besoin de plus&nbsp;: préparer un certain nombre de fichiers statiques comme les assets CSS, JavaScript ou les images, ou vider le cache sur la ou les machines distantes pour prendre en compte d'éventuelles modifications de la configuration ou du templating sur la plateforme de production (qui exploite l'environnement du même nom, nous sommes bien d'accord).
 
@@ -70,7 +72,9 @@ class AkeiDeployTask extends sfProjectDeployTask
 
 Comme vous pouvez le constater, cette tâche déclare un espace de nom `akei` et propose une option supplémentaire, `optimize`, permettant de préparer les assets avant déploiement&nbsp;:
 
-    $ ./symfony akei:deploy monserveur --optimize=stylesheet --go
+```terminal
+$ ./symfony akei:deploy monserveur --optimize=stylesheet --go
+```
 
 Cette commande va tout simplement minifier et assembler les feuilles de style définies par la configuration du plugin `npAssetsOptimizerPlugin`, déployer les fichiers en production sur la machine `monserveur` et vider le cache sur la machine distante une fois l'opération effectuée.
 

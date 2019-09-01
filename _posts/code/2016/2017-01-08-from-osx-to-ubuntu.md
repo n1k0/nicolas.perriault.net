@@ -7,7 +7,7 @@ categories: code
 tags: osx ubuntu linux
 ---
 
-**A year earlier I decided to switch from OSX to [Ubuntu], so now is a good time to make a little retrospective. TL;DR: Linux now offers a pleasant desktop user experience and there's no way back for me.**
+A year earlier I decided to switch from OSX to [Ubuntu], so now is a good time to make a little retrospective. TL;DR: Linux now offers a pleasant desktop user experience and there's no way back for me.
 
 !["Thou Shall Migrate", says a funny penguin. Credits: Hamish Irvine](/static/code/2016/thou-shall-migrate.jpg)
 

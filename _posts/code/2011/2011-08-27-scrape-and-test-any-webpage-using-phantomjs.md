@@ -22,20 +22,24 @@ On OSX, installation can be achieved using
 [XCode](static/itunes.apple.com/fr/app/xcode/id448457090?mt=12) must be
 installed on your machine):
 
-    $ brew install phantomjs
+```terminal
+$ brew install phantomjs
+```
 
 It can take a bit of time for the binaries to be built, especially
 because of their dependency to [Qt4](static/qt.nokia.com/products). When
 it's done, you can test it this way:
 
-    $ phantomjs
-    Usage: phantomjs [options] script.[js|coffee] [script argument [script argument ...]]
-    Options:
-        --load-images=[yes|no]             Load all inlined images (default is 'yes').
-        --load-plugins=[yes|no]            Load all plugins (i.e. 'Flash', 'Silverlight', ...) (default is 'no').
-        --proxy=address:port               Set the network proxy.
-        --disk-cache=[yes|no]              Enable disk cache (at desktop services cache storage location, default is 'no').
-        --ignore-ssl-errors=[yes|no]       Ignore SSL errors (i.e. expired or self-signed certificate errors).
+```terminal
+$ phantomjs
+Usage: phantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Options:
+    --load-images=[yes|no]             Load all inlined images (default is 'yes').
+    --load-plugins=[yes|no]            Load all plugins (i.e. 'Flash', 'Silverlight', ...) (default is 'no').
+    --proxy=address:port               Set the network proxy.
+    --disk-cache=[yes|no]              Enable disk cache (at desktop services cache storage location, default is 'no').
+    --ignore-ssl-errors=[yes|no]       Ignore SSL errors (i.e. expired or self-signed certificate errors).
+```
 
 Installation instructions for other platforms and alternative methods
 can be found on [the PhantomJS project
@@ -51,28 +55,32 @@ troll please).
 To install PyPhantomJS, let's use
 [`pip`](http://www.pip-installer.org/):
 
-    $ pip install PyPhantomJS
+```terminal
+$ pip install PyPhantomJS
+```
 
 The PyPhantomJS executable is named — *surprise* — `pyphantomjs`:
 
-    $ pyphantomjs
-    usage: pyphantomjs [options] script.[js|coffee] [script argument [script argument ...]]
-    Minimalistic headless WebKit-based JavaScript-driven tool
-    positional arguments:
-      script.[js|coffee]    The script to execute, and any args to pass to it
-    optional arguments:
-      -h, --help            show this help message and exit
-      --disk-cache {yes,no}
-                            Enable disk cache (default: no)
-      --ignore-ssl-errors {yes,no}
-                            Ignore SSL errors (default: no)
-      --load-images {yes,no}
-                            Load all inlined images (default: yes)
-      --load-plugins {yes,no}
-                            Load all plugins (i.e. Flash, Silverlight, ...) (default: no)
-      --proxy address:port  Set the network proxy
-      -v, --verbose         Show verbose debug messages
-      --version             show this program's version and license
+```terminal
+$ pyphantomjs
+usage: pyphantomjs [options] script.[js|coffee] [script argument [script argument ...]]
+Minimalistic headless WebKit-based JavaScript-driven tool
+positional arguments:
+  script.[js|coffee]    The script to execute, and any args to pass to it
+optional arguments:
+  -h, --help            show this help message and exit
+  --disk-cache {yes,no}
+                        Enable disk cache (default: no)
+  --ignore-ssl-errors {yes,no}
+                        Ignore SSL errors (default: no)
+  --load-images {yes,no}
+                        Load all inlined images (default: yes)
+  --load-plugins {yes,no}
+                        Load all plugins (i.e. Flash, Silverlight, ...) (default: no)
+  --proxy address:port  Set the network proxy
+  -v, --verbose         Show verbose debug messages
+  --version             show this program's version and license
+```
 
 Usage of the two versions is exactly the same.
 
@@ -86,46 +94,48 @@ interesting](http://robots.thoughtbot.com/post/9251081564/coffeescript-spartan-j
 So let's write our first script, we want to retrieve the weather
 forecast for a given city using Google:
 
-    // script: meteo.js
-    var page = new WebPage()
-    , output = { errors: [], results: null };
-    if (phantom.args.length == 0) {
-        console.log('You must specify a city, eg. "Paris, France"');
-        phantom.exit(1);
-    }
-    page.open('http://www.google.fr/search?q=meteo+' + phantom.args[0], function (status) {
-        if (status !== 'success') {
-            output.errors.push('Unable to access network');
-        } else {
-            var cells = page.evaluate(function(){
-                try {
-                    var cells = document.querySelectorAll('.tpo tr tr')[4].querySelectorAll('td');
-                    return Array.prototype.map.call(cells, function(cell) {
-                        return cell.innerText.replace(/[^0-9]/g, '');
-                    });
-                } catch (e) {
-                    return [];
-                }
-            });
-            if (!cells || !cells.length > 0) {
-                output.errors.push('No valid meteo data found');
-            } else {
-                output.results = {
-                    city: phantom.args[0],
-                    today: {
-                        afternoon: cells[1],
-                        morning:   cells[2],
-                    },
-                    tomorrow: {
-                        afternoon: cells[3],
-                        morning:   cells[4],
-                    }
-                };
+```js
+// script: meteo.js
+var page = new WebPage()
+, output = { errors: [], results: null };
+if (phantom.args.length == 0) {
+    console.log('You must specify a city, eg. "Paris, France"');
+    phantom.exit(1);
+}
+page.open('http://www.google.fr/search?q=meteo+' + phantom.args[0], function (status) {
+    if (status !== 'success') {
+        output.errors.push('Unable to access network');
+    } else {
+        var cells = page.evaluate(function(){
+            try {
+                var cells = document.querySelectorAll('.tpo tr tr')[4].querySelectorAll('td');
+                return Array.prototype.map.call(cells, function(cell) {
+                    return cell.innerText.replace(/[^0-9]/g, '');
+                });
+            } catch (e) {
+                return [];
             }
-            console.log(JSON.stringify(output, null, '    '));
+        });
+        if (!cells || !cells.length > 0) {
+            output.errors.push('No valid meteo data found');
+        } else {
+            output.results = {
+                city: phantom.args[0],
+                today: {
+                    afternoon: cells[1],
+                    morning:   cells[2],
+                },
+                tomorrow: {
+                    afternoon: cells[3],
+                    morning:   cells[4],
+                }
+            };
         }
-        phantom.exit();
-    });
+        console.log(JSON.stringify(output, null, '    '));
+    }
+    phantom.exit();
+});
+```
 
 Notice we use the `phantom.args` Array which contains the parameters
 passed to the script.
@@ -137,49 +147,55 @@ just to help you to operate on the page contents =)
 
 Now it's time to launch the script to see how it goes:
 
-    $ phantomjs meteo.js "Montpellier, France"
-    {
-        "errors": [],
-        "results": {
-            "city": "Montpellier, France",
-            "today": {
-                "afternoon": "29",
-                "morning": "17"
-            },
-            "tomorrow": {
-                "afternoon": "28",
-                "morning": "17"
-            }
+```terminal
+$ phantomjs meteo.js "Montpellier, France"
+{
+    "errors": [],
+    "results": {
+        "city": "Montpellier, France",
+        "today": {
+            "afternoon": "29",
+            "morning": "17"
+        },
+        "tomorrow": {
+            "afternoon": "28",
+            "morning": "17"
         }
     }
+}
+```
 
 Now with an invalid city name:
 
-    $ phantomjs meteo.js "Unexistent City"
-    {
-        "errors": [
-            "No valid meteo data found"
-        ],
-        "results": null
-    }
+```terminal
+$ phantomjs meteo.js "Unexistent City"
+{
+    "errors": [
+        "No valid meteo data found"
+    ],
+    "results": null
+}
+```
 
 Let's try with another city, an existing one this time:
 
-    $ phantomjs meteo.js "Paris, France"
-    {
-        "errors": [],
-        "results": {
-            "city": "Paris, France",
-            "today": {
-                "afternoon": "21",
-                "morning": "11"
-            },
-            "tomorrow": {
-                "afternoon": "21",
-                "morning": "11"
-            }
+```terminal
+$ phantomjs meteo.js "Paris, France"
+{
+    "errors": [],
+    "results": {
+        "city": "Paris, France",
+        "today": {
+            "afternoon": "21",
+            "morning": "11"
+        },
+        "tomorrow": {
+            "afternoon": "21",
+            "morning": "11"
         }
     }
+}
+```
 
 As a side note and in case you were wondering, you now understand a bit
 more why I moved to Montpellier ;)
@@ -192,23 +208,25 @@ favorite framework (eg. [jQuery](http://jquery.com/))… or can render a
 PNG image of a captured area of the webpage. The example below saves a
 capture of the weather forecast area:
 
-    // script: meteoclip.js
-    var page = new WebPage();
-    page.open('http://www.google.fr/search?q=meteo+montpellier,+France', function (status) {
-        if (status !== 'success') {
-            output.error = 'Unable to access network';
-        } else {
-            page.clipRect = {
-                top: 127,
-                left: 170,
-                width: 400,
-                height: 114
-            }
-            page.render('meteo.png');
-            console.log('Capture saved');
+```js
+// script: meteoclip.js
+var page = new WebPage();
+page.open('http://www.google.fr/search?q=meteo+montpellier,+France', function (status) {
+    if (status !== 'success') {
+        output.error = 'Unable to access network';
+    } else {
+        page.clipRect = {
+            top: 127,
+            left: 170,
+            width: 400,
+            height: 114
         }
-        phantom.exit();
-    });
+        page.render('meteo.png');
+        console.log('Capture saved');
+    }
+    phantom.exit();
+});
+```
 
 Running the `meteoclip.js` script will get yourself this fancy image
 stored in `meteo.jpg`:
