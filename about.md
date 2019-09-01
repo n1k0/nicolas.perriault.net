@@ -1,18 +1,21 @@
 ---
-layout: page
 title: About
 permalink: /about/
+sidebar_link: true
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+![me](/static/img/me.png)
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+My name is **Nicolas Perriault**, I live in southern France near Montpellier and
+am pretty much **enjoying my life**. I work remotely for
+[Allo-Media](https://www.allo-media.fr/) as a Frontend Engineer.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+I'm mostly a [Web developer](/code/).
+I [speak](/talks/) at conferences,
+<del>sometimes</del> rarely.
 
+I also practice [photography](https://500px.com/n1k0),
+and [rant (in French)](/carnet/) <del>a bit too much</del> rarely.
 
-[jekyll-organization]: https://github.com/jekyll
+If you're interested, the source code of this blog and most of its contents are
+[open source](https://github.com/n1k0/nicolas.perriault.net).
