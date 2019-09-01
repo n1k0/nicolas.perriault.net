@@ -19,13 +19,14 @@
 
     > img {
       margin: 0;
+      width: 100%;
     }
 
     > figcaption {
       font-size: .8em;
       font-style: italic;
       margin-bottom: .5em;
-      text-align: center;
+      text-align: right;
     }
   }
 }
