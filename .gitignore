@@ -1,8 +1,6 @@
-*.pyc
-
-/build
-/env
-.webassets-cache
+_drafts
+_site
+.sass-cache
+.jekyll-metadata
 node_modules
 package-lock.json
-

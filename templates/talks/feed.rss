@@ -1,5 +1,0 @@
-{% extends "base.rss" %}
-
-{% block lang %}en{% endblock %}
-{% block title %}Talks{% endblock %}
-{% block description %}Nicolas Perriault's talks at random conferences.{% endblock %}
