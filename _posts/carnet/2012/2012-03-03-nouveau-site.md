@@ -5,12 +5,11 @@ lang: fr
 date: 2012-03-03
 ---
 
-**J'avais envie de fédérer l'ensemble de ma *production numérique* au sein d'un seul et même site, c'est donc chose faite si vous lisez ces quelques lignes.**
+J'avais envie de fédérer l'ensemble de ma *production numérique* au sein d'un seul et même site, c'est donc chose faite si vous lisez ces quelques lignes.
 
 J'ai essayé de résumer au maximum mes activités principales, du moins celles que je trouve potentiellement dignes d'intérêt pour autrui et sur lesquelles j'ai envie de communiquer publiquement&nbsp;:
 
 * le [développement Web](/code), en anglais, où je parlerai de ce qui à trait à la technicité de mon métier&nbsp;;
-* la [photographie](/photography), où je publierai les photos que je trouve les plus intéressantes&nbsp;;
 * mes [interventions publiques en conférence](/talks), plus à des fins d'archivage personnel que pour faire reluire mon ego&nbsp;;
 * pour toutes les autres choses qui me passent par la tête, un [carnet en français](/carnet) fera vraisemblablement l'affaire. La preuve.
 
