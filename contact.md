@@ -2,6 +2,7 @@
 title: Contact
 permalink: /contact/
 sidebar_link: true
+sidebar_sort_order: 5
 ---
 
 ![illustration](/static/img/contact.jpg)

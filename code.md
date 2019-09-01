@@ -2,6 +2,7 @@
 layout: category
 title: Code
 category: code
+sidebar_sort_order: 1
 ---
 
 ![illustration](/static/img/code.png)

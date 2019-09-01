@@ -2,6 +2,7 @@
 layout: category
 title: Carnet (fr)
 category: carnet
+sidebar_sort_order: 2
 ---
 
 ![illustration](/static/img/carnet.png)

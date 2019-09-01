@@ -6,3 +6,20 @@
 // $link-color: #ac4142;
 // $sidebar-sticky: false;
 @import "hydeout";
+
+.post-body {
+  figure {
+    margin: 0;
+
+    > img {
+      margin: 0;
+    }
+
+    > figcaption {
+      font-size: .8em;
+      font-style: italic;
+      margin-bottom: .5em;
+      text-align: center;
+    }
+  }
+}

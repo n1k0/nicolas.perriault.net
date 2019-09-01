@@ -2,6 +2,7 @@
 title: About
 permalink: /about/
 sidebar_link: true
+sidebar_sort_order: 4
 ---
 
 ![me](/static/img/me.png)
