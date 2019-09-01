@@ -2,8 +2,8 @@
 title: Choisir son métier, arrêter de le (faire) subir
 lang: fr
 date: 2010-10-27
-tags: méthodologie humeur qualité
 categories: carnet
+tags: humeur
 ---
 
 Je viens de finir la lecture de l'excellent billet de [Thibault](http://www.miximum.fr/), «&nbsp;[Dialogue avec un client](http://www.miximum.fr/bien-developper/525-dialogue-avec-un-client)&nbsp;». Ce billet présente point pour point ma vision de ce qu'est une collaboration efficace autour d'un projet informatique&nbsp;; je n'y apprends rien de vraiment nouveau (ayant partiellement nourri la conversation qu'il y relate), mais je suis ravi de voir que je ne suis pas le seul à partager le sentiment que la collaboration est vraiment à réinventer dans ce métier.

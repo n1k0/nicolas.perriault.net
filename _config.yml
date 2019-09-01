@@ -4,7 +4,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Hi, I'm Nicolas
-email: nicolas@perriault.net
+tagline: Nicolas Perriault
 description: >-
   ... and this is my weblog.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -12,6 +12,7 @@ url:     "https://nicolas.perriault.net" # the base hostname & protocol for your
 permalink: /:categories/:year/:title/
 twitter_username: n1k0
 github_username:  n1k0
+email: nicolas@perriault.net
 
 # Build settings
 markdown: kramdown

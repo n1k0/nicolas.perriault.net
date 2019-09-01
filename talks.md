@@ -4,4 +4,4 @@ title: Talks
 category: talks
 ---
 
-Description of "Talks"
+![illustration](/static/img/talks.png)

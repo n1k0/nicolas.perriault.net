@@ -2,7 +2,7 @@
 title: Dead easy yet powerful static website generator with Flask
 date: 2012-03-04
 categories: code
-tags: flask python site generator
+tags: programming python site
 ---
 
 It's been a long time I wanted to federate my online identities in a single, managed place — hence the website you're currently browsing. I've also been looking for a static website builder for some times, trying many and retaining zero. It was a bit depressing, frustrating to say the least.

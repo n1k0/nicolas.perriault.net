@@ -3,7 +3,7 @@ title: Installer Django dans un environnement Python virtuel avec pip, virtualen
 lang: fr
 categories: code
 date: 2010-05-05
-tags: django pip virtualenv
+tags: django python
 ---
 
 Ce billet résume les étapes nécessaires pour installer un ou plusieurs environnements de développement [Django](http://www.djangoproject.com/) fonctionnels, portables et faciles à maintenir sous Mac OS&nbsp;X.

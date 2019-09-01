@@ -2,7 +2,7 @@
 title: Flatten JavaScript Pyramids with Async.js
 date: 2013-02-05
 categories: code
-tags: javascript async programming
+tags: javascript programming
 ---
 
 <figure>

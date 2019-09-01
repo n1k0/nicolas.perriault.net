@@ -4,4 +4,4 @@ title: Carnet (fr)
 category: carnet
 ---
 
-Description of "Carnet"
+![illustration](/static/img/carnet.png)

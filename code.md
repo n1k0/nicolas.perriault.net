@@ -4,4 +4,4 @@ title: Code
 category: code
 ---
 
-Description of "Code"
+![illustration](/static/img/code.png)

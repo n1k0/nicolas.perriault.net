@@ -1,8 +1,9 @@
 ---
 title: Nouveau site
-categories: carnet
-lang: fr
 date: 2012-03-03
+lang: fr
+categories: carnet
+tags: python
 ---
 
 J'avais envie de fédérer l'ensemble de ma *production numérique* au sein d'un seul et même site, c'est donc chose faite si vous lisez ces quelques lignes.

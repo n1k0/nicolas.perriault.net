@@ -3,6 +3,7 @@ title: Django pour les développeurs Symfony (et réciproquement)
 lang: fr
 date: 2010-04-24
 categories: talks
+tags: community python django symfony php programming
 ---
 
 Conférence donnée lors des [rencontres Django francophones 2010](http://rencontres.django-fr.org/2010/)&nbsp;:

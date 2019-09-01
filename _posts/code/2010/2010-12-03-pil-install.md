@@ -2,7 +2,7 @@
 title: Install PIL within a virtualenv on Snow Leopard
 date: 2010-12-03
 categories: code
-tags: homebrew osx pil python
+tags: osx python programming devops
 ---
 
 As a personal reminder, here's how to install [PIL](http://www.pythonware.com/products/pil/) with jpeg and freetype support in a Python [virtualenv](/post/573774396/installer-django-dans-un-environnement-python-virtuel) with a little help from [Homebrew](https://github.com/mxcl/homebrew):

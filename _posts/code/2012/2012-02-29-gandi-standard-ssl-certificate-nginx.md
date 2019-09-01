@@ -2,7 +2,7 @@
 title: Gandi Standard SSL Certificate & Nginx
 date: 2012-02-29
 categories: code
-tags: gandi ssl
+tags: gandi ssl devops
 ---
 
 [Gandi](http://gandi.net/) offers a [free SSL certificate](http://wiki.gandi.net/en/ssl/free) during one year for any domain you buy there, nice. But the setup is a bit tedious and the documentation a bit disparate, so here's an attempt for a comprehensive howto for configuring a secured [nginx](http://nginx.org/) vhost using your *free* certificate.

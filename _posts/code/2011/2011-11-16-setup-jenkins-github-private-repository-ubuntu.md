@@ -2,7 +2,7 @@
 title: Setup Jenkins for working with a private Github repository
 date: 2011-11-16
 categories: code
-tags: github git jenkins
+tags: jenkins testing
 ---
 
 As I've just lost an hour and some hairs dealing with trying to setup a [Jenkins](http://jenkins-ci.org/) project connected to a private repository hosted on [Github](https://github.com/), I thought it's worth a quick blog post. I'm using [Ubuntu](http://ubuntu.com/).
