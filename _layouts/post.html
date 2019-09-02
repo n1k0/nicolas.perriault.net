@@ -13,7 +13,7 @@ layout: default
     {% include post-tags.html post=page %}
   </div>
 
-  {% if page.previous || page.next %}
+  {% if page.previous or page.next %}
   <section>
     <p class="post-prevnext">
     {% if page.previous %}
