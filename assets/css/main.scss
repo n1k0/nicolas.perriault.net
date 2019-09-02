@@ -30,3 +30,12 @@
     }
   }
 }
+
+.post-prevnext {
+  display: flex;
+  justify-content: space-between;
+
+  .next-post {
+    text-align: right;
+  }
+}
