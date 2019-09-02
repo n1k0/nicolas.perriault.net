@@ -2,7 +2,7 @@
 title: CasperJS, a toolkit on top of PhantomJS
 date: 2012-03-08
 categories: code
-tags: phantomjs javascript testing
+tags: phantomjs javascript testing casperjs webdev programming
 ---
 
 It's been quite a while since I posted about the [awesomeness of PhantomJS](/code/2011/scrape-and-test-any-webpage-using-phantomjs/), the *scriptable headless WebKit with JavaScript API*.

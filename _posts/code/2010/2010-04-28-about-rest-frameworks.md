@@ -2,7 +2,7 @@
 title: About RESTful features of modern Web frameworks
 date: 2010-04-28
 categories: code
-tags: php symfony programming
+tags: php symfony programming rest api webdev
 ---
 
 Frameworks like [Symfony](http://www.symfony-project.org/) or [rails](http://rubyonrails.org/) (and probably many others) provide a very convenient feature named *RESTful* routing, aka HTTP-aware urls and controllers, generally associated with an object/url mapping mechanism to expose Model entities and several available actions on them over HTTP.

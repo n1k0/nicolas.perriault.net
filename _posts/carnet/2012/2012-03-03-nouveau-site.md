@@ -3,7 +3,7 @@ title: Nouveau site
 date: 2012-03-03
 lang: fr
 categories: carnet
-tags: python
+tags: python webdev hosting life blog
 ---
 
 J'avais envie de fédérer l'ensemble de ma *production numérique* au sein d'un seul et même site, c'est donc chose faite si vous lisez ces quelques lignes.

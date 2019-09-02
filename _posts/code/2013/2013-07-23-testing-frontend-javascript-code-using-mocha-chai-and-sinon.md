@@ -2,7 +2,7 @@
 title: Testing your frontend JavaScript code using mocha, chai, and sinon
 date: 2013-07-23
 categories: code
-tags: programming javascript frontend testing
+tags: programming javascript frontend testing webdev
 ---
 
 As rich Web application complexity grows, if you want to keep your sanity, you need to unit test your frontend JavaScript code.

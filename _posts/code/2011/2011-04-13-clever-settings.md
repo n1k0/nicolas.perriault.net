@@ -3,7 +3,7 @@ title: Une autre façon de gérer ses settings d'application Django
 tags: django python settings python
 date: 2011-04-13
 categories: code
-tags: django python programming
+tags: django python programming webdev devops
 ---
 
 Je travaille actuellement sur une application Django que je compte publier sous licence libre, et je suis confronté au problème classique de l'exposition de la configuration au développeur via les *settings* de son propre projet.

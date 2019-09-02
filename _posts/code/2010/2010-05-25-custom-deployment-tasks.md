@@ -3,7 +3,7 @@ title: Tâches de déploiement spécifiques avec Symfony
 lang: fr
 categories: code
 date: 2010-05-25
-tags: symfony php devops programming
+tags: symfony php devops programming webdev
 ---
 
 [Symfony](http://www.symfony-project.org/) propose une tâche de déploiement distant utilisant [`rsync`](http://fr.wikipedia.org/wiki/Rsync) fort pratique&nbsp;: une fois configurés les [paramètres du serveur distant](http://www.symfony-project.org/jobeet/1_4/Doctrine/en/22#chapter_22_deploying) dans le fichier `config/properties.ini` de votre projet, un simple appel en ligne de commande synchronisera les fichiers du projet présents sur votre système de fichiers local vers l'hôte distant. Et si vous utilisez une [clé SSH](http://prendreuncafe.com/blog/post/2005/08/29/262-installer-sa-cle-ssh-sur-un-serveur-distant), l'opération ne vous demandera même pas de saisir votre mot de passe&nbsp;!

@@ -3,7 +3,7 @@ title: De retour de Djangocong
 lang: fr
 date: 2010-04-26
 tags: django community
-categories: carnet django
+categories: carnet django community conference
 ---
 
 Les rencontres [Django francophones 2010](http://rencontres.django-fr.org/), tenues à Marseille, viennent de s'achever.

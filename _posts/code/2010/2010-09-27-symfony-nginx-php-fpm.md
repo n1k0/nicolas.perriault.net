@@ -2,7 +2,7 @@
 title: Hosting a Symfony app on NginX using PHP-FPM
 date: 2010-09-27
 categories: code
-tags: php symfony programming devops
+tags: php symfony programming devops hosting system
 ---
 
 I recently had to make a capacity planning study for a client of mine for which I've been developing a Symfony application. Despite the hardware/cloud architecture problem, I also tried to optimize application performances from a webserver software point of view (the application is currently hosted on a standard Apache2 server using mod_php5). I dug Google a bit and found some very enthusiastic comments on [PHP-FPM](http://php-fpm.org/), a PHP [FastCGI](http://www.fastcgi.com/) implementation and the [NginX](http://nginx.org/) web server.

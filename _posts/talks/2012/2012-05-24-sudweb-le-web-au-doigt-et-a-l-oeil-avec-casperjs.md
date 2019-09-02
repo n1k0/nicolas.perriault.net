@@ -3,7 +3,7 @@ title: Le Web au doigt et à l'œil avec CasperJS
 lang: fr
 date: 2012-05-24
 categories: talks
-tags: sudweb community
+tags: sudweb community casperjs phantomjs conference javascript
 ---
 
 Conférence donnée lors de [l'édition 2012 de SudWeb](http://sudweb.fr/2012/talk/le-web-au-doigt-et-a-loeil-avec-casperjs/)&nbsp;:

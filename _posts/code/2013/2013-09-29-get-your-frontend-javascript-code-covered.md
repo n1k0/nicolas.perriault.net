@@ -2,7 +2,7 @@
 title: Get your Frontend JavaScript Code Covered
 date: 2013-09-29
 categories: code
-tags: frontend programming testing javascript
+tags: frontend programming testing javascript webdev
 ---
 
 So finally you're [testing your frontend JavaScript code]? Great! The more you

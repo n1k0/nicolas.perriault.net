@@ -3,7 +3,7 @@ title: A short introduction to Elm
 lang: en
 date: 2017-01-25
 categories: talks
-tags: elm programming community
+tags: elm programming community frontend webdev
 ---
 
 A short presentation about [Elm](http://elm-lang.org/) I gave at [MontpellierJS](https://www.meetup.com/fr-FR/MontpellierJS/).

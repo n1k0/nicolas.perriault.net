@@ -3,7 +3,7 @@ title: Méthodes et processus agiles
 lang: fr
 date: 2008-04-20
 categories: talks
-tags: work
+tags: work conference community
 ---
 
 Petit tour d’horizon des méthodologies de gestion de projet [agiles](http://agilemanifesto.org/), plus particulièrement [XP](http://fr.wikipedia.org/wiki/Extreme_programming) et [Scrum](http://fr.wikipedia.org/wiki/Scrum_%28m%C3%A9thode%29).

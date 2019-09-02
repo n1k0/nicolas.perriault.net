@@ -3,7 +3,7 @@ title: 30 symfony best practices
 lang: en
 date: 2009-09-04
 categories: talks
-tags: symfony php community programming
+tags: symfony php community programming webdev
 ---
 
 Talk given at [SymfonyDay Cologne '09](http://www.symfonyday.com/de/archives/symfony-day-2009.html).

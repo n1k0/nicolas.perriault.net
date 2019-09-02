@@ -3,7 +3,7 @@ title: Nouvelles aventures
 lang: fr
 date: 2012-04-01
 categories: carnet
-tags: haha
+tags: haha life
 ---
 
 **Mise à jour du 2 avril :** Ok, on a bien rigolé (ou pas™), mais le poisson était visiblement trop gros. Il faut dire que je n'y suis pas allé de main morte non plus.

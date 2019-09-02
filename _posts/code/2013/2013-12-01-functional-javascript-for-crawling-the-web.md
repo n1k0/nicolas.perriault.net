@@ -2,7 +2,7 @@
 title: Functional JavaScript for crawling the Web
 date: 2013-12-01
 categories: code
-tags: programming javascript
+tags: programming javascript webdev
 ---
 
 I've been giving JavaScript & [CasperJS] training sessions lately, and was

@@ -3,7 +3,7 @@ title: Résiliation, piège à cons
 lang: fr
 date: 2013-12-30
 categories: carnet
-tags: humeur
+tags: humeur haha
 ---
 
 Ça fait plusieurs fois que j’ai cette conversation, *quelles sont les limites acceptables pour obtenir la fidélité d’un utilisateur ?*

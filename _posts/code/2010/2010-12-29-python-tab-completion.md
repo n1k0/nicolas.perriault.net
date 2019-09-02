@@ -2,7 +2,7 @@
 title: Enabling tab completion in OS X Python interactive interpreter
 date: 2010-12-29
 categories: code
-tags: osx python devops
+tags: osx python devops webdev programming linux
 ---
 
 Python is awesome, and so is its native interactive interpreter. I [discovered today](http://sontek.net/tips-and-tricks-for-the-python-interpreter) that it can even provide autocompletion using a very simple trick:

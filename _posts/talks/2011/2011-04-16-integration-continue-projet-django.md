@@ -3,7 +3,7 @@ title: Intégration continue d'un projet Django
 lang: fr
 date: 2011-04-16
 categories: talks
-tags: testing django python jenkins community
+tags: testing django python jenkins community conference webdev devops
 ---
 
 Conférence donnée lors des [rencontres Django francophones 2011](http://rencontres.django-fr.org/2011/)&nbsp;:

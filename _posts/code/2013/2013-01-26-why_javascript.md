@@ -2,7 +2,7 @@
 title: Why JavaScript?
 date: 2013-01-26
 categories: code
-tags: javascript programming
+tags: javascript programming webdev
 ---
 
 I'm mostly a pythonista, though many people keep <del>trolling</del> asking me why I'm doing JavaScript, *oh boy, such a language that sucks*. I'm putting this blog post here to address this question once for all, let me hope.

@@ -6,7 +6,7 @@ image: /static/code/2016/thou-shall-migrate.jpg
 redirect_from:
   - /code/2016/from-osx-to-ubuntu/
 categories: code
-tags: osx ubuntu linux
+tags: osx ubuntu linux system life
 ---
 
 A year earlier I decided to switch from OSX to [Ubuntu], so now is a good time to make a little retrospective. TL;DR: Linux now offers a pleasant desktop user experience and there's no way back for me.

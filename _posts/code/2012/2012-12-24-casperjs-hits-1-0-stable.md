@@ -2,7 +2,7 @@
 title: CasperJS hits 1.0 stable
 date: 2012-12-24
 categories: code
-tags: javascript phantomjs programming
+tags: javascript phantomjs programming webdev casperjs frontend
 ---
 
 <a href="http://casperjs.org/"><img src="/static/code/2012/casperjs-logo-squared-rounded.png" alt="" style="float:right;margin-left:1em;margin-bottom:.5em"></a>Hey, [long time no see](/code/2012/introducing-casperjs-toolkit-phantomjs), right? Quite a lots of things have happened to my *tiny* [CasperJS](http://casperjs.org/) pet project since then, which has just hit its [1.0 stable milestone](https://github.com/n1k0/casperjs/blob/master/CHANGELOG.md#2012-12-24-v10). Merry Christmas :)

@@ -2,7 +2,7 @@
 title: Scrape and test any webpage using PhantomJS
 date: 2011-08-27
 categories: code
-tags: phantomjs javascript testing
+tags: phantomjs javascript testing webdev frontend
 ---
 
 Have you ever tried to scrape or harvest data from an existing website —
