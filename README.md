@@ -6,6 +6,15 @@ It's a static website built using [Jekyll](https://jekyllrb.com) and the
 [Hydeout theme](https://github.com/fongandrew/hydeout). It's hosted on
 [Github Pages](https://pages.github.com).
 
+Image optimization
+------------------
+
+```
+$ sudo apt install jpegoptim optipng
+$ find static -name "*.jpg" | xargs jpegoptim
+$ find static -name "*.png" | xargs optipng
+```
+
 License
 -------
 
