@@ -12,7 +12,7 @@ Conférence donnée lors de [l'édition 2012 de SudWeb](http://sudweb.fr/2012/ta
 >
 > L’intérêt majeur de CasperJS est qu’il permet relativement simplement de tester et valider fonctionnellement des sites et applications Web complexes, reposant sur l’exploitation intensives de Javascript, de comportements asynchrones et d’AJAX par exemple.
 
-<iframe src="http://player.vimeo.com/video/49221062" width="100%" height="500"
+<iframe src="http://player.vimeo.com/video/49221062" width="100%" height="620"
     frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 <script async class="speakerdeck-embed"
@@ -31,7 +31,7 @@ Conférence donnée lors de [l'édition 2012 de SudWeb](http://sudweb.fr/2012/ta
 Un screencast d'une partie l'atelier qui a suivi cette présentation est également [disponible sur Vimeo](http://vimeo.com/album/1951235/video/42881484)&nbsp;:
 
 <iframe src="http://player.vimeo.com/video/42881484"
-    width="660" height="381"
+    width="100%" height="430"
     frameborder="0"
     webkitAllowFullScreen
     mozallowfullscreen

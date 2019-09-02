@@ -19,8 +19,8 @@ Il était une fois votre énième idée de projet d'application révolutionnaire
 De nombreux services existent dans le cloud, peu répondent favorablement à l'ensemble de ces interrogations. Kinto est une base de données JSON auto-hébergeable disposant d'une API REST simple à utiliser, permettant d'administrer et synchroniser les données de façon sécurisée.
 
 <iframe src="//slides.com/n1k0/kinto-capitole/embed"
-  width="660"
-  height="420"
+  width="100%"
+  height="500"
   scrolling="no"
   frameborder="0"
   webkitallowfullscreen
@@ -29,7 +29,4 @@ De nombreux services existent dans le cloud, peu répondent favorablement à l'e
   <p>Your browser doesn't support iframes it seems.</p>
 </iframe>
 
-<video width="660" height="420" controls="controls">
-  <source type="video/mp4"
-    src="http://videos2016.capitoledulibre.org/technologies-web/n1k0-kinto-une-alternative-libre-a-parse-et-firebase.mp4"/>
-</video>
+La vidéo de la présentation réapparaitra peut-être un jour magiquement [ici](http://videos2016.capitoledulibre.org/technologies-web/n1k0-kinto-une-alternative-libre-a-parse-et-firebase.mp4).
