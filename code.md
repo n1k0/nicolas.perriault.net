@@ -3,6 +3,13 @@ layout: category
 title: Code
 category: code
 sidebar_sort_order: 1
+redirect_from:
+  - /code/2010/
+  - /code/2011/
+  - /code/2012/
+  - /code/2013/
+  - /code/2016/
+  - /code/2019/
 ---
 
 ![illustration](/static/img/code.png)

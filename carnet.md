@@ -3,6 +3,12 @@ layout: category
 title: Carnet (fr)
 category: carnet
 sidebar_sort_order: 2
+redirect_from:
+  - /carnet/2010/
+  - /carnet/2011/
+  - /carnet/2012/
+  - /carnet/2013/
+  - /carnet/2019/
 ---
 
 ![illustration](/static/img/carnet.png)
