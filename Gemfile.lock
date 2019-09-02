@@ -249,6 +249,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
+  jekyll-redirect-from
   jekyll-theme-hydeout (~> 3.4)
   tzinfo-data
 

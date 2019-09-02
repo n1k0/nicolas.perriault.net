@@ -3,6 +3,8 @@ title: From OSX to Ubuntu
 date: 2017-01-08
 summary: A year earlier I decided to switch from OSX to Ubuntu, so now is a good time to make a little retrospective.
 image: /static/code/2016/thou-shall-migrate.jpg
+redirect_from:
+  - /code/2016/from-osx-to-ubuntu/
 categories: code
 tags: osx ubuntu linux
 ---
