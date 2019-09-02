@@ -2,11 +2,28 @@
 layout: default
 ---
 
+{% assign currentYear = site.time | date: '%Y' %}
+{% assign postYear = page.date | date: '%Y' %}
+{% assign postAge = currentYear | minus: postYear | minus: 1 %}
+
 <header>
   <h1 class="post-title">{{ page.title }}</h1>
 </header>
 <div class="content">
   {% include post-meta.html post=page %}
+
+  {% if postAge >= 3 %}
+  <div class="maybe-obsolete">
+    <img src="/static/img/warning.png">
+    {% if page.lang == "fr" %}
+      Ce billet a été rédigé il y a plus de {{ postAge }} ans, son contenu est
+      probablement obsolète.
+    {% else %}
+      This post has been published more than {{ postAge }} years ago, and parts
+      of its contents are very likely to be obsolete by now.
+    {% endif %}
+  </div>
+  {% endif %}
 
   <div class="post-body">
     {{ content }}
