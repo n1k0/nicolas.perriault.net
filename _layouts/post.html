@@ -13,14 +13,25 @@ layout: default
   {% include post-meta.html post=page %}
 
   {% if postAge >= 3 %}
-  <div class="maybe-obsolete">
-    <img src="/static/img/warning.png">
+  <div class="post-notice info">
+    <img src="/static/img/info.png">
     {% if page.lang == "fr" %}
       Ce billet a été rédigé il y a plus de {{ postAge }} ans, son contenu est
       probablement obsolète.
     {% else %}
       This post has been published more than {{ postAge }} years ago, and parts
       of its contents are very likely to be obsolete by now.
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if page.draft %}
+  <div class="post-notice warning">
+    <img src="/static/img/warning.png">
+    {% if page.lang == "fr" %}
+      Ce billet est un brouillon.
+    {% else %}
+      This post is a draft.
     {% endif %}
   </div>
   {% endif %}
