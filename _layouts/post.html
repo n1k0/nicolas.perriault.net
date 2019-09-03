@@ -25,6 +25,19 @@ layout: default
   </div>
   {% endif %}
 
+  {% if page.origin %}
+  <div class="post-notice info">
+    <img src="/static/img/info.png">
+    <span>
+      {% if page.lang == "fr" %}
+        Ce billet a été initialement publié sur <a href="{{ page.origin.url }}">{{ page.origin.name }}</a>.
+      {% else %}
+        This post has originally been published on <a href="{{ page.origin.url }}">{{ page.origin.name }}</a>.
+      {% endif %}
+    </span>
+  </div>
+  {% endif %}
+
   {% if page.draft %}
   <div class="post-notice warning">
     <img src="/static/img/warning.png">
