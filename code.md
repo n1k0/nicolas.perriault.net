@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Code!
+title: Code
 category: code
 sidebar_sort_order: 1
 redirect_from:
@@ -18,5 +18,5 @@ redirect_from:
 Worse, the more I learn, the less I know.*
 
 <div class="syndication">
-  <a href="/feed/code.xml"><img src="/static/img/feed.png"> Subscribe to <strong>Code</strong> updates</a>. 
+  <a href="/feed/code.xml"><img src="/static/img/feed.png"> Subscribe to <strong>Code</strong> updates</a>.
 </div>
