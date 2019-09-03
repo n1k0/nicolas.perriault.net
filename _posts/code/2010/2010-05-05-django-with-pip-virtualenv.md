@@ -1,7 +1,7 @@
 ---
 title: Installer Django dans un environnement Python virtuel avec pip, virtualenv et virtualenvwrapper
 lang: fr
-categories: code
+category: code
 date: 2010-05-05
 tags: django python programming webdev
 ---

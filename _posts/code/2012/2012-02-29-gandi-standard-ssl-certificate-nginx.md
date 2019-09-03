@@ -1,7 +1,7 @@
 ---
 title: Gandi Standard SSL Certificate & Nginx
 date: 2012-02-29
-categories: code
+category: code
 tags: gandi ssl devops system
 ---
 

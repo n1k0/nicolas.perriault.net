@@ -2,7 +2,7 @@
 title: Une autre façon de gérer ses settings d'application Django
 tags: django python settings python
 date: 2011-04-13
-categories: code
+category: code
 tags: django python programming webdev devops
 ---
 

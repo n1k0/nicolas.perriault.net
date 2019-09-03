@@ -2,7 +2,7 @@
 title: A short introduction to Elm
 lang: en
 date: 2017-01-25
-categories: talks
+category: talks
 tags: elm programming community frontend webdev
 ---
 

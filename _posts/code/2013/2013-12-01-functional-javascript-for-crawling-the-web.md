@@ -1,7 +1,7 @@
 ---
 title: Functional JavaScript for crawling the Web
 date: 2013-12-01
-categories: code
+category: code
 tags: programming javascript webdev
 ---
 

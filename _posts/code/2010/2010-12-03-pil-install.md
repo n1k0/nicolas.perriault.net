@@ -1,7 +1,7 @@
 ---
 title: Install PIL within a virtualenv on Snow Leopard
 date: 2010-12-03
-categories: code
+category: code
 tags: osx python programming devops system
 ---
 

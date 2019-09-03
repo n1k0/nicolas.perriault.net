@@ -2,7 +2,7 @@
 title: Résiliation, piège à cons
 lang: fr
 date: 2013-12-30
-categories: carnet
+category: carnet
 tags: humeur haha
 ---
 

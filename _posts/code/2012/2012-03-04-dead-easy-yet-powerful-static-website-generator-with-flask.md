@@ -1,7 +1,7 @@
 ---
 title: Dead easy yet powerful static website generator with Flask
 date: 2012-03-04
-categories: code
+category: code
 tags: programming python webdev frontend
 ---
 

@@ -16,3 +16,7 @@ redirect_from:
 > *M'adressant la plupart du temps à un auditoire francophone pour tout ce qui n'a
 pas trait au code ou à la technicité de mon métier, j'ai choisi de tenir ce
 carnet en français. Mind you.*
+
+<div class="syndication">
+  <a href="/feed/carnet.xml"><img src="/static/img/feed.png"> Abonnement à la catégorie <strong>Carnet</strong></a>. 
+</div>

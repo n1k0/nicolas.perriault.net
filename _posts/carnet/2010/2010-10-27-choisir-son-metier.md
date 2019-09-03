@@ -2,7 +2,7 @@
 title: Choisir son métier, arrêter de le (faire) subir
 lang: fr
 date: 2010-10-27
-categories: carnet
+category: carnet
 tags: humeur work collaboration webdev life
 ---
 
@@ -54,7 +54,7 @@ Peut-on imaginer comparer ce type de demande à l'achat d'une *voiture* en conce
 Allez, j'ai dix minutes à tuer, je vous imagine la discussion&nbsp;:
 
 <div style="float:right;margin:0 0 10px 10px;text-align:center">
-  <a href="http://www.flickr.com/photos/ferdinandreus/4647740287">
+  <a href="http://www.flickr.com/photos/ferdinandreus/4647740287">
     <img src="http://farm5.static.flickr.com/4024/4647740287_4e7f6ab518_z.jpg" alt="fish" style="width:230px"/>
   </a>
   <br/>

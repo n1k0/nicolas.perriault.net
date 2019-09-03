@@ -1,7 +1,7 @@
 ---
 title: Tâches de déploiement spécifiques avec Symfony
 lang: fr
-categories: code
+category: code
 date: 2010-05-25
 tags: symfony php devops programming webdev
 ---

@@ -2,7 +2,7 @@
 title: Nouvelles aventures
 lang: fr
 date: 2012-04-01
-categories: carnet
+category: carnet
 tags: haha life
 ---
 

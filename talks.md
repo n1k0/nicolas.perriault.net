@@ -17,3 +17,7 @@ redirect_from:
 
 > *Sometimes, I speak at conferences, mostly about code & methodology in French
 most of the time.*
+
+<div class="syndication">
+  <a href="/feed/talks.xml"><img src="/static/img/feed.png"> Subscribe to <strong>Talks</strong> updates</a>. 
+</div>

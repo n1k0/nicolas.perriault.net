@@ -2,10 +2,10 @@
 title: Message de service
 lang: fr
 date: 2019-09-01
-categories: carnet
+category: carnet
 tags: life webdev hosting blog
 ---
 
-Je viens de migrer ce blog sous [Jekyll](https://jekyllrb.org/) et le très joli thème [Hydeout](https://github.com/fongandrew/hydeout), j'espère que j'ai trop rien cassé.
+Je viens de migrer ce blog sous [Jekyll](https://jekyllrb.org/) et le tres joli theme [Hydeout](https://github.com/fongandrew/hydeout), j'espere que j'ai trop rien casse.
 
-<small>Et puis c'est pas comme si ce coin de toile abandonné était hautement surveillé non plus, hein.</small>
+<small>Et puis c'est pas comme si ce coin de toile abandonne etait hautement surveille non plus, hein.</small>

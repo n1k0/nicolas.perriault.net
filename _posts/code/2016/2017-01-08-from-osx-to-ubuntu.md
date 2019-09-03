@@ -5,7 +5,7 @@ summary: A year earlier I decided to switch from OSX to Ubuntu, so now is a good
 image: /static/code/2016/thou-shall-migrate.jpg
 redirect_from:
   - /code/2016/from-osx-to-ubuntu/
-categories: code
+category: code
 tags: osx ubuntu linux system life
 ---
 

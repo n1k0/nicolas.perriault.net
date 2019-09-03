@@ -1,7 +1,7 @@
 ---
 title: Testing your frontend JavaScript code using mocha, chai, and sinon
 date: 2013-07-23
-categories: code
+category: code
 tags: programming javascript frontend testing webdev
 ---
 

@@ -2,7 +2,7 @@
 title: Nouveau site
 date: 2012-03-03
 lang: fr
-categories: carnet
+category: carnet
 tags: python webdev hosting life blog
 ---
 

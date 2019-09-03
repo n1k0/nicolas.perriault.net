@@ -1,7 +1,7 @@
 ---
 title: CasperJS hits 1.0 stable
 date: 2012-12-24
-categories: code
+category: code
 tags: javascript phantomjs programming webdev casperjs frontend
 ---
 

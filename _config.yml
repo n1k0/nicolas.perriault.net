@@ -24,6 +24,11 @@ paginate: 1000
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
+feed:
+  categories:
+    - carnet
+    - code
+    - talks
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

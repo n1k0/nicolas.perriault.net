@@ -1,7 +1,7 @@
 ---
 title: Why JavaScript?
 date: 2013-01-26
-categories: code
+category: code
 tags: javascript programming webdev
 ---
 

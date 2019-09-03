@@ -1,7 +1,7 @@
 ---
 title: Hosting a Symfony app on NginX using PHP-FPM
 date: 2010-09-27
-categories: code
+category: code
 tags: php symfony programming devops hosting system
 ---
 

@@ -2,7 +2,7 @@
 title: Méthodes et processus agiles
 lang: fr
 date: 2008-04-20
-categories: talks
+category: talks
 tags: work conference community
 ---
 

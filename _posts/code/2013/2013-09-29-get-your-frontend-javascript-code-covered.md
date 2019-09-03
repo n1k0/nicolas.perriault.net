@@ -1,7 +1,7 @@
 ---
 title: Get your Frontend JavaScript Code Covered
 date: 2013-09-29
-categories: code
+category: code
 tags: frontend programming testing javascript webdev
 ---
 

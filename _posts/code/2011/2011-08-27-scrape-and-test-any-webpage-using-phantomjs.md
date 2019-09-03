@@ -1,7 +1,7 @@
 ---
 title: Scrape and test any webpage using PhantomJS
 date: 2011-08-27
-categories: code
+category: code
 tags: phantomjs javascript testing webdev frontend
 ---
 

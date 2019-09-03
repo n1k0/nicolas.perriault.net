@@ -1,7 +1,7 @@
 ---
 title: CasperJS, a toolkit on top of PhantomJS
 date: 2012-03-08
-categories: code
+category: code
 tags: phantomjs javascript testing casperjs webdev programming
 ---
 

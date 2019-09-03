@@ -1,7 +1,7 @@
 ---
 title: About RESTful features of modern Web frameworks
 date: 2010-04-28
-categories: code
+category: code
 tags: php symfony programming rest api webdev
 ---
 

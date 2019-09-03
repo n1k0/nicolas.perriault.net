@@ -1,7 +1,7 @@
 ---
 title: Enabling tab completion in OS X Python interactive interpreter
 date: 2010-12-29
-categories: code
+category: code
 tags: osx python devops webdev programming linux
 ---
 

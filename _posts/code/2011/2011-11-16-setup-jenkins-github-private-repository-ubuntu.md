@@ -1,7 +1,7 @@
 ---
 title: Setup Jenkins for working with a private Github repository
 date: 2011-11-16
-categories: code
+category: code
 tags: jenkins testing webdev devops system
 ---
 

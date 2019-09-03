@@ -2,7 +2,7 @@
 title: Kinto, une alternative libre à Parse et Firebase
 lang: fr
 date: 2016-11-29
-categories: talks
+category: talks
 tags: community kinto devops programming rest api webdev frontend
 ---
 
