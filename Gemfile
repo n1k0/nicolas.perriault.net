@@ -18,6 +18,9 @@ gem "jekyll-theme-hydeout", "~> 3.4"
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
 gem "github-pages", group: :jekyll_plugins
 
+gem 'jekyll-browsersync', group: [:jekyll_plugins]
+
+
 # Support for redirects
 gem "jekyll-redirect-from"
 
