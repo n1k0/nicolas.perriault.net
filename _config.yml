@@ -16,7 +16,7 @@ email: nicolas@perriault.net
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-hydeout
+# theme: jekyll-theme-hydeout # avoid github pages warnings
 remote_theme: fongandrew/hydeout
 highlighter: rouge
 syntax_theme: monokai
