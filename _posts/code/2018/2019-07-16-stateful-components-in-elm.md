@@ -2,7 +2,7 @@
 title:  Stateful components in Elm
 date: 2019-07-16
 category: code
-tags: elm programming webdev javascript react
+tags: elm programming webdev frontend
 origin:
   name: Allo-Media Tech blog
   url: https://tech.allo-media.net/elm/2019/07/16/stateful-components-in-elm.html

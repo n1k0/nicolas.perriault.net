@@ -3,7 +3,7 @@ title: Reduce and the Ferris wheel metaphor
 excerpt: I recently had to introduce some Elm concepts to a coworker who had some experience with React and Redux. One of these concepts was List.foldl, a reduction function which exists in many languages, specifically as Array#reduce in JavaScript.
 date: 2018-01-26
 category: code
-tags: elm programming webdev javascript react
+tags: elm programming webdev frontend
 origin:
   name: Allo-Media Tech blog
   url: https://tech.allo-media.net/learning/elm/2018/01/26/reduce-and-the-ferris-wheel-metaphor.html

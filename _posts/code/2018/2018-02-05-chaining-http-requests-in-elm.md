@@ -3,7 +3,7 @@ title: Chaining HTTP requests in Elm
 excerpt: Sometimes in Elm you struggle with the most basic things. Especially when you come from a JavaScript background, where chaining HTTP requests are relatively easy thanks to Promises or async/await.
 date: 2018-02-05
 category: code
-tags: elm programming webdev javascript react
+tags: elm programming webdev frontend
 origin:
   name: Allo-Media Tech blog
   url: https://tech.allo-media.net/learning/elm/2018/02/05/chaining-http-requests-in-elm.html
