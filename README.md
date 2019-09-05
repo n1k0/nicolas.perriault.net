@@ -13,6 +13,7 @@ Ensure [Ruby](https://www.ruby-lang.org/) is installed.
 
 ```
 $ gem install jekyll bundler
+$ bundle
 $ bundle exec jekyll serve
 ```
 
