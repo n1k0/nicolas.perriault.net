@@ -13,6 +13,7 @@ permalink: /:categories/:year/:title/
 twitter_username: n1k0
 github_username:  n1k0
 email: nicolas@perriault.net
+title_image: https://nicolas.perriault.net/static/img/me.png
 
 # Build settings
 markdown: kramdown

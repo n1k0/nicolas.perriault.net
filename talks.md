@@ -2,6 +2,7 @@
 layout: category
 title: Talks
 category: talks
+excerpt: My talks.
 sidebar_sort_order: 3
 redirect_from:
   - /talks/2008/
@@ -19,5 +20,5 @@ redirect_from:
 most of the time.*
 
 <div class="syndication">
-  <a href="/feed/talks.xml"><img src="/static/img/feed.png"> Subscribe to <strong>Talks</strong> updates</a>. 
+  <a href="/feed/talks.xml"><img src="/static/img/feed.png"> Subscribe to <strong>Talks</strong> updates</a>.
 </div>

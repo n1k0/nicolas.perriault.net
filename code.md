@@ -2,6 +2,7 @@
 layout: category
 title: Code
 category: code
+excerpt: Code & computers.
 sidebar_sort_order: 1
 redirect_from:
   - /code/2010/

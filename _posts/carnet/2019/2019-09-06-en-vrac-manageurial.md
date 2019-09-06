@@ -4,6 +4,7 @@ lang: fr
 date: 2019-09-06
 category: carnet
 tags: changement management veille blog
+image: /static/carnet/2019/tumbleweed.jpg
 ---
 
 Un peu marre de Twitter, de ses querelles éphémères, de la négativité ambiante et du bruit blanc que ça génère depuis quelques mois, j'ai pris la décision de faire reprendre du service à mon agrégateur RSS afin de diversifier mes sources d'information quotidiennes.

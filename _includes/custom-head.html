@@ -1,7 +1,38 @@
 <link rel="stylesheet" href="/assets/css/syntax/syntax-{{ site.syntax_theme | default: 'monokai' }}.css">
+
+<!-- Twitter cards -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@n1k0">
 <meta name="twitter:creator" content="@n1k0">
-<meta name="twitter:title" content="Code and computers">
-<meta name="twitter:description" content="Where I talk about these.">
-<meta name="twitter:image" content="https://nicolas.perriault.net/static/img/code.png">
+<meta name="twitter:title" content="{{ page.title }}">
+
+{%- if page.excerpt %}
+<meta name="twitter:description" content="{{ page.excerpt | strip_html | strip }}">
+{%- endif -%}
+
+{%- if page.image %}
+<meta name="twitter:card"  content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
+{%- elsif page.category %}
+<meta name="twitter:card"  content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url}}/static/img/{{ page.category }}.png">
+{%- else %}
+<meta name="twitter:card"  content="summary">
+<meta name="twitter:image" content="{{ site.title_image }}">
+{% endif %}
+<!-- end of Twitter cards -->
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ site.url }}">
+<meta property="og:description" content="{{ page.excerpt | strip_html | strip }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{%- if page.image %}
+<meta property="og:image" content="{{ site.url }}{{ page.image }}">
+{%- elsif page.category %}
+<meta property="og:image" content="{{ site.url}}/static/img/{{ page.category }}.png">
+{%- else %}
+<meta property="og:image" content="{{ site.title_image }}">
+{% endif %}
+<!-- end of Open Graph -->

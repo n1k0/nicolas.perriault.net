@@ -2,6 +2,7 @@
 layout: category
 title: Carnet (fr)
 category: carnet
+excerpt: Billets en français.
 sidebar_sort_order: 2
 redirect_from:
   - /carnet/2010/
@@ -18,5 +19,5 @@ pas trait au code ou à la technicité de mon métier, j'ai choisi de tenir ce
 carnet en français. Mind you.*
 
 <div class="syndication">
-  <a href="/feed/carnet.xml"><img src="/static/img/feed.png"> Abonnement à la catégorie <strong>Carnet</strong></a>. 
+  <a href="/feed/carnet.xml"><img src="/static/img/feed.png"> Abonnement à la catégorie <strong>Carnet</strong></a>.
 </div>
