@@ -29,6 +29,8 @@ feed:
     - carnet
     - code
     - talks
+author:
+  name: Nicolas Perriault
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
