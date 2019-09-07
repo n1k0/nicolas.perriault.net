@@ -4,6 +4,26 @@
 
 @import "hydeout";
 
+@media screen and (max-width: 783px) {
+  #sidebar {
+    #sidebar-nav-links {
+      flex-direction: row;
+      justify-content: space-evenly;
+
+      a {
+        display: inline-block;
+        margin: 0 .5em;
+      }
+    }
+  }
+
+  .home.index {
+    #sidebar {
+      padding: 1rem;
+    }
+  }
+}
+
 .post-body {
 
   .highlight {
