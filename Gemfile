@@ -20,7 +20,6 @@ gem "github-pages", group: :jekyll_plugins
 
 gem 'jekyll-browsersync', group: [:jekyll_plugins]
 
-
 # Support for redirects
 gem "jekyll-redirect-from"
 
@@ -28,6 +27,12 @@ gem "jekyll-redirect-from"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
 end
+
+# Tidy HTML
+group :jekyll_plugins do
+  gem "jekyll-tidy"
+end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

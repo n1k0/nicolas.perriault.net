@@ -25,6 +25,7 @@ paginate: 1000
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
+  - jekyll-tidy
 feed:
   categories:
     - carnet
@@ -32,6 +33,9 @@ feed:
     - talks
 author:
   name: Nicolas Perriault
+jekyll_tidy:
+  # exclude: [ "*.md" ]
+  compress_html: false
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
