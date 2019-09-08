@@ -16,6 +16,7 @@
 {%- capture final_page_url -%}{{ site.url }}{{ page.url  }}{%- endcapture -%}
 
 <link rel="stylesheet" href="/assets/css/syntax/syntax-{{ site.syntax_theme | default: 'monokai' }}.css">
+<link href="/humans.txt" rel="author" type="text/plain" />
 <meta itemprop="image" content="{{ final_page_image }}">
 <meta name="theme-color" content="#333333">
 <meta name="apple-mobile-web-app-title" content="{{ site.title }}">

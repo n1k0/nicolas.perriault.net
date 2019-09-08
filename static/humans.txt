@@ -1,9 +1,15 @@
 /* the humans responsible & colophon */
 /* humanstxt.org */
 
+/* ABOUT */
+  Author:     Nicolas Perriault
+  Twitter:    n1k0
+  Location:   Montpellier, France
 
-/* TEAM */
-  Author: Nicolas Perriault
-  Site: http://nicolas.perriault.net/
-  Twitter: http://twitter.com/n1k0
-  Location: Montpellier, France
+/* SITE */
+  Built with: Jekyll <http://jekyllrb.com>
+              Github Pages <https://pages.github.com/>
+  Standards:  HTML, CSS, JavaScript
+  Software:   Jekyll
+  Hosting:    Gihub Pages
+  Code:       https://github.com/n1k0/nicolas.perriault.net
