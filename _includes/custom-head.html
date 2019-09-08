@@ -33,10 +33,21 @@
 <!-- end of Twitter cards -->
 
 <!-- Open Graph -->
-<meta property="og:title" content="{{ final_page_title }}">
+{% if page.path contains '_posts' or page.layout == "post" -%}
 <meta property="og:type" content="article">
-<meta property="og:url" content="{{ site.url }}">
+<meta property="og:article:published_time" content="{{ page.date }}">
+<meta property="og:article:section" content="{{ page.category }}">
+{% for tag in page.tags -%}
+<meta property="og:article:tag" content="{{ tag }}">
+{%- endfor %}
+{%- else -%}
+<meta property="og:type" content="website">
+{%- endif %}
+<meta property="og:title" content="{{ final_page_title }}">
 <meta property="og:description" content="{{ final_page_description }}">
+<meta property="og:locale" content="{{ page.lang | default: "en" }}" />
+<meta property="og:url" content="{{ final_page_url }}">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:image" content="{{ final_page_image }}">
+<meta property="og:author" content="{{ site.author.name }}">
 <!-- end of Open Graph -->
