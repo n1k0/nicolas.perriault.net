@@ -25,7 +25,6 @@ paginate: 1000
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
-  - jekyll-tidy
 feed:
   categories:
     - carnet

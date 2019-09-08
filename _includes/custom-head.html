@@ -1,38 +1,41 @@
+{%- assign final_page_image = site.title_image -%}
+{%- if page.image -%}
+  {%- assign final_page_image = page.image -%}
+{%- elsif page.category -%}
+  {%- capture final_page_image -%}/static/img/{{ page.category }}.png{%- endcapture -%}
+{%- endif -%}
+{%- assign first_img_char = final_page_image | slice: 0 -%}
+{%- if first_img_char == '/' -%}
+  {%- assign final_page_image = final_page_image | prepend: site.url -%}
+{%- endif -%}
+
+{%- capture final_page_title -%}{{ page.title }} - {{ site.title }}{%- endcapture -%}
+
+{%- capture final_page_description -%}{{ page.excerpt | strip_html | strip | default: site.description }}{%- endcapture -%}
+
+{%- capture final_page_url -%}{{ site.url }}{{ page.url  }}{%- endcapture -%}
+
 <link rel="stylesheet" href="/assets/css/syntax/syntax-{{ site.syntax_theme | default: 'monokai' }}.css">
+<meta itemprop="image" content="{{ final_page_image }}">
+<meta name="theme-color" content="#333333">
+<meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+<meta name="application-name" content="{{ site.title }}">
 
 <!-- Twitter cards -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@n1k0">
 <meta name="twitter:creator" content="@n1k0">
-<meta name="twitter:title" content="{{ page.title }}">
-
-{%- if page.excerpt %}
-<meta name="twitter:description" content="{{ page.excerpt | strip_html | strip }}">
-{%- endif -%}
-
-{%- if page.image %}
+<meta name="twitter:title" content="{{ final_page_title }}">
+<meta name="twitter:description" content="{{ final_page_description }}">
 <meta name="twitter:card"  content="summary_large_image">
-<meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
-{%- elsif page.category %}
-<meta name="twitter:card"  content="summary_large_image">
-<meta name="twitter:image" content="{{ site.url}}/static/img/{{ page.category }}.png">
-{%- else %}
-<meta name="twitter:card"  content="summary">
-<meta name="twitter:image" content="{{ site.title_image }}">
-{% endif %}
+<meta name="twitter:image" content="{{ final_page_image }}">
 <!-- end of Twitter cards -->
 
 <!-- Open Graph -->
-<meta property="og:title" content="{{ page.title }}">
+<meta property="og:title" content="{{ final_page_title }}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{{ site.url }}">
-<meta property="og:description" content="{{ page.excerpt | strip_html | strip }}">
+<meta property="og:description" content="{{ final_page_description }}">
 <meta property="og:site_name" content="{{ site.title }}">
-{%- if page.image %}
-<meta property="og:image" content="{{ site.url }}{{ page.image }}">
-{%- elsif page.category %}
-<meta property="og:image" content="{{ site.url}}/static/img/{{ page.category }}.png">
-{%- else %}
-<meta property="og:image" content="{{ site.title_image }}">
-{% endif %}
+<meta property="og:image" content="{{ final_page_image }}">
 <!-- end of Open Graph -->
