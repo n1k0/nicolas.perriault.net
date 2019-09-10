@@ -14,7 +14,7 @@ redirect_from:
   - /talks/2017/
 ---
 
-![illustration](/static/img/talks.png)
+![illustration](/static/img/talks.png){:class="cover"}
 
 > *Sometimes, I speak at conferences, mostly about code & methodology in French
 most of the time.*

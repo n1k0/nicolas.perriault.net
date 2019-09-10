@@ -5,7 +5,7 @@ sidebar_link: true
 sidebar_sort_order: 5
 ---
 
-![illustration](/static/img/contact.jpg)
+![illustration](/static/img/contact.jpg){:class="cover"}
 
 Your best bet for interacting with me is probably to [send me an email](mailto:nicolas@perriault.net) or use the form below:
 
@@ -20,7 +20,7 @@ Your best bet for interacting with me is probably to [send me an email](mailto:n
   <input type="hidden" name="replyto" value="%email">
   <p><input type="text" name="subject" placeholder="Subject"></p>
   <p><input type="text" name="email" placeholder="Your email address"></p>
-  <p><textarea name="message" placeholder="Your message" required></textarea></p>
+  <p><textarea name="message" placeholder="Your message (required)" required></textarea></p>
   <p><input type="submit" value="Send message"></p>
 </form>
 

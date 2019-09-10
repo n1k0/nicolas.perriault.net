@@ -4,24 +4,8 @@
 
 @import "hydeout";
 
-@media screen and (max-width: 783px) {
-  #sidebar {
-    #sidebar-nav-links {
-      flex-direction: row;
-      justify-content: space-evenly;
-
-      a {
-        display: inline-block;
-        margin: 0 .5em;
-      }
-    }
-  }
-
-  .home.index {
-    #sidebar {
-      padding: 1rem;
-    }
-  }
+img.cover {
+  width: 100%;
 }
 
 .post-body {
@@ -122,7 +106,7 @@
     color: #515151;
     font-size: .8em;
     padding: .75em 1em;
-    min-width: 296px;
+    min-width: 30vw;
   }
 
   textarea {
@@ -137,5 +121,29 @@
     border-radius: 5px;
     font-size: .8em;
     padding: .75em 1em;
+  }
+}
+
+@media screen and (max-width: 783px) {
+  .container > .content {
+    padding: 1.5rem;
+  }
+
+  #sidebar {
+    #sidebar-nav-links {
+      flex-direction: row;
+      justify-content: space-evenly;
+
+      a {
+        display: inline-block;
+        margin: 0 .5em;
+      }
+    }
+  }
+
+  .home.index {
+    #sidebar {
+      padding: 1rem;
+    }
   }
 }

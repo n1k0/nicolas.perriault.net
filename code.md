@@ -13,7 +13,7 @@ redirect_from:
   - /code/2019/
 ---
 
-![illustration](/static/img/code.png)
+![illustration](/static/img/code.png){:class="cover"}
 
 > *I've been programming for more than 20 years and I still don't have a clue.
 Worse, the more I learn, the less I know.*

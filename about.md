@@ -5,7 +5,7 @@ sidebar_link: true
 sidebar_sort_order: 4
 ---
 
-![me](/static/img/me.png)
+![me](/static/img/me.png){:class="cover"}
 
 My name is **Nicolas Perriault**, I live in southern France near Montpellier and
 am pretty much **enjoying my life**. I work remotely for
