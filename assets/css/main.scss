@@ -81,6 +81,12 @@
     border: 1px solid #b8daff;
   }
 
+  &.success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+  }
+
   &.warning {
     background-color: #fff3cd;
     border: 1px solid #ffeeba;
@@ -103,5 +109,33 @@
     vertical-align: text-top;
     width: 24px;
     height: 24px;
+  }
+}
+
+.contact-form {
+  p {
+    line-height: 0;
+  }
+
+  input[type=text], textarea {
+    border-radius: 5px;
+    color: #515151;
+    font-size: .8em;
+    padding: .75em 1em;
+    min-width: 296px;
+  }
+
+  textarea {
+    border: 1px solid #e5e5e5;
+    font-family: Arial, sans;
+    height: 120px;
+    max-width: 400%;
+    width: 100%;
+  }
+
+  input[type=submit] {
+    border-radius: 5px;
+    font-size: .8em;
+    padding: .75em 1em;
   }
 }
