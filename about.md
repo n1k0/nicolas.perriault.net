@@ -17,7 +17,8 @@ I'm a freelance [Web developer](/code/), self-employed by my own tiny company,
 
 Previously, I worked for cool companies like [Clever-Age](https://www.clever-age.com/),
 [Sensiolabs](https://sensiolabs.com/fr/), [Allo-Media](https://www.allo-media.net/),
-[Scopyleft](http://scopyleft.fr/) and [Mozilla](https://mozilla.com/).
+[Scopyleft](http://scopyleft.fr/) and [Mozilla](https://mozilla.com/). I'm currently
+mainly working for [beta.gouv](https://beta.gouv.fr/).
 
 I [speak](/talks/) at conferences, <del>sometimes</del> rarely now.
 
