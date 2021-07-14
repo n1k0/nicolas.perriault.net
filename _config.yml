@@ -21,7 +21,7 @@ markdown: kramdown
 remote_theme: fongandrew/hydeout
 highlighter: rouge
 syntax_theme: monokai
-paginate: 1000
+paginate: 10
 plugins:
   - jekyll-feed
   - jekyll-redirect-from

@@ -9,11 +9,17 @@ It's a static website built using [Jekyll](https://jekyllrb.com) and the
 Install
 -------
 
-Ensure [Ruby](https://www.ruby-lang.org/) is installed.
+Ensure [Ruby](https://www.ruby-lang.org/) and [rbenv](https://github.com/rbenv/rbenv) are installed, then:
 
 ```
-$ gem install jekyll bundler
+$ rbenv install 2.7.4
+$ rbenv local 2.7.4
 $ bundle
+```
+
+To start the development server:
+
+```
 $ bundle exec jekyll serve
 ```
 
@@ -30,7 +36,7 @@ $ npm install -g browser-sync
 And run:
 
 ```
-$ bundle exec jekyll browser-sync 
+$ bundle exec jekyll browser-sync
 ```
 
 Deploy
