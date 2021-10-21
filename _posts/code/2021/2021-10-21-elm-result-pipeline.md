@@ -9,7 +9,7 @@ redirect_from:
 image:
 ---
 
-[Elm](https://elm-lang.org/) is great, but let's admit it: dealing with incertainty can be painful. A classic example is when you query a data structure which can be empty:
+[Elm](https://elm-lang.org/) is great, but let's admit it: dealing explicitely with uncertainty can be painful. A classic example is when you query a data structure which can be empty:
 
 ```elm
 > dogs = [ "Lassie", "Scooby-Doo" ]
