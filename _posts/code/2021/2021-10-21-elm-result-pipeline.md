@@ -59,20 +59,20 @@ Ok "Scooby-Doo" : Result String String
 Err ("oh no, can't find Rintintin") : Result String String
 ```
 
-So really, `Result` is super useful. Now they're so useful that sometimes, you want to use them a lot, eg. in a record:
+So really, `Result` is super useful. Now it's so useful that sometimes, you want to use it *a lot*, eg. in a record:
 
 ```elm
-type alias FavoriteDogs = {
-    dogSlot1: Result String String
-  , dogSlot2: Result String String
-  , dogSlot3: Result String String
-  , dogSlot4: Result String String
-  , dogSlot5: Result String String
-  , dogSlot6: Result String String
-}
+type alias FavoriteDogs =
+    { dogSlot1 : Result String String
+    , dogSlot2 : Result String String
+    , dogSlot3 : Result String String
+    , dogSlot4 : Result String String
+    , dogSlot5 : Result String String
+    , dogSlot6 : Result String String
+    }
 ```
 
-Hmm wait, imagine you're only interested in a `FavoriteDogs` record when all six available slots are filled. Checking for this is gonna be painful:
+Hmm wait, imagine you're only interested in a `FavoriteDogs` record when all six available slots are fulfilled. Checking for this is going to be painful:
 
 ```elm
 showDogs : FavoriteDogs -> Html msg
