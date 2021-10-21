@@ -6,7 +6,7 @@ category: Code
 tags: work webdev elm programming
 redirect_from:
   - /carnet/2021/elm-result-pipeline/
-image:
+image: /static/code/2021/pipeline.jpg
 ---
 
 [Elm](https://elm-lang.org/) is great, but let's admit it: dealing explicitely with uncertainty can be painful. A classic example is when you query a data structure which can be empty:
@@ -122,7 +122,7 @@ type alias FavoriteDogs =
     }
 ```
 
-### Pipelining to the rescue!
+## Pipelining to the rescue!
 
 Here's a nice helper I use to build a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
 
@@ -147,6 +147,13 @@ build =
 ```
 
 You might have already seen this pattern used in the popular [elm-json-decode-pipeline](https://package.elm-lang.org/packages/NoRedInk/elm-json-decode-pipeline/latest) package.
+
+<figure>
+    <img src="/static/code/2021/pipeline.jpg" alt="Photo of Pipelines" style="width:100%;border-radius:5px">
+    <figcaption>
+        Photo by <a href="https://unsplash.com/@sigmund">Sigmund</a> on <a href="https://unsplash.com/s/photos/pipeline">Unsplash</a>
+    </figcaption>
+</figure>
 
 The cool thing with this approach is that if a single result fails, the whole operation fails with the error of the first failure encountered during the build process:
 
@@ -215,3 +222,7 @@ This post has been written in one hour tops. This is an attempt at forcing mysel
 ### Edit
 
 Thanks to [elm-search](https://klaftertief.github.io/elm-search/?q=Result%20x%20a%20-%3E%20Result%20x%20(a%20-%3E%20b)%20-%3E%20Result%20x%20b), I could find that the [elm-result-extra](https://package.elm-lang.org/packages/elm-community/result-extra/latest) package provides [`andMap`](https://package.elm-lang.org/packages/elm-community/result-extra/latest/Result-Extra#andMap), which allows exactly the same thing as my `resolve` helper.
+
+### Thanks
+
+Thanks to [Ethan](https://github.com/glasserc), [Mathieu](https://blog.mathieu-leplatre.info/) and [Mathieu](https://agopian.info/) for their precious feedback.
