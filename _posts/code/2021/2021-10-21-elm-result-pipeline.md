@@ -122,7 +122,7 @@ type alias FavoriteDogs =
     }
 ```
 
-Here's a nice helper I wrote allowing to compose a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
+Here's a nice helper I wrote allowing to build a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
 
 
 ```elm
