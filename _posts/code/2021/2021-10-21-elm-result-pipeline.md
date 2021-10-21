@@ -2,8 +2,10 @@
 title: Elm Result Pipeline
 lang: en
 date: 2021-10-21
-category: carnet
-tags: work webdev elm
+category: Code
+tags: work webdev elm programming
+redirect_from:
+  - /carnet/2021/elm-result-pipeline/
 image:
 ---
 
@@ -23,7 +25,7 @@ Just "Lassie" : Maybe String
 Nothing : Maybe a
 ```
 
-Meaning you have to handle `Maybe`, `Maybe.map`, `Maybe.andThen`, `Maybe.withDefault` and so on if you want to ensure you handle the uncertainty of actually holding a value:
+Meaning you have to handle [`Maybe`](https://package.elm-lang.org/packages/elm/core/latest/Maybe), `Maybe.map`, `Maybe.andThen`, `Maybe.withDefault` and so on if you want to ensure you handle the uncertainty of actually holding a value:
 
 ```elm
 > ["Lassie"]
@@ -73,54 +75,51 @@ type alias FavoriteDogs = {
 Hmm wait, checking for these results every time we need a value is gonna be painful:
 
 ```elm
-div []
-    [ text "I like "
-    , case dogSlot1 of
-        Ok dog2 ->
-            text <| dog2 ++ ", "
+showDogs : FavoriteDogs -> Html msg
+showDogs favorites =
+    case favorites.dogSlot1 of
+        Ok dog1 ->
+            case favorites.dogSlot2 of
+                Ok dog2 ->
+                    case dogSlot2 of
+                        Ok dog2 ->
+                            -- To be continued… At some point
+                            -- we can use dog1, dog2 -> dog6
+
+                        Err error ->
+                            error
+
+                Err error ->
+                    error
 
         Err error ->
-            text error
-    , case dogSlot2 of
-        Ok dog2 ->
-            text <| dog2 ++ ", "
-
-        Err error ->
-            text error
-
-    -- etc…
-    , text "and that's it."
-    ]
+            error
 ```
 
-Hopefully we have the `Result.map` familly of functions:
+Hopefully we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
 
 ```elm
-div []
-    [ text "I like "
-    , Result.map2
-        (\dog1 dog2 -> text <| dog1 ++ ", " ++ dog2)
-        dogSlot1
-        dogSlot2
-
-    -- etc…
-    , text "and that's it"
-    ]
+showTwoFirstDogs : FavoriteDogs -> Html msg
+showTwoFirstDogs favorites =
+    Result.map2
+        (\dog1 dog2 -> text <| dog1 ++ " and " ++ dog2)
+        favorites.dogSlot1
+        favorites.dogSlot2
 ```
 
-But wait, we don't have `map6`! The core implementation of [Result.map5](https://github.com/elm/core/blob/47ebbc97047d92baa72d877a478afaaea3aefce8/src/Result.elm#L143-L170) is pretty verbose, I understand they avoided going further haha. But more annoyingly, that means you don't have a convenient helper for mapping more than 5 `Result`s at once, for example to build a record having 6.
+But wait, we don't have `Result.map6`! The core implementation of [`Result.map5`](https://github.com/elm/core/blob/47ebbc97047d92baa72d877a478afaaea3aefce8/src/Result.elm#L143-L170) is pretty verbose already, I can understand why they avoided going further haha. But more annoyingly, that means you don't have a convenient helper for mapping more than 5 `Result`s at once, for example to build a record having 6.
 
 Also, ideally we'd rather want to deal with a data structure with direct access, to avoid messing around too much with the `Result` api:
 
 ```elm
-type alias FavoriteDogs = {
-    dogSlot1: String
-  , dogSlot2: String
-  , dogSlot3: String
-  , dogSlot4: String
-  , dogSlot5: String
-  , dogSlot6: String
-}
+type alias FavoriteDogs =
+    { dogSlot1 : String
+    , dogSlot2 : String
+    , dogSlot3 : String
+    , dogSlot4 : String
+    , dogSlot5 : String
+    , dogSlot6 : String
+    }
 ```
 
 Here's a nice helper I wrote allowing to compose a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html):
@@ -209,3 +208,7 @@ That's all folks, hope it's useful.
 ### Disclaimer
 
 This post has been written in an hour tops. This is an attempt at forcing myself writing again on this blog, just don't judge me too harsh!
+
+### Edit
+
+Thanks to [elm-search](https://klaftertief.github.io/elm-search/?q=Result%20x%20a%20-%3E%20Result%20x%20(a%20-%3E%20b)%20-%3E%20Result%20x%20b), I could find that the [elm-result-extra](https://package.elm-lang.org/packages/elm-community/result-extra/latest) package provides [`andMap`](https://package.elm-lang.org/packages/elm-community/result-extra/latest/Result-Extra#andMap), which allows exactly the same thing as my `resolve` helper.
