@@ -59,7 +59,7 @@ Ok "Scooby-Doo" : Result String String
 Err ("oh no, can't find Rintintin") : Result String String
 ```
 
-So really, `Result` is super useful. Now it's so useful that sometimes, you want to use it *a lot*, eg. in a record:
+So really, `Result` is super useful. Now it's *so* useful that sometimes, you want to use it *a lot*, eg. in records:
 
 ```elm
 type alias FavoriteDogs =
@@ -96,7 +96,7 @@ showDogs favorites =
             Html.text error
 ```
 
-Fortunately we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
+Luckily we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
 
 ```elm
 showTwoFirstDogs : FavoriteDogs -> Html msg
@@ -122,8 +122,9 @@ type alias FavoriteDogs =
     }
 ```
 
-Here's a nice helper I wrote allowing to build a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
+### Pipelining to the rescue!
 
+Here's a nice helper I use to build a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
 
 ```elm
 resolve : Result x a -> Result x (a -> b) -> Result x b
@@ -145,7 +146,9 @@ build =
         |> resolve (findDog "Jofi" dogs)
 ```
 
-The cool thing being that if a single result fails, the whole operation fails with the error of the first failure encountered during the build process:
+You might have already seen this pattern used in the popular [elm-json-decode-pipeline](https://package.elm-lang.org/packages/NoRedInk/elm-json-decode-pipeline/latest) package.
+
+The cool thing with this approach is that if a single result fails, the whole operation fails with the error of the first failure encountered during the build process:
 
 ```elm
 dogs : List String
