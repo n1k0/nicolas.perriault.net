@@ -96,7 +96,7 @@ showDogs favorites =
             Html.text error
 ```
 
-Hopefully we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
+Fortunately we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
 
 ```elm
 showTwoFirstDogs : FavoriteDogs -> Html msg
