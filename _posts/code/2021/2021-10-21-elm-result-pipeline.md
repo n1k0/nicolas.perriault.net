@@ -87,13 +87,13 @@ showDogs favorites =
                             -- we can use dog1, dog2 -> dog6
 
                         Err error ->
-                            error
+                            Html.text error
 
                 Err error ->
-                    error
+                    Html.text error
 
         Err error ->
-            error
+            Html.text error
 ```
 
 Hopefully we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
