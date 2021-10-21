@@ -41,7 +41,7 @@ Meaning you have to handle [`Maybe`](https://package.elm-lang.org/packages/elm/c
 "oh no ;(" : String
 ```
 
-Same goes with `Result`, which is basically a `Maybe` with an explicit error attached:
+Same goes with [`Result`](https://package.elm-lang.org/packages/elm/core/latest/Result), which is basically a `Maybe` with an explicit error attached:
 
 ```elm
 > findDog name =
@@ -59,7 +59,7 @@ Ok "Scooby-Doo" : Result String String
 Err ("oh no, can't find Rintintin") : Result String String
 ```
 
-So really, `Result`s are super useful. Now they're so useful that sometimes, you want to use them a lot, eg in a record:
+So really, `Result` is super useful. Now they're so useful that sometimes, you want to use them a lot, eg. in a record:
 
 ```elm
 type alias FavoriteDogs = {
@@ -72,7 +72,7 @@ type alias FavoriteDogs = {
 }
 ```
 
-Hmm wait, checking for these results every time we need a value is gonna be painful:
+Hmm wait, imagine you're only interested in a `FavoriteDogs` record when all six available slots are filled. Checking for this is gonna be painful:
 
 ```elm
 showDogs : FavoriteDogs -> Html msg
@@ -207,7 +207,7 @@ That's all folks, hope it's useful.
 
 ### Disclaimer
 
-This post has been written in an hour tops. This is an attempt at forcing myself writing again on this blog, just don't judge me too harsh!
+This post has been written in one hour tops. This is an attempt at forcing myself to write again on this blog, just don't judge me too harsh!
 
 ### Edit
 
