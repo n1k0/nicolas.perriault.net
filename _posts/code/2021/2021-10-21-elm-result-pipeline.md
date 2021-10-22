@@ -9,7 +9,7 @@ redirect_from:
 image: /static/code/2021/pipeline.jpg
 ---
 
-One of the best features of pure functional programming languages like [Elm](https://elm-lang.org/) is their ability to deal with and handle *uncertainty*. The absence of `null` and exceptions forces developers to state explicitely what should happen when expectations aren't met, which combined with a good compiler and a strong static type system makes the code super descriptive and rock solid.
+One of the best features of pure functional programming languages like [Elm](https://elm-lang.org/) is their ability to handle and deal with *uncertainty*. The absence of `null` and exceptions forces developers to state explicitely what should happen when expectations aren't met, which combined with a good compiler and a strong static type system makes the code super descriptive and rock solid.
 
 A classic example is when you query a data structure which can be empty:
 
@@ -47,7 +47,7 @@ Meaning you may handle [`Maybe`](https://package.elm-lang.org/packages/elm/core/
 "oh no ;(" : String
 ```
 
-Same goes with [`Result`](https://package.elm-lang.org/packages/elm/core/latest/Result), which is basically a `Maybe` with an alternative value — typically an error — attached:
+Same goes with [`Result`](https://package.elm-lang.org/packages/elm/core/latest/Result), which is basically a `Maybe` with an alternate value — typically an error — attached:
 
 ```elm
 > findDog name =
