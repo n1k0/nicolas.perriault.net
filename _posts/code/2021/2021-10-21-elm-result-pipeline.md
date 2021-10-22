@@ -107,23 +107,23 @@ showDogs favorites =
 Luckily we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
 
 ```elm
-showFirstTwoDogs : FavoriteDogs -> Html msg
-showFirstTwoDogs favorites =
+firstTwoDogs : FavoriteDogs -> Result String String
+firstTwoDogs { dogSlot1, dogSlot2 } =
     Result.map2
-        (\dog1 dog2 -> text <| dog1 ++ " and " ++ dog2)
-        favorites.dogSlot1
-        favorites.dogSlot2
+        (\dog1 dog2 -> dog1 ++ " and " ++ dog2)
+        dogSlot1
+        dogSlot2
 
 
-showFirstThreeDogs : FavoriteDogs -> Html msg
-showFirstThreeDogs favorites =
+firstThreeDogs : FavoriteDogs -> Result String String
+firstThreeDogs { dogSlot1, dogSlot2, dogSlot3 } =
     Result.map3
         (\dog1 dog2 dog3 ->
-            [ dog1, dog2, dog3 ] |> String.join ", " |> text
+            String.join ", " [ dog1, dog2, dog3 ]
         )
-        favorites.dogSlot1
-        favorites.dogSlot2
-        favorites.dogSlot3
+        dogSlot1
+        dogSlot2
+        dogSlot3
 ```
 
 But wait, we don't have `Result.map6`! The core implementation of [`Result.map5`](https://github.com/elm/core/blob/47ebbc97047d92baa72d877a478afaaea3aefce8/src/Result.elm#L143-L170) is pretty verbose already, I can understand why they avoided going further haha. But more annoyingly, that means you don't have a convenient helper for mapping more than 5 `Result`s at once, for example to build a record having 6.
