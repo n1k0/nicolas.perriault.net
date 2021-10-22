@@ -2,7 +2,7 @@
 title: Elm Result Pipeline
 lang: en
 date: 2021-10-21
-category: Code
+category: code
 tags: work webdev elm programming
 redirect_from:
   - /carnet/2021/elm-result-pipeline/

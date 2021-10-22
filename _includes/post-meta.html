@@ -12,7 +12,7 @@
       {% endcomment %}
       {% assign category_page = false %}
       {% for node in site.pages %}
-        {% if node.category == category or node.title == category %}
+        {% if node.layout == "category" and node.category == include.post.category %}
           {% assign category_page = node %}
         {% endif %}
       {% endfor %}

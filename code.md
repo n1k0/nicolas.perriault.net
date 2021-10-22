@@ -16,7 +16,7 @@ redirect_from:
 ![illustration](/static/img/code.png){:class="cover"}
 
 > *I've been programming for more than 20 years and I still don't have a clue.
-Worse, the more I learn, the less I know.*
+> Worse, the more I learn, the less I know.*
 
 <div class="syndication">
   <a href="/feed/code.xml"><img src="/static/img/feed.png"> Subscribe to <strong>Code</strong> updates</a>.
