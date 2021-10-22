@@ -67,7 +67,7 @@ Ok "Scooby-Doo" : Result String String
 Err ("oh no, can't find Rintintin") : Result String String
 ```
 
-So really, `Result` is super useful. Now it's *so* useful that sometimes, you want to use it *a lot*, eg. in records:
+So really, `Result` is super useful. Now it's *so* useful that sometimes, you want to use it *a lot*, eg. in records[^1]:
 
 ```elm
 type alias Dog = String
@@ -82,12 +82,6 @@ type alias FavoriteDogs =
     , dogSlot6 : Result Error Dog
     }
 ```
-
-> **Heads up!**
->
-> For the sake of simplicity and disambiguation, we're aliasing `Dog`
-> and `Error` as strings here. This is not recommended practice, you should rather
-> use [opaque types](https://ckoster22.medium.com/advanced-types-in-elm-opaque-types-ec5ec3b84ed2) instead.
 
 Hmm wait, imagine you're only interested in a `FavoriteDogs` record when all six available slots are fulfilled. Checking for this is going to be painful:
 
@@ -135,7 +129,7 @@ firstThreeDogs { dogSlot1, dogSlot2, dogSlot3 } =
         dogSlot3
 ```
 
-But wait, we don't have `Result.map6`! The core implementation of [`Result.map5`](https://github.com/elm/core/blob/47ebbc97047d92baa72d877a478afaaea3aefce8/src/Result.elm#L143-L170) is pretty verbose already, I can understand why they avoided going further haha. But more annoyingly, that means you don't have a convenient helper for mapping more than 5 `Result`s at once, for example to build a record having 6.
+But wait, we don't have `Result.map6`! The [core implementation of `Result.map5`](https://github.com/elm/core/blob/47ebbc97047d92baa72d877a478afaaea3aefce8/src/Result.elm#L143-L170) is pretty verbose already, I can understand why they avoided going further haha. But more annoyingly, that means you don't have a convenient helper for mapping more than 5 `Result`s at once, for example to build a record having 6.
 
 Also, ideally we'd rather want to deal with a data structure with direct access, to avoid messing around too much with the `Result` api:
 
@@ -160,7 +154,7 @@ resolve result =
     Result.andThen (\partial -> Result.map partial result)
 ```
 
-It allows creating a fully-qualified `FavoriteDogs` record this way:
+It allows[^2] creating a fully-qualified `FavoriteDogs` record this way:
 
 ```elm
 build : Result Error FavoriteDogs
@@ -249,8 +243,12 @@ This post has been written in ~~one hour tops~~ more than that with all the feed
 
 ## Thanks
 
-Thanks to [Ethan](https://github.com/glasserc), [Mathieu](https://blog.mathieu-leplatre.info/), [Mathieu](https://agopian.info/) and [Rémy](https://twitter.com/Natim) for their precious feedback.
+Thanks to [Alexis](https://blog.notmyidea.org/), [Ethan](https://github.com/glasserc), [Mathieu](https://blog.mathieu-leplatre.info/), [Mathieu](https://agopian.info/) and [Rémy](https://twitter.com/Natim) for their precious feedback.
 
 ## Update
 
 Thanks to [elm-search](https://klaftertief.github.io/elm-search/?q=Result%20x%20a%20-%3E%20Result%20x%20(a%20-%3E%20b)%20-%3E%20Result%20x%20b), I could find that the [elm-result-extra](https://package.elm-lang.org/packages/elm-community/result-extra/latest) package provides [`andMap`](https://package.elm-lang.org/packages/elm-community/result-extra/latest/Result-Extra#andMap), which allows exactly the same thing as my `resolve` helper.
+
+[^1]: For the sake of simplicity and disambiguation, we're aliasing `Dog` and `Error` as strings here. This is not recommended practice, you should rather use [opaque types](https://ckoster22.medium.com/advanced-types-in-elm-opaque-types-ec5ec3b84ed2) instead.
+
+[^2]: The type signature of `resolve` might be hard to grasp; this [section of the Elm Guide](https://guide.elm-lang.org/types/reading_types.html) may be a good read.
