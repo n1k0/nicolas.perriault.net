@@ -70,15 +70,24 @@ Err ("oh no, can't find Rintintin") : Result String String
 So really, `Result` is super useful. Now it's *so* useful that sometimes, you want to use it *a lot*, eg. in records:
 
 ```elm
+type alias Dog = String
+type alias Error = String
+
 type alias FavoriteDogs =
-    { dogSlot1 : Result String String
-    , dogSlot2 : Result String String
-    , dogSlot3 : Result String String
-    , dogSlot4 : Result String String
-    , dogSlot5 : Result String String
-    , dogSlot6 : Result String String
+    { dogSlot1 : Result Error Dog
+    , dogSlot2 : Result Error Dog
+    , dogSlot3 : Result Error Dog
+    , dogSlot4 : Result Error Dog
+    , dogSlot5 : Result Error Dog
+    , dogSlot6 : Result Error Dog
     }
 ```
+
+> **Heads up!**
+>
+> For the sake of simplicity and disambiguation, we're aliasing `Dog`
+> and `Error` as strings here. This is not recommended practice, you should rather
+> use [opaque types](https://ckoster22.medium.com/advanced-types-in-elm-opaque-types-ec5ec3b84ed2) instead.
 
 Hmm wait, imagine you're only interested in a `FavoriteDogs` record when all six available slots are fulfilled. Checking for this is going to be painful:
 
@@ -107,7 +116,7 @@ showDogs favorites =
 Luckily we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
 
 ```elm
-firstTwoDogs : FavoriteDogs -> Result String String
+firstTwoDogs : FavoriteDogs -> Result Error Dog
 firstTwoDogs { dogSlot1, dogSlot2 } =
     Result.map2
         (\dog1 dog2 -> dog1 ++ " and " ++ dog2)
@@ -115,7 +124,7 @@ firstTwoDogs { dogSlot1, dogSlot2 } =
         dogSlot2
 
 
-firstThreeDogs : FavoriteDogs -> Result String String
+firstThreeDogs : FavoriteDogs -> Result Error Dog
 firstThreeDogs { dogSlot1, dogSlot2, dogSlot3 } =
     Result.map3
         (\dog1 dog2 dog3 ->
@@ -132,12 +141,12 @@ Also, ideally we'd rather want to deal with a data structure with direct access,
 
 ```elm
 type alias FavoriteDogs =
-    { dogSlot1 : String
-    , dogSlot2 : String
-    , dogSlot3 : String
-    , dogSlot4 : String
-    , dogSlot5 : String
-    , dogSlot6 : String
+    { dogSlot1 : Dog
+    , dogSlot2 : Dog
+    , dogSlot3 : Dog
+    , dogSlot4 : Dog
+    , dogSlot5 : Dog
+    , dogSlot6 : Dog
     }
 ```
 
@@ -154,7 +163,7 @@ resolve result =
 It allows creating a fully-qualified `FavoriteDogs` record this way:
 
 ```elm
-build : Result String FavoriteDogs
+build : Result Error FavoriteDogs
 build =
     Ok FavoriteDogs
         |> resolve (findDog "Lassie" dogs)
@@ -177,12 +186,12 @@ You might have already seen this pattern used in the popular [elm-json-decode-pi
 The cool thing with this approach is that if a single result fails, the whole operation fails with the error of the first failure encountered during the build process:
 
 ```elm
-dogs : List String
+dogs : List Dog
 dogs =
     [ "Lassie", "Toto", "Trakr", "Laïka", "Balto", "Jofi" ]
 
 
-findDog : String -> List String -> Result String String
+findDog : Dog -> List Dog -> Result Error Dog
 findDog name =
     List.filter ((==) name)
         >> List.head
@@ -190,16 +199,16 @@ findDog name =
 
 
 type alias FavoriteDogs =
-    { dogSlot1 : String
-    , dogSlot2 : String
-    , dogSlot3 : String
-    , dogSlot4 : String
-    , dogSlot5 : String
-    , dogSlot6 : String
+    { dogSlot1 : Dog
+    , dogSlot2 : Dog
+    , dogSlot3 : Dog
+    , dogSlot4 : Dog
+    , dogSlot5 : Dog
+    , dogSlot6 : Dog
     }
 
 
-buildOk : Result String FavoriteDogs
+buildOk : Result Error FavoriteDogs
 buildOk =
     Ok FavoriteDogs
         |> resolve (findDog "Lassie" dogs)
@@ -219,7 +228,7 @@ buildOk =
     --     }
 
 
-buildErr : Result String FavoriteDogs
+buildErr : Result Error FavoriteDogs
 buildErr =
     Ok FavoriteDogs
         |> resolve (findDog "Lassie" dogs)
