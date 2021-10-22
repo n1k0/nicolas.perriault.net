@@ -9,23 +9,28 @@ redirect_from:
 image: /static/code/2021/pipeline.jpg
 ---
 
-[Elm](https://elm-lang.org/) is great, but let's admit it: dealing explicitely with uncertainty can be painful. A classic example is when you query a data structure which can be empty:
+One of the best features of pure functional programming languages like [Elm](https://elm-lang.org/) is their ability to deal with and handle *uncertainty*. The absence of `null` and exceptions forces developers to state explicitely what should happen when expectations aren't met, which combined with a good compiler and a strong static type system makes the code super descriptive and rock solid.
+
+A classic example is when you query a data structure which can be empty:
 
 ```elm
 > dogs = [ "Lassie", "Scooby-Doo" ]
 ["Lassie","Scooby-Doo"] : List String
 
+
 > dogs |> List.head
 Just "Lassie" : Maybe String
 
+
 > dogs = []
 [] : List a
+
 
 > dogs |> List.head
 Nothing : Maybe a
 ```
 
-Meaning you have to handle [`Maybe`](https://package.elm-lang.org/packages/elm/core/latest/Maybe), `Maybe.map`, `Maybe.andThen`, `Maybe.withDefault` and so on if you want to ensure you handle the uncertainty of actually holding a value:
+Meaning you may handle [`Maybe`](https://package.elm-lang.org/packages/elm/core/latest/Maybe), `Maybe.map`, `Maybe.andThen`, `Maybe.withDefault` and so on if you want to ensure you handle the uncertainty of actually holding a value:
 
 ```elm
 > ["Lassie"]
@@ -34,6 +39,7 @@ Meaning you have to handle [`Maybe`](https://package.elm-lang.org/packages/elm/c
     |> Maybe.withDefault "oh no ;("
 "LASSIE" : String
 
+
 > []
     |> List.head
     |> Maybe.map String.toUpper
@@ -41,7 +47,7 @@ Meaning you have to handle [`Maybe`](https://package.elm-lang.org/packages/elm/c
 "oh no ;(" : String
 ```
 
-Same goes with [`Result`](https://package.elm-lang.org/packages/elm/core/latest/Result), which is basically a `Maybe` with an explicit error attached:
+Same goes with [`Result`](https://package.elm-lang.org/packages/elm/core/latest/Result), which is basically a `Maybe` with an alternative value — typically an error — attached:
 
 ```elm
 > findDog name =
@@ -50,9 +56,11 @@ Same goes with [`Result`](https://package.elm-lang.org/packages/elm/core/latest/
       >> Result.fromMaybe ("oh no, can't find " ++ name)
 <function> : String -> List String -> Result String String
 
+
 > ["Lassie", "Scooby-Doo"]
     |> findDog "Scooby-Doo"
 Ok "Scooby-Doo" : Result String String
+
 
 > ["Lassie", "Scooby-Doo"]
     |> findDog "Rintintin"
@@ -99,12 +107,23 @@ showDogs favorites =
 Luckily we have the [`Result.map`](https://package.elm-lang.org/packages/elm/core/latest/Result#map) familly of functions:
 
 ```elm
-showTwoFirstDogs : FavoriteDogs -> Html msg
-showTwoFirstDogs favorites =
+showFirstTwoDogs : FavoriteDogs -> Html msg
+showFirstTwoDogs favorites =
     Result.map2
         (\dog1 dog2 -> text <| dog1 ++ " and " ++ dog2)
         favorites.dogSlot1
         favorites.dogSlot2
+
+
+showFirstThreeDogs : FavoriteDogs -> Html msg
+showFirstThreeDogs favorites =
+    Result.map3
+        (\dog1 dog2 dog3 ->
+            [ dog1, dog2, dog3 ] |> String.join ", " |> text
+        )
+        favorites.dogSlot1
+        favorites.dogSlot2
+        favorites.dogSlot3
 ```
 
 But wait, we don't have `Result.map6`! The core implementation of [`Result.map5`](https://github.com/elm/core/blob/47ebbc97047d92baa72d877a478afaaea3aefce8/src/Result.elm#L143-L170) is pretty verbose already, I can understand why they avoided going further haha. But more annoyingly, that means you don't have a convenient helper for mapping more than 5 `Result`s at once, for example to build a record having 6.
@@ -124,7 +143,7 @@ type alias FavoriteDogs =
 
 ## Pipelining to the rescue!
 
-Here's a nice helper I use to build a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
+Here's a convenient helper I use to build a record using the [pipeline builder pattern](https://sporto.github.io/elm-patterns/advanced/pipeline-builder.html); it's often known in functional languages as `apply`, but I like `resolve`:
 
 ```elm
 resolve : Result x a -> Result x (a -> b) -> Result x b
@@ -182,6 +201,13 @@ type alias FavoriteDogs =
 
 buildOk : Result String FavoriteDogs
 buildOk =
+    Ok FavoriteDogs
+        |> resolve (findDog "Lassie" dogs)
+        |> resolve (findDog "Toto" dogs)
+        |> resolve (findDog "Trakr" dogs)
+        |> resolve (findDog "Laïka" dogs)
+        |> resolve (findDog "Balto" dogs)
+        |> resolve (findDog "Jofi" dogs)
     -- Gives:
     --   Ok
     --     { dogSlot1 = "Lassie"
@@ -191,38 +217,31 @@ buildOk =
     --     , dogSlot5 = "Balto"
     --     , dogSlot6 = "Jofi"
     --     }
-    Ok FavoriteDogs
-        |> resolve (findDog "Lassie" dogs)
-        |> resolve (findDog "Toto" dogs)
-        |> resolve (findDog "Trakr" dogs)
-        |> resolve (findDog "Laïka" dogs)
-        |> resolve (findDog "Balto" dogs)
-        |> resolve (findDog "Jofi" dogs)
 
 
 buildErr : Result String FavoriteDogs
 buildErr =
-    -- Gives:
-    --   Err ("oh no, can't find Garfield")
     Ok FavoriteDogs
         |> resolve (findDog "Lassie" dogs)
         |> resolve (findDog "Toto" dogs)
-        |> resolve (findDog "Garfield" dogs)
+        |> resolve (findDog "Garfield" dogs) -- woops!
         |> resolve (findDog "Laïka" dogs)
         |> resolve (findDog "Balto" dogs)
         |> resolve (findDog "Jofi" dogs)
+    -- Gives:
+    --   Err ("oh no, can't find Garfield")
 ```
 
 That's all folks, hope it's useful.
 
-### Disclaimer
+## Disclaimer
 
-This post has been written in one hour tops. This is an attempt at forcing myself to write again on this blog, just don't judge me too harsh!
+This post has been written in ~~one hour tops~~ more than that with all the feeddback received. This is an attempt at forcing myself to write again on this blog, just don't judge me too harsh!
 
-### Edit
+## Thanks
+
+Thanks to [Ethan](https://github.com/glasserc), [Mathieu](https://blog.mathieu-leplatre.info/), [Mathieu](https://agopian.info/) and [Rémy](https://twitter.com/Natim) for their precious feedback.
+
+## Update
 
 Thanks to [elm-search](https://klaftertief.github.io/elm-search/?q=Result%20x%20a%20-%3E%20Result%20x%20(a%20-%3E%20b)%20-%3E%20Result%20x%20b), I could find that the [elm-result-extra](https://package.elm-lang.org/packages/elm-community/result-extra/latest) package provides [`andMap`](https://package.elm-lang.org/packages/elm-community/result-extra/latest/Result-Extra#andMap), which allows exactly the same thing as my `resolve` helper.
-
-### Thanks
-
-Thanks to [Ethan](https://github.com/glasserc), [Mathieu](https://blog.mathieu-leplatre.info/) and [Mathieu](https://agopian.info/) for their precious feedback.
