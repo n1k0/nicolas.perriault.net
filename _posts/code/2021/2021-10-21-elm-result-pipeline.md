@@ -154,7 +154,15 @@ resolve result =
     Result.andThen (\partial -> Result.map partial result)
 ```
 
-It allows[^2] creating a fully-qualified `FavoriteDogs` record this way:
+Which can be shortened even further — though becoming less explicit[^2] — with:
+
+```elm
+resolve : Result x a -> Result x (a -> b) -> Result x b
+resolve =
+    Result.map2 (|>)
+```
+
+This little helper allows creating a fully-qualified `FavoriteDogs` record this way:
 
 ```elm
 build : Result Error FavoriteDogs
@@ -251,4 +259,4 @@ Thanks to [elm-search](https://klaftertief.github.io/elm-search/?q=Result%20x%20
 
 [^1]: For the sake of simplicity and disambiguation, we're aliasing `Dog` and `Error` as strings here. This is not recommended practice, you should rather use [opaque types](https://ckoster22.medium.com/advanced-types-in-elm-opaque-types-ec5ec3b84ed2) instead.
 
-[^2]: The type signature of `resolve` might be hard to grasp; this [section of the Elm Guide](https://guide.elm-lang.org/types/reading_types.html) may be a good read.
+[^2]: The type signature and implementation of `resolve` might be hard to grasp for the non-seasoned Elm developer; this [section of the Elm Guide](https://guide.elm-lang.org/types/reading_types.html) may be a good read.
