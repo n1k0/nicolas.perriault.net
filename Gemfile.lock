@@ -261,7 +261,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-pages (~> 215)
+  github-pages
   jekyll-browsersync
   jekyll-feed (~> 0.15.1)
   jekyll-redirect-from (~> 0.16.0)
