@@ -8,6 +8,14 @@ img.cover {
   width: 100%;
 }
 
+#sidebar nav > .icon {
+  font-size: 1.3rem;
+}
+
+#subscribe-link, #tags-link {
+  transform: scale(1.2);
+}
+
 .post-body {
   a code {
     color: #268bd2;
