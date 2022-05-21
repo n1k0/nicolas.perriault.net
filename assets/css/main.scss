@@ -131,6 +131,16 @@ img.cover {
   }
 }
 
+.content {
+  a[href^="http"][target="_blank"]:after {
+    content: "" url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+    position: relative;
+    margin-left: 3px;
+    top: -0.4em;
+    font-size: 65%;
+  }
+}
+
 @media screen and (max-width: 783px) {
   .container > .content {
     padding: 1.5rem;
