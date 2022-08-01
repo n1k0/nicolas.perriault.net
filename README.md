@@ -36,7 +36,7 @@ $ npm install -g browser-sync
 And run:
 
 ```
-$ bundle exec jekyll browser-sync
+$ bundle exec jekyll browsersync
 ```
 
 Deploy
