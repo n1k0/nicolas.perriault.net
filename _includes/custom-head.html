@@ -67,7 +67,7 @@
 
 <!-- Tobii gallery -->
 <script>
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", () => {
   if ("Tobii" in window) {
     const imgs = document.querySelectorAll(".add-to-gallery");
     for (const img of imgs) {
@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", function() {
         <a href="${img.src}" class="lightbox">${img.outerHTML}</a>
       `))
     }
-    const tobii = new Tobii({ captions: false });
+    new Tobii({ captions: false });
   }
 });
 </script>

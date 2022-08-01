@@ -12,6 +12,19 @@ img.cover {
   width: 100%;
 }
 
+.tobii-zoom__icon {
+  border-radius: 4px;
+  opacity: 0.33;
+  transform: scale(.75);
+  top: 5px !important;
+  right: 5px !important;
+
+  &:hover {
+    opacity: 0.5;
+    filter: invert(1);
+  }
+}
+
 #sidebar nav > .icon {
   font-size: 1.3rem;
 }

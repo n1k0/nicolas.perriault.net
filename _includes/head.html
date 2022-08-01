@@ -1,0 +1,14 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>
+  {%- if page.title == "Home" -%}
+    {{ site.title }}{%- if site.tagline -%} &middot; {{ site.tagline }}{%- endif -%}
+  {%- else -%}
+    {{ page.title }} &middot; {{ site.title }}
+  {%- endif -%}
+</title>
+<link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+{% include font-includes.html %}
+{% include favicons.html %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ site.feed.path | default: 'feed.xml' | relative_url }}">
+{% include custom-head.html %}
