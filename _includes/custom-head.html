@@ -67,16 +67,16 @@
 
 <!-- Tobii gallery -->
 <script>
-if ("Tobii" in window) {
-  window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", function() {
+  if ("Tobii" in window) {
     const imgs = document.querySelectorAll(".add-to-gallery");
     for (const img of imgs) {
       img.replaceWith(document.createRange().createContextualFragment(`
         <a href="${img.src}" class="lightbox">${img.outerHTML}</a>
       `))
     }
-    const tobii = new Tobii();
-  });
-}
+    const tobii = new Tobii({ captions: false });
+  }
+});
 </script>
 <!-- end of Tobii gallery -->
