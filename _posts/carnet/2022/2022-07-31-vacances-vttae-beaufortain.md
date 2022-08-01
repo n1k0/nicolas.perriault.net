@@ -58,15 +58,3 @@ J'ai tracé moi-même les parcours que nous avons effectué via [Komoot](https:/
 [^1]: Oui je suis bien conscient que le trajet et l'utilisation d'engins manufacturés n'est pas neutre en carbone, mais chacun fait ce qu'il peut dans un contexte ou on a tous pris cher psychiquement ces deux dernières années
 [^2]: À l'exception de l'aspect financier malheureusement, puisque l'assistance électrique représente un surcoût substantiel à l'achat ou à la location, de l'ordre de 30 à 50% — même si de nombreuses aides existent désormais pour inciter et aider l'achat.
 [^3]: Oui, ces prix sont absolument délirants, et je peine à croire qu'ils représentent la réalité des coûts de fabrication… Mais c'est un autre débat qui dépasse le cadre de ce billet !
-
-<script>
-(function(){
-  const imgs = document.querySelectorAll(".add-to-gallery");
-  for (const img of imgs) {
-    img.replaceWith(document.createRange().createContextualFragment(`
-      <a href="${img.src}" class="lightbox">${img.outerHTML}</a>
-    `))
-  }
-  const tobii = new Tobii();
-})()
-</script>
