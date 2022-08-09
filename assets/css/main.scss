@@ -6,10 +6,19 @@
 
 img {
   margin: 0;
-}
 
-img.cover {
-  width: 100%;
+  &.add-to-gallery {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 50px;
+    background-color: #fafafa;
+  }
+
+  &.cover {
+    width: 100%;
+  }
 }
 
 sup {
