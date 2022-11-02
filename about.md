@@ -16,6 +16,6 @@ Ces derniers temps je travaille principalement avec [beta.gouv](https://beta.gou
 
 En ce moment, je pratique la bicyclette ([Komoot](https://www.komoot.fr/user/2657954723020), [Strava](https://www.strava.com/athletes/n1k0)), la [photographie](https://pixelfed.social/n1k0), la [musique](https://soundcloud.com/n1k0).
 
-En parallèle, je continue de rouspéter sur [Mastodon](https://mamot.fr/@n1k0), [Twitter](https://twitter.com/n1k0) et [Reddit](https://www.reddit.com/user/0k1n).
+En parallèle, je continue de rouspéter sur [Mastodon](https://mamot.fr/@n1k0) et [Reddit](https://www.reddit.com/user/0k1n).
 
 Le code source de ce blog et la majeure partie de ses contenus sont [publiés sur Github](https://github.com/n1k0/nicolas.perriault.net) sous licences libres.

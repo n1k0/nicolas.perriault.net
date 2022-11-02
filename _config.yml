@@ -10,7 +10,6 @@ description: >-
 baseurl: "" # the subpath of your site, e.g. /blog
 url:     "https://nicolas.perriault.net" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:categories/:year/:title/
-twitter_username: n1k0
 github_username:  n1k0
 email: nicolas@perriault.net
 title_image: https://nicolas.perriault.net/static/img/me.png

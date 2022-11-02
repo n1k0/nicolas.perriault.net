@@ -3,7 +3,7 @@
 
 /* ABOUT */
   Author:     Nicolas Perriault
-  Twitter:    n1k0
+  Mastodon:   https://mamot.fr/@n1k0
   Location:   Montpellier, France
 
 /* SITE */
