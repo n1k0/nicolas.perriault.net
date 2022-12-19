@@ -2,7 +2,7 @@
 title: Bye, Twitter
 excerpt: Comme vous le savez, Twitter est mort ou en passe de l'être. J'y ai passé 15 ans de ma vie, posté près de cent mille fois et lâché près de 5000 “likes”. J'y ai rencontré tellement de copines et de copains, ça me fait mal au cœur de quitter le machin. Y'a indéniablement un deuil à faire.
 lang: fr
-date: 2022-12-19
+date: 2022-12-18
 category: carnet
 tags: life changement community humeur
 image: /static/carnet/2022/bye/sunk-ship.jpg
