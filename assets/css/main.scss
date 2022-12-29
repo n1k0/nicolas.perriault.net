@@ -177,6 +177,16 @@ sup {
     top: -0.4em;
     font-size: 65%;
   }
+
+  q {
+    font-style: italic;
+    &::before {
+      content: "« ";
+    }
+    &::after {
+      content: " »";
+    }
+  }
 }
 
 @media screen and (max-width: 783px) {
