@@ -187,6 +187,23 @@ sup {
       content: " »";
     }
   }
+
+  a.footnote {
+    font-weight: normal;
+    margin-left: 1px;
+    &::before {
+      content: "…";
+    }
+    &::after {
+      content: "";
+    }
+  }
+
+  .footnotes {
+    border-top: 1px solid #ccc;
+    margin-top: 1.25em;
+    padding-top: 1.25em;
+  }
 }
 
 @media screen and (max-width: 783px) {
