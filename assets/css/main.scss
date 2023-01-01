@@ -203,6 +203,18 @@ sup {
     border-top: 1px solid #ccc;
     margin-top: 1.25em;
     padding-top: 1.25em;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    :target {
+      background: lightyellow;
+      border: solid 1px #e1e1e1;
+      transition: background .8s;
+      transition: border .8s;
+      padding: .4em .7em;
+    }
   }
 }
 
