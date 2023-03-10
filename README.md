@@ -12,37 +12,22 @@ Install
 Ensure [Ruby](https://www.ruby-lang.org/) and [rbenv](https://github.com/rbenv/rbenv) are installed, then:
 
 ```
-$ rbenv install 2.7.4
-$ rbenv local 2.7.4
-$ bundle
+$ make install
 ```
 
 To start the development server:
 
 ```
-$ bundle exec jekyll serve
+$ make serve
 ```
 
 Now browse to [localhost:4000](http://localhost:4000/).
 
-### Live reload
-
-To run the blog locally with auto-reload, install [browser-sync](https://www.npmjs.com/package/browser-sync):
-
-```
-$ npm install -g browser-sync
-```
-
-And run:
-
-```
-$ bundle exec jekyll browsersync
-```
-
 Deploy
 ------
 
-The blog uses [Github Pages](https://help.github.com/en/articles/about-github-pages-and-jekyll) for automatic deployment, so it's just matter of:
+The blog uses [Github Pages](https://help.github.com/en/articles/about-github-pages-and-jekyll)
+for automatic deployment, so it's just matter of:
 
 ```
 $ git push master
@@ -51,13 +36,14 @@ $ git push master
 Image optimization
 ------------------
 
+Install `jpegoptim` and `optipng` using your favorite package manager, then:
+
 ```
-$ sudo apt install jpegoptim optipng
-$ find static -name "*.jpg" | xargs jpegoptim
-$ find static -name "*.png" | xargs optipng
+$ make optim
 ```
 
 License
 -------
 
-Contents in `./_posts` are licensed under the terms of the [Creative Commons BY-NC-SA license](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+Contents in `./_posts` are licensed under the terms of the
+[Creative Commons BY-NC-SA license](http://creativecommons.org/licenses/by-nc-sa/3.0/).
