@@ -20,4 +20,4 @@ En parallèle, je continue de rouspéter sur [Mastodon](https://mamot.fr/@n1k0) 
 
 Le code source de ce blog et la majeure partie de ses contenus sont [publiés sur Github](https://github.com/n1k0/nicolas.perriault.net) sous licences libres.
 
-[^1]: Vous trouverez les traces détaillées de mes périples sur [Komoot](https://www.komoot.fr/user/2657954723020) ou [Strava](https://www.strava.com/athletes/n1k0). J'ai même ouvert une chaîne vidéo – *Gravel Hérault* – sur [PeerTube](https://peertube.stream/c/gravelherault/videos) et [Youtube](https://www.youtube.com/@GravelHerault).
+[^1]: Vous trouverez les traces détaillées de mes périples sur [Komoot](https://www.komoot.fr/user/2657954723020) ou [Strava](https://www.strava.com/athletes/n1k0). J'ai même ouvert une chaîne vidéo dédiée, [*Gravel Hérault* sur Youtube](https://www.youtube.com/@GravelHerault).
