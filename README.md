@@ -23,6 +23,13 @@ $ make serve
 
 Now browse to [localhost:4000](http://localhost:4000/).
 
+Create new post
+---------------
+
+```
+$ node scripts/commands.js new "My title" --section=code --lang=en
+```
+
 Deploy
 ------
 
