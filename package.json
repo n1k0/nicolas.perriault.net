@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "nicolas.perriault.net",
+  "version": "1.0.0",
+  "description": "My personal blog.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Nicolas Perriault <nicolas@perriault.net>",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.28.3"
+  }
+}
