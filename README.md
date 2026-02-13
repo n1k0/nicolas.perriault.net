@@ -54,3 +54,9 @@ License
 
 Contents in `./_posts` are licensed under the terms of the
 [Creative Commons BY-NC-SA license](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+
+
+The rest is licensed under the terms of the MIT license.
+
+Use of genAI is discouraged, for reasons described `AGENTS.md`.
+
