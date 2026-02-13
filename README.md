@@ -58,5 +58,4 @@ Contents in `./_posts` are licensed under the terms of the
 
 The rest is licensed under the terms of the MIT license.
 
-Use of genAI is discouraged, for reasons described `AGENTS.md`.
-
+Use of genAI is discouraged, for reasons described in `AGENTS.md`.
