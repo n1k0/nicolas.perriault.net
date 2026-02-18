@@ -24,7 +24,7 @@ Si l’interprétabilité des réseaux de neurones est un domaine de recherche t
 
 ### Une catastrophe écologique
 
-Les modèles consomment des quantités d’énergie exponentielles et les ordres de grandeur à l’œuvre défient l’imagination. [Les 2,5 milliards de requêtes quotidiennes effectuées sur ChatGPT consomment à elles-seules 47,2 GWh par jour, soit de quoi alimenter 1,5 million de foyers américains ou environ 1/10e de la consommation annuelle électrique française](https://archive.is/h3UkS). Tandis que nous avons déjà dépassé 6 des 9 limites planétaires, les datacenters continuent de consommer de plus en plus d’eau pour leur refroidissement et les fondeurs d’extraire des terres rares pour la fabrication de GPU, occasionant la destruction des ecosystèmes et du vivant.
+Les modèles consomment des quantités d’énergie exponentielles et les ordres de grandeur à l’œuvre défient l’imagination. [Les 2,5 milliards de requêtes quotidiennes effectuées sur ChatGPT consomment à elles-seules 47,2 GWh par jour, soit peu ou prou la consommation annuelle électrique française tous les 10 jours](https://archive.is/h3UkS). Tandis que nous avons déjà dépassé 6 des 9 limites planétaires, les datacenters continuent de consommer de plus en plus d’eau pour leur refroidissement et les fondeurs d’extraire des terres rares pour la fabrication de GPU, occasionant la destruction des ecosystèmes et du vivant.
 
 ### Une perte de souveraineté
 
