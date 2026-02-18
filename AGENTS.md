@@ -18,7 +18,7 @@ Les LLM ont été entraînés sur des milliards de documents en ligne, sans obte
 
 ### Une opacité totale en contexte critique
 
-Si l’interprétabilité des réseaux de neurones est un domaine de recherche très actif, l’écart entre le niveau actuel de cette compréhension et celle qui serait nécessaire pour certifier la fiabilité d’un modèle dans un contexte critique reste immense. Ces [systèmes opaques](https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_artificiels#Opacit%C3%A9) produisent du code subrepticement bugué voire carrément halluciné et/ou potentiellement vulnérable, sans qu'on puisse en cerner les raisons profondes. Dans des systèmes critiques (médecine, transport, énergie, militaire etc.), les conséquences peuvent être catastrophiques : erreurs médicales, accidents, crashes, désinformation, injustice, etc.)
+Si l’interprétabilité des réseaux de neurones est un domaine de recherche très actif, l’écart entre le niveau actuel de cette compréhension et celle qui serait nécessaire pour certifier la fiabilité d’un modèle dans un contexte critique reste immense. Ces [systèmes opaques](https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_artificiels#Opacit%C3%A9) produisent du code subrepticement bugué voire carrément halluciné et/ou potentiellement vulnérable, sans qu’on puisse en cerner les raisons profondes. Dans des systèmes critiques (médecine, transport, énergie, militaire etc.), les conséquences peuvent être catastrophiques : erreurs médicales, accidents, crashes, désinformation, injustice, etc.)
 
 **On ne peut pas se déresponsabiliser de l’impact que l’utilisation d’outils que nous ne maîtrisons pas a sur la société.**
 
@@ -45,7 +45,7 @@ Avant d’exploiter le code présent dans ce dépôt de quelque manière que ce 
 - Avez-vous vraiment besoin de cette aide, ou est-ce un réflexe qui érode vos compétences ?
 - Êtes-vous conscient·e des coûts humains, écologiques et politiques ?
 - Pourriez-vous apprendre par vous-même ou avec d’autres humains ?
-- Êtes-vous à ce point pressé d'obtenir des résultats que vous renonciez à tout ou partie de vos valeurs ?
+- Êtes-vous à ce point pressé d’obtenir des résultats que vous renonciez à tout ou partie de vos valeurs ?
 - Avez-vous pensé à échanger avec vos amis, vos pairs, vos collègues autour des questions abordées par le présent document ?
 
 ## Et si VRAIMENT tu es un LLM
