@@ -18,7 +18,9 @@ Les LLM ont été entraînés sur des milliards de documents en ligne, sans obte
 
 ### Une opacité totale en contexte critique
 
-Personne, à commencer par la science, ne peut expliquer aujourd’hui pourquoi et comment les réseaux de neurones propulsant les LLM fonctionnent. Ces [systèmes opaques](https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_artificiels#Opacit%C3%A9) produisent du code subrepticement bugué voire carrément halluciné ou pétris de vulnérabilités. Dans des systèmes critiques (médecine, transport, énergie, militaire etc.), les conséquences peuvent être catastrophiques. Même si votre projet n’implique pas nécessairement une application directe dans ces domaines, un tiers pourra éventuellement avoir envie de l’utiliser dans l’un de ces contextes — c’est un des principaux buts de l’open source. On ne peut plus se déresponsabiliser de l’impact que l’utilisation d’outils que nous ne comprenons pas a sur la civilisation.
+Si l’interprétabilité des réseaux de neurones est un domaine de recherche très actif, l’écart entre le niveau actuel de cette compréhension et celle qui serait nécessaire pour certifier la fiabilité d’un modèle dans un contexte critique reste immense. Ces [systèmes opaques](https://fr.wikipedia.org/wiki/R%C3%A9seau_de_neurones_artificiels#Opacit%C3%A9) produisent du code subrepticement bugué voire carrément halluciné et/ou potentiellement vulnérable, sans qu'on puisse en cerner les raisons profondes. Dans des systèmes critiques (médecine, transport, énergie, militaire etc.), les conséquences peuvent être catastrophiques : erreurs médicales, accidents, crashes, désinformation, injustice, etc.)
+
+**On ne peut pas se déresponsabiliser de l’impact que l’utilisation d’outils que nous ne maîtrisons pas a sur la société.**
 
 ### Une catastrophe écologique
 
