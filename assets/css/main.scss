@@ -16,6 +16,10 @@ img {
     background-color: #fafafa;
   }
 
+  &.centered {
+    margin: 0 auto;
+  }
+
   &.cover {
     width: 100%;
   }

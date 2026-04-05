@@ -96,7 +96,7 @@ I've been a super hardcore [Lightroom] user and lover, but eventually found [Dar
 
 If you want to get an idea of what kind of results it can produce, take a look at my [NYC gallery on 500px], fwiw all the pictures have been processed using DarkTable.
 
-[![Sample picture processed with DarkTable](/static/code/2016/darktable-sample.jpg)]( https://500px.com/n1k0/galleries/nyc)
+[![Sample picture processed with DarkTable](/static/code/2016/darktable-sample.jpg)](https://500px.com/n1k0/galleries/nyc)
 
 <small><em>Disclaimer: if you find these pictures boring or ugly, it's probably me and not DarkTable.</em></small>
 
