@@ -20,4 +20,6 @@ En parallèle, je continue de rouspéter sur [Mastodon](https://mamot.fr/@n1k0) 
 
 Le code source de ce blog et la majeure partie de ses contenus sont [publiés sur Github](https://github.com/n1k0/nicolas.perriault.net) sous licences libres.
 
+Ma position vis à vis de l'IA générative se trouve dans [une section dédiée](/ai/).
+
 [^1]: Les traces et compte-rendus de mes sorties sont disponibles sur [Komoot](https://www.komoot.fr/user/2657954723020), [Strava](https://www.strava.com/athletes/n1k0) et souvent sur [Mastodon](https://mamot.fr/@n1k0).

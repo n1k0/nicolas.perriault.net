@@ -4,8 +4,7 @@ lang: fr
 permalink: /ai/
 date: 2026-04-05
 tags: ai ia
-sidebar_link: true
-sidebar_sort_order: 3
+sidebar_link: false
 lang: fr
 ---
 
