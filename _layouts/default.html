@@ -4,13 +4,6 @@
 <body class="{{ page.layout }}{% if page.url == '/' %} home{% endif %}">
   {% include sidebar.html %}
   <main class="container" lang="{{ page.lang | default: "en" }}">
-    {% if page.notice %}
-    <div class="post-notice info">
-      <img src="/static/img/info.png">
-      <p style="margin-bottom:0">{{ page.notice }}</p>
-    </div>
-    {% endif %}
-
     {{ content }}
   </main>
   {% include custom-foot.html %}
