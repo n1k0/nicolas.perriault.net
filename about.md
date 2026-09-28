@@ -14,9 +14,9 @@ Je suis [développeur freelance](/code/) au sein de ma propre société, [Akei](
 
 Ces derniers temps je travaille principalement avec [beta.gouv](https://beta.gouv.fr/). Auparavant, j'ai travaillé avec [Mozilla](https://mozilla.com/), [Sensiolabs](https://sensiolabs.com/fr/), [Clever-Age](https://www.clever-age.com/), [Scopyleft](http://scopyleft.fr/) et [Allo-Media](https://www.allo-media.net/).
 
-En ce moment, je pratique les [sorties nature](https://balades.perriault.net/) à pied ou [à vélo](https://www.youtube.com/@GravelHerault)[^1], la [photographie](https://pixelfed.social/n1k0) et la [musique](https://soundcloud.com/n1k0).
+En ce moment, je pratique les [sorties nature](https://balades.perriault.net/) à pied ou [à vélo](https://www.youtube.com/@GravelHerault)[^1], la [photographie](https://mamot.fr/search?q=from%3A@n1k0@mamot.fr+%23photography&type=statuses) et la [musique](https://soundcloud.com/n1k0).
 
-En parallèle, je continue de rouspéter sur [Mastodon](https://mamot.fr/@n1k0) et [Reddit](https://www.reddit.com/user/0k1n).
+En parallèle, je continue de rouspéter sur [Mastodon](https://mamot.fr/@n1k0).
 
 Le code source de ce blog et la majeure partie de ses contenus sont [publiés sur Github](https://github.com/n1k0/nicolas.perriault.net) sous licences libres.
 
